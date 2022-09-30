@@ -2,12 +2,27 @@
 
 > Project vision.
 
-## A1: Project Name
+## A1: Project Management
 
-> Goals, business context and environment.  
-> Motivation.  
-> Main features.  
-> User profiles.
+In a world where teamwork has become crucial to combat the constant adversities that have arisen such as remote work, the need for a project management tool has emerged. So, we decided to create Workfluido.
+
+Workfluido is a web application to help teams plan and manage their projects in a simple and eficient way, making project management less of a chore. 
+
+Our target audience is companies from all sizes and areas but can be used by anyone who needs to manage a team project. It gives our users the ability to organize their workflow by forming teams, assigning tasks and discussing topics with their teams members.
+
+There are four types of roles in workfluido: anonymous users, collaborators, coordinators and administrators. The  anonymous users only have access to the welcome page where they are  presented with a short description of our website and also able to log in or register themselves by e-mail or other platforms such as google or github.
+
+A collaborator has its own profile with a picture and a brief description which can be edited when needed and can be viewed by any other collaborator. Each may be associated with multiple projects at the same time. 
+
+Our application allows any collaborator to create a new team and, by doing so automatically becomes a coordinator of that team. After teams are formed, it is possible to create tasks to be carried out by the team members and change their progression status. 
+
+The coordinator has more privileges than the other team members, such as assigning users to tasks, editing and deleting tasks assigned by others and adding new members to the team. He is also able to change tasks' due dates and their priority.
+
+Each project has a team, task lists and also a discussion forum for members of the project. Each task can have comments made by other collaborators and it is possible to keep track of the user that defined the task as well as the one who completed it. 
+
+At any time, collaborators can view the task details and mark a project as favorite. Users also have the ability to search for specific projects, tasks and messages of the forum and view the list of all the projects that they have participated in, which can be seen in their profile only by them.
+
+Finally, the administrators are the ones responsible for keeping a clean and safe website by administrating user accounts and their respective projects being able to view, change or even delete both of them.
 
 
 ---
