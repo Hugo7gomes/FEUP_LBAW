@@ -35,21 +35,29 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 
 ### 1. Actors
 
-> Diagram identifying actors and their relationships.  
-> Table identifying actors, including a brief description.
+**User**
+
+| Identifier | Name                                                | Priority | Description                                                                                                                          |
+|------------|-----------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------|
+| US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see a brief presentation of the website.                                       |
+| US02       | See About                                           | medium   | As a User, I want to access an about page, so that I can see the complete website's description.                                          |
+| US03       | Consult contacts                                    | medium   | I want to access the website’s information, so that I can easily ask questions, make suggestions or complain about a service.             |
+             |
+
+Table 2: User's user stories
 
 
-### 2. User Stories
 
-> User stories organized by actor.  
-> For each actor, a table containing a line for each user story, and for each user story: an identifier, a name, a priority, and a description (following the recommended pattern).
+**Anonymous User**
 
-#### 2.1. Actor 1
+| Identifier | Name                       | Priority | Description                                                                                                                                         |
+| ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US04       | Sign In                    | high     | As an Unauthenticated User, I want to authenticate into the system, so that I can access privileged information.                                    |
+| US05       | Sign Up                    | high     | As an Unauthenticated User, I want to register myself into the system, so that I can have my own account.
+| US06       | Recover Password           | medium      | As an Unauthenticated User, I want to authenticate into the system using an external account, so that I can access privileged information.
+| US07       | Sign In using external API | low      | As an Unauthenticated User, I want to authenticate into the system using an external account, so that I can access privileged information.          |
 
-#### 2.2. Actor 2
-
-#### 2.N. Actor n
-
+Table 3: Anonymous user's user stories
 
 ### 3. Supplementary Requirements
 
