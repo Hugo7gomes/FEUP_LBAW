@@ -30,8 +30,6 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 
 ## A2: Actors and User stories
 
-> Brief presentation of the artefact goals.
-
 
 ### 1. Actors
 
