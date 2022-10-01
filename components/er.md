@@ -42,7 +42,6 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 | US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see a brief presentation of the website.                                       |
 | US02       | See About                                           | medium   | As a User, I want to access an about page, so that I can see the complete website's description.                                          |
 | US03       | Consult contacts                                    | medium   | I want to access the website’s information, so that I can easily ask questions, make suggestions or complain about a service.             |
-             |
 
 Table 2: User's user stories
 
@@ -52,12 +51,46 @@ Table 2: User's user stories
 
 | Identifier | Name                       | Priority | Description                                                                                                                                         |
 | ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| US04       | Sign In                    | high     | As an Unauthenticated User, I want to authenticate into the system, so that I can access privileged information.                                    |
-| US05       | Sign Up                    | high     | As an Unauthenticated User, I want to register myself into the system, so that I can have my own account.
-| US06       | Recover Password           | medium      | As an Unauthenticated User, I want to authenticate into the system using an external account, so that I can access privileged information.
-| US07       | Sign In using external API | low      | As an Unauthenticated User, I want to authenticate into the system using an external account, so that I can access privileged information.          |
+| US04       | Sign In                    | high     | As an Anonymous User, I want to authenticate into the system, so that I can access privileged information.                                    |
+| US05       | Sign Up                    | high     | As an Anonymous User, I want to register myself into the system, so that I can have my own account.
+| US06       | Recover Password           | medium      | As an Anonymous User, I want to authenticate into the system using an external account, so that I can access privileged information.
+| US07       | Sign In using external API | low      | As an Anonymous User, I want to authenticate into the system using an external account, so that I can access privileged information.          |
 
 Table 3: Anonymous user's user stories
+
+**authenticated User**
+
+| Identifier | Name                       | Priority | Description                                                                                                                                         |
+| ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US08       | Edit Profile                   | high     | As an Authenticated User, I want to edit my profile, so that I can update my information.                                    |
+| US09       | Create Project                    | high     | As an Authenticated User, I want to be able to create a new project, so that I can lead and organize a new team project. |
+| US10       | Log out           | high      | As an Authenticated User, I want to log out, so that I can close my account.
+| US11       | View Profile | high      | As an Authenticated User, I want to view my profile, so that I can verify if all my information is correct.           |
+| US12       | Accept Team Invitations | high     | As an Authenticated User, I want to be able to accept an invitation, so that I can join a team and become a collaborator.          |
+| US13       | View projects | high      | As an Authenticated User, I want to view my projects so that I can access them easily.          |
+| US14       | Delete Account | medium      |As an Authenticated User, I want to be able to delete my account, so that my profile is deleted from the system.          |
+| US15       | View Personal Notifications | medium      | As an Authenticated User, I want to be able to receive personal notifications, so that I am always updated.          |
+| US16       | Support Profile Picture  | medium      | As an Authenticated User, I want to be able to upload a profile picture, so that people can see who I am.          |
+| US17       | Mark Project as Favorite | medium      | As an Authenticated User, I want to mark project as favorite, so that be easier to identify the most relevant.          |
+
+Table 4: Authenticated user's user stories
+
+**Collaborator**
+
+| Identifier | Name                       | Priority | Description                                                                                                                                         |
+| ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US18       | Leave Project                   | high     | As a Collaborator, I want to be able to leave the team, so that I don't belong anymore.                                    |
+| US19       | Manage Tasks                   | high     | As a Collaborator, I want to be able to change the tasks details, so that I can manage the priority, labels and due dates of the projects.
+| US20       | Create Task            | high      | As a Collaborator, I want to be able to create new tasks, so that I can better organize what needs to be done.
+| US21       | View Task Details  | high      | As a Collaborator, I want to see task details, so that I am informed.           |
+| US22       | Search Tasks  | high     | As a Collaborator, I want to search tasks, so that get to the task more easily.          |
+| US23       | Complete an Assigned Task  | high      | As a Collaborator, I want to complete an assigned task, so that I can update the project progression status.          |
+| US24       | Assign Users to Task  | medium      | As a Collaborator, I want to be able to assign people to tasks, so that the work is split between team members.         |
+| US25       | Comment on task  | medium      | As a Collaborator, I want to be able to comment on tasks of other team members, so that I can give my opinion. |
+| US26       | View project’s team and their profiles   | medium      | As a Collaborator, I want to view my project’s team and their profile, so that I see who is working with me.      |
+| US27       | Team Chat  | medium      | As a Collaborator, I want to be able to receive and send messages through the team chat, so that I can give my opinion and communicate with other team members.         |
+
+Table 5: Collaborator's user stories
 
 ### 3. Supplementary Requirements
 
