@@ -58,7 +58,7 @@ Table 2: User's user stories
 
 Table 3: Anonymous user's user stories
 
-**authenticated User**
+**Authenticated User**
 
 | Identifier | Name                       | Priority | Description                                                                                                                                         |
 | ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -91,6 +91,30 @@ Table 4: Authenticated user's user stories
 | US27       | Team Chat  | medium      | As a Collaborator, I want to be able to receive and send messages through the team chat, so that I can give my opinion and communicate with other team members.         |
 
 Table 5: Collaborator's user stories
+
+**Coordinator**
+
+| Identifier | Name                       | Priority | Description                                                                                                                                         |
+| ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US28       | Add Users                    | high     | As a Coordinator, I want to add users to the project, so that I can add team members to my project.                                  |
+| US29       | Assign New Coordinator                  | high     | As a Coordinator, I want to assign a new coordinator, so that I can have a user to help me or to leave that position.
+| US30       | Edit Project Details             | high      | As a Coordinator, I want to edit project details, so that the information is updated.
+| US31       | Remove project member   | high      |As a Coordinator, I want to remove an element from the team, so that former team members no longer have access to the project.           |
+| US32       | Archive Project   | high     | As a Coordinator, I want to archive a project, so that my workspace is organized.         |
+
+Table 6: Coordinator's user stories~
+
+**Administrator**
+
+| Identifier | Name                       | Priority | Description                                                                                                                                         |
+| ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| US31       | Administrate User Accounts                     | high     | As an Administrator, I want to administrate user accounts, so that I can manage the user’s behavior.                                  |
+| US32       | Browse project                   | high     | As an Administrator, I want to browse projects, so that I can easily find one. 
+| US33       | View Project Details              | high      | As an Administrator, I want to view the project details, so that I can maintain the website’s quality. 
+| US34       | Block and Unblock User Accounts    | high      | As an Administrator, I want to block and unblock user accounts, so that I maintain a standard behavior.            |
+| US35       | Delete User Accounts    | high     | As an Administrator, I want to delete user accounts, so that I can keep a clean and friendly website.         |
+
+Table 7: Administrator's user stories
 
 ### 3. Supplementary Requirements
 
