@@ -33,6 +33,20 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 
 **User**
 
+| Identifier | Description | 
+|------------|-----------------------------------------------------|
+| User                 | Generic user that has access to public information.                                  |
+| Anonymous User       | User that can create an account or log-in.                                 | 
+| Authenticated User   | User that can manage their personal information and accept team invitations.                          | 
+| Coordinator          | Authenticated user that manages the rest of the team and which has features such as editing and deleting tasks assigned by others users, adding and removing collaborators.                                  |
+| Collaborator         | Authenticated user that can check the workflow of the teams to which they belong, change their task state and comment the tasks performed by others.                                  |
+| Administrator        | Authenticated user that is responsible for the management of users and has some moderation functions.                                  | 
+| OAuth API            | External OAuth API that can be used to authenticate into the system.                                 |      
+
+Table 1: User's user stories
+
+**User**
+
 | Identifier | Name                                                | Priority | Description                                                                                                                          |
 |------------|-----------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------|
 | US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see a brief presentation of the website.                                       |
@@ -151,8 +165,6 @@ Table 9: Technical requirements
 | C01       | Deadline       | The system should be ready to be used at the beginning of the Summer holidays, to be able to register the loans of the season.|
 | C02       | Price       | The web app has a total budget of 0 euros .|
 
-
----
 Table 10: Restrictions
 
 
