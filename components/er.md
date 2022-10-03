@@ -31,7 +31,6 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 
 ### 1. Actors
 
-**User**
 
 | Identifier | Description | 
 |------------|-----------------------------------------------------|
