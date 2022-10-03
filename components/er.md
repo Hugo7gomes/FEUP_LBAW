@@ -132,12 +132,12 @@ Table 8: Business rules
 | ---------- | -------------------------- | -------- |
 | TR01       | Availability   | The system must be available 99 percent of the time in each 24-hour period.|
 | TR02       | Accessibility       | The system must ensure that everyone can access the pages, regardless of whether they have any handicap or not, or the web browser they use.| 
-| **TR03       |  Usability      | The system should be simple because it's a platform for everyone, so it has to be easy to use.**| 
+| **TR03**      | **Usability**     |**The system should be simple because it's a platform for everyone, so it has to be easy to use.**| 
 | TR04       | Perdormance       | The system should have response times shorter than 2 s to ensure the user's attention.| 
 | TR05       | Web application      | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). |
-|** TR06       |  Portability      | The server-side system should work across multiple platforms (Linux, Mac OS, etc.) so that everyone can access it, no matter the operating system in question.**| 
+|**TR06**       |  **Portability**      | **The server-side system should work across multiple platforms (Linux, Mac OS, etc.) so that everyone can access it, no matter the operating system in question.**| 
 | TR07       | Database       | The PostgreSQL database management system must be used, with a version of 11 or higher.| 
-| **TR08       | Security      | The system shall protect information from unauthorised access through the use of an authentication and verification system. It is important to ensure that third parties do not have access to projects carried out on our platform, or to impersonate us. ** |
+| **TR08**       | **Security**      | **The system shall protect information from unauthorised access through the use of an authentication and verification system. It is important to ensure that third parties do not have access to projects carried out on our platform, or to impersonate us.** |
 | TR09       |  Robustness      |The system must be prepared to handle and continue operating when runtime errors occur.| 
 | TR10       | Scalability       | The system must be prepared to deal with the growth in the number of users and their actions.| 
 | TR11       | Ethics      |  The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner). |    
