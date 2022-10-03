@@ -162,6 +162,7 @@ Changes made to the first submission:
 ***
 GROUP2281, 03/10/2022
 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+* Hugo Gomes up202004343@fe.up.pt
+* João Moreira up202005035@fe.up.pt
+* João Araújo up202007855@fe.up.pt
+* Lia Vieira up202005042@fe.up.pt
