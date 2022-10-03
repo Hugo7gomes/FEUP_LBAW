@@ -151,8 +151,9 @@ Table 9: Technical requirements
 | C01       | Deadline       | The system should be ready to be used at the beginning of the Summer holidays, to be able to register the loans of the season.|
 | C02       | Price       | The web app has a total budget of 0 euros .|
 
-Table 10: Restrictions
+
 ---
+Table 10: Restrictions
 
 
 ## A3: Information Architecture
