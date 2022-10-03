@@ -98,7 +98,7 @@ Table 5: Collaborator's user stories
 | US31       | Remove project member   | high      |As a Coordinator, I want to remove an element from the team, so that former team members no longer have access to the project.           |
 | US32       | Archive Project   | high     | As a Coordinator, I want to archive a project, so that my workspace is organized.         |
 
-Table 6: Coordinator's user stories~
+Table 6: Coordinator's user stories
 
 **Administrator**
 
