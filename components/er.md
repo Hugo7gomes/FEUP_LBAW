@@ -1,7 +1,5 @@
 # ER: Requirements Specification Component
 
-> Project vision.
-
 ## A1: Project Management
 
 In a world where teamwork has become crucial to combat the constant adversities that have arisen such as remote work, the need for a project management tool has emerged. So, we decided to create Workfluido.
@@ -162,7 +160,7 @@ Changes made to the first submission:
 1. ...
 
 ***
-GROUP21gg, DD/MM/2021
+GROUP2281, 03/10/2022
 
 * Group member 1 name, email (Editor)
 * Group member 2 name, email
