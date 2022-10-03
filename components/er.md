@@ -42,7 +42,7 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 | Administrator        | Authenticated user that is responsible for the management of users and has some moderation functions.                                  | 
 | OAuth API            | External OAuth API that can be used to authenticate into the system.                                 |      
 
-Table 1: User's user stories
+Table 1: Workfluido actors description
 
 **User**
 
