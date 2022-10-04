@@ -35,13 +35,13 @@ These will be the actors that will play a role in our project, from a simple use
 
 | Identifier | Description | 
 |------------|-----------------------------------------------------|
-| User                 | Generic user that has access to public information.                                  |
+| User                 | Generic user that has access to the initial page of the webapp.                                  |
 | Anonymous User       | User that can create an account or log-in.                                 | 
 | Authenticated User   | User that can manage their personal information and accept team invitations.                          | 
 | Coordinator          | Authenticated user that manages the rest of the team and which has features such as editing and deleting tasks assigned by others users, adding and removing collaborators.                                  |
 | Collaborator         | Authenticated user that can check the workflow of the teams to which they belong, change their task state and comment the tasks performed by others.                                  |
-| Administrator        | Authenticated user that is responsible for the management of users and has some moderation functions.                                  | 
-| OAuth API            | External OAuth API that can be used to authenticate into the system.                                 |      
+| Administrator        | Authenticated user that is responsible for keeping the web app clean.                                  | 
+| OAuth API            | External API that can be used to register and login into the system.                                 |      
 
 Table 1: Workfluido actors description
 
@@ -49,10 +49,10 @@ Table 1: Workfluido actors description
 
 | Identifier | Name                                                | Priority | Description                                                                                                                          |
 |------------|-----------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------|
-| US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see a brief presentation of the website.                                       |
+| US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see the intial page.                                       |
 | US02       | See About                                           | medium   | As a User, I want to access an about page, so that I can see the complete website's description.                                          |
 | US03       | Consult contacts                                    | medium   | As a user, I want to access the website’s information, so that I can easily ask questions, make suggestions or complain about a service.             |
-| US04       | FAQ Page                                            | medium   | As a user, I want to access the FAQ page, so that I can clarify my questions easily.             |
+| US04       | FAQ Page                                            | medium   | As a user, I want to access the FAQ page, so that I can clarify my questions.             |
 
 Table 2: User's user stories
 
@@ -62,7 +62,7 @@ Table 2: User's user stories
 
 | Identifier | Name                       | Priority | Description                                                                                                                                         |
 | ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| US05       | Sign In                    | high     | As an Anonymous User, I want to authenticate into the system, so that I can access privileged information.                                    |
+| US05       | Sign In                    | high     | As an Anonymous User, I want to authenticate into the system, so that I can access my profile.                                    |
 | US06       | Sign Up                    | high     | As an Anonymous User, I want to register myself into the system, so that I can have my own account.
 | US07       | Recover Password           | medium      | As an Anonymous User, I want to authenticate into the system using an external account, so that I can access privileged information.
 | US08       | Sign In and Sign Up using external API | low      | As an Anonymous User, I want to authenticate into the system using an external account, so that I can access privileged information.          |
