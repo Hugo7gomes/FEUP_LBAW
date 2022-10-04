@@ -1,6 +1,6 @@
 # ER: Requirements Specification Component
 
-## A1: Project Management
+## A1: Workfluido
 
 In a world where teamwork has become crucial to combat the constant adversities that have arisen such as remote work, the need for a project management tool has emerged. So, we decided to create Workfluido.
 
