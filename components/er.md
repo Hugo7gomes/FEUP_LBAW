@@ -98,8 +98,8 @@ Table 4: Authenticated user's user stories
 | US24       | Complete an Assigned Task  | high      | As a Collaborator, I want to complete an assigned task, so that I can update the project progression status.          |
 | US25       | Comment on task  | medium      | As a Collaborator, I want to be able to comment on tasks of other team members, so that I can give my opinion. |
 | US26       | View project’s team and their profiles   | medium      | As a Collaborator, I want to view my project’s team and their profile, so that I see who is working with me.      |
-| US27       | Team Forum  | low      | As a Collaborator, I want to be able to receive and send messages through the team forum, so that I can give my opinion and communicate with other team members.         |
-| US28       | Delete my Task  | Medium      | As a Collaborator, I want to be able to delete tasks I created, so that I can delete a task that no longer makes sense.         |
+| US27       | Delete my Task | medium      | As a Collaborator, I want to be able to delete tasks I created, so that I can delete a task that no longer makes sense.         |
+| US28       | Team Forum  | low      | As a Collaborator, I want to be able to receive and send messages through the team forum, so that I can give my opinion and communicate with other team members.         |
 
 Table 5: Collaborator's user stories
 
