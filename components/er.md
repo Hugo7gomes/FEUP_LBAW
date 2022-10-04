@@ -32,6 +32,7 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 ### 1. Actors
 
 
+
 | Identifier | Description | 
 |------------|-----------------------------------------------------|
 | User                 | Generic user that has access to public information.                                  |
@@ -204,5 +205,5 @@ GROUP2281, 03/10/2022
 
 * Hugo Gomes up202004343@fe.up.pt
 * João Moreira up202005035@fe.up.pt
-* João Araújo up202007855@fe.up.pt
+* João Araújo up202007855@fe.up.pt (Editor)
 * Lia Vieira up202005042@fe.up.pt
