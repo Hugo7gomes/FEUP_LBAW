@@ -33,7 +33,7 @@
 | R01               | authenticatedUser(**idUser**, email UK NN, username UK NN, name NN, password NN, phonenumber NN, administrator NN) |
 | R02               | photo(**idPhoto**, path NN, idUser->authenticatedUser NN) |
 | R03               | project(**idProject**, name NN, details, creationDate NN) |
-| R04               | task(**idTask**, name, state NN CK state = "to do" OR state = "doing" OR state = "done", creationDate NN, priority NN CK priority = "high" OR priority = "medium" OR priority = "low", proj_id->project) |
+| R04               | task(**idTask**, name NN, state NN CK state = "to do" OR state = "doing" OR state = "done", creationDate NN, priority NN CK priority = "high" OR priority = "medium" OR priority = "low", proj_id->project) |
 | R05               | notification(**idNotification**, date NN, idProject->project) |
 | R06               | invite(**idInvite**, state NN, date NN, idUser->authenticatedUser) |
 | R07               | comment(**idComment**, comment NN, date NN, ban) |
@@ -49,11 +49,6 @@
 | R17               | taskAssignNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
 | R18               | commentCNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
 | R19               | inviteINotification(**idUser**->authenticatedUser, **idNotification**->notification UK) |
-
-
-
-generalização - object oriented?
-default para task sem nome?
 
 
 Legend:
