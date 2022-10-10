@@ -35,7 +35,7 @@
 | R03               | project(**idProject**, name NN, details, creationDate NN) |
 | R04               | task(**idTask**, name NN, state NN CK state = "to do" OR state = "doing" OR state = "done", creationDate NN, priority NN CK priority = "high" OR priority = "medium" OR priority = "low", proj_id->project) |
 | R05               | notification(**idNotification**, date NN, idProject->project) |
-| R06               | invite(**idInvite**, state NN, date NN, idUser->authenticatedUser) |
+| R06               | invite(**idInvite**, state NN, date NN, idUserSender->authenticatedUser, idUserReceiver->authenticatedUser) |
 | R07               | comment(**idComment**, comment NN, date NN, ban) |
 | R08               | role(**idUser**->authenticatedUser, **idProject**->project, role NN CK role = "collaborator" OR role = "coordinator") |
 | R09               | taskStateNotification(**idNotification**->notification)|
