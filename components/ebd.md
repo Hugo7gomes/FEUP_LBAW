@@ -30,26 +30,26 @@
 
 | Relation reference| Relation Compact Notation                        |
 | ------------------| ------------------------------------------------ |
-| R01               | authenticatedUser(id,email UK NN, username UK NN, name NN, password NN, phonenumber NN, administrator NN) |
+| R01               | authenticatedUser(**id**,email UK NN, username UK NN, name NN, password NN, phonenumber NN, administrator NN) |
 | R02               | photo(id, path NN, id_user->authenticatedUser NN) |
 | R03               | project(id, name NN, details, creationDate NN) |
 | R04               | task(id, name, state NN CK state = "to do" OR state = "doing" OR state = "done", creationDate NN, priority NN CK priority = "high" OR priority = "medium" OR priority = "low", proj_id->project) |
 | R05               | notification(id, date NN, proj_id->project) |
 | R06               | invite(id, state NN, date NN, id->authenticatedUser) |
 | R07               | comment(id, comment NN, date NN, ban) |
-| R08               | role(user_id->authenticatedUser,proj_id->project, role NN CK role = "collaborator" OR role = "coordinator") |
-| R09               | taskStateNotification(id, date NN)|
-| R10               | assignNotification(id, date NN)   |
-| R11               | commentNotification(id, date NN)  |
-| R12               | inviteNotification(id, notif_id->notification)   |
+| R08               | role(user_id->authenticatedUser, proj_id->project, role NN CK role = "collaborator" OR role = "coordinator") |
+| R09               | taskStateNotification(idNotification->notification)|
+| R10               | assignNotification(idNotification->notification)   |
+| R11               | commentNotification(idNotification->notification)  |
+| R12               | inviteNotification(idNotification->notification)   |
 | R13               | task_auser(user_id->authenticatedUser, task_id->task)  |
 | R14               | task_auser(user_id->authenticatedUser, task_id->task)  |
-| R15               | notif_auser(user_id->authenticatedUser, notif_id->notification)  |
-| R16               | task_comm(user_id->authenticatedUser, notif_id->notification UK) |
-| R17               | task_tsn(user_id->authenticatedUser, notif_id->notification UK)  |
-| R18               | task_an(user_id->authenticatedUser, notif_id->notification UK)   |
-| R19               | comm_cn(user_id->authenticatedUser, notif_id->notification UK)   |
-| R20               | invite_in(user_id->authenticatedUser, notif_id->notification UK) |
+| R15               | notification_auser(user_id->authenticatedUser, notification_id->notification)  |
+| R16               | task_comm(user_id->authenticatedUser, notification_id->notification UK) |
+| R17               | task_tsn(user_id->authenticatedUser, notification_id->notification UK)  |
+| R18               | task_an(user_id->authenticatedUser, notification_id->notification UK)   |
+| R19               | comm_cn(user_id->authenticatedUser, notification_id->notification UK)   |
+| R20               | invite_in(user_id->authenticatedUser, notification_id->notification UK) |
 
 
 
