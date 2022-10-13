@@ -33,11 +33,11 @@
 | R01               | authenticatedUser(**idUser**, email UK NN, username UK NN, name NN, password NN, phonenumber NN, administrator NN) |
 | R02               | photo(**idPhoto**, path NN, idUser->authenticatedUser NN) |
 | R03               | project(**idProject**, name NN, details, creationDate NN) |
-| R04               | task(**idTask**, name NN, state NN CK state = "to do" OR state = "doing" OR state = "done", creationDate NN, priority NN CK priority = "high" OR priority = "medium" OR priority = "low", proj_id->project) |
+| R04               | task(**idTask**, name NN, state NN CK state IN State DF 'To do', creationDate NN, priority NN CK priority IN Priority, proj_id->project) |
 | R05               | notification(**idNotification**, date NN, idProject->project) |
 | R06               | invite(**idInvite**, state NN, date NN, idUserSender->authenticatedUser, idUserReceiver->authenticatedUser) |
 | R07               | comment(**idComment**, comment NN, date NN, ban) |
-| R08               | role(**idUser**->authenticatedUser, **idProject**->project, role NN CK role = "collaborator" OR role = "coordinator") |
+| R08               | role(**idUser**->authenticatedUser, **idProject**->project, role NN CK role IN Role ) |
 | R09               | taskStateNotification(**idNotification**->notification)|
 | R10               | assignNotification(**idNotification**->notification)   |
 | R11               | commentNotification(**idNotification**->notification)  |
@@ -63,8 +63,9 @@ CK = CHECK.
 
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
-| Today	      | DATE DEFAULT CURRENT_DATE      |
+| State	      | ENUM ('To do', 'Doing','Done')      |
 | Priority    | ENUM ('High', 'Medium', 'Low') |
+| Role    | ENUM ('collaborator', 'Coordinator') |
 
 ### 3. Schema validation
 
@@ -182,8 +183,9 @@ Changes made to the first submission:
 1. ..
 
 ***
-GROUP21gg, DD/MM/2021
- 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+GROUP2281, 13/10/2022
+
+* Hugo Gomes up202004343@fe.up.pt
+* João Moreira up202005035@fe.up.pt
+* João Araújo up202007855@fe.up.pt (Editor)
+* Lia Vieira up202005042@fe.up.pt
