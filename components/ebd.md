@@ -5,6 +5,9 @@
 ## A4: Conceptual Data Model
 
 > Brief presentation of the artefact goals.
+A Conceptual Data Model is an organized view of database concepts and their relationships. The purpose of creating a conceptual data model is to establish entities, their attributes, and relationships. In this data modeling level, there is hardly any detail available on the actual database structure. Business stakeholders and data architects typically create a conceptual data model.
+
+The Conceptual Data Model contains the identification and description of the entities, the relationships between them in a UML Class diagram
 
 ### 1. Class diagram
 
