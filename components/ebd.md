@@ -30,25 +30,24 @@
 
 | Relation reference| Relation Compact Notation                        |
 | ------------------| ------------------------------------------------ |
-| R01               | authenticatedUser(**idUser**, email UK NN, username UK NN, name NN, password NN, phonenumber NN, administrator NN) |
+| R01               | authenticatedUser(**idUser**, email UK NN, username UK NN, name NN, password NN, phonenumber, administrator NN) |
 | R02               | photo(**idPhoto**, path NN, idUser->authenticatedUser NN) |
-| R03               | project(**idProject**, name NN, details, creationDate NN) |
-| R04               | task(**idTask**, name NN, state NN CK state IN State DF 'To do', creationDate NN, priority NN CK priority IN Priority, proj_id->project) |
-| R05               | notification(**idNotification**, date NN, idProject->project) |
+| R03               | project(**idProject**, name NN, details, creationDate NN, archived NN) |
+| R04               | task(**idTask**, name NN, state NN CK state IN State DF 'To do', creationDate NN, priority NN CK priority IN Priority, idUser->authenticatedUser, proj_id->project) |
+| R05               | notification(**idNotification**, date NN, type NN CK type IN Type, idProject->project) |
 | R06               | invite(**idInvite**, state NN, date NN, idUserSender->authenticatedUser, idUserReceiver->authenticatedUser) |
-| R07               | comment(**idComment**, comment NN, date NN, ban) |
+| R07               | comment(**idComment**, comment NN, date NN, ban, idTask->task) |
 | R08               | role(**idUser**->authenticatedUser, **idProject**->project, role NN CK role IN Role ) |
-| R09               | taskStateNotification(**idNotification**->notification)|
-| R10               | assignNotification(**idNotification**->notification)   |
-| R11               | commentNotification(**idNotification**->notification)  |
-| R12               | inviteNotification(**idNotification**->notification)   |
-| R13               | taskUser(**idUser**->authenticatedUser, **idTask**->task)  |
-| R14               | notificationUser(**idUser**->authenticatedUser, **idNotification**->notification)  |
-| R15               | taskComment(**idUser**->authenticatedUser, **idNotification**->notification UK) |
-| R16               | taskTStateNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)  |
-| R17               | taskAssignNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
-| R18               | commentCNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
-| R19               | inviteINotification(**idUser**->authenticatedUser, **idNotification**->notification UK) |
+| R09               | faq(**idQuestion**, question NN, answer NN) |
+| R10               | ban(**idBan**, reason NN, date NN) |
+| R11               | notificationUser(**idUser**->authenticatedUser, **idNotification**->notification)  |
+
+
+ver estas:
+| R12               | taskTStateNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)  |
+| R14               | taskAssignNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
+| R15               | commentCNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
+| R16               | inviteINotification(**idUser**->authenticatedUser, **idNotification**->notification UK) |
 
 
 Legend:
@@ -65,7 +64,8 @@ CK = CHECK.
 | ----------- | ------------------------------ |
 | State	      | ENUM ('To do', 'Doing','Done')      |
 | Priority    | ENUM ('High', 'Medium', 'Low') |
-| Role    | ENUM ('collaborator', 'Coordinator') |
+| Role    | ENUM ('Collaborator', 'Coordinator') |
+| Type    | ENUM ('Invite', 'Comment', 'Assign', 'TaskState') |
 
 ### 3. Schema validation
 
