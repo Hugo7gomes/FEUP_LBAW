@@ -33,18 +33,19 @@ The Conceptual Data Model contains the identification and description of the ent
 
 | Relation reference| Relation Compact Notation                        |
 | ------------------| ------------------------------------------------ |
-| R01               | authenticatedUser(**idUser**, email UK NN, username UK NN, name NN, password NN, phonenumber, administrator NN) |
-| R02               | photo(**idPhoto**, path NN, idUser->authenticatedUser NN) |
-| R03               | project(**idProject**, name NN, details, creationDate NN, archived NN) |
-| R04               | task(**idTask**, name NN, state NN CK state IN State DF 'To do', creationDate NN, priority NN CK priority IN Priority, idUser->authenticatedUser, proj_id->project) |
-| R05               | notification(**idNotification**, date NN, type NN CK type IN Type, idProject->project) |
-| R06               | invite(**idInvite**, state NN, date NN, idUserSender->authenticatedUser, idUserReceiver->authenticatedUser) |
-| R07               | comment(**idComment**, comment NN, date NN, ban, idTask->task) |
-| R08               | role(**idUser**->authenticatedUser, **idProject**->project, role NN CK role IN Role ) |
-| R09               | faq(**idQuestion**, question NN, answer NN) |
-| R10               | ban(**idBan**, reason NN, date NN) |
-| R11               | notificationUser(**idUser**->authenticatedUser, **idNotification**->notification)  |
-
+| R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number, administrator NN) |
+| R02               | photo(**id_photo**, path NN, id_user->authenticated_user NN) |
+| R03               | project(**id_project**, name NN, details, creation_date NN, archived NN) |
+| R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do', creation_date NN, priority NN CK priority IN Priority, id_user->authenticated_user, proj_id->project) |
+| R05               | notification(**id_notification**, date NN, type NN CK type IN Type, id_project->project) |
+| R06               | invite(**id_invite**, state NN, date NN, id_user_sender->authenticated_user, id_userReceiver->authenticated_user) |
+| R07               | comment(**id_comment**, comment NN, date NN, ban, id_task->task) |
+| R08               | role(**idUser**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
+| R09               | faq(**id_question**, question NN, answer NN) |
+| R10               | ban(**id_ban**, reason NN, date NN) |
+| R11               | notification_user(**id_user**->authenticated_user, **id_notification**->notification)  |
+| R12               | favorite_project(**id_user**->authenticated_user, **id_project**->project)  |
+| R13               | bans(**id_ban**->ban, id_user->authenticated_user)  |
 
 ver estas:
 | R12               | taskTStateNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)  |
