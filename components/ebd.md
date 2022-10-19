@@ -33,7 +33,7 @@ The Conceptual Data Model contains the identification and description of the ent
 
 | Relation reference| Relation Compact Notation                        |
 | ------------------| ------------------------------------------------ |
-| R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number, administrator NN) |
+| R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number, administrator NN,deleted) |
 | R02               | photo(**id_photo**, path NN, id_user->authenticated_user NN) |
 | R03               | project(**id_project**, name NN, details, creation_date NN, archived NN) |
 | R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do', creation_date NN, priority NN CK priority IN Priority, id_user->authenticated_user, proj_id->project) |
