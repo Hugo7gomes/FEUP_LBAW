@@ -45,7 +45,7 @@ The Conceptual Data Model contains the identification and description of the ent
 | R10               | ban(**id_ban**, reason NN, date NN,id_banned->authenticated_user, id_admin->administrator) |
 | R11               | notification_user(**id_user**->authenticated_user, **id_notification**->notification)  |
 | R12               | favorite_project(**id_user**->authenticated_user, **id_project**->project)  |
-| R14               | administrator( **id_user**->authenticated_user)  |
+| R13               | administrator( **id_user**->authenticated_user)  |
 
 
 
