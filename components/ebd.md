@@ -39,26 +39,22 @@ The Conceptual Data Model contains the identification and description of the ent
 | R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do', creation_date NN, priority NN CK priority IN Priority, id_user->authenticated_user, proj_id->project) |
 | R05               | notification(**id_notification**, date NN, type NN CK type IN Type, id_project->project) |
 | R06               | invite(**id_invite**, state NN, date NN, id_user_sender->authenticated_user, id_userReceiver->authenticated_user) |
-| R07               | comment(**id_comment**, comment NN, date NN, ban, id_task->task) |
+| R07               | comment(**id_comment**, comment NN, date NN, ban, id_task->task, id_user ->authenticated_user) |
 | R08               | role(**idUser**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
 | R09               | faq(**id_question**, question NN, answer NN) |
 | R10               | ban(**id_ban**, reason NN, date NN) |
 | R11               | notification_user(**id_user**->authenticated_user, **id_notification**->notification)  |
 | R12               | favorite_project(**id_user**->authenticated_user, **id_project**->project)  |
 | R13               | bans(**id_ban**->ban, id_user->authenticated_user)  |
+| R14               | crete_project(**id_user** ->authenticated_user, **id_project** -> project)  |
 
-ver estas:
-| R12               | taskTStateNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)  |
-| R14               | taskAssignNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
-| R15               | commentCNotification(**idUser**->authenticatedUser, **idNotification**->notification UK)   |
-| R16               | inviteINotification(**idUser**->authenticatedUser, **idNotification**->notification UK) |
 
 
 Legend:
 UK = UNIQUE KEY
 NN = NOT NULL
 DF = DEFAULT
-CK = CHECK.
+CK = CHECK
 
 ### 2. Domains
 
