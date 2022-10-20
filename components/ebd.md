@@ -40,7 +40,7 @@ The Conceptual Data Model contains the identification and description of the ent
 | R05               | notification(**id_notification**, date NN, type NN CK type IN Type, id_project->project, id_invite->invite, id_comment->comment, id_task->task) |
 | R06               | invite(**id_invite**, state NN, date NN, id_user_sender->authenticated_user, id_userReceiver->authenticated_user) |
 | R07               | comment(**id_comment**, comment NN, date NN, ban, id_task->task, id_user ->authenticated_user) |
-| R08               | role(**idUser**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
+| R08               | role(**id_user**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
 | R09               | faq(**id_question**, question NN, answer NN) |
 | R10               | ban(**id_ban**, reason NN, date NN,id_banned->authenticated_user, id_admin->administrator) |
 | R11               | notification_user(**id_user**->authenticated_user, **id_notification**->notification)  |
