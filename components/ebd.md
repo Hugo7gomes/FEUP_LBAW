@@ -165,3 +165,9 @@ GROUP21gg, DD/MM/2021
 * Group member 1 name, email (Editor)
 * Group member 2 name, email
 * ...
+
+
+
+
+R01 users(id UNIQUE KEY, name NOT NULL, username NOT NULL UNIQUE KEY, password NOT NULL, phonenumber, administrator NOT NULL)
+R02 photo(id UNIQUE KEY, path NOT NULL, user_id->users NOT NULL)
