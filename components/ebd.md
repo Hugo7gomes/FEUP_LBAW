@@ -72,7 +72,7 @@ CK = CHECK
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_user }, { username }, { email }, {phone_number}     |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0101                                             | { id } :- { name, username, email, password, phone_number, deleted } |
+| FD0101                                             | { id_user } :- { name, username, email, password, phone_number, deleted } |
 | FD0102                                             | { username } :- { name, id, email, password, phone_number, deleted } |
 | FD0103                                             | { email } :- { name, username, id, password, phone_number, deleted } |
 | FD0104                                             | { phone_number } :- { name, username, id, password, email, deleted } |
@@ -83,8 +83,8 @@ CK = CHECK
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_photo }, { id_user }                |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0201                                             | { id_photo } :- {id_user, path} |
-| FD0202                                             | { id_user }  :-  {id_photo, path} |
+| FD0201                                             | { id_photo } :- { id_user, path } |
+| FD0202                                             | { id_user }  :-  { id_photo, path } |
 | **Normal Form**                                    | BCNF                                               |
 
 
@@ -92,58 +92,58 @@ CK = CHECK
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_project }                           |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0301                                             | { id_project } :- {name, details,creation_date,archived,id_creator}                  |
+| FD0301                                             | { id_project } :- { name, details,creation_date,archived,id_creator }                  |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R04 (task)                                   |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_task }                              |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0401                                             | { id_photo } :- {name, task_state,details,creation_date,task_priority,archived,id_project,id_user_creator,id_user_assigned}                    |
+| FD0401                                             | { id_task } :- { name, task_state,details,creation_date,task_priority,archived,id_project,id_user_creator,id_user_assigned }                    |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R05 (notification)                           |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_notification }                      |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0501                                             | { id_notification } :- {date,notification_type,id_project,id_invite,id_comment,id_task} |
+| FD0501                                             | { id_notification } :- { date,notification_type,id_project,id_invite,id_comment,id_task } |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R06 (invite)                                 |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_invite }                            |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0601                                             | { id_invite } :- {invite_state,date,id_user_sender,id_user_receiver} |
+| FD0601                                             | { id_invite } :- { invite_state,date,id_user_sender,id_user_receiver } |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R07 (comment)                                |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_comment }                           |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0701                                             | { id_comment } :- {comment, ban, date, id_task, id_user}                    |
+| FD0701                                             | { id_comment } :- { comment, ban, date, id_task, id_user }                    |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R08 (role)                                   |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_user, id_project }                  |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0801                                             | { id_user,id_project } :- {user_role}              |
+| FD0801                                             | { id_user,id_project } :- { user_role }            |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R09 (faq)                                    |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_faq }, { question,answer }          |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0901                                             | { id_faq } :- {question,answer}                    |
-| FD0902                                             | { question,answer }  :-  {id_faq}                  |
+| FD0901                                             | { id_faq } :- { question,answer }                  |
+| FD0902                                             | { question,answer }  :-  { id_faq }                |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R10 (ban)                                    |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
-| **Keys:** { id_ban }, { id_admin,id_banned,date }  |                                                    |
+| **Keys:** { id_ban }, { id_banned }                |                                                    |
 | **Functional Dependencies**                        |                                                    |
 | FD1001                                             | { id_ban } :- {id_admin,id_banned,date,reason}     |
-| FD1002                                             | { id_admin, id_banned, date}  :-  {id_ban, reason} |
+| FD1002                                             | { id_banned } :- {id_ban, reason, date, id_admin, }|
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R11 (notified)                               |                                                    |
