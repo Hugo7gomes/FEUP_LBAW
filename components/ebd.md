@@ -42,7 +42,7 @@ The Conceptual Data Model contains the identification and description of the ent
 | R07               | comment(**id_comment**, comment NN, date NN, ban DF FALSE, id_task->task NN, id_user ->authenticated_user NN) |
 | R08               | role(**id_user**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
 | R09               | faq(**id_question**, question NN, answer NN) |
-| R10               | ban(**id_ban**, reason NN, date NN,id_banned->authenticated_user, id_admin->administrator) |
+| R10               | ban(**id_ban**, reason NN, date NN,id_banned->authenticated_user NN, id_admin->administrator NN) |
 | R11               | notification_user(**id_user**->authenticated_user, **id_notification**->notification)  |
 | R12               | favorite_project(**id_user**->authenticated_user, **id_project**->project)  |
 | R13               | administrator( **id_user**->authenticated_user)  |
