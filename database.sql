@@ -62,8 +62,8 @@ CREATE TABLE task (
     creation_date DATE NOT NULL,
     TYPE task_priority NOT NULL,
     archived BOOL NOT NULL,
-    id_project INTEGER REFERENCES project(id_project) NOT NULL,
-    id_user_creator INTEGER REFERENCES authenticated_user(id_user) NOT NULL,
+    id_project INTEGER NOT NULL REFERENCES project(id_project) ,
+    id_user_creator INTEGER NOT NULL REFERENCES authenticated_user(id_user),
     id_user_assigned INTEGER REFERENCES authenticated_user(id_user)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE notification (
     id_notification SERIAL INTEGER PRIMARY KEY,
     date DATE NOT NULL,
     TYPE notification_type NOT NULL,
-    id_project INTEGER REFERENCES project(id_project) NOT NULL,
+    id_project INTEGER NOT NULL REFERENCES project(id_project),
     id_invite INTEGER REFERENCES invite(id_invite),
     id_comment INTEGER REFERENCES comment(id_comment), 
     id_task INTEGER REFERENCES task(id_task)
@@ -87,8 +87,9 @@ CREATE TABLE invite (
     id_invite SERIAL INTEGER PRIMARY KEY,
     Type invite_state NOT NULL,
     date DATE NOT NULL,
-    id_user_sender INTEGER REFERENCES authenticated_user(id_user) NOT NULL,
-    id_user_receiver INTEGER REFERENCES authenticated_user(id_user) NOT NULL
+    id_project INTEGER NOT NULL REFERENCES project(id_project) ,
+    id_user_sender INTEGER NOT NULL REFERENCES authenticated_user(id_user) ,
+    id_user_receiver INTEGER NOT NULL REFERENCES authenticated_user(id_user) 
 );
 
 -- Table7: comment
@@ -99,8 +100,8 @@ CREATE TABLE comment (
     comment TEXT NOT NULL,
     ban BOOL DEFAULT FALSE,
     date DATE NOT NULL,
-    id_task INTEGER REFERENCES task(id_task) NOT NULL,
-    id_user INTEGER REFERENCES authenticated_user(id_user) NOT NULL
+    id_task INTEGER NOT NULL REFERENCES task(id_task),
+    id_user INTEGER NOT NULL REFERENCES authenticated_user(id_user)
 );
 
 -- Table8: user_role
@@ -129,8 +130,8 @@ CREATE TABLE ban (
     id_ban SERIAL INTEGER PRIMARY KEY,
     reason TEXT NOT NULL,
     date DATE NOT NULL,
-    id_banned INTEGER REFERENCES authenticated_user(id_user) NOT NULL,
-    id_admin INTEGER REFERENCES administrator(id_admin) NOT NULL
+    id_banned INTEGER NOT NULL REFERENCES authenticated_user(id_user),
+    id_admin INTEGER NOT NULL REFERENCES administrator(id_admin) 
 );
 
 -- Table11: notification_user
