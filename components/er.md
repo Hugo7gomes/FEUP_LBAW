@@ -1,6 +1,6 @@
 # ER: Requirements Specification Component
 
-## A1: Project Management
+## A1: Workfluido
 
 In a world where teamwork has become crucial to combat the constant adversities that have arisen such as remote work, the need for a project management tool has emerged. So, we decided to create Workfluido.
 
@@ -16,7 +16,7 @@ Our application allows any collaborator to create a new team and, by doing so au
 
 The coordinator has more privileges than the other team members, such as assigning users to tasks, editing and deleting tasks assigned by others and adding new members to the team. He is also able to change tasks' due dates and their priority.
 
-Each project has a team, task lists and also a discussion forum for members of the project. Each task can have comments made by other collaborators and it is possible to keep track of the user that defined the task as well as the one who completed it. 
+Each project has a team, task list and also a discussion forum for members of the project. Each task can have comments made by other collaborators and it is possible to keep track of the user that defined the task as well as the one who completed it. 
 
 At any time, collaborators can view the task details and mark a project as favorite. Users also have the ability to search for specific projects, tasks and messages of the forum and view the list of all the projects that they have participated in, which can be seen in their profile only by them.
 
@@ -31,16 +31,17 @@ Finally, the administrators are the ones responsible for keeping a clean and saf
 
 ### 1. Actors
 
+These will be the actors that will play a role in our project, from a simple user guest to a program administrator.
 
 | Identifier | Description | 
 |------------|-----------------------------------------------------|
-| User                 | Generic user that has access to public information.                                  |
+| User                 | Generic user that has access to the initial page of the webapp.                                  |
 | Anonymous User       | User that can create an account or log-in.                                 | 
 | Authenticated User   | User that can manage their personal information and accept team invitations.                          | 
 | Coordinator          | Authenticated user that manages the rest of the team and which has features such as editing and deleting tasks assigned by others users, adding and removing collaborators.                                  |
 | Collaborator         | Authenticated user that can check the workflow of the teams to which they belong, change their task state and comment the tasks performed by others.                                  |
-| Administrator        | Authenticated user that is responsible for the management of users and has some moderation functions.                                  | 
-| OAuth API            | External OAuth API that can be used to authenticate into the system.                                 |      
+| Administrator        | Authenticated user that is responsible for keeping the web app clean.                                  | 
+| OAuth API            | External API that can be used to register and login into the system.                                 |      
 
 Table 1: Workfluido actors description
 
@@ -48,10 +49,10 @@ Table 1: Workfluido actors description
 
 | Identifier | Name                                                | Priority | Description                                                                                                                          |
 |------------|-----------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------|
-| US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see a brief presentation of the website.                                       |
+| US01       | Homepage                                            | high     | As a User, I want to access the home page, so that I can see the intial page.                                       |
 | US02       | See About                                           | medium   | As a User, I want to access an about page, so that I can see the complete website's description.                                          |
 | US03       | Consult contacts                                    | medium   | As a user, I want to access the website’s information, so that I can easily ask questions, make suggestions or complain about a service.             |
-| US04       | FAQ Page                                            | medium   | As a user, I want to access the FAQ page, so that I can clarify my questions easily.             |
+| US04       | FAQ Page                                            | medium   | As a user, I want to access the FAQ page, so that I can clarify my questions.             |
 
 Table 2: User's user stories
 
@@ -61,7 +62,7 @@ Table 2: User's user stories
 
 | Identifier | Name                       | Priority | Description                                                                                                                                         |
 | ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| US05       | Sign In                    | high     | As an Anonymous User, I want to authenticate into the system, so that I can access privileged information.                                    |
+| US05       | Sign In                    | high     | As an Anonymous User, I want to authenticate into the system, so that I can access my profile.                                    |
 | US06       | Sign Up                    | high     | As an Anonymous User, I want to register myself into the system, so that I can have my own account.
 | US07       | Recover Password           | medium      | As an Anonymous User, I want to authenticate into the system using an external account, so that I can access privileged information.
 | US08       | Sign In and Sign Up using external API | low      | As an Anonymous User, I want to authenticate into the system using an external account, so that I can access privileged information.          |
@@ -97,7 +98,8 @@ Table 4: Authenticated user's user stories
 | US24       | Complete an Assigned Task  | high      | As a Collaborator, I want to complete an assigned task, so that I can update the project progression status.          |
 | US25       | Comment on task  | medium      | As a Collaborator, I want to be able to comment on tasks of other team members, so that I can give my opinion. |
 | US26       | View project’s team and their profiles   | medium      | As a Collaborator, I want to view my project’s team and their profile, so that I see who is working with me.      |
-| US27       | Team Forum  | low      | As a Collaborator, I want to be able to receive and send messages through the team forum, so that I can give my opinion and communicate with other team members.         |
+| US27       | Delete my Task | medium      | As a Collaborator, I want to be able to delete tasks I created, so that I can delete a task that no longer makes sense.         |
+| US28       | Team Forum  | low      | As a Collaborator, I want to be able to receive and send messages through the team forum, so that I can give my opinion and communicate with other team members.         |
 
 Table 5: Collaborator's user stories
 
@@ -105,11 +107,11 @@ Table 5: Collaborator's user stories
 
 | Identifier | Name                       | Priority | Description                                                                                                                                         |
 | ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| US28       | Add Users to Project                 | high     | As a Coordinator, I want to add users to the project, so that I can add team members to my project.                                  |
-| US29       | Assign New Coordinator                  | high     | As a Coordinator, I want to assign a new coordinator, so that I can have a user to help me or to leave that position.
-| US30       | Edit Project Details             | high      | As a Coordinator, I want to edit project details, so that the information is updated.
-| US31       | Remove project member   | high      |As a Coordinator, I want to remove an element from the team, so that former team members no longer have access to the project.           |
-| US32       | Archive Project   | high     | As a Coordinator, I want to archive a project, so that my workspace is organized.         |
+| US29       | Add Users to Project                 | high     | As a Coordinator, I want to add users to the project, so that I can add team members to my project.                                  |
+| US30       | Assign New Coordinator                  | high     | As a Coordinator, I want to assign a new coordinator, so that I can have a user to help me or to leave that position.
+| US31       | Edit Project Details             | high      | As a Coordinator, I want to edit project details, so that the information is updated.
+| US32       | Remove project member   | high      |As a Coordinator, I want to remove an element from the team, so that former team members no longer have access to the project.           |
+| US33       | Archive Project   | high     | As a Coordinator, I want to archive a project, so that my workspace is organized.         |
 
 Table 6: Coordinator's user stories
 
@@ -117,12 +119,12 @@ Table 6: Coordinator's user stories
 
 | Identifier | Name                       | Priority | Description                                                                                                                                         |
 | ---------- | -------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| US31       | Administrate User Accounts                     | high     | As an Administrator, I want to administrate user accounts, so that I can manage the user’s behavior.                                  |
-| US32       | Browse project                   | high     | As an Administrator, I want to browse projects, so that I can easily find one. 
-| US33       | View Project Details              | high      | As an Administrator, I want to view the project details, so that I can maintain the website’s quality. 
-| US34       | Block and Unblock User Accounts    | high      | As an Administrator, I want to block and unblock user accounts, so that I maintain a standard behavior.            |
-| US35       | Delete User Accounts    | high     | As an Administrator, I want to delete user accounts, so that I can keep a clean and friendly website.         |
-| US36       | Add FAQ    | medium     | As an Administrator, I want to add a FAQ, so that users dont need to contact me about that subject.         |
+| US34       | Administrate User Accounts                     | high     | As an Administrator, I want to administrate user accounts, so that I can manage the user’s behavior.                                  |
+| US35       | Browse project                   | high     | As an Administrator, I want to browse projects, so that I can easily find one. 
+| US36       | View Project Details              | high      | As an Administrator, I want to view the project details, so that I can maintain the website’s quality. 
+| US37       | Block and Unblock User Accounts    | high      | As an Administrator, I want to block and unblock user accounts, so that I maintain a standard behavior.            |
+| US38       | Delete User Accounts    | high     | As an Administrator, I want to delete user accounts, so that I can keep a clean and friendly website.         |
+| US39       | Add FAQ    | medium     | As an Administrator, I want to add a FAQ, so that users dont need to contact me about that subject.         |
 
 
 Table 7: Administrator's user stories
@@ -132,22 +134,23 @@ Table 7: Administrator's user stories
 #### 3.1. Business rules
 | Identifier | Name                  | Description|
 | ---------- | -------------------------- | -------- |
-| Br01       | Keep the data even on deletion       | Upon account deletion, shared user data like comments on tasks, chat messages, etc are kept but is made anonymous.|
-| Br02       | Administrator account independency       | Administrator accounts are independent of user account. They cannot create or participate in projects.| 
-| Br03       |  Unique email      | The same person cannot create two accounts with the same email.| 
-| Br04       | Unique nickname       | Two users cannot have the same nickname.| 
-| Br05       | Coordinator account deletion      | The coordinator cannot delete his account if he is managing a team. He has to assign that job to someone else in the team before doing so. |  
+| BR01       | Keep the data even on deletion       | Upon account deletion, shared user data like comments on tasks, chat messages, etc are kept but are made anonymous.|
+| BR02       | Administrator account independency       | Administrator accounts are independent of user account. They cannot create or participate in projects.| 
+| BR03       | Unique email      | The same person cannot create two accounts with the same email.| 
+| BR04       | Unique nickname       | Two users cannot have the same nickname.| 
+| BR05       | Coordinator account deletion      | The Coordinator cannot delete his account if he is managing a team. He has to assign that job to someone else in the team before doing so. |  
+| BR06       | Delete task      | The Collaborator cannot delete tasks created by others, only his own. |  
 
 Table 8: Business rules
 
 #### 3.2. Technical requirements
 | Identifier | Name                  | Description|
 | ---------- | -------------------------- | -------- |
-| TR01       | Availability   | The system must be available 99 percent of the time in each 24-hour period.|
-| TR02       | Accessibility       | The system must ensure that everyone can access the pages, regardless of whether they have any handicap or not, or the web browser they use.| 
+| TR01       | Availability     | The system must be available 99 percent of the time in each 24-hour period.|
+| TR02       | Accessibility       | The system must ensure that everyone can access the pages whether they have any handicap or not, or the web browser they use.| 
 | TR03      | Usability     |The system should be simple because it's a platform for everyone, so it has to be easy to use.| 
-| TR04       | Perdormance       | The system should have response times shorter than 2 s to ensure the user's attention.| 
-| TR05       | Web application      | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). |
+| TR04       | Performance       | The system should have response times shorter than 2s to ensure the user's attention.| 
+| TR05       | Web application      | The system should be implemented as a web application with dynamic pages. |
 |**TR06**       |  **Portability**      | **The server-side system should work across multiple platforms (Linux, Mac OS, etc.) so that everyone can access it, no matter the operating system in question.**| 
 | TR07       | Database       | The PostgreSQL database management system must be used, with a version of 11 or higher.| 
 | **TR08**       | **Security**      | **The system shall protect information from unauthorised access through the use of an authentication and verification system. It is important to ensure that third parties do not have access to projects carried out on our platform, or to impersonate us.** |
@@ -204,5 +207,5 @@ GROUP2281, 03/10/2022
 
 * Hugo Gomes up202004343@fe.up.pt
 * João Moreira up202005035@fe.up.pt
-* João Araújo up202007855@fe.up.pt
+* João Araújo up202007855@fe.up.pt (Editor)
 * Lia Vieira up202005042@fe.up.pt

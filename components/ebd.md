@@ -5,6 +5,9 @@
 ## A4: Conceptual Data Model
 
 > Brief presentation of the artefact goals.
+A Conceptual Data Model is an organized view of database concepts and their relationships. The purpose of creating a conceptual data model is to establish entities, their attributes, and relationships. In this data modeling level, there is hardly any detail available on the actual database structure. Business stakeholders and data architects typically create a conceptual data model.
+
+The Conceptual Data Model contains the identification and description of the entities, the relationships between them in a UML Class diagram
 
 ### 1. Class diagram
 
@@ -28,12 +31,29 @@
 > The Relational Schema includes the relation schemas, attributes, domains, primary keys, foreign keys and other integrity rules: UNIQUE, DEFAULT, NOT NULL, CHECK.  
 > Relation schemas are specified in the compact notation:  
 
-| Relation reference | Relation Compact Notation                        |
-| ------------------ | ------------------------------------------------ |
-| R01                | Table1(__id__, attribute NN)                     |
-| R02                | Table2(__id__, attribute → Table1 NN)            |
-| R03                | Table3(__id1__, id2 → Table2, attribute UK NN)   |
-| R04                | Table4((__id1__, __id2__) → Table3, id3, attribute CK attribute > 0) |
+| Relation reference| Relation Compact Notation                        |
+| ------------------| ------------------------------------------------ |
+| R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number,deleted) |
+| R02               | photo(**id_photo**, path NN, id_user->authenticated_user NN) |
+| R03               | project(**id_project**, name NN, details, creation_date NN, archived NN, id_project_creator->authenticated_user) |
+| R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do',details, creation_date NN, priority NN CK priority IN Priority, id_user_assigned->authenticated_user,id_user_creator->authenticated_user NN, proj_id->project NN) |
+| R05               | notification(**id_notification**, date NN, type NN CK type IN Type, id_project->project NN, id_invite->invite, id_comment->comment, id_task->task) |
+| R06               | invite(**id_invite**, state NN, date NN, id_user_sender->authenticated_user NN, id_userReceiver->authenticated_user NN) |
+| R07               | comment(**id_comment**, comment NN, date NN, ban DF FALSE, id_task->task NN, id_user ->authenticated_user NN) |
+| R08               | role(**id_user**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
+| R09               | faq(**id_question**, question NN, answer NN) |
+| R10               | ban(**id_ban**, reason NN, date NN,id_banned->authenticated_user NN, id_admin->administrator NN) |
+| R11               | notified(**id_user**->authenticated_user, **id_notification**->notification)  |
+| R12               | favoriteProj(**id_user**->authenticated_user, **id_project**->project)  |
+| R13               | administrator( **id_user**->authenticated_user)  |
+
+
+
+Legend:
+UK = UNIQUE KEY
+NN = NOT NULL
+DF = DEFAULT
+CK = CHECK
 
 ### 2. Domains
 
@@ -41,24 +61,111 @@
 
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
-| Today	      | DATE DEFAULT CURRENT_DATE      |
+| State	      | ENUM ('To do', 'Doing','Done')      |
 | Priority    | ENUM ('High', 'Medium', 'Low') |
+| Role    | ENUM ('Collaborator', 'Coordinator') |
+| Type    | ENUM ('Invite', 'Comment', 'Assign', 'TaskState') |
 
 ### 3. Schema validation
 
-> To validate the Relational Schema obtained from the Conceptual Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. Should it be necessary, in case the scheme is not in the Boyce–Codd Normal Form (BCNF), the relational schema is refined using normalization.  
+| Table R01 (authenticated_users)                    |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_user }, { username }, { email }, {phone_number}     |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0101                                             | { id } :- { name, username, email, password, phone_number, deleted } |
+| FD0102                                             | { username } :- { name, id, email, password, phone_number, deleted } |
+| FD0103                                             | { email } :- { name, username, id, password, phone_number, deleted } |
+| FD0104                                             | { phone_number } :- { name, username, id, password, email, deleted } |
+| **Normal Form**                                    | BCNF                                               |
 
-| **TABLE R01**   | User               |
-| --------------  | ---                |
-| **Keys**        | { id }, { email }  |
-| **Functional Dependencies:** |       |
-| FD0101          | id → {email, name} |
-| FD0102          | email → {id, name} |
-| ...             | ...                |
-| **NORMAL FORM** | BCNF               |
 
-> If necessary, description of the changes necessary to convert the schema to BCNF.  
-> Justification of the BCNF.  
+| Table R02 (photo)                                  |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_photo }, { id_user }                |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0201                                             | { id_photo } :- {id_user, path} |
+| FD0202                                             | { id_user }  :-  {id_photo, path} |
+| **Normal Form**                                    | BCNF                                               |
+
+
+| Table R03 (project)                                |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_project }                           |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0301                                             | { id_project } :- {name, details,creation_date,archived,id_creator}                  |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R04 (task)                                   |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_task }                              |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0401                                             | { id_photo } :- {name, task_state,details,creation_date,task_priority,archived,id_project,id_user_creator,id_user_assigned}                    |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R05 (notification)                           |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_notification }                      |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0501                                             | { id_notification } :- {date,notification_type,id_project,id_invite,id_comment,id_task} |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R06 (invite)                                 |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_invite }                            |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0601                                             | { id_invite } :- {invite_state,date,id_user_sender,id_user_receiver} |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R07 (comment)                                |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_comment }                           |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0701                                             | { id_comment } :- {comment, ban, date, id_task, id_user}                    |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R08 (role)                                   |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_user, id_project }                  |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0801                                             | { id_user,id_project } :- {user_role}              |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R09 (faq)                                    |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_faq }, { question,answer }          |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD0901                                             | { id_faq } :- {question,answer}                    |
+| FD0902                                             | { question,answer }  :-  {id_faq}                  |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R10 (ban)                                    |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_ban }, { id_admin,id_banned,date }  |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD1001                                             | { id_ban } :- {id_admin,id_banned,date,reason}     |
+| FD1002                                             | { id_admin, id_banned, date}  :-  {id_ban, reason} |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R11 (notified)                               |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_user,id_notification }              |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD1101                                             | { id_user,id_notification } :- {}                  |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R12 (favorite_proj)                          |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_user,id_project }                   |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD1201                                             | { id_user,id_project } :- {}                       |
+| **Normal Form**                                    | BCNF                                               |
+
+| Table R13 (administrator)                          |                                                    |
+|----------------------------------------------------|----------------------------------------------------|
+| **Keys:** { id_admin}                              |                                                    |
+| **Functional Dependencies**                        |                                                    |
+| FD1301                                             | { id_admin } :- {}                                 |
+| **Normal Form**                                    | BCNF                                               |
 
 
 ---
@@ -160,14 +267,9 @@ Changes made to the first submission:
 1. ..
 
 ***
-GROUP21gg, DD/MM/2021
- 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+GROUP2281, 13/10/2022
 
-
-
-
-R01 users(id UNIQUE KEY, name NOT NULL, username NOT NULL UNIQUE KEY, password NOT NULL, phonenumber, administrator NOT NULL)
-R02 photo(id UNIQUE KEY, path NOT NULL, user_id->users NOT NULL)
+* Hugo Gomes up202004343@fe.up.pt
+* João Moreira up202005035@fe.up.pt
+* João Araújo up202007855@fe.up.pt (Editor)
+* Lia Vieira up202005042@fe.up.pt
