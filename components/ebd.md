@@ -36,7 +36,7 @@ The Conceptual Data Model contains the identification and description of the ent
 | R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number,deleted) |
 | R02               | photo(**id_photo**, path NN, id_user->authenticated_user NN) |
 | R03               | project(**id_project**, name NN, details, creation_date NN, archived NN, id_project_creator->authenticated_user) |
-| R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do',details, creation_date NN, priority NN CK priority IN Priority, id_user_assigned->authenticated_user,id_user_creator->authenticated_user NN, proj_id->project NN) |
+| R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do',details, creation_date NN, priority NN CK priority IN Priority, id_user_assigned->authenticated_user,id_user_creator->authenticated_user NN, id_project->project NN) |
 | R05               | notification(**id_notification**, date NN, type NN CK type IN Type, id_project->project NN, id_invite->invite, id_comment->comment, id_task->task) |
 | R06               | invite(**id_invite**, state NN, date NN, id_project->project NN, id_user_sender->authenticated_user NN, id_userReceiver->authenticated_user NN) |
 | R07               | comment(**id_comment**, comment NN, date NN, ban DF FALSE, id_task->task NN, id_user ->authenticated_user NN) |
