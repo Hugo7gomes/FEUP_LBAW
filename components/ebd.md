@@ -247,7 +247,45 @@ CREATE TRIGGER project_search_update
 
 
 CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
-```                                                             |
+```
+
+| **Index**           | IDX02                                  |
+| ---                 | ---                                    |
+| **Relation**        | task    |
+| **Attribute**       | name   |
+| **Type**            | GIN              |
+| **Clustering**      | Clustering of the index                |
+| **Justification**   | To provide full-text search features to look for users based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+```sql
+ALTER TABLE task
+ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION task_search_update() RETURNS TRIGGER AS $BODY$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+            NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.name), 'A') 
+            );
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+            IF (NEW.name <> OLD.name) THEN
+                NEW.tsvectors = (
+                    setweight(to_tsvector('english', NEW.name), 'A') 
+                );
+            END IF;
+    END IF;
+    RETURN NEW;
+END $BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER task_search_update
+ BEFORE INSERT OR UPDATE ON task
+ FOR EACH ROW
+ EXECUTE PROCEDURE task_search_update();
+
+
+CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
+```                                                             
 
 
 ### 3. Triggers
