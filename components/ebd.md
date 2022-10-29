@@ -259,7 +259,7 @@ CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
 | **Attribute**       | name   |
 | **Type**            | GIN              |
 | **Clustering**      | Clustering of the index                |
-| **Justification**   | To provide full-text search features to look for users based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+| **Justification**   | To provide full-text search features to look for tasks based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
 
 *SQL CODE*
 ```sql
