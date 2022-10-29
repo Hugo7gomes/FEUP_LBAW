@@ -196,13 +196,16 @@ CK = CHECK
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Cardinality**     | Attribute cardinality: low/medium/high |
+| **Relation**        | project                                |
+| **Attribute**       | name                                   |
+| **Type**            | type                                   |
+| **Cardinality**     | low/medium/high                        |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| 'SQL CODE'                                                   ||
+
+
+
 
 
 #### 2.2. Full-text Search Indices 
@@ -211,12 +214,41 @@ CK = CHECK
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
+| **Relation**        | project    |
+| **Attribute**       | name   |
+| **Type**            | GIN              |
 | **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| `SQL code`                                                  ||
+| **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+| ```sql
+ALTER TABLE project
+ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION project_search_update() RETURNS TRIGGER AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+            NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.name), 'A') 
+            );
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+            IF (NEW.name <> OLD.name) THEN
+                NEW.tsvectors = (
+                    setweight(to_tsvector('english', NEW.name), 'A') 
+                );
+            END IF;
+    END IF;
+    RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER project_search_update
+ BEFORE INSERT OR UPDATE ON project
+ FOR EACH ROW
+ EXECUTE PROCEDURE project_search_update();
+
+
+CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
+```                                                             ||
 
 
 ### 3. Triggers
