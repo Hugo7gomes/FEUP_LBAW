@@ -251,7 +251,6 @@ CREATE TRIGGER project_search_update
 
 
 CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
-<<<<<<< HEAD
 ```
 
 | **Index**           | IDX02                                  |
@@ -261,6 +260,8 @@ CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
 | **Type**            | GIN              |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | To provide full-text search features to look for users based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+
+*SQL CODE*
 ```sql
 ALTER TABLE task
 ADD COLUMN tsvectors TSVECTOR;
@@ -290,8 +291,6 @@ CREATE TRIGGER task_search_update
 
 
 CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
-=======
->>>>>>> 90cc976b7de0c4734b2b55b1f6b5fb709e16fcf3
 ```                                                             
 
 
