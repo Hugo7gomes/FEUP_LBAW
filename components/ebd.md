@@ -218,11 +218,14 @@ CK = CHECK
 | **Type**            | GIN              |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+
+*SQL CODE*
 ```sql
 ALTER TABLE project
 ADD COLUMN tsvectors TSVECTOR;
 
-CREATE FUNCTION project_search_update() RETURNS TRIGGER AS $$
+CREATE FUNCTION project_search_update() RETURNS TRIGGER AS 
+$BODY$
 BEGIN
     IF TG_OP = 'INSERT' THEN
             NEW.tsvectors = (
@@ -237,7 +240,8 @@ BEGIN
             END IF;
     END IF;
     RETURN NEW;
-END $$
+END 
+$BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER project_search_update
@@ -247,6 +251,7 @@ CREATE TRIGGER project_search_update
 
 
 CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
+<<<<<<< HEAD
 ```
 
 | **Index**           | IDX02                                  |
@@ -285,6 +290,8 @@ CREATE TRIGGER task_search_update
 
 
 CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
+=======
+>>>>>>> 90cc976b7de0c4734b2b55b1f6b5fb709e16fcf3
 ```                                                             
 
 
