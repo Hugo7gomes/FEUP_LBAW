@@ -33,20 +33,17 @@ The Conceptual Data Model contains the identification and description of the ent
 
 | Relation reference| Relation Compact Notation                        |
 | ------------------| ------------------------------------------------ |
-| R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number,deleted) |
+| R01               | authenticated_user(**id_user**, email UK NN, username UK NN, name NN, password NN, phone_number, deleted, administrator) |
 | R02               | photo(**id_photo**, path NN, id_user->authenticated_user NN) |
-| R03               | project(**id_project**, name NN, details, creation_date NN, archived NN, id_project_creator->authenticated_user) |
-| R04               | task(**id_task**, name NN, state NN CK state IN State DF 'To do',details, creation_date NN, priority NN CK priority IN Priority, id_user_assigned->authenticated_user,id_user_creator->authenticated_user NN, proj_id->project NN) |
-| R05               | notification(**id_notification**, date NN, type NN CK type IN Type, id_project->project NN, id_invite->invite, id_comment->comment, id_task->task) |
-| R06               | invite(**id_invite**, state NN, date NN, id_user_sender->authenticated_user NN, id_userReceiver->authenticated_user NN) |
+| R03               | project(**id_project**, name NN, details, creation_date NN, archived NN DF 'False', id_project_creator->authenticated_user) |
+| R04               | task(**id_task**, name NN, state NN CK state IN task_state DF 'To do', details, creation_date NN, priority NN CK task_priority IN priority, id_user_assigned->authenticated_user,id_user_creator->authenticated_user NN, id_project->project NN) |
+| R05               | notification(**id_notification**, date NN, type NN CK type IN notification_type, id_project->project NN, id_invite->invite, id_comment->comment, id_task->task, id_user->authenticated_user NN) |
+| R06               | invite(**id_invite**, state NN CK state IN invite_state DF 'Received', date NN, id_project->project NN, id_user_sender->authenticated_user NN, id_user_receiver->authenticated_user NN) |
 | R07               | comment(**id_comment**, comment NN, date NN, ban DF FALSE, id_task->task NN, id_user ->authenticated_user NN) |
-| R08               | role(**id_user**->authenticated_user, **id_project**->project, role NN CK role IN Role ) |
-| R09               | faq(**id_question**, question NN, answer NN) |
-| R10               | ban(**id_ban**, reason NN, date NN,id_banned->authenticated_user NN, id_admin->administrator NN) |
-| R11               | notified(**id_user**->authenticated_user, **id_notification**->notification)  |
-| R12               | favoriteProj(**id_user**->authenticated_user, **id_project**->project)  |
-| R13               | administrator( **id_user**->authenticated_user)  |
-
+| R08               | role(**id_user**->authenticated_user, **id_project**->project, role NN CK role IN user_role ) |
+| R09               | faq(**id_faq**, question NN, answer NN) |
+| R10               | ban(**id_ban**, reason NN, date NN, id_banned->authenticated_user NN, id_admin->authenticated_user NN) |
+| R11               | favorite_proj(**id_user**->authenticated_user, **id_project**->project)  |
 
 
 Legend:
@@ -61,10 +58,12 @@ CK = CHECK
 
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
-| State	      | ENUM ('To do', 'Doing','Done')      |
-| Priority    | ENUM ('High', 'Medium', 'Low') |
-| Role    | ENUM ('Collaborator', 'Coordinator') |
-| Type    | ENUM ('Invite', 'Comment', 'Assign', 'TaskState') |
+| task_state	      | ENUM ('To do', 'Doing','Done')      |
+| task_priority    | ENUM ('High', 'Medium', 'Low') |
+| user_role    | ENUM ('Collaborator', 'Coordinator') |
+| notification_type    | ENUM ('Invite', 'Comment', 'Assign', 'TaskState') |
+| invite_state    | ENUM ('Received', 'Accepted', 'Rejected') |
+
 
 ### 3. Schema validation
 
@@ -72,7 +71,7 @@ CK = CHECK
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_user }, { username }, { email }, {phone_number}     |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0101                                             | { id } :- { name, username, email, password, phone_number, deleted } |
+| FD0101                                             | { id_user } :- { name, username, email, password, phone_number, deleted } |
 | FD0102                                             | { username } :- { name, id, email, password, phone_number, deleted } |
 | FD0103                                             | { email } :- { name, username, id, password, phone_number, deleted } |
 | FD0104                                             | { phone_number } :- { name, username, id, password, email, deleted } |
@@ -83,8 +82,8 @@ CK = CHECK
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_photo }, { id_user }                |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0201                                             | { id_photo } :- {id_user, path} |
-| FD0202                                             | { id_user }  :-  {id_photo, path} |
+| FD0201                                             | { id_photo } :- { id_user, path } |
+| FD0202                                             | { id_user }  :-  { id_photo, path } |
 | **Normal Form**                                    | BCNF                                               |
 
 
@@ -92,58 +91,58 @@ CK = CHECK
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_project }                           |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0301                                             | { id_project } :- {name, details,creation_date,archived,id_creator}                  |
+| FD0301                                             | { id_project } :- { name, details,creation_date,archived,id_creator }                  |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R04 (task)                                   |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_task }                              |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0401                                             | { id_photo } :- {name, task_state,details,creation_date,task_priority,archived,id_project,id_user_creator,id_user_assigned}                    |
+| FD0401                                             | { id_task } :- { name, task_state,details,creation_date,task_priority,archived,id_project,id_user_creator,id_user_assigned }                    |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R05 (notification)                           |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_notification }                      |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0501                                             | { id_notification } :- {date,notification_type,id_project,id_invite,id_comment,id_task} |
+| FD0501                                             | { id_notification } :- { date,notification_type,id_project,id_invite,id_comment,id_task } |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R06 (invite)                                 |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_invite }                            |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0601                                             | { id_invite } :- {invite_state,date,id_user_sender,id_user_receiver} |
+| FD0601                                             | { id_invite } :- { invite_state,date,id_user_sender,id_user_receiver } |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R07 (comment)                                |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_comment }                           |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0701                                             | { id_comment } :- {comment, ban, date, id_task, id_user}                    |
+| FD0701                                             | { id_comment } :- { comment, ban, date, id_task, id_user }                    |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R08 (role)                                   |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_user, id_project }                  |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0801                                             | { id_user,id_project } :- {user_role}              |
+| FD0801                                             | { id_user,id_project } :- { user_role }            |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R09 (faq)                                    |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_faq }, { question,answer }          |                                                    |
 | **Functional Dependencies**                        |                                                    |
-| FD0901                                             | { id_faq } :- {question,answer}                    |
-| FD0902                                             | { question,answer }  :-  {id_faq}                  |
+| FD0901                                             | { id_faq } :- { question,answer }                  |
+| FD0902                                             | { question,answer }  :-  { id_faq }                |
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R10 (ban)                                    |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
-| **Keys:** { id_ban }, { id_admin,id_banned,date }  |                                                    |
+| **Keys:** { id_ban }, { id_banned }                |                                                    |
 | **Functional Dependencies**                        |                                                    |
 | FD1001                                             | { id_ban } :- {id_admin,id_banned,date,reason}     |
-| FD1002                                             | { id_admin, id_banned, date}  :-  {id_ban, reason} |
+| FD1002                                             | { id_banned } :- {id_ban, reason, date, id_admin, }|
 | **Normal Form**                                    | BCNF                                               |
 
 | Table R11 (notified)                               |                                                    |
@@ -255,10 +254,162 @@ CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
  
 > User-defined functions and trigger procedures that add control structures to the SQL language or perform complex computations, are identified and described to be trusted by the database server. Every kind of function (SQL functions, Stored procedures, Trigger procedures) can take base types, composite types, or combinations of these as arguments (parameters). In addition, every kind of function can return a base type or a composite type. Functions can also be defined to return sets of base or composite values.  
 
-| **Trigger**      | TRIGGER01                              |
+| **Trigger**      | admin_ban_admin                              |
 | ---              | ---                                    |
-| **Description**  | Trigger description, including reference to the business rules involved |
-| `SQL code`                                             ||
+| **Description**  | An administrator cannot ban another administrator ||
+
+```sql
+    CREATE FUNCTION admin_ban_admin() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+    IF EXISTS (SELECT * FROM authenticated_user WHERE (SELECT administrator FROM authenticated_user WHERE NEW.id_banned = id_user) = TRUE) THEN
+           RAISE EXCEPTION 'An administrador cannot ban another administrador.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER admin_ban_admin
+        BEFORE INSERT OR UPDATE ON ban
+        FOR EACH ROW
+        EXECUTE PROCEDURE admin_ban_admin();
+```    
+
+| **Trigger**      | ban_user_banned                              |
+| ---              | ---                                    |
+| **Description**  | An administrator cannot ban someone who was already banned ||
+
+```sql
+    CREATE FUNCTION ban_user_banned() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+        IF EXISTS (SELECT * FROM ban WHERE NEW.id_banned = id_banned) THEN
+           RAISE EXCEPTION 'An administrador cannot ban an user that was already banned.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER ban_user_banned
+        BEFORE INSERT OR UPDATE ON ban
+        FOR EACH ROW
+        EXECUTE PROCEDURE ban_user_banned();
+```    
+
+| **Trigger**      | user_ban_smo                              |
+| ---              | ---                                    |
+| **Description**  | An authenticated user cannot ban or unban someone ||
+
+```sql
+    CREATE FUNCTION user_ban_smo() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+    IF EXISTS (SELECT * FROM authenticated_user WHERE NEW.id_ban = id_user) THEN
+           RAISE EXCEPTION 'An user cannot ban someone.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER user_ban_smo
+        BEFORE INSERT OR UPDATE ON ban
+        FOR EACH ROW
+        EXECUTE PROCEDURE user_ban_smo();
+```    
+
+| **Trigger**      | admin_create_proj                              |
+| ---              | ---                                    |
+| **Description**  | An administrator cannot create a project ||
+
+```sql
+    CREATE FUNCTION admin_create_proj() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+    IF EXISTS (SELECT * FROM administrator WHERE NEW.id_creator = id_admin) THEN
+           RAISE EXCEPTION 'An administrator cannot create a project.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER admin_create_proj
+        BEFORE INSERT ON project
+        FOR EACH ROW
+        EXECUTE PROCEDURE admin_create_proj();
+``` 
+
+| **Trigger**      | collaborator_comment_task                              |
+| ---              | ---                                    |
+| **Description**  | Only a collaborator of a project can comment a task of that project ||
+
+```sql
+    CREATE FUNCTION collaborator_comment_task() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+    IF EXISTS (SELECT * FROM project WHERE NEW.id_creator = id_admin) THEN
+           RAISE EXCEPTION 'An administrator cannot create a project.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER admin_create_proj
+        BEFORE INSERT ON project
+        FOR EACH ROW
+        EXECUTE PROCEDURE admin_create_proj();
+
+``` 
+
+| **Trigger**      | coordinator_delete_acount                              |
+| ---              | ---                                    |
+| **Description**  | A coordinator cannot delete his account ||
+
+```sql
+    CREATE FUNCTION coordinator_delete_acount() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+    IF EXISTS (SELECT * FROM role WHERE NEW.id_user = id_user AND role.role = 'Coordinator') THEN
+           RAISE EXCEPTION 'An coordinator cannot delete his account.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER coordinator_delete_acount
+        BEFORE DELETE ON authenticated_user
+        FOR EACH ROW
+        EXECUTE PROCEDURE coordinator_delete_acount();
+
+``` 
+
+| **Trigger**      | coordinator_delete_acount                              |
+| ---              | ---                                    |
+| **Description**  | A coordinator cannot delete his account ||
+
+```sql
+    CREATE FUNCTION coordinator_delete_acount() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+    IF EXISTS (SELECT * FROM role WHERE NEW.id_user = id_user && role = 'Coordinator' THEN
+           RAISE EXCEPTION 'An coordinator cannot delete his account.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER coordinator_delete_acount
+        BEFORE DELETE ON authenticated_user
+        FOR EACH ROW
+        EXECUTE PROCEDURE coordinator_delete_acount();
+
+``` 
 
 ### 4. Transactions
  
