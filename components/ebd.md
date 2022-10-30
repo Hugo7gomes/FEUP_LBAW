@@ -195,7 +195,7 @@ CK = CHECK
 | **Cardinality**     | medium                                 |
 | **Clustering**      | no                                     |
 | **Justification**   | Table 'task' is very large. Since this table is frequently accessed to obtain a project’s tasks, it is essential to use a performance index. As the task table is very dynamic, clustering is definitely not a good option. Furthermore, as there are several tasks for the same project, the cardinality is medium. Filtering is done by exact match, thus an hash type index would be best suited. |
-| 'SQL CODE'          |CREATE INDEX project_tasks ON task USING hash (id_project);|
+| **SQL CODE**          |CREATE INDEX project_tasks ON task USING hash (id_project);|
 
 
 | **Index**           | IDX02                                  |
@@ -206,7 +206,7 @@ CK = CHECK
 | **Cardinality**     | medium                                 |
 | **Clustering**      | no                                     |
 | **Justification**   | Table 'notification' is very large. Since this table is frequently accessed to obtain user’s notifications, it is essential to use a performance index. As the task table is very dynamic, clustering is definitely not a good option. Furthermore, as there are several notifications for the same user, the cardinality is medium. Filtering is done by exact match, thus an hash type index would be best suited. |
-| 'SQL CODE'          | CREATE INDEX user_notifications ON notification USING hash (id_user);|
+| **SQL CODE**          | CREATE INDEX user_notifications ON notification USING hash (id_user);|
 
 | **Index**           | IDX03                                  |
 | ---                 | ---                                    |
@@ -216,7 +216,7 @@ CK = CHECK
 | **Cardinality**     | medium                                 |
 | **Clustering**      | no                                     |
 | **Justification**   | Table 'comment' is very large. Since this table is frequently accessed to obtain task’s comments, it is essential to use a performance index. As the task table is very dynamic, clustering is definitely not a good option. Furthermore, as there are several several comments for the same task, the cardinality is medium. Filtering is done by exact match, thus an hash type index would be best suited.                                       |
-| 'SQL CODE'          | CREATE INDEX task_comments ON comment USING hash (id_task);|
+| **SQL CODE**          | CREATE INDEX task_comments ON comment USING hash (id_task);|
 
 
 
