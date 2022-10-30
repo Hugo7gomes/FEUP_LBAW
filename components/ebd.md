@@ -244,7 +244,7 @@ CK = CHECK
 | **Attribute**       | name                                   |
 | **Type**            | GIN                                    |
 | **Clustering**      | Clustering of the index                |
-| **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+| **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change more than the times they are visit .    |
 
 **SQL CODE**
 ```sql
@@ -333,8 +333,8 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
     CREATE FUNCTION admin_ban_admin() RETURNS TRIGGER AS
     $BODY$
     BEGIN
-    IF EXISTS (SELECT * FROM authenticated_user WHERE (SELECT administrator FROM authenticated_user WHERE NEW.id_banned = id_user) = TRUE) THEN
-           RAISE EXCEPTION 'An administrador cannot ban another administrador.';
+        IF EXISTS (SELECT * FROM authenticated_user WHERE NEW.id_banned = id_user AND administrator) THEN
+            RAISE EXCEPTION 'An administrador cannot ban another administrador.';
         END IF;
         RETURN NEW;
     END
@@ -344,7 +344,7 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
     CREATE TRIGGER admin_ban_admin
         BEFORE INSERT OR UPDATE ON ban
         FOR EACH ROW
-        EXECUTE PROCEDURE admin_ban_admin();
+        EXECUTE PROCEDURE admin_ban_admin();    
 ```    
 
 | **Trigger**      | ban_user_banned                              |
@@ -377,8 +377,8 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
     CREATE FUNCTION user_ban_smo() RETURNS TRIGGER AS
     $BODY$
     BEGIN
-    IF EXISTS (SELECT * FROM authenticated_user WHERE NEW.id_ban = id_user) THEN
-           RAISE EXCEPTION 'An user cannot ban someone.';
+        IF EXISTS (SELECT * FROM authenticated_user WHERE NEW.id_admin = id_user AND administrator = False) THEN
+            RAISE EXCEPTION 'An user cannot ban someone.';
         END IF;
         RETURN NEW;
     END
@@ -399,8 +399,8 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
     CREATE FUNCTION admin_create_proj() RETURNS TRIGGER AS
     $BODY$
     BEGIN
-    IF EXISTS (SELECT * FROM administrator WHERE NEW.id_creator = id_admin) THEN
-           RAISE EXCEPTION 'An administrator cannot create a project.';
+        IF EXISTS (SELECT * FROM authenticated_user WHERE (SELECT administrator FROM authenticated_user WHERE NEW.id_creator = id_user) = TRUE) THEN
+            RAISE EXCEPTION 'An administrator cannot create a project.';
         END IF;
         RETURN NEW;
     END
@@ -418,22 +418,21 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
 | **Description**  | Only a collaborator of a project can comment a task of that project ||
 
 ```sql
-    CREATE FUNCTION collaborator_comment_task() RETURNS TRIGGER AS
+    CREATE FUNCTION comment_task() RETURNS TRIGGER AS
     $BODY$
     BEGIN
-    IF EXISTS (SELECT * FROM project WHERE NEW.id_creator = id_admin) THEN
-           RAISE EXCEPTION 'An administrator cannot create a project.';
+        IF NOT EXISTS(SELECT * FROM TASK INNER JOIN ROLE USING (id_project) WHERE (SELECT id_project FROM task WHERE NEW.id_task = id_task) = id_project AND NEW.id_user=id_user)
+            THEN RAISE EXCEPTION 'A collaborator must be part of that task''s project to able to comment.';
         END IF;
         RETURN NEW;
     END
     $BODY$
     LANGUAGE plpgsql;
 
-    CREATE TRIGGER admin_create_proj
-        BEFORE INSERT ON project
+    CREATE TRIGGER comment_task
+        BEFORE INSERT OR UPDATE ON comment
         FOR EACH ROW
-        EXECUTE PROCEDURE admin_create_proj();
-
+        EXECUTE PROCEDURE comment_task();  
 ``` 
 
 | **Trigger**      | coordinator_delete_acount                              |
@@ -459,28 +458,68 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
 
 ``` 
 
-| **Trigger**      | coordinator_delete_acount                              |
+| **Trigger**      | cannot_invite_collaborator                         |
 | ---              | ---                                    |
-| **Description**  | A coordinator cannot delete his account ||
+| **Description**  | Cannot invite an user that's already on the team||
 
 ```sql
-    CREATE FUNCTION coordinator_delete_acount() RETURNS TRIGGER AS
+    CREATE FUNCTION cannot_invite_collaborator() RETURNS TRIGGER AS
     $BODY$
-    BEGIN
-    IF EXISTS (SELECT * FROM role WHERE NEW.id_user = id_user && role = 'Coordinator' THEN
-           RAISE EXCEPTION 'An coordinator cannot delete his account.';
+    BEGIN 
+        IF EXISTS (SELECT * FROM role WHERE NEW.id_user_receiver = id_user AND NEW.id_project = id_project) THEN 
+            RAISE EXCEPTION 'User already collaborator';
         END IF;
         RETURN NEW;
     END
     $BODY$
     LANGUAGE plpgsql;
 
-    CREATE TRIGGER coordinator_delete_acount
-        BEFORE DELETE ON authenticated_user
+    CREATE TRIGGER cannot_invite_collaborator
+        BEFORE INSERT ON invite
         FOR EACH ROW
-        EXECUTE PROCEDURE coordinator_delete_acount();
-
+        EXECUTE PROCEDURE cannot_invite_collaborator();  
 ``` 
+
+| **Trigger**      | update_project_creator                         |
+| ---              | ---                                    |
+| **Description**  | Project creator cannot be updated ||
+
+```sql
+    CREATE FUNCTION update_project_creator() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+        RAISE EXCEPTION 'The project creator cannot be updated.';
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER update_project_creator
+        BEFORE UPDATE OF id_creator ON project
+        FOR EACH ROW
+        EXECUTE PROCEDURE update_project_creator()
+``` 
+
+| **Trigger**      | invite_sender                         |
+| ---              | ---                                    |
+| **Description**  | Invite sender needs to be a collaborator of the project ||
+
+```sql
+    CREATE FUNCTION invite_sender() RETURNS TRIGGER AS
+    $BODY$
+    BEGIN
+        IF NOT EXISTS (SELECT * FROM role WHERE NEW.id_user_sender = id_user AND NEW.id_project = id_project) THEN
+            RAISE EXCEPTION 'Invite sender not a collaborator';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER invite_sender
+        BEFORE INSERT ON invite
+        FOR EACH ROW
+        EXECUTE PROCEDURE invite_sender()
+```
 
 ### 4. Transactions
  
