@@ -180,20 +180,20 @@ CK = CHECK
 > Estimate of tuples at each relation.
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
-| ---------------------- | ------------- ----| ------------------------------| ---------------------|
-| R01                    | authenticated_user| units|dozens|hundreds|etc     | order per time       |
-| R02                    | photo             | units|dozens|hundreds|etc     | dozens per month     |
-| R03                    | project           | units|dozens|hundreds|etc     | hundreds per day     |
-| R04                    | task              | units|dozens|hundreds|etc     | no growth            |
-| R05                    | notification      | units|dozens|hundreds|etc     | dozens per month     |
-| R06                    | invite            | units|dozens|hundreds|etc     | hundreds per day     |
-| R07                    | comment           | units|dozens|hundreds|etc     | no growth            |
-| R08                    | role              | units|dozens|hundreds|etc     | dozens per month     |
-| R09                    | faq               | units|dozens|hundreds|etc     | hundreds per day     |
-| R10                    | ban               | units|dozens|hundreds|etc     | no growth            |
-| R11                    | notified          | units|dozens|hundreds|etc     | dozens per month     |
-| R12                    | favorite_proj     | units|dozens|hundreds|etc     | hundreds per day     |
-| R13                    | admin             | units|dozens|hundreds|etc     | no growth            |
+|------------------------|-------------------|-------------------------------| ---------------------|
+| R01                    | authenticated_user| units,dozens,hundreds,etc     | order per time       |
+| R02                    | photo             | units,dozens,hundreds,etc     | dozens per month     |
+| R03                    | project           | units,dozens,hundreds,etc     | hundreds per day     |
+| R04                    | task              | units,dozens,hundreds,etc     | no growth            |
+| R05                    | notification      | units,dozens,hundreds,etc     | dozens per month     |
+| R06                    | invite            | units,dozens,hundreds,etc     | hundreds per day     |
+| R07                    | comment           | units,dozens,hundreds,etc     | no growth            |
+| R08                    | role              | units,dozens,hundreds,etc     | dozens per month     |
+| R09                    | faq               | units,dozens,hundreds,etc     | hundreds per day     |
+| R10                    | ban               | units,dozens,hundreds,etc     | no growth            |
+| R11                    | notified          | units,dozens,hundreds,etc     | dozens per month     |
+| R12                    | favorite_proj     | units,dozens,hundreds,etc     | hundreds per day     |
+| R13                    | admin             | units,dozens,hundreds,etc     | no growth            |
 
 
 ### 2. Proposed Indices
