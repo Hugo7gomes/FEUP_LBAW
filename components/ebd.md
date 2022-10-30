@@ -145,25 +145,12 @@ CK = CHECK
 | FD1002                                             | { id_banned } :- {id_ban, reason, date, id_admin, }|
 | **Normal Form**                                    | BCNF                                               |
 
-| Table R11 (notified)                               |                                                    |
-|----------------------------------------------------|----------------------------------------------------|
-| **Keys:** { id_user,id_notification }              |                                                    |
-| **Functional Dependencies**                        |                                                    |
-| FD1101                                             | { id_user,id_notification } :- {}                  |
-| **Normal Form**                                    | BCNF                                               |
 
-| Table R12 (favorite_proj)                          |                                                    |
+| Table R11 (favorite_proj)                          |                                                    |
 |----------------------------------------------------|----------------------------------------------------|
 | **Keys:** { id_user,id_project }                   |                                                    |
 | **Functional Dependencies**                        |                                                    |
 | FD1201                                             | { id_user,id_project } :- {}                       |
-| **Normal Form**                                    | BCNF                                               |
-
-| Table R13 (administrator)                          |                                                    |
-|----------------------------------------------------|----------------------------------------------------|
-| **Keys:** { id_admin}                              |                                                    |
-| **Functional Dependencies**                        |                                                    |
-| FD1301                                             | { id_admin } :- {}                                 |
 | **Normal Form**                                    | BCNF                                               |
 
 
@@ -181,19 +168,17 @@ CK = CHECK
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
 |------------------------|-------------------|-------------------------------| ---------------------|
-| R01                    | authenticated_user| units,dozens,hundreds,etc     | order per time       |
-| R02                    | photo             | units,dozens,hundreds,etc     | dozens per month     |
-| R03                    | project           | units,dozens,hundreds,etc     | hundreds per day     |
-| R04                    | task              | units,dozens,hundreds,etc     | no growth            |
-| R05                    | notification      | units,dozens,hundreds,etc     | dozens per month     |
-| R06                    | invite            | units,dozens,hundreds,etc     | hundreds per day     |
-| R07                    | comment           | units,dozens,hundreds,etc     | no growth            |
-| R08                    | role              | units,dozens,hundreds,etc     | dozens per month     |
-| R09                    | faq               | units,dozens,hundreds,etc     | hundreds per day     |
-| R10                    | ban               | units,dozens,hundreds,etc     | no growth            |
-| R11                    | notified          | units,dozens,hundreds,etc     | dozens per month     |
-| R12                    | favorite_proj     | units,dozens,hundreds,etc     | hundreds per day     |
-| R13                    | admin             | units,dozens,hundreds,etc     | no growth            |
+| R01                    | authenticated_user| 10k                           | 10/day               |
+| R02                    | photo             | 1k                            | 1/day                |
+| R03                    | project           | 1k                            | 10/day               |
+| R04                    | task              | 10k                           | 10/day               |
+| R05                    | notification      | 10k                           | 100/day              |
+| R06                    | invite            | 1k                            | 10/day               |
+| R07                    | comment           | 1k                            | 10/day               |
+| R08                    | role              | 10k                           | 1/day                |
+| R09                    | faq               | 10                            | 1/mounth             |
+| R10                    | ban               | 100                           | 10/mounth            |
+| R11                    | favorite_proj     | 1k                            | 10/week              |
 
 
 ### 2. Proposed Indices
@@ -204,33 +189,34 @@ CK = CHECK
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | project                                |
-| **Attribute**       | name                                   |
-| **Type**            | type                                   |
-| **Cardinality**     | low/medium/high                        |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| 'SQL CODE'                                                   ||
+| **Relation**        | task                                   |
+| **Attribute**       | id_project                             |
+| **Type**            | hash                                   |
+| **Cardinality**     | medium                                 |
+| **Clustering**      | no                                     |
+| **Justification**   | Table 'task' is very large. Since this table is frequently accessed to obtain a project’s tasks, it is essential to use a performance index. As the task table is very dynamic, clustering is definitely not a good option. Furthermore, as there are several tasks for the same project, the cardinality is medium. Filtering is done by exact match, thus an hash type index would be best suited. |
+| 'SQL CODE'          |CREATE INDEX project_tasks ON task USING hash (id_project);|
+
 
 | **Index**           | IDX02                                  |
 | ---                 | ---                                    |
-| **Relation**        | project                                |
-| **Attribute**       | name                                   |
+| **Relation**        | notification                           |
+| **Attribute**       | id_user                                |
 | **Type**            | type                                   |
-| **Cardinality**     | low/medium/high                        |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| 'SQL CODE'                                                   ||
+| **Cardinality**     | medium                                 |
+| **Clustering**      | no                                     |
+| **Justification**   | Table 'notification' is very large. Since this table is frequently accessed to obtain user’s notifications, it is essential to use a performance index. As the task table is very dynamic, clustering is definitely not a good option. Furthermore, as there are several notifications for the same user, the cardinality is medium. Filtering is done by exact match, thus an hash type index would be best suited. |
+| 'SQL CODE'          | CREATE INDEX user_notifications ON notification USING hash (id_user);|
 
 | **Index**           | IDX03                                  |
 | ---                 | ---                                    |
-| **Relation**        | project                                |
-| **Attribute**       | name                                   |
-| **Type**            | type                                   |
-| **Cardinality**     | low/medium/high                        |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
-| 'SQL CODE'                                                   ||
+| **Relation**        | comment                                |
+| **Attribute**       | id_task                                |
+| **Type**            | hash                                   |
+| **Cardinality**     | medium                                 |
+| **Clustering**      | no                                     |
+| **Justification**   | Table 'comment' is very large. Since this table is frequently accessed to obtain task’s comments, it is essential to use a performance index. As the task table is very dynamic, clustering is definitely not a good option. Furthermore, as there are several several comments for the same task, the cardinality is medium. Filtering is done by exact match, thus an hash type index would be best suited.                                       |
+| 'SQL CODE'          | CREATE INDEX task_comments ON comment USING hash (id_task);|
 
 
 
@@ -238,13 +224,13 @@ CK = CHECK
 
 > The system being developed must provide full-text search features supported by PostgreSQL. Thus, it is necessary to specify the fields where full-text search will be available and the associated setup, namely all necessary configurations, indexes definitions and other relevant details.  
 
-| **Index**           | IDX01                                  |
+| **Index**           | IDX04                                  |
 | ---                 | ---                                    |
 | **Relation**        | project                                |
-| **Attribute**       | name                                   |
+| **Attribute**       | name,details                           |
 | **Type**            | GIN                                    |
 | **Clustering**      | Clustering of the index                |
-| **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change more than the times they are visit .    |
+| **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change more than the times they are visited .    |
 
 **SQL CODE**
 ```sql
@@ -256,13 +242,15 @@ $BODY$
 BEGIN
     IF TG_OP = 'INSERT' THEN
             NEW.tsvectors = (
-            setweight(to_tsvector('english', NEW.name), 'A') 
+            setweight(to_tsvector('english', NEW.name), 'A')||
+            setweight(to_tsvector('english', NEW.details), 'B') 
             );
     END IF;
     IF TG_OP = 'UPDATE' THEN
             IF (NEW.name <> OLD.name) THEN
                 NEW.tsvectors = (
-                    setweight(to_tsvector('english', NEW.name), 'A') 
+                    setweight(to_tsvector('english', NEW.name), 'A')||
+                    setweight(to_tsvector('english', NEW.details), 'B') 
                 );
             END IF;
     END IF;
@@ -280,13 +268,13 @@ CREATE TRIGGER project_search_update
 CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
 ```
 
-| **Index**           | IDX02                                  |
+| **Index**           | IDX05                                  |
 | ---                 | ---                                    |
 | **Relation**        | task    |
 | **Attribute**       | name   |
 | **Type**            | GIN              |
 | **Clustering**      | Clustering of the index                |
-| **Justification**   | To provide full-text search features to look for users based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+| **Justification**   | To provide full-text search features to look for users based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visited .    |
 
 **SQL CODE**
 ```sql
