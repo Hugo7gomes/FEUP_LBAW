@@ -180,11 +180,20 @@ CK = CHECK
 > Estimate of tuples at each relation.
 
 | **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
-| ------------------ | ------------- | ------------------------- | -------- |
-| R01                | Table1        | units|dozens|hundreds|etc | order per time |
-| R02                | Table2        | units|dozens|hundreds|etc | dozens per month |
-| R03                | Table3        | units|dozens|hundreds|etc | hundreds per day |
-| R04                | Table4        | units|dozens|hundreds|etc | no growth |
+| ---------------------- | ------------- ----| ------------------------------| ---------------------|
+| R01                    | authenticated_user| units|dozens|hundreds|etc     | order per time       |
+| R02                    | photo             | units|dozens|hundreds|etc     | dozens per month     |
+| R03                    | project           | units|dozens|hundreds|etc     | hundreds per day     |
+| R04                    | task              | units|dozens|hundreds|etc     | no growth            |
+| R05                    | notification      | units|dozens|hundreds|etc     | dozens per month     |
+| R06                    | invite            | units|dozens|hundreds|etc     | hundreds per day     |
+| R07                    | comment           | units|dozens|hundreds|etc     | no growth            |
+| R08                    | role              | units|dozens|hundreds|etc     | dozens per month     |
+| R09                    | faq               | units|dozens|hundreds|etc     | hundreds per day     |
+| R10                    | ban               | units|dozens|hundreds|etc     | no growth            |
+| R11                    | notified          | units|dozens|hundreds|etc     | dozens per month     |
+| R12                    | favorite_proj     | units|dozens|hundreds|etc     | hundreds per day     |
+| R13                    | admin             | units|dozens|hundreds|etc     | no growth            |
 
 
 ### 2. Proposed Indices
@@ -203,7 +212,25 @@ CK = CHECK
 | **Justification**   | Justification for the proposed index   |
 | 'SQL CODE'                                                   ||
 
+| **Index**           | IDX02                                  |
+| ---                 | ---                                    |
+| **Relation**        | project                                |
+| **Attribute**       | name                                   |
+| **Type**            | type                                   |
+| **Cardinality**     | low/medium/high                        |
+| **Clustering**      | Clustering of the index                |
+| **Justification**   | Justification for the proposed index   |
+| 'SQL CODE'                                                   ||
 
+| **Index**           | IDX03                                  |
+| ---                 | ---                                    |
+| **Relation**        | project                                |
+| **Attribute**       | name                                   |
+| **Type**            | type                                   |
+| **Cardinality**     | low/medium/high                        |
+| **Clustering**      | Clustering of the index                |
+| **Justification**   | Justification for the proposed index   |
+| 'SQL CODE'                                                   ||
 
 
 
@@ -213,13 +240,13 @@ CK = CHECK
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | project    |
-| **Attribute**       | name   |
-| **Type**            | GIN              |
+| **Relation**        | project                                |
+| **Attribute**       | name                                   |
+| **Type**            | GIN                                    |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | To provide full-text search features to look for projects based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
 
-*SQL CODE*
+**SQL CODE**
 ```sql
 ALTER TABLE project
 ADD COLUMN tsvectors TSVECTOR;
@@ -251,7 +278,6 @@ CREATE TRIGGER project_search_update
 
 
 CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
-<<<<<<< HEAD
 ```
 
 | **Index**           | IDX02                                  |
@@ -261,6 +287,8 @@ CREATE INDEX project_search_idx ON project USING GIN (tsvectors);
 | **Type**            | GIN              |
 | **Clustering**      | Clustering of the index                |
 | **Justification**   | To provide full-text search features to look for users based on their names. The index type is GIN because the indexed fields are not expected to change so much as the times they are visit .    |
+
+**SQL CODE**
 ```sql
 ALTER TABLE task
 ADD COLUMN tsvectors TSVECTOR;
@@ -290,8 +318,6 @@ CREATE TRIGGER task_search_update
 
 
 CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
-=======
->>>>>>> 90cc976b7de0c4734b2b55b1f6b5fb709e16fcf3
 ```                                                             
 
 
