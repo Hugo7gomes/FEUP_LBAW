@@ -16,13 +16,13 @@ INSERT INTO authenticated_user (email, username, name, password, phone_number, a
 
 
 INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',1);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',2);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',4);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',5);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',6);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',7);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',8);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',9);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user2.jpeg',2);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user4.jpeg',4);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user5.jpeg',5);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user6.jpeg',6);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user7.jpeg',7);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user8.jpeg',8);
+INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user9.jpeg',9);
 INSERT INTO photo (path,id_user) VALUES ('docs/profiles/admin.jpeg',14);
 
 
