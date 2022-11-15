@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
+
+    protected $table = 'comment';
+
+    /**
+     * Get comment owner
+     */
+
+    public function owner(){
+        $this->hasOne('App\Models\User','id_user');
+    }
+
+    
 }

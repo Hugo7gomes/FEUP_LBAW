@@ -13,7 +13,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $tasks = $project->tasks; //get tasks
 
-        $coordinator = User::find($project->coordinator()->get('id_user'));//coordinator
+        $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
         
         $collaboratorsIds = $project->collaborators()->get('id_user');
         
@@ -22,13 +22,21 @@ class ProjectController extends Controller
             $collaborator = User::find($collaboratorId['id_user']);
             array_push($collaborators,$collaborator);
         }
+
+        $coordinators = array();
+        foreach ($coordinatorsIds as $coordinatorId){
+            $coordinator = User::find($coordinatorId['id_user']);
+            array_push($coordinators,$coordinator);
+        }
         
+        $user = User::find(1);
         //TODO
         //buscar comentarios de tasks
         //Separar tasks por State
         //
 
 
-        return response()->json($tasks->first());
+        //return response()->json($tasks->first());
+        return view('pages.project',['user' => $user, 'tasks' => $tasks, 'project' => $project, 'coordinators' => $coordinators, 'collaborators' => $collaborators]);
     }
 }

@@ -18,7 +18,7 @@ class Project extends Model
         return $this->hasMany('App\Models\Task', 'id_project');
     }
 
-    public function coordinator(){
+    public function coordinators(){
         return $this->hasMany('App\Models\Role','id_project')->where('role','Coordinator');
     }
 

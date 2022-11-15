@@ -13,11 +13,13 @@ class ProfileController extends Controller
 {
     public function show(){
 
-        $user = User::find(Auth::id());//em vez de 1 passar o id do user
+        $user = User::find(1);//em vez de 1 passar o id do user
 
         $projects = $user->projects;
         $photo = $user->photo;
-
+        $notifications = $user->notifications;
+        
         return view('pages.profile',['projects' => $projects, 'user' => $user, 'photo' => $photo]);
+        //return response()->json($notifications);
     }
 }

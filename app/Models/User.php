@@ -50,7 +50,7 @@ class User extends Authenticatable
      */
 
     public function photo() {  
-        return $this->hasOne(Photo::class,'id_user');
+        return $this->hasOne('App\Models\Photo','id_user');
     }
 
     /**
