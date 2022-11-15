@@ -10,8 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Home
-Route::get('/', 'Auth\LoginController@home');
+
+Route::get('/', function () {
+    return redirect('/homepage');
+});
+
+Route::get('homepage','HomepageController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -30,3 +34,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+Route::get('profile','ProfileController@show');//mostrar pagina do utilizador logado
+Route::get('profile/{id}','ProfileController@show');//mostrar pagina de outro utilizador
+
+Route::get('project/{project_id}','ProjectController@show');

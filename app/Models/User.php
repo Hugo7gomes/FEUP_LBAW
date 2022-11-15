@@ -5,9 +5,14 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Photo;
+
+
 class User extends Authenticatable
 {
     use Notifiable;
+
+    protected $table = 'authenticated_user';
 
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
@@ -18,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'username', 'phone_number', 'deleted'
     ];
 
     /**
@@ -27,13 +32,34 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
     /**
-     * The cards this user owns.
+     * The projects this user participates in.
      */
-     public function cards() {
-      return $this->hasMany('App\Models\Card');
+     public function projects() {  
+      return $this->belongsToMany(Project::class,
+                                 'role',
+                                 'id_user',
+                                 'id_project');
     }
+
+    /**
+     * The user's photo
+     */
+
+    public function photo() {  
+        return $this->hasOne(Photo::class,'id_user');
+    }
+
+    /**
+     * User's notifications
+     */
+    public function notifications() {  
+        return $this->hasMany('App\Models\Notification','id_user');
+    }
+
+    
+
 }
