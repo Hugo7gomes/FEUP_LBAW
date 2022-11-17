@@ -1,0 +1,54 @@
+header{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+    align-content: center;
+    top: 10em;
+}
+
+main{
+    height: 100vh;
+    background-image: url('../docs/images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a{
+    text-decoration: none;
+    color: rgba(241, 128, 37, 0.934);
+}
+
+a:hover{
+    color: rgba(179, 77, 9, 0.93);
+}
+
+#logo{
+    width: 20vw;
+    font-family: "Bodoni MT";
+    font-size: 8em;
+}
+
+nav{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5em;
+    width: 30vw;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(34, 34, 34);
+    position: relative;
+    right: 1.5em;
+}
+
+#initial_login{
+    background-color: rgba(241, 128, 37, 0.934);
+    color: white;
+    padding: 0.7em 2em;
+    border-radius: 10%;
+    font-size: 4em;
+}
+
+#initial_login:hover{
+    background-color: rgba(179, 77, 9, 0.93);
+}

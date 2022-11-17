@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS faq CASCADE;
 DROP TABLE IF EXISTS ban CASCADE;
 DROP TABLE IF EXISTS favorite_proj CASCADE;
 DROP TABLE IF EXISTS authenticated_user CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+
 
 DROP TYPE IF EXISTS task_state;
 DROP TYPE IF EXISTS task_priority;
@@ -18,23 +20,23 @@ DROP TYPE IF EXISTS user_role;
 DROP TYPE IF EXISTS notification_type;
 DROP TYPE IF EXISTS invite_state;
 
-DROP FUNCTION IF EXISTS admin_ban_admin;
-DROP FUNCTION IF EXISTS ban_user_banned;
-DROP FUNCTION IF EXISTS user_ban_smo;
-DROP FUNCTION IF EXISTS admin_create_proj;
-DROP FUNCTION IF EXISTS comment_task;
-DROP FUNCTION IF EXISTS coordinator_delete_acount;
-DROP FUNCTION IF EXISTS cannot_invite_collaborator;
-DROP FUNCTION IF EXISTS update_project_creator;
-DROP FUNCTION IF EXISTS invite_sender;
-DROP FUNCTION IF EXISTS check_notification_type;
-DROP FUNCTION IF EXISTS invite_notification;
-DROP FUNCTION IF EXISTS comment_notification;
-DROP FUNCTION IF EXISTS task_assign_notification;
-DROP FUNCTION IF EXISTS task_assign_update_notification;
-DROP FUNCTION IF EXISTS assign_task;
-DROP FUNCTION IF EXISTS project_search_update;
-DROP FUNCTION IF EXISTS task_search_update;
+DROP FUNCTION IF EXISTS admin_ban_admin CASCADE;
+DROP FUNCTION IF EXISTS ban_user_banned CASCADE;
+DROP FUNCTION IF EXISTS user_ban_smo CASCADE;
+DROP FUNCTION IF EXISTS admin_create_proj CASCADE;
+DROP FUNCTION IF EXISTS comment_task CASCADE;
+DROP FUNCTION IF EXISTS coordinator_delete_acount CASCADE;
+DROP FUNCTION IF EXISTS cannot_invite_collaborator CASCADE;
+DROP FUNCTION IF EXISTS update_project_creator CASCADE;
+DROP FUNCTION IF EXISTS invite_sender CASCADE;
+DROP FUNCTION IF EXISTS check_notification_type CASCADE;
+DROP FUNCTION IF EXISTS invite_notification CASCADE;
+DROP FUNCTION IF EXISTS comment_notification CASCADE;
+DROP FUNCTION IF EXISTS task_assign_notification CASCADE;
+DROP FUNCTION IF EXISTS task_assign_update_notification CASCADE;
+DROP FUNCTION IF EXISTS assign_task CASCADE;
+DROP FUNCTION IF EXISTS project_search_update CASCADE;
+DROP FUNCTION IF EXISTS task_search_update CASCADE;
 
 
 
@@ -50,9 +52,9 @@ CREATE TYPE invite_state AS ENUM ('Received', 'Accepted', 'Rejected');
 -----------------------------------------
 -- Tables
 -----------------------------------------
--- Table1: authenticated_user
+-- Table1: users
 
-CREATE TABLE authenticated_user (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
     username VARCHAR(20) NOT NULL UNIQUE,
@@ -60,7 +62,9 @@ CREATE TABLE authenticated_user (
     password VARCHAR(255) NOT NULL,
     phone_number VARCHAR(15),
     deleted BOOL DEFAULT FALSE,
-    administrator BOOL DEFAULT FALSE
+    administrator BOOL DEFAULT FALSE,
+    remember_token VARCHAR
+
 );
 
 -- Table2: photo
@@ -68,7 +72,7 @@ CREATE TABLE authenticated_user (
 CREATE TABLE photo (
     id SERIAL PRIMARY KEY,
     path VARCHAR(255) NOT NULL,
-    id_user INTEGER NOT NULL REFERENCES authenticated_user(id)
+    id_user INTEGER NOT NULL REFERENCES users(id)
 );
 
 -- Table3: project
@@ -80,7 +84,7 @@ CREATE TABLE project (
     details TEXT,
     creation_date DATE NOT NULL,
     archived BOOL NOT NULL DEFAULT FALSE,
-    id_creator INTEGER NOT NULL REFERENCES authenticated_user(id)
+    id_creator INTEGER NOT NULL REFERENCES users(id)
 );
 
 -- Table4: task
@@ -94,8 +98,8 @@ CREATE TABLE task (
     creation_date DATE NOT NULL,
     priority task_priority NOT NULL,
     id_project INTEGER NOT NULL REFERENCES project(id),
-    id_user_creator INTEGER NOT NULL REFERENCES authenticated_user(id),
-    id_user_assigned INTEGER REFERENCES authenticated_user(id)
+    id_user_creator INTEGER NOT NULL REFERENCES users(id),
+    id_user_assigned INTEGER REFERENCES users(id)
 );
 
 -- Table6: invite
@@ -106,8 +110,8 @@ CREATE TABLE invite (
     state invite_state NOT NULL,
     date DATE NOT NULL,
     id_project INTEGER NOT NULL REFERENCES project(id) ,
-    id_user_sender INTEGER NOT NULL REFERENCES authenticated_user(id) ,
-    id_user_receiver INTEGER NOT NULL REFERENCES authenticated_user(id)
+    id_user_sender INTEGER NOT NULL REFERENCES users(id) ,
+    id_user_receiver INTEGER NOT NULL REFERENCES users(id)
 );
 
 -- Table7: comment
@@ -119,7 +123,7 @@ CREATE TABLE comment (
     ban BOOL DEFAULT FALSE,
     date DATE NOT NULL,
     id_task INTEGER NOT NULL REFERENCES task(id),
-    id_user INTEGER NOT NULL REFERENCES authenticated_user(id)
+    id_user INTEGER NOT NULL REFERENCES users(id)
 );
 
 -- Table5: notification
@@ -133,7 +137,7 @@ CREATE TABLE notification (
     id_invite INTEGER REFERENCES invite(id),
     id_comment INTEGER REFERENCES comment(id),
     id_task INTEGER REFERENCES task(id),
-    id_user INTEGER NOT NULL REFERENCES authenticated_user(id)
+    id_user INTEGER NOT NULL REFERENCES users(id)
 );
 
 
@@ -142,7 +146,7 @@ CREATE TABLE notification (
 
 CREATE TABLE role (
     role user_role  NOT NULL ,
-    id_user INTEGER REFERENCES authenticated_user(id),
+    id_user INTEGER REFERENCES users(id),
     id_project INTEGER REFERENCES project(id),
     PRIMARY KEY (id_user, id_project)
 );
@@ -163,8 +167,8 @@ CREATE TABLE ban (
     id SERIAL PRIMARY KEY,
     reason TEXT NOT NULL,
     date DATE NOT NULL,
-    id_banned INTEGER NOT NULL REFERENCES authenticated_user(id),
-    id_admin INTEGER NOT NULL REFERENCES authenticated_user(id)
+    id_banned INTEGER NOT NULL REFERENCES users(id),
+    id_admin INTEGER NOT NULL REFERENCES users(id)
 );
 
 
@@ -173,7 +177,7 @@ CREATE TABLE ban (
 
 
 CREATE TABLE favorite_proj (
-    id_user INTEGER REFERENCES authenticated_user(id),
+    id_user INTEGER REFERENCES users(id),
     id_project INTEGER REFERENCES project(id),
     PRIMARY KEY (id_user, id_project)
 );
@@ -256,7 +260,7 @@ CREATE INDEX task_search_idx ON task USING GIN (tsvectors);
 CREATE FUNCTION admin_ban_admin() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM authenticated_user WHERE NEW.id_banned = id AND administrator) THEN
+    IF EXISTS (SELECT * FROM users WHERE NEW.id_banned = id AND administrator) THEN
            RAISE EXCEPTION 'An administrador cannot ban another administrador.';
         END IF;
         RETURN NEW;
@@ -292,7 +296,7 @@ CREATE TRIGGER ban_user_banned
 CREATE FUNCTION user_ban_smo() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM authenticated_user WHERE NEW.id_admin = id AND administrator = False) THEN
+    IF EXISTS (SELECT * FROM users WHERE NEW.id_admin = id AND administrator = False) THEN
            RAISE EXCEPTION 'An user cannot ban someone.';
         END IF;
         RETURN NEW;
@@ -310,7 +314,7 @@ CREATE TRIGGER user_ban_smo
 CREATE FUNCTION admin_create_proj() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM authenticated_user WHERE (SELECT administrator FROM authenticated_user WHERE NEW.id_creator = id) = TRUE) THEN
+    IF EXISTS (SELECT * FROM users WHERE (SELECT administrator FROM users WHERE NEW.id_creator = id) = TRUE) THEN
            RAISE EXCEPTION 'An administrator cannot create a project.';
         END IF;
         RETURN NEW;
@@ -356,7 +360,7 @@ CREATE FUNCTION coordinator_delete_acount() RETURNS TRIGGER AS
     LANGUAGE plpgsql;
 
     CREATE TRIGGER coordinator_delete_acount
-        BEFORE DELETE ON authenticated_user
+        BEFORE DELETE ON users
         FOR EACH ROW
         EXECUTE PROCEDURE coordinator_delete_acount();
 
@@ -521,21 +525,21 @@ CREATE TRIGGER assign_task
         FOR EACH ROW
         EXECUTE PROCEDURE assign_task();
 
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('joaoaraujo@gmail.com', 'joaoaraujo76', 'João Araújo', '1234', '934212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('liavieira@gmail.com', 'liavieira02', 'Lia Vieira', '1234', '934772314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('joaomoreira@gmail.com', 'joaomoreira07', 'João Moreira','1234', '944212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('hugogomes@gmail.com', 'hugogomes82', 'Hugo Gomes', '1234', '934211114');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('diogoneves@gmail.com', 'neves76', 'Diogo Neves', '1234', '934212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('tiagoaleixo@gmail.com', 'aleixo02', 'Tiago Aleixo', '1234', '934772314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('diogobabo@gmail.com', 'diogo_babo07', 'Diogo Babo','1234', '944212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('tiagobranquinho@gmail.com', 'branquinho82', 'Tiago Branquinho', '1234', '934211114');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('alexandrecorreia@gmail.com', 'alex_correia76', 'Alexandre Correia', '1234', '934212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('henriquesilva@gmail.com', 'henriquesilva02', 'Henrique Silva', '1234', '934772314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('tiagomartins@gmail.com', 'tiagomartins07', 'Tiago Martins','1234', '944212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '1234', '934211114');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','1234', '944212314');
-INSERT INTO authenticated_user (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '1234', '934211114');
-INSERT INTO authenticated_user (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '1234', '934211114', True);
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaoaraujo@gmail.com', 'joaoaraujo76', 'João Araújo', '1234', '934212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('liavieira@gmail.com', 'liavieira02', 'Lia Vieira', '1234', '934772314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaomoreira@gmail.com', 'joaomoreira07', 'João Moreira','1234', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('hugogomes@gmail.com', 'hugogomes82', 'Hugo Gomes', '1234', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('diogoneves@gmail.com', 'neves76', 'Diogo Neves', '1234', '934212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagoaleixo@gmail.com', 'aleixo02', 'Tiago Aleixo', '1234', '934772314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('diogobabo@gmail.com', 'diogo_babo07', 'Diogo Babo','1234', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagobranquinho@gmail.com', 'branquinho82', 'Tiago Branquinho', '1234', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('alexandrecorreia@gmail.com', 'alex_correia76', 'Alexandre Correia', '1234', '934212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('henriquesilva@gmail.com', 'henriquesilva02', 'Henrique Silva', '1234', '934772314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagomartins@gmail.com', 'tiagomartins07', 'Tiago Martins','1234', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '1234', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','1234', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '1234', '934211114');
+INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '1234', '934211114', True);
 
 
 INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',1);

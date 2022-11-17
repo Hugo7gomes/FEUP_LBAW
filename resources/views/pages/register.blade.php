@@ -1,14 +1,15 @@
-<!-- @extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
+<div class = "registerBoard">
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
     @php
       var_dump($errors);
     @endphp       
-
+    <h2>Register</h2>
     <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+    <input id="nameReg" type="text" name="name" value="{{ old('name') }}" required autofocus>
     @if ($errors->has('name'))
       <span class="error">
           {{ $errors->first('name') }}
@@ -16,15 +17,15 @@
     @endif
 
     <label for="username">Username</label>
-    <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus>
+    <input id="usernameReg" type="text" name="username" value="{{ old('username') }}" required autofocus>
     @if ($errors->has('username'))
       <span class="error">
           {{ $errors->first('username') }}
       </span>
     @endif
 
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+    <label for="email">E-mail</label>
+    <input id="emailReg" type="email" name="email" value="{{ old('email') }}" required>
     @if ($errors->has('email'))
       <span class="error">
           {{ $errors->first('email') }}
@@ -32,7 +33,7 @@
     @endif
 
     <label for="password">Password</label>
-    <input id="password" type="password" name="password" required>
+    <input id="passwordReg" type="password" name="password" required>
     @if ($errors->has('password'))
       <span class="error">
           {{ $errors->first('password') }}
@@ -40,11 +41,12 @@
     @endif
 
     <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation" required>
+    <input id="passwordConfirmReg" type="password" name="password_confirmation" required>
 
     <button type="submit">
       Register
     </button>
     <a class="button button-outline" href="{{ route('login') }}">Login</a>
 </form>
-@endsection -->
+</div>
+@endsection

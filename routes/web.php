@@ -12,21 +12,21 @@
 */
 
 Route::get('/', function () {
-    return redirect('/homepage');
+    return redirect('/home');
 });
 
-Route::get('homepage','HomepageController@show');
+Route::get('home','HomepageController@show')->name('home');
+Route::get('faq','HomepageController@show')->name('faq');
+Route::get('about','HomepageController@show')->name('about');
+Route::get('contacts','HomepageController@show')->name('contacts');
 
-// Cards
-Route::get('cards', 'CardController@list');
-Route::get('cards/{id}', 'CardController@show');
 
 // API
-Route::put('api/cards', 'CardController@create');
+/*Route::put('api/cards', 'CardController@create');
 Route::delete('api/cards/{card_id}', 'CardController@delete');
 Route::put('api/cards/{card_id}/', 'ItemController@create');
 Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');
+Route::delete('api/item/{id}', 'ItemController@delete');*/
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -35,7 +35,12 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-Route::get('profile','ProfileController@show');//mostrar pagina do utilizador logado
-Route::get('profile/{id}','ProfileController@show');//mostrar pagina de outro utilizador
 
-Route::get('project/{project_id}','ProjectController@show');
+//Profile
+Route::get('profile','ProfileController@show')->name('profile');//mostrar pagina do utilizador logado
+Route::post('profile','ProfileController@update');  
+Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina de outro utilizador
+
+Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+']);
+Route::get('project/create','ProjectController@showCreate')->name('project/create');
+Route::post('project/create','ProjectController@create');

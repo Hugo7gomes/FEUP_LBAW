@@ -1,4 +1,4 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('content')
 <form method="POST" action="{{ route('login') }}">
@@ -29,4 +29,4 @@
     </button>
     <a class="button button-outline" href="{{ route('register') }}">Register</a>
 </form>
-@endsection
+@endsection -->

@@ -43,7 +43,7 @@ class LoginController extends Controller
 
 
     public function home() {
-        return redirect('/');
+        return redirect('/profile');
     }
 
 }

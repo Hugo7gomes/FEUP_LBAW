@@ -13,24 +13,32 @@
 <div class="boardView">
     <div>
         <h3>To do</h3>
-        @foreach ($tasks as $taks)
-        <div id="tasks">{{ $project['name']}}</div>
+        @foreach ($tasksToDo as $task)
+        <div id="tasks">{{ $task['name']}}</div>
         @endforeach
     </div>
     <div>
         <h3>Doing</h3>
+        @foreach ($tasksDoing as $task)
+        <div id="tasks">{{ $task['name']}}</div>
+        @endforeach
     </div>
     <div>
         <h3>Done</h3>
+        @foreach ($tasksDone as $task)
+        <div id="tasks">{{ $task['name']}}</div>
+        @endforeach
     </div>
 </div>
 <div class="teamMembers">
     <h3>Team Members</h3>
     @foreach ($coordinators as $coordinator)
-    <div id="coordinator">{{ $coordinator['name']}}</div>
+    <div class="coordinator"> <a href = "/profile/{{$coordinator['username']}}">{{$coordinator['username']}}</a></div>
+    
     @endforeach
     @foreach ($collaborators as $collaborator)
-    <div id="collaborator">{{ $collaborator['name']}}</div>
+    <div class="collaborator"><a href = "/profile/{{$collaborator['username']}}">{{$collaborator['username']}}</a></div>
+    
     @endforeach
 </div>
 @section('task')
