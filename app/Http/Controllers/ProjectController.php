@@ -96,6 +96,23 @@ class ProjectController extends Controller
         if(!Auth::check()){
             return redirect("/home");
         }
-        return view('pages.createProject');//FALTA VIEW 
+
+        $user = User::find(Auth::user()->id);
+
+
+        return view('pages.createProject', ['user' => $user]);
     }
+
+    public function showUpdate(int $id){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+        //só se for coordenador
+        $project = Project::find($id);  
+        $user = User::find(Auth::user()->id);
+        $this->authorize('showUpdate', $project);
+        return view('pages.editProject',['user' => $user, 'project'=>$project]); 
+    }
+
+
 }

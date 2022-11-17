@@ -18,6 +18,10 @@ class ProjectPolicy
       return $project->is_member($user);
     }
 
+    public function showUpdate(User $user, Project $project){
+      return true;
+    }
+
     public function update(User $user, Project $project)
     {
       // Any user can list its own cards

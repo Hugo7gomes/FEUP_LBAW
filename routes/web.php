@@ -44,3 +44,5 @@ Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina d
 Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+']);
 Route::get('project/create','ProjectController@showCreate')->name('project/create');
 Route::post('project/create','ProjectController@create');
+Route::get('project/edit/{project_id}','ProjectController@showUpdate')->name('project/edit/{project_id}')->where(['project_id'=>'[0-9]+']);
+Route::post('project/edit','ProjectController@update')->name('project/edit')->where(['project_id'=>'[0-9]+']);
