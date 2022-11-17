@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])

@@ -11,6 +11,7 @@ class Task extends Model
 
     protected $table = 'task';
     
+    public $timestamps  = false;
 
     public function comments() {  
         return $this->hasMany('App\Models\Comments','id_task');

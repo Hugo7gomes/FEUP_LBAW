@@ -26,4 +26,10 @@ class TaskPolicy
       // Only a collaborator from project task can see it
       return Project::find($task->id_project)->is_member($user) ;
     }
+
+    public function task(User $user, Task $task)
+    {
+      // Only a collaborator from project task can see it
+      return Project::find($task->id_project)->is_member($user) ;
+    }
 }

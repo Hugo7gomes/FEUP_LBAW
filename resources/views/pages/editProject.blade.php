@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])
@@ -8,7 +8,7 @@
 </section>
 
 <div id="projectUpdate">
-<form method="POST" action = "{{ route('project/edit',['id' => $project['id']]) }}" id="userInf"> <!-- METER SLUG CORRETA -->
+<form method="POST" action = "{{route('project/edit', ['id' => $project->id])}}" id="userInf"> <!-- METER SLUG CORRETA -->
     @csrf
     <h4>Name</h4>
     <input id="projectNewName" type="text" name = "name" placeholder="{{ $project->name }}" autofocus>

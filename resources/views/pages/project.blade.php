@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-
 @section('name', $project->name)
+
+<link href="{{ asset('css/project.css') }}" rel="stylesheet">
 
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])
@@ -13,7 +13,7 @@
 
 <button class="fa-regular fa-heart favoriteButton"></button>
 <button class="addTaks">Add task</button>
-<form method="POST" action = "" id="createTaks">
+<form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" id="createTaks">
       @csrf
       <h4>Name</h4>
       <input type="text" name = "name" placeholder= "Name" id="taksName">
@@ -28,37 +28,41 @@
       <h4>User assigned</h4>
       <select name="userAssigned">
         @foreach ($coordinators as $coordinator)
-            <option value="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
+            <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
         @endforeach
         @foreach ($collaborators as $collaborator)
-            <option value="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
+            <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
         @endforeach
       </select>
-      <input type="tel" name = "phone_number" placeholder= "{{ $user['phone_number'] ?? 'No phoneNumber'}}" id="userPhone">
-      @if($errors->has('phone_number'))
-          <div class="error">{{ $errors->first('phone_number') }}</div>
+      @if($errors->has('id_user_assigned'))
+          <div class="error">{{ $errors->first('id_user_assigned') }}</div>
       @endif
       <h4>Priority</h4>
-      <input type="text" name = "password" placeholder= "User's password" id="password">
-      @if($errors->has('password'))
-          <div class="error">{{ $errors->first('password') }}</div>
+      <select name="priority">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+      @if($errors->has('priority'))
+          <div class="error">{{ $errors->first('priority') }}</div>
       @endif
-      <button type="submit" data-href="/profile/{{$user->username}}" class="btn btn-primary">Create task</button>
+      <button type="submit" class="btn btn-primary">Create task</button>
     </form>
 <div class="boardView">
-    <div>
+    <h2>Board View</h2>
+    <div id="tasksToDo">
         <h3>To do</h3>
         @foreach ($tasksToDo as $task)
         <div id="tasks">{{ $task['name']}}</div>
         @endforeach
     </div>
-    <div>
+    <div id="tasksDoing">
         <h3>Doing</h3>
         @foreach ($tasksDoing as $task)
         <div id="tasks">{{ $task['name']}}</div>
         @endforeach
     </div>
-    <div>
+    <div id="tasksDone">
         <h3>Done</h3>
         @foreach ($tasksDone as $task)
         <div id="tasks">{{ $task['name']}}</div>
@@ -66,7 +70,7 @@
     </div>
 </div>
 @if ($project->is_coordinator($user))
-    <button class="editProjectButton" onclick="{{ route('project/id') }}">Editar projeto</button>
+    <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="editProjectButton">Editar projeto</button></a>
 @endif
 
 <div class="teamMembers">

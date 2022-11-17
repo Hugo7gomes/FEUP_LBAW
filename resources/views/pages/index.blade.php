@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 <nav id = "info">
   <a href="{{ route('faq') }}">FAQ</a>

@@ -65,7 +65,7 @@ class ProfileController extends Controller
             }
             
             return redirect()->back()->withInput()->withErrors($errors);
-        }
+        }   
 
         if(!Auth::check()) return redirect('/');
         $user = User::find(Auth::user()->id);
