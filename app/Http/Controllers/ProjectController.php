@@ -35,6 +35,8 @@ class ProjectController extends Controller
             $coordinator = User::find($coordinatorId['id_user']);
             array_push($coordinators,$coordinator);
         }
+
+        
         
         $tasksToDo = array();
         $tasksDone = array();
@@ -49,13 +51,7 @@ class ProjectController extends Controller
                 array_push($tasksDone, $task);
             }
         }
-        
-        //TODO
-        //buscar comentarios de tasks
-        //Separar tasks por State
-        //
 
-        //return response()->json($tasks->first());
         return view('pages.project',['user' => $user,'tasksToDo' => $tasksToDo, 'tasksDoing' => $tasksDoing, 'tasksDone' => $tasksDone, 'project' => $project, 'coordinators' => $coordinators, 'collaborators' => $collaborators]);
     }
 
@@ -103,15 +99,48 @@ class ProjectController extends Controller
         return view('pages.createProject', ['user' => $user]);
     }
 
-    public function showUpdate(int $id){
+    public function showUpdate(Request $request){
         if(!Auth::check()){
             return redirect("/home");
         }
         //só se for coordenador
-        $project = Project::find($id);  
+        $project = Project::find($request->id);  
+
         $user = User::find(Auth::user()->id);
         $this->authorize('showUpdate', $project);
+        
         return view('pages.editProject',['user' => $user, 'project'=>$project]); 
+    }
+
+
+    public function update(Request $request){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+
+        $project = Project::find($request->get('id'));
+        $user = User::find(Auth::user()->id);
+        $this->authorize('update', $project);
+        
+        $validator = Validator::make($request->all(),[
+            'name' => 'nullable|string|max:255',
+            'details' => 'nullable|string',
+        ]);
+
+        if($validator->fails()){
+            foreach($validator->errors()->messages() as $key => $value){
+                $errors[$key] = $value;
+            }
+            
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
+        $project->name = empty($request->get('name')) ? $project->name : $request->input('name');
+        $project->details = empty($request->get('details')) ? $project->details : $request->input('details');
+        $project->save();
+
+        return redirect("/project/$project->id");
+
     }
 
 

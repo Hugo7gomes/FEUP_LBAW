@@ -19,13 +19,13 @@ class ProjectPolicy
     }
 
     public function showUpdate(User $user, Project $project){
-      return true;
+      return $project->is_coordinator($user);
     }
 
     public function update(User $user, Project $project)
     {
       // Any user can list its own cards
-      return $user->id == $model->id;
+      return $project->is_coordinator($user);
     }
 
     public function create(User $user)

@@ -41,8 +41,12 @@ Route::get('profile','ProfileController@show')->name('profile');//mostrar pagina
 Route::post('profile','ProfileController@update');  
 Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina de outro utilizador
 
+//Project
 Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+']);
 Route::get('project/create','ProjectController@showCreate')->name('project/create');
 Route::post('project/create','ProjectController@create');
-Route::get('project/edit/{project_id}','ProjectController@showUpdate')->name('project/edit/{project_id}')->where(['project_id'=>'[0-9]+']);
-Route::post('project/edit','ProjectController@update')->name('project/edit')->where(['project_id'=>'[0-9]+']);
+Route::get('project/edit','ProjectController@showUpdate')->name('project/edit');
+Route::post('project/{project_id}/edit','ProjectController@update')->name('project/edit')->where(['project_id'=>'[0-9]+']);
+
+//Task
+Route::get('api/task/{task_id}','TaskController@show');

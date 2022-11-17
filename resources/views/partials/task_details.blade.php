@@ -1,11 +1,6 @@
-<article class="taskDetails">
-<header>
-  <a href="#" class="delete">&#10761;</a>
-</header>
-</article>
-
+@if (!is_null($task))
 <div class="tasksView">
-    <h3>Tasks</h3>
-    <h4>Task details</h4>
-    <h4>Comments</h4>
+    <h4>{{$task->name}}</h4>
+    <h4>{{$task->details}}</h4>
 </div>
+@endif

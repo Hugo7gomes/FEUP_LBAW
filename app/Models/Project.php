@@ -29,6 +29,10 @@ class Project extends Model
         return $this->hasMany('App\Models\Role','id_project')->where('role','Collaborator');
     }
 
+    public function is_coordinator(User $user){
+        return ($this->coordinators()->where('id_user',$user->id)->get()->isNotEmpty());
+    }
+
     public function is_member(User $user){
         return ($this->hasMany('App\Models\Role','id_project')->where('id_user', $user->id)->get()->isNotEmpty());
     }

@@ -1,3 +1,4 @@
+<!-- <link href="{{ asset('css/project_side.css') }}" rel="stylesheet"> -->
 <article class="projectSide">
 <ul>
   @foreach ($projects as $project)

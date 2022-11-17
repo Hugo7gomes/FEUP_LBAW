@@ -1,6 +1,10 @@
 @extends('layouts.main')
 
+
 @section('content')
+<head>
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
 <div class = "loginBoard">
     <h1>Welcome Back!</h1>
     <h4>Username</h4>

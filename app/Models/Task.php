@@ -10,6 +10,7 @@ class Task extends Model
     use HasFactory;
 
     protected $table = 'task';
+    
 
     public function comments() {  
         return $this->hasMany('App\Models\Comments','id_task');
