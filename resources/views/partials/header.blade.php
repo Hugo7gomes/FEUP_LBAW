@@ -13,5 +13,12 @@
           <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
         </a>
       </div>
+      <div class = "notifications">
+        @if(isset($notifications))
+          @foreach ($notifications as $notification)
+            <h1>{{$notification->text()}}</h1>
+          @endforeach
+        @endif
+      </div>  
     </div>
 </div>

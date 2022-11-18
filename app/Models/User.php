@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\Photo;
+use App\Models\Project;
 
 
 class User extends Authenticatable
@@ -60,6 +61,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Notification','id_user');
     }
 
-    
+    public function leaveProject(Project $project){
+        return $this->hasMany('App\Models\Role','id_user')->where('id_project',$project->id)->delete();
+    }
 
 }

@@ -1,4 +1,4 @@
-body {
+/* body {
   background-color: #ffffff;
   color: #9b4dca;
 }
@@ -132,10 +132,7 @@ main > header span {
     border-bottom: 1px solid rgba(96, 108, 118, 0.4);
   }
 }
-/**
- * Overide milligram colors
- * Some styles might be missing
- **/
+
 button {
   background-color: #9b4dca;
   border-color: #9b4dca;
@@ -156,4 +153,4 @@ input[type=password]:focus {
   border-color: #9b4dca;
 }
 
-
+ */

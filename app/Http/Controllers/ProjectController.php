@@ -56,7 +56,11 @@ class ProjectController extends Controller
             }
         }
 
-        return view('pages.project',['user' => $user,'tasksToDo' => $tasksToDo, 'tasksDoing' => $tasksDoing, 'tasksDone' => $tasksDone, 'project' => $project, 'coordinators' => $coordinators, 'collaborators' => $collaborators]);
+        $notifications = $user->notifications;
+
+
+
+        return view('pages.project',['notifications' => $notifications,'user' => $user,'tasksToDo' => $tasksToDo, 'tasksDoing' => $tasksDoing, 'tasksDone' => $tasksDone, 'project' => $project, 'coordinators' => $coordinators, 'collaborators' => $collaborators]);
     }
 
 
@@ -145,6 +149,29 @@ class ProjectController extends Controller
 
         return redirect("/project/$project->id");
 
+    }
+
+    public function leave(Request $request){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+
+        $project = Project::find($request->get('id'));
+        $user = User::find(Auth::user()->id);
+        $this->authorize('leave', $project);
+
+        $user->leaveProject($project);
+
+        return redirect("/profile");
+
+    }
+
+    public function addMemeber(Request $request){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+
+        
     }
 
 

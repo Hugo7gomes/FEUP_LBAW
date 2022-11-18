@@ -35,7 +35,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-
 //Profile
 Route::get('profile','ProfileController@show')->name('profile');//mostrar pagina do utilizador logado
 Route::post('profile','ProfileController@update');  
@@ -47,9 +46,12 @@ Route::get('project/create','ProjectController@showCreate')->name('project/creat
 Route::post('project/create','ProjectController@create');
 Route::get('project/edit','ProjectController@showUpdate')->name('project/edit');
 Route::post('project/edit','ProjectController@update')->name('project/edit');
-
+Route::post('project/leave','ProjectController@leave')->name('project/leave');
+Route::post('project/addMember', 'ProjectController@addMember')->name('project/addMember');
 //Task
 Route::get('task','TaskController@show')->name('task');
 Route::post('task/create','TaskController@create')->name('task/create');
 Route::get('task/edit','TaskController@showUpdate')->name('task/edit');
 Route::post('task/edit','TaskController@update')->name('task/edit');
+
+

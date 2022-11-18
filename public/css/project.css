@@ -1,16 +1,24 @@
-body {
+*{
     background-color: #EEEE;
+}
+
+body {
+    background-color: black;
 }
 
 .boardView {
     display: flex;
     flex-direction: row;
-    align-content: space-between;
+    align-content: space-between; 
 }
 
-.boardView h2 {
+.row > h2 {
+    text-align: left;
     color: black;
     font-weight: bold;
+    font-size: 27px;
+    border-bottom: 4px solid black;
+    height: 50px;
 }
 
 #tasksToDo, #tasksDoing, #tasksDone {
@@ -20,14 +28,14 @@ body {
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
 }
 
-#tasksToDo h3, #tasksDoing h3, #tasksDone h3 {
+#tasksToDo > h3, #tasksDoing > h3, #tasksDone > h3 {
     background-color: rgba(187, 186, 186, 0.908);
     padding: 5px;
     padding-left: 12px;
     padding-right: 12px;
     border-radius: 5px;
     color: black;
-    font-size: smaller;
+    font-size: 10px;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif'
 }

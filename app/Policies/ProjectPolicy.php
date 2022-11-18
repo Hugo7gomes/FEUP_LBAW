@@ -18,6 +18,7 @@ class ProjectPolicy
       return $project->is_member($user);
     }
 
+
     public function showUpdate(User $user, Project $project){
       return $project->is_coordinator($user);
     }
@@ -38,5 +39,9 @@ class ProjectPolicy
     {
       // Only a profile owner can delete it
       return $user->id == $model->id;
+    }
+
+    public function leave(User $user, Project $project){
+      return $project->is_member($user) && !$project->is_coordinator($user);
     }
 }
