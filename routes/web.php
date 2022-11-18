@@ -47,7 +47,10 @@ Route::post('project/create','ProjectController@create');
 Route::get('project/edit','ProjectController@showUpdate')->name('project/edit');
 Route::post('project/edit','ProjectController@update')->name('project/edit');
 Route::post('project/leave','ProjectController@leave')->name('project/leave');
-Route::post('project/addMember', 'ProjectController@addMember')->name('project/addMember');
+Route::post('project/inviteMember', 'InviteController@create')->name('project/inviteMember');
+Route::post('project/acceptInvite}', 'RoleController@create')->name('project/acceptInvite');
+
+
 //Task
 Route::get('task','TaskController@show')->name('task');
 Route::post('task/create','TaskController@create')->name('task/create');

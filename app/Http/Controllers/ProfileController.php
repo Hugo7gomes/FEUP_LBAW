@@ -20,8 +20,9 @@ class ProfileController extends Controller
         }
 
         $user = User::find(Auth::user()->id);
+        $notifications = $user->notifications;
         $this->authorize('show', $user);
-        return view('pages.profile',['projects' => $user->projects, 'user' => $user, 'photo' => $user->photo]);
+        return view('pages.profile',['notifications' => $notifications, 'projects' => $user->projects, 'user' => $user, 'photo' => $user->photo]);
     }
 
     public function showUser($username){

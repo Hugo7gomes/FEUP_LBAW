@@ -1,0 +1,9 @@
+#userName, #userUsername, #userEmail, #userPhone, #password, #new_password {
+    width: 25%;
+}
+
+#profileBoard {
+    background-color: white;
+    border-radius: 10px;
+
+}

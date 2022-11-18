@@ -28,7 +28,7 @@ class TaskController extends Controller
 
         $this->authorize('show',$task);
 
-        return response()->json($task);
+        return view('pages.task',['user'=>$user,'task'=>$task]);
     }
 
     public function create(Request $request){

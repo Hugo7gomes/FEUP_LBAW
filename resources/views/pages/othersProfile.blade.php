@@ -30,13 +30,4 @@
     @endforeach
     </section>
     <button class="fa-solid fa-plus inviteToProject" onclick=""></button>
-    <form method = "POST" class="addToProject" action="{{ route('project/addMember') }}">
-    <label for="projects">Choose a project</label>
-    <select id="projects" name="projects" size="3">
-        @foreach ($projects as $project)
-        <option value="{{ $project['name']}}"></option>
-        @endforeach
-    </select><br><br>
-    <input type="submit">
-    </form>
 </div>

@@ -1,7 +1,7 @@
-/* body {
-  background-color: #ffffff;
-  color: #9b4dca;
+body {
+  background-color: #EEEE;
 }
+/*
 main > header {
   display: grid;
   grid-template-columns: 1fr auto auto;

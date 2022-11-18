@@ -19,37 +19,37 @@
       @csrf
 
     <div class="form-floating mb-3">
-        <input type="text" name="name" class="form-control" id="taskName" placeholder="Name">
+        <input type="text" name="name" class="form-control border-success" id="taskName" placeholder="Name">
         @if($errors->has('name'))
           <div class="error">{{ $errors->first('name') }}</div>
         @endif
-        <label for="floatingInput">Name</label>
+        <label for="floatingInput" class="col-form-label-lg">Name</label>
     </div>
     <div class="form-floating mb-3">
-        <input type="text" name="details" class="form-control" id="userEmail" placeholder="Details">
+        <input type="text" name="details" class="form-control border-success" id="userEmail" placeholder="Details">
         @if($errors->has('details'))
           <div class="error">{{ $errors->first('details') }}</div>
         @endif
-        <label for="floatingInput">Details</label>
+        <label for="floatingInput" class="col-form-label-lg">Details</label>
     </div>
     <div class="form-select">
-        <option selected>Open this select menu</option>
         <select name="userAssigned">
-        @foreach ($coordinators as $coordinator)
-            <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
-        @endforeach
-        @foreach ($collaborators as $collaborator)
-            <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
-        @endforeach
-        <label for="floatingInput">User Assigned</label>
+            <option selected>User assigned</option>
+            @foreach ($coordinators as $coordinator)
+                <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
+            @endforeach
+            @foreach ($collaborators as $collaborator)
+                <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
+            @endforeach
+            <label for="floatingInput">User Assigned</label>
         </select>
         @if($errors->has('id_user_assigned'))
           <div class="error">{{ $errors->first('id_user_assigned') }}</div>
         @endif
     </div>
     <div class="form-select">
-        <option selected>Open this select menu</option>
         <select name="priority">
+            <option selected>Priority</option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
             <option value="High">High</option>
@@ -80,7 +80,7 @@
       @if($errors->has('priority'))
           <div class="error">{{ $errors->first('priority') }}</div>
       @endif -->
-    <button type="submit" class="btn btn-primary">Create task</button>
+    <button type="submit" class="btn btn-outline-dark">Create task</button>
 </form>
 </div>
 
@@ -89,7 +89,7 @@
     <button type="submit" class="btn btn-outline-dark">Leave Project</button>
 </form>
 
-<div class="container text-center boardView">
+<div class="container text-center boardView" id="boardView">
     <div class="row">
     <h2>Board View</h2>
     <div class="col tasksToDo">
@@ -114,7 +114,18 @@
 </div>
 
 @if ($project->is_coordinator($user))
-    <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="editProjectButton">Editar projeto</button></a>
+    <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark editProjectButton">Edit project</button></a>
+@endif
+@if ($project->is_coordinator($user))
+<form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">
+    @csrf
+    <label for="projects">Choose a profile</label>
+    <input type="text" name="username" class="form-control"  placeholder="username">
+    @if($errors->has('userNotFound'))
+            <div class="error">{{ $errors->first('userNotFound') }}</div>
+    @endif
+    <button type="submit" class="btn btn-outline-dark addMemberButton">Add member</button>
+</form>
 @endif
 
 <!-- <div class="teamMembers">
