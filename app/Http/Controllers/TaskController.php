@@ -7,22 +7,26 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Project;
 
 
 class TaskController extends Controller
 {
 
 
-    public function show($id){
+    public function show(Request $request){
         //FALTA TESTAR
         if(!Auth::check()){
             return redirect("/home");
         }
 
-        $task = Task::find($id);
+        $task = Task::find($request->id);
+        if(is_null($task)){
+            return abort(404);
+        }
         $user = User::find(Auth::user()->id);
 
-        //$this->authorize('show',$task);
+        $this->authorize('show',$task);
 
         return response()->json($task);
     }
@@ -37,7 +41,7 @@ class TaskController extends Controller
 
         $validator = Validator::make($request->all(),[
             'name' => 'min:5|string|max:255|required',
-            'details' => 'string|max:255',
+            'details' => 'nullable|string|max:255',
             'priority' => 'string|required',
             'id_user_assigned' => 'numeric|unique:users',
         ]);
@@ -56,14 +60,19 @@ class TaskController extends Controller
         $task->details = $request->input('details');
         $task->creation_date = now();
         $task->id_user_creator = Auth::user()->id;
-        $task->id_user_assigned = User::where('name',$request->userAssigned)->id;
+        if (is_null(User::where('name',$request->userAssigned)->first())){
+            $task->id_user_assigned = NULL;
+        }else{
+            $task->id_user_assigned = User::where('name',$request->userAssigned)->first()->id;   
+        }
         $task->priority = $request->input('priority');
         $task->id_project = $request->id;
 
         $user = User::find(Auth::user()->id);
-        //$this->authorize('create', $task);
-        return response()->json($task);
+        $this->authorize('create', $task);
         $task->save();
+
+        return redirect("/project/$request->id");
 
     }
 

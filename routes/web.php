@@ -47,7 +47,9 @@ Route::get('project/create','ProjectController@showCreate')->name('project/creat
 Route::post('project/create','ProjectController@create');
 Route::get('project/edit','ProjectController@showUpdate')->name('project/edit');
 Route::post('project/edit','ProjectController@update')->name('project/edit');
+
 //Task
+Route::get('task','TaskController@show')->name('task');
 Route::post('task/create','TaskController@create')->name('task/create');
 Route::get('task/edit','TaskController@showUpdate')->name('task/edit');
 Route::post('task/edit','TaskController@update')->name('task/edit');

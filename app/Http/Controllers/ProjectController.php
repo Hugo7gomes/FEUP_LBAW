@@ -12,6 +12,10 @@ class ProjectController extends Controller
 {
     public function show(int $id){
         //policy para ver se ele pode ver este projeto
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+        
         $project = Project::find($id);  
         $user = User::find(Auth::user()->id);
 

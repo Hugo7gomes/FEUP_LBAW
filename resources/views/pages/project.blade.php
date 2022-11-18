@@ -3,6 +3,7 @@
 @section('name', $project->name)
 
 <link href="{{ asset('css/project.css') }}" rel="stylesheet">
+<script src={{ asset('js/task.js') }} defer></script>
 
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])
@@ -12,8 +13,8 @@
 </section>
 
 <button class="fa-regular fa-heart favoriteButton"></button>
-<button class="addTaks">Add task</button>
-<form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" id="createTaks">
+<button class="addTask" >Add task</button>
+<form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" id="createTask">
       @csrf
       <h4>Name</h4>
       <input type="text" name = "name" placeholder= "Name" id="taksName">
@@ -53,19 +54,19 @@
     <div id="tasksToDo">
         <h3>To do</h3>
         @foreach ($tasksToDo as $task)
-        <div id="tasks">{{ $task['name']}}</div>
+        <a href = "{{route('task', ['id' => $task->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
     <div id="tasksDoing">
         <h3>Doing</h3>
         @foreach ($tasksDoing as $task)
-        <div id="tasks">{{ $task['name']}}</div>
+        <a href = "{{route('task', ['id' => $task->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
     <div id="tasksDone">
         <h3>Done</h3>
         @foreach ($tasksDone as $task)
-        <div id="tasks">{{ $task['name']}}</div>
+        <a href = "{{route('task', ['id' => $task->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
 </div>

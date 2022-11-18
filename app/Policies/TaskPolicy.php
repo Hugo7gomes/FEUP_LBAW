@@ -24,12 +24,22 @@ class TaskPolicy
     public function show(User $user, Task $task)
     {
       // Only a collaborator from project task can see it
-      return Project::find($task->id_project)->is_member($user) ;
+      $project = Project::find($task->id_project); 
+      if(is_null($project)){
+        return false;
+      }else{
+        return $project->is_member($user);
+      }
     }
 
-    public function task(User $user, Task $task)
+    public function create(User $user, Task $task)
     {
       // Only a collaborator from project task can see it
-      return Project::find($task->id_project)->is_member($user) ;
+      $project = Project::find($task->id_project); 
+      if(is_null($project)){
+        return false;
+      }else{
+        return $project->is_member($user);
+      }
     }
 }
