@@ -12,28 +12,27 @@
     @yield('projectSide')
 </section>
 
-<button class="fa-regular fa-heart favoriteButton">Favorite</button>
-<button class="addTask" >Add task</button>
+
+<button type = "submit" class="btn btn-outline-dark favoriteButton">Favorite</button>
+<button class="btn btn-outline-dark addTask">Add task</button>
 <div id="createTask">
-<form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}">
+<form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
       @csrf
 
-    <div class="form-floating mb-3">
-        <input type="text" name="name" class="form-control border-success" id="taskName" placeholder="Name">
+    <div class="form-group">
+        <input type="text" name="name" class="form-control" id="taskName" placeholder="Name">
         @if($errors->has('name'))
           <div class="error">{{ $errors->first('name') }}</div>
         @endif
-        <label for="floatingInput" class="col-form-label-lg">Name</label>
     </div>
-    <div class="form-floating mb-3">
-        <input type="text" name="details" class="form-control border-success" id="userEmail" placeholder="Details">
+    <div class="form-group">
+        <input type="text" name="details" class="form-control" id="userEmail" placeholder="Details">
         @if($errors->has('details'))
           <div class="error">{{ $errors->first('details') }}</div>
         @endif
-        <label for="floatingInput" class="col-form-label-lg">Details</label>
     </div>
-    <div class="form-select">
-        <select name="userAssigned">
+    <div class="custom-select">
+        <select name="userAssigned" class="optionsUserAssigned">
             <option selected>User assigned</option>
             @foreach ($coordinators as $coordinator)
                 <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
@@ -47,8 +46,8 @@
           <div class="error">{{ $errors->first('id_user_assigned') }}</div>
         @endif
     </div>
-    <div class="form-select">
-        <select name="priority">
+    <div class="custom-select">
+        <select name="priority" class="optionsPriority">
             <option selected>Priority</option>
             <option value="Low">Low</option>
             <option value="Medium">Medium</option>
