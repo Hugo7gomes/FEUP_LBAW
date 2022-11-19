@@ -11,8 +11,10 @@
 <section id="projectSide">
     @yield('projectSide')
 </section>
-
-<button class="fa-regular fa-heart favoriteButton">Favorite</button>
+<form method = "POST" action = "{{route('project/favorite', ['id'=>$project->id])}}">
+    @csrf
+    <button type = "submit" class="fa-regular fa-heart favoriteButton">Favorite</button>
+</form>
 <button class="addTask" >Add task</button>
 <div id="createTask">
 <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}">

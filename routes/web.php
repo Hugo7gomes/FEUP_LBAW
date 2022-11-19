@@ -49,6 +49,7 @@ Route::post('project/edit','ProjectController@update')->name('project/edit');
 Route::post('project/leave','ProjectController@leave')->name('project/leave');
 Route::post('project/inviteMember', 'InviteController@create')->name('project/inviteMember');
 Route::post('project/acceptInvite}', 'RoleController@create')->name('project/acceptInvite');
+Route::post('project/favorite', 'FavoriteController@create')->name('project/favorite');
 
 
 //Task

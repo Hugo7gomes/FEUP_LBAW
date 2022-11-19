@@ -166,13 +166,13 @@ class ProjectController extends Controller
 
     }
 
-    public function addMemeber(Request $request){
-        if(!Auth::check()){
-            return redirect("/home");
+    public function search($query, $search)
+    {
+        if (!$search) {
+            return $query;
         }
-
-        
+        return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', [$search])
+            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$search]);
     }
-
 
 }

@@ -24,5 +24,4 @@ class Notification extends Model
             return 'O estado da task "' . (Task::find($this->id_task)->name) . '" do projeto '. (Project::find($this->id_project)->name). ' foi atualizado ';
         }
     }
-
 }
