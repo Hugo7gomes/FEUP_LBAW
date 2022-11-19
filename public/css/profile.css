@@ -7,3 +7,40 @@
     border-radius: 10px;
 
 }
+
+.userProjects {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    color: black;
+}
+
+#userProjects h2 {
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    position: relative;
+    right: 90px;
+}
+
+.userProjects h3 {
+    font-size: 18px;
+}
+
+.row form {
+    box-sizing: border-box;
+}
+
+.formsName, .formsUsername, .formsEmail, .formsPhone, .formsPassword, .formsNewPassword {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.mb-0 {
+    text-align: left;
+}
+
+
+#updateProfileButton {
+}
