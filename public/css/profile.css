@@ -8,6 +8,11 @@
 
 }
 
+#userProjects {
+    display: flex;
+    flex-direction: column;
+}
+
 .userProjects {
     display: flex;
     flex-direction: row;
@@ -19,8 +24,7 @@
     font-size: 25px;
     font-weight: bold;
     color: black;
-    position: relative;
-    right: 90px;
+    padding-right: 60%;
 }
 
 .userProjects h3 {
@@ -43,4 +47,5 @@
 
 
 #updateProfileButton {
+    position: relative;
 }

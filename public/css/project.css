@@ -84,3 +84,35 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+#createTask {
+    /* display: none; */
+    /* background-color: white; */
+    padding: 10px;
+    border-radius: 5px;
+    width: 50%;
+}
+
+.createTaskForm {
+    background-color: white;
+}
+
+#createTask > form {
+    /* display: none; */
+    background-color: white;
+}
+
+select.optionsPriority, select.optionsUserAssigned {
+    font-weight: bold;
+    font-size: 14px;
+    color: #606c76;
+    width: 40%;
+}
+
+#taskName, #userEmail {
+    color: #606c76;
+    font-weight: bold;
+    font-size: 14px;
+    width: 40%;
+}
+
+
