@@ -4,7 +4,12 @@
 
 <link href="{{ asset('css/project.css') }}" rel="stylesheet">
 <script src={{ asset('js/task.js') }} defer></script>
-
+<script src={{ asset('js/notification.js') }} defer></script>
+<header>
+          @include('partials.header')
+          @yield('header')
+</header>
+<main>
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])
 @endsection
@@ -13,9 +18,9 @@
 </section>
 <form method = "POST" action = "{{route('project/favorite', ['id'=>$project->id])}}">
     @csrf
-    <button type = "submit" class="fa-regular fa-heart favoriteButton">Favorite</button>
+    <button type = "submit" class="btn btn-outline-dark favoriteButton">Favorite</button>
 </form>
-<button class="addTask" >Add task</button>
+<button class="btn btn-outline-dark addTask" >Add task</button>
 <div id="createTask">
 <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
       @csrf
@@ -59,34 +64,13 @@
         @endif
     </div>
     
-      <!-- <h4>User assigned</h4>
-      <select name="userAssigned">
-        @foreach ($coordinators as $coordinator)
-            <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
-        @endforeach
-        @foreach ($collaborators as $collaborator)
-            <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
-        @endforeach
-      </select>
-      @if($errors->has('id_user_assigned'))
-          <div class="error">{{ $errors->first('id_user_assigned') }}</div>
-      @endif -->
-      <!-- <h4>Priority</h4>
-      <select name="priority">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-      </select>
-      @if($errors->has('priority'))
-          <div class="error">{{ $errors->first('priority') }}</div>
-      @endif -->
-    <button type="submit" class="btn btn-outline-dark">Create task</button>
+    <button type="submit" class="btn btn-outline-dark" id="createTaskButton">Create task</button>
 </form>
 </div>
 
 <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">
     @csrf
-    <button type="submit" class="btn btn-outline-dark">Leave Project</button>
+    <button type="submit" class="btn btn-outline-dark" id="leaveProjectButton">Leave Project</button>
 </form>
 
 <div class="container text-center boardView" id="boardView">
@@ -113,20 +97,24 @@
 </div>
 </div>
 
+<!-- FALTA MOSTRAR DETAILS DO PROJETO -->
 @if ($project->is_coordinator($user))
-    <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark editProjectButton">Edit project</button></a>
+    <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark" id="editProjectButton">Edit project</button></a>
 @endif
-@if ($project->is_coordinator($user))
-<form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">
-    @csrf
-    <label for="projects">Choose a profile</label>
-    <input type="text" name="username" class="form-control"  placeholder="username">
-    @if($errors->has('userNotFound'))
-            <div class="error">{{ $errors->first('userNotFound') }}</div>
+<div class="container text-center" id="addMember">
+    @if ($project->is_coordinator($user))
+    <form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">
+        @csrf
+        <label for="projects">Choose a profile</label>
+        <input type="text" name="username" class="form-group"  id="chooseProfile" placeholder="username">
+        @if($errors->has('userNotFound'))
+                <div class="error">{{ $errors->first('userNotFound') }}</div>
+        @endif
+        <button type="submit" class="btn btn-outline-dark addMemberButton">Add member</button>
+    </form>
     @endif
-    <button type="submit" class="btn btn-outline-dark addMemberButton">Add member</button>
-</form>
-@endif
+</div>
+</main>
 
 <!-- <div class="teamMembers">
     <h3>Team Members</h3>

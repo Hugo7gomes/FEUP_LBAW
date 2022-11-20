@@ -1,0 +1,50 @@
+.headerContainer {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    z-index: 3;
+    position: sticky;
+    justify-content: space-between;
+}
+
+/* main > header h1 {
+margin: 0;
+}
+main > header a.button {
+margin: 1em;
+justify-self: center;
+} */
+
+.logo {
+    width: 240px;
+    justify-self: start;
+}
+
+.notifications {
+    display:none;
+}
+
+.notificationButton {
+    background-color: white;
+    border: 0;
+    justify-self: end;
+}
+
+.bi-bell {
+    color: black;
+    font-size: 30px;
+    justify-self: flex-end;
+}
+
+.bi-person {
+    color: black;
+    font-size: 35px;
+    position: relative;
+}
+
+.bi-bell:hover {
+    color: #EEEE;
+}

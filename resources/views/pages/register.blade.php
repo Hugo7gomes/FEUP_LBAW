@@ -4,10 +4,7 @@
 @section('content')
 <div class = "registerBoard">
 <form method="POST" action="{{ route('register') }}">
-    {{ csrf_field() }}
-    @php
-      var_dump($errors);
-    @endphp       
+    {{ csrf_field() }}   
     <h2>Register</h2>
     <label for="name">Name</label>
     <input id="nameReg" type="text" name="name" value="{{ old('name') }}" required autofocus>

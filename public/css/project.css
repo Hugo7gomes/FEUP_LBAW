@@ -1,5 +1,7 @@
-*{
+main {
+    padding-top: 20px;
     background-color: #EEEE;
+    padding-left: 0%;
 }
 
 .form-select {
@@ -12,7 +14,8 @@
 } */
 
 #boardView {
-    width: 100%;
+    margin-left: -10px;
+    padding-bottom: 80px;
 }
 
 .boardView {
@@ -47,8 +50,7 @@
     color: black;
     font-size: 20px;
     text-align: left;
-    font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif'
+    font-weight: 500;
 }
 
 .col {
@@ -64,11 +66,11 @@
     text-align: left;
 }
 
-.teamMembers {
+/* .teamMembers {
     float: right;
     display: flex;
     flex-direction: column;
-}
+} */
 
 .editProjectButton {
     background-color: black;
@@ -84,16 +86,27 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.createTask {
+    background-color: white;
+}
+
 #createTask {
-    /* display: none; */
-    /* background-color: white; */
+    display: none;
+    background-color: white;
     padding: 10px;
     border-radius: 5px;
     width: 50%;
+    margin: auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.form-group, .custom-select {
+    background-color: white;
+
 }
 
 .createTaskForm {
-    background-color: white;
+    background-color:white;;
 }
 
 #createTask > form {
@@ -105,14 +118,55 @@ select.optionsPriority, select.optionsUserAssigned {
     font-weight: bold;
     font-size: 14px;
     color: #606c76;
-    width: 40%;
-}
+    width: 40%;}
 
 #taskName, #userEmail {
-    color: #606c76;
+    color: black;
+    font-weight: bold;
+    width: 40%;
+    font-size: 14px;
+}
+
+#chooseProfile {
+    width: 20%;
+    font-size: 14px;
+    background-color: white;
+}
+
+.addToProject {
+    color: black;
     font-weight: bold;
     font-size: 14px;
-    width: 40%;
+    background-color: white;
+}
+
+.addToProject > label {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.addMember {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
+    padding: 5px;
+}
+
+#addMember {
+    margin-left: -10px;
+    padding: 10px;
+}
+
+#leaveProjectButton {
+    position: absolute;
+    z-index: 2;
+    right: 8%;
+}
+
+#editProjectButton {
+    position: absolute;
+    z-index: 2;
+    right: 18%;
+    top: 14.5%;
 }
 
 

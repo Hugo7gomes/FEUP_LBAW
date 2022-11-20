@@ -1,4 +1,4 @@
-body {
+main {
   background-color: #EEEE;
 }
 /*
@@ -131,18 +131,6 @@ main > header span {
     margin: 0;
     border-bottom: 1px solid rgba(96, 108, 118, 0.4);
   }
-}
-
-button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
-}
-a.button {
-  background-color: #9b4dca;
-  border-color: #9b4dca;
-}
-a.button.button-outline {
-  color: #9b4dca;
 }
 a {
   color: #9b4dca;
