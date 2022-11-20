@@ -22,28 +22,7 @@ class RoleController extends Controller
        
         $role->save();*/
 
-        $invite = Invite::where('id_user_receiver',Auth::user()->id)->where('id_project',$request->get('id_project'))->first();
-        if(!isset($invite)){
-            //erro nao existe invite para adicionar este colaborador
-            return redirect()->back();
-        }
-
-        $invite->state = 'Accepted';
-        $invite->save();
-
-        $notification = Notification::where('id_invite',$invite->id)->first();
-        $notification->delete();
-
-        DB::table('role')->insert(
-            array(
-                'role' => 'Collaborator',
-                'id_user' => Auth::user()->id,
-                'id_project' => $request->get('id_project'),
-            )
-        );
-
-
-        return redirect("profile");
+        
 
     }
 }

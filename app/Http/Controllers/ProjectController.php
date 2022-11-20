@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Invite;
 
 class ProjectController extends Controller
 {
@@ -161,6 +162,9 @@ class ProjectController extends Controller
         $this->authorize('leave', $project);
 
         $user->leaveProject($project);
+        $invite = Invite::where('id_user_receiver',Auth::user()->id)->where('id_project',$request->get('id'))->first();
+        $invite->state = 'Rejected';
+        $invite->save();
 
         return redirect("/profile");
 

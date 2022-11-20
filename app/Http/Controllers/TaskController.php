@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Project;
@@ -40,10 +41,10 @@ class TaskController extends Controller
         
 
         $validator = Validator::make($request->all(),[
-            'name' => 'min:5|string|max:255|required',
+            'name' => 'min:4|string|max:255|required',
             'details' => 'nullable|string|max:255',
-            'priority' => 'string|required',
-            'id_user_assigned' => 'numeric|unique:users',
+            'priority' => ['string','required',Rule::in(['Low','Medium', 'High'])],
+            'id_user_assigned' => 'numeric',
         ]);
 
         if($validator->fails()){
@@ -60,10 +61,16 @@ class TaskController extends Controller
         $task->details = $request->input('details');
         $task->creation_date = now();
         $task->id_user_creator = Auth::user()->id;
-        if (is_null(User::where('name',$request->userAssigned)->first())){
+        $userToAssign = User::where('name',$request->input('userAssigned'))->first();
+        $project = Project::find($request->id);
+        if (!isset($userToAssign)){
             $task->id_user_assigned = NULL;
         }else{
-            $task->id_user_assigned = User::where('name',$request->userAssigned)->first()->id;   
+            if( !$project->is_member($userToAssign)){
+                $errors['id_user_assigned'] = "User not collaborator";
+                return redirect()->back()->withInput()->withErrors($errors);
+            }
+            $task->id_user_assigned = User::where('name',$request->input('userAssigned'))->first()->id;   
         }
         $task->priority = $request->input('priority');
         $task->id_project = $request->id;
