@@ -59,7 +59,6 @@ class ProfileController extends Controller
             'phone_number' => 'nullable|numeric|digits:9|',
         ]);
 
-        //adicionar mensagem em caso de erro no validade
         if($validator->fails()){
             foreach($validator->errors()->messages() as $key => $value){
                 $errors[$key] = $value;
@@ -74,11 +73,12 @@ class ProfileController extends Controller
     
         $user->name = empty($request->get('name')) ? $user->name : $request->input('name');
         $user->email = empty($request->get('email')) ? $user->email : $request->input('email');
-        $user->password = empty($request->get('new_password')) ? $user->password : bcrypt($request->input('new_password'));;
+        $user->password = empty($request->get('new_password')) ? $user->password : bcrypt($request->input('new_password'));
+        Auth::user()->password = $user->password;
         $user->phone_number = empty($request->get('phone_number')) ? $user->phone_number : $request->input('phone_number');
         $user->username = empty($request->get('username')) ? $user->username : $request->input('username');
-        $user->save();
-        
-        return redirect("/profile");
+        $user->save(); 
+
+        return back()->with("status","Profile updated");
     }
 }

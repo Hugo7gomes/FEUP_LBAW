@@ -26,6 +26,7 @@ class FavoriteController extends Controller
                 'id_project' => $request->get('id'),
             )
         );
+        
 
 
         return redirect('/project/{$request->get("id")}');

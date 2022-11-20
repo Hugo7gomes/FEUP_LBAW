@@ -478,8 +478,9 @@ CREATE TRIGGER comment_notification
 CREATE FUNCTION task_assign_notification() RETURNS TRIGGER AS
 $BODY$
 BEGIN
+    IF NEW.id_user_assigned IS NOT NULL THEN
     INSERT INTO notification (date, type,id_project,id_invite,id_comment,id_task,id_user) VALUES ( CURRENT_DATE,'Assign',NEW.id_project, NULL,NULL,NEW.id,New.id_user_assigned);
-
+    END IF;
     RETURN NEW;
 END
 $BODY$
