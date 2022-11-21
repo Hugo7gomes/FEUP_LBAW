@@ -7,30 +7,33 @@
         <img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo">
 
         <form class="searchbar col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="searchbar">
         </form>
-
-        <button class="notificationButton"><i class="bi bi-bell" id="notificationButton"></i></button>
-        <button class="notificationButton"><i class="bi bi-person"></i></button>
-        <div class = "notifications">
-          @if(isset($notifications))
-            @foreach ($notifications as $notification)
-              <h1>{{$notification->text()}}</h1>
-              @if($notification->type == 'Invite')
-                <div>
-                  <form method = "POST" action ="{{ route('project/acceptInvite',['id_project' => $notification->id_project]) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-dark acceptInviteButton">Accept</button>
-                  </form>
-                  <form method = "POST" action ="{{ route('project/rejectInvite',['id_project' => $notification->id_project]) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-dark acceptInviteButton">Reject</button>
-                  </form>
-                </div>
-              @endif
-            @endforeach
-          @endif
-        </div>  
+        
+        <button class="profileButton"><i class="bi bi-person"></i></button>
+        <div class="dropdown">
+          <button class="notificationButton"><i class="bi bi-bell" id="notificationButton"></i></button>
+          <div class = "dropdown-menu notifications">
+            @if(isset($notifications))
+              @foreach ($notifications as $notification)
+                <span>{{$notification->text()}}</span>
+                @if($notification->type == 'Invite')
+                  <div>
+                    <form method = "POST" action ="{{ route('project/acceptInvite',['id_project' => $notification->id_project]) }}">
+                      @csrf
+                      <button type="submit" class="btn btn-outline-dark acceptInviteButton">Accept</button>
+                    </form>
+                    <form method = "POST" action ="{{ route('project/rejectInvite',['id_project' => $notification->id_project]) }}">
+                      @csrf
+                      <button type="submit" class="btn btn-outline-dark acceptInviteButton">Reject</button>
+                    </form>
+                  </div>
+                @endif
+                <button class="deleteNot"><i class="bi bi-x-lg"></i></button>
+              @endforeach
+            @endif
+          </div> 
+        </div> 
       </div>
     </header>
   </div>

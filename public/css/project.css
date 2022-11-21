@@ -138,6 +138,11 @@ select.optionsPriority, select.optionsUserAssigned {
     font-weight: bold;
     font-size: 14px;
     background-color: white;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 1%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
 }
 
 .addToProject > label {
@@ -167,6 +172,10 @@ select.optionsPriority, select.optionsUserAssigned {
     z-index: 2;
     right: 18%;
     top: 14.5%;
+}
+
+.buttons {
+    display: grid;
 }
 
 

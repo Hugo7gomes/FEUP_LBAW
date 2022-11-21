@@ -1,13 +1,13 @@
-var button = document.getElementById('notificationButton')
-var div = document.getElementsByClassName('notifications')[0]
+var buttonNotif = document.getElementById('notificationButton')
+var divNotif = document.getElementsByClassName('notifications')[0]
 
-button.addEventListener('click',openNotifications)
+buttonNotif.addEventListener('click',openNotifications)
 
 function openNotifications(event){
-    if (div.style.display === "none") {
-        div.style.display = "block";
+    if (divNotif.style.display === "none") {
+        divNotif.style.display = "block";
     } else {
-        div.style.display = "none";
+        divNotif.style.display = "none";
     }
 
 }

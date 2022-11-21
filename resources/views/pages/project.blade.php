@@ -68,11 +68,12 @@
 </form>
 </div>
 
+<div class="buttons">
 <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">
     @csrf
     <button type="submit" class="btn btn-outline-dark" id="leaveProjectButton">Leave Project</button>
 </form>
-
+</div>
 <div class="container text-center boardView" id="boardView">
     <div class="row">
     <h2>Board View</h2>
@@ -98,9 +99,11 @@
 </div>
 
 <!-- FALTA MOSTRAR DETAILS DO PROJETO -->
+<div class="buttons">
 @if ($project->is_coordinator($user))
     <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark" id="editProjectButton">Edit project</button></a>
 @endif
+</div>
 <div class="container text-center" id="addMember">
     @if ($project->is_coordinator($user))
     <form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">
