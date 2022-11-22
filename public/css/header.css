@@ -17,10 +17,12 @@
 
 #searchbar {
     width: 270px;
-    margin-left: 120%;
-    margin-top: 12%;
+    /* margin-left: 120%;
+    margin-top: 12%; */
     font-size: 14px;
     font-weight: 600;
+    margin: auto;
+    /* box-shadow: rgba(0, 0, 0, 0.18) 1px 1px; */
 }
 
 .notifications > span {
@@ -45,21 +47,36 @@
 }
 
 .bi-bell {
-    color: black;
+    color: #606c76;
     font-size: 30px;
     display: grid;
     grid-area: left;
 }
 
 .bi-person {
-    color: black;
+    color: #606c76;
     font-size: 35px;
     position: relative;
+    opacity: 0.9;
 }
 
 .bi-bell:hover, .bi-person:hover {
-    background-color: #EEEE;
+    color: black;
     opacity: 1;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 25px;
+    background-color: transparent;
 }
+
+.notificationButton:hover, .profileButton:hover {
+    background-color: transparent;
+    opacity: 1;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    border-radius: 100px;
+    color: black;
+}
+
+#notificationButton:hover, #profileButton:hover, #notificationButton:after, #profileButton:after, #notificationButton:before, #profileButton:before {
+    background-color: transparent;
+}
+

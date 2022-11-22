@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
-@section('projectSide')
-  @include('partials.project_side', ['projects' => $user->projects])
-@endsection
-<section id="projectSide">
-    @yield('projectSide')
-</section>
-
+<header>
+          @include('partials.header')
+          @yield('header')
+</header>
+<main>
 <div id="profileBoard">
     <div id="userProfile">
     <img src="{{ $photo['path'] ?? 'docs/profiles/default' }}">
@@ -29,3 +27,4 @@
     </section>
     <button class="fa-solid fa-plus inviteToProject" onclick=""></button>
 </div>
+</main>

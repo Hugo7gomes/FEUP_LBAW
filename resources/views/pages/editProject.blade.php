@@ -1,25 +1,30 @@
 @extends('layouts.app')
 
-@section('projectSide')
-  @include('partials.project_side', ['projects' => $user->projects])
-@endsection
-<section id="projectSide">
-    @yield('projectSide')
-</section>
+<link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
 
+<header>
+          @include('partials.header')
+          @yield('header')
+</header>
+<main>
 <div id="projectUpdate">
-<form method="POST" action = "{{route('project/edit', ['id' => $project->id])}}" id="userInf"> <!-- METER SLUG CORRETA -->
+<form method="POST" action = "{{route('project/edit', ['id' => $project->id])}}" class="editProjectForm"> <!-- METER SLUG CORRETA -->
     @csrf
-    <h4>Name</h4>
-    <input id="projectNewName" type="text" name = "name" placeholder="{{ $project->name }}" autofocus>
-    @if($errors->has('name'))
-        <div class="error">{{ $errors->first('name') }}</div>
-    @endif
-    <h4>Details</h4>
-    <input id="projectNewDetails" type="text" name = "details" placeholder="{{ $project->details }}">
-    @if($errors->has('details'))
-        <div class="error">{{ $errors->first('details') }}</div>
-    @endif
-    <button type="submit" class="btn btn-primary">Update</button>
+    <div class="form-group">
+        <input type="text" name="name" class="form-control" id="projectNewName" placeholder="{{ $project->name }}" autofocus>
+        @if($errors->has('name'))
+          <div class="error">{{ $errors->first('name') }}</div>
+        @endif
+    </div>
+    <div class="form-group">
+        <input type="text" name="details" class="form-control" id="projectNewDetails" placeholder="{{ $project->details }}">
+        @if($errors->has('details'))
+          <div class="error">{{ $errors->first('details') }}</div>
+        @endif
+    </div>
+    <button type="submit" class="btn btn-outline-dark" id="updateProjectButton">Update Project</button>
 </form>
 </div>
+</main>
+
+ 

@@ -1,0 +1,46 @@
+
+/* MUDAR SIZE DO INPUT DOS DETAILS */
+
+main {
+    padding-top: 20px;
+    background-color: #EEEE;
+    padding-left: 0%;
+}
+
+#createProject, #projectUpdate, #taskUpdate {
+    padding-bottom: 50px;
+}
+
+
+#createProject > form, #projectUpdate > form, #taskUpdate > form {
+    background-color: white;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
+    border-radius: 5px;
+}
+
+#projectName, #projectDetails, #projectNewName, #projectNewDetails, #taskNewName, #taskNewDetails {
+    color: black;
+    font-weight: bold;
+    width: 40%;
+    font-size: 14px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+#projectName, #projectNewName, #taskNewName {
+    margin-top: 30px;
+}
+
+#projectDetails, #projectNewDetails, #taskNewDetails {
+    margin-bottom: 20px;
+}
+
+#createProjectButton, #updateProjectButton, #updateTaskButton {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}

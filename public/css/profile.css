@@ -4,8 +4,6 @@
 
 #profileBoard {
     background-color: white;
-    border-radius: 10px;
-
 }
 
 #userProjects {
@@ -45,7 +43,31 @@
     text-align: left;
 }
 
+.card.mb-4 {
+    border-radius: 5px;
+}
+
+
+/* #updateProfileButton {
+    position: relative;
+} */
 
 #updateProfileButton {
-    position: relative;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+#projectPhoto {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #EEEE;
+    font-size: 15px;
+    color: black;
+    text-align: center;
+    line-height: 150px;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
 }

@@ -1,7 +1,7 @@
 main {
     padding-top: 20px;
     background-color: #EEEE;
-    padding-left: 0%;
+    padding-left: 2%;
 }
 
 .form-select {
@@ -12,6 +12,17 @@ main {
 /* .form-control {
     border: 2px solid rgba(187, 186, 186, 0.908);
 } */
+
+#createTask > form {
+    background-color: white;
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
+    border-radius: 5px;
+}
+
+
 
 #boardView {
     margin-left: -10px;
@@ -86,7 +97,7 @@ main {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.createTask {
+/* .createTask {
     background-color: white;
 }
 
@@ -98,7 +109,7 @@ main {
     width: 50%;
     margin: auto;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
+} */
 
 .form-group, .custom-select {
     background-color: white;

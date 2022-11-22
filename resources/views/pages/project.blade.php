@@ -16,7 +16,56 @@
 <section id="projectSide">
     @yield('projectSide')
 </section>
-<form method = "POST" action = "{{route('project/favorite', ['id'=>$project->id])}}">
+
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<button type="button" class="btn btn-outline-dark addTask" data-toggle="modal" data-target="#exampleModalCenter">Add task</button>
+<div class="modal fade .modal-dialog-centered" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Add task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h2>ola</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <form method = "POST" action = "{{route('project/favorite', ['id'=>$project->id])}}">
     @csrf
     <button type = "submit" class="btn btn-outline-dark favoriteButton">Favorite</button>
 </form>
@@ -66,7 +115,7 @@
     
     <button type="submit" class="btn btn-outline-dark" id="createTaskButton">Create task</button>
 </form>
-</div>
+</div> -->
 
 <div class="buttons">
 <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">

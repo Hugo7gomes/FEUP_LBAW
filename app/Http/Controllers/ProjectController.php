@@ -117,8 +117,10 @@ class ProjectController extends Controller
 
         $user = User::find(Auth::user()->id);
         $this->authorize('showUpdate', $project);
+
         
-        return view('pages.editProject',['user' => $user, 'project'=>$project]); 
+        
+        return view('pages.editProject',['user' => $user, 'project'=>$project ]); 
     }
 
 

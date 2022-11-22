@@ -3,6 +3,11 @@
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<header>
+          @include('partials.header')
+          @yield('header')
+</header>
+<main>
 <div class="container text-center" id="profileBoard">
   <div class="row">
     <div class="col-sm-9" id="userInfo">
@@ -122,15 +127,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-lg-12">
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
               <section id="userProjects">
                 <h2>My projects</h2>
                 <div class="userProjects">
-                  @foreach ($projects as $project)
-                  <h3>{{ $project['name']}}</h3>
-                  @endforeach
+                @foreach ($projects as $project)
+                    <div class="item">
+                        <div class="col-xs-12 col-sm-6 col-md-2">
+                            <div id="projectPhoto">{{ strtok($project->name, ' ') }}</div>
+                        </div>
+                    </div>
+                @endforeach
                 </div>
               </section>
               </div>
@@ -141,3 +150,5 @@
     </div>
   </div>
 </section>
+</main>
+

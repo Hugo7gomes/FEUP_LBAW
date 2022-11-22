@@ -2,6 +2,12 @@
 
 <!-- <link href="{{ asset('css/task.css') }}" rel="stylesheet"> -->
 
+<header>
+          @include('partials.header')
+          @yield('header')
+</header>
+<main>
+
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])
 @endsection
@@ -17,3 +23,4 @@
     <button type="submit" class="btn btn-outline-dark">Edit Task</button>
 </div>
 
+</main>

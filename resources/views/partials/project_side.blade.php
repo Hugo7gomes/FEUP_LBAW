@@ -1,4 +1,4 @@
-<link href="{{ asset('css/project_side.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('css/project_side.css') }}" rel="stylesheet"> -->
 <!-- <article class="l-navbar projectSide">
   <div><i class='bx bx-layer nav_logo-icon'></i>
     <ul class="nav flex-column">
@@ -13,7 +13,7 @@
 </article> -->
 
 
-<div class="l-navbar" id="nav-bar">
+<!-- <div class="l-navbar" id="nav-bar">
   <nav class="nav">
     <div class="nav_list"> 
       @foreach ($projects as $project)
@@ -24,4 +24,4 @@
     </div> 
     <a><button class="fa-solid fa-plus addProject" onclick="window.location='{{ route("project/create") }}'">Add Project</button></a>
   </nav>
-</div>
+</div> -->
