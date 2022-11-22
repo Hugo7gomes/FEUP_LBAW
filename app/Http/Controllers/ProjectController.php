@@ -25,6 +25,7 @@ class ProjectController extends Controller
 
         $tasks = $project->tasks; //get tasks
 
+       
         $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
         
         $collaboratorsIds = $project->collaborators()->get('id_user');
@@ -40,7 +41,7 @@ class ProjectController extends Controller
             $coordinator = User::find($coordinatorId['id_user']);
             array_push($coordinators,$coordinator);
         }
-
+        
         
         
         $tasksToDo = array();
@@ -118,9 +119,23 @@ class ProjectController extends Controller
         $user = User::find(Auth::user()->id);
         $this->authorize('showUpdate', $project);
 
+        $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
         
+        $collaboratorsIds = $project->collaborators()->get('id_user');
         
-        return view('pages.editProject',['user' => $user, 'project'=>$project ]); 
+        $collaborators = array();//collaborators
+        foreach ($collaboratorsIds as $collaboratorId){
+            $collaborator = User::find($collaboratorId['id_user']);
+            array_push($collaborators,$collaborator);
+        }
+
+        $coordinators = array();
+        foreach ($coordinatorsIds as $coordinatorId){
+            $coordinator = User::find($coordinatorId['id_user']);
+            array_push($coordinators,$coordinator);
+        }
+        
+        return view('pages.editProject',['user' => $user, 'project'=>$project, 'coordinators'=>$coordinators,'collaborators'=>$collaborators]); 
     }
 
 
