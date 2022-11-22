@@ -7,9 +7,19 @@ header{
     top: 10em;
 }
 
+.logo {
+    width: 240px;
+    justify-self: start;
+    margin-left: 2%;
+}
+
+.background {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 main{
     height: 100vh;
-    background-image: url('../docs/images/background.jpg');
+    background-image: url('../docs/images/background.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,7 +51,7 @@ nav{
     right: 1.5em;
 }
 
-#initial_login{
+/* #loginInitial{
     background-color: rgba(241, 128, 37, 0.934);
     color: white;
     padding: 0.7em 2em;
@@ -51,4 +61,4 @@ nav{
 
 #initial_login:hover{
     background-color: rgba(179, 77, 9, 0.93);
-}
+} */

@@ -39,7 +39,7 @@ class InviteController extends Controller
             $invite->id_user_sender = Auth::user()->id;
             $invite->id_user_receiver = $userReceiver->id;
             $user = User::find(Auth::user()->id);
-            //$this->authorize('create',$invite);
+            //$this->authorize('create',$invite); 
             $invite->save();
         }elseif($invite->state == 'Received'){
             $errors['userNotFound'] = "User already invited";

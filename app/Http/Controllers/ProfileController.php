@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Models\Photo;
 use App\Models\Projects;
 
-
 class ProfileController extends Controller
 {
     public function show(){

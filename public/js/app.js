@@ -1,27 +1,11 @@
+let favoriteButton = document.getElementsByClassName('favoriteButton')[0];
 function addEventListeners() {
-  let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
-  [].forEach.call(itemCheckers, function(checker) {
-    checker.addEventListener('change', sendItemUpdateRequest);
-  });
+  favoriteButton.addEventListener('click',sendProjectFavoriteRequest);
 
-  let itemCreators = document.querySelectorAll('article.card form.new_item');
-  [].forEach.call(itemCreators, function(creator) {
-    creator.addEventListener('submit', sendCreateItemRequest);
+  let deleteNotButtons = document.querySelectorAll('.deleteNot');
+  [].forEach.call(deleteNotButtons, function(deleteButton) {
+    deleteButton.addEventListener('click', sendNotDeleteRequest);
   });
-
-  let itemDeleters = document.querySelectorAll('article.card li a.delete');
-  [].forEach.call(itemDeleters, function(deleter) {
-    deleter.addEventListener('click', sendDeleteItemRequest);
-  });
-
-  let cardDeleters = document.querySelectorAll('article.card header a.delete');
-  [].forEach.call(cardDeleters, function(deleter) {
-    deleter.addEventListener('click', sendDeleteCardRequest);
-  });
-
-  let cardCreator = document.querySelector('article.card form.new_card');
-  if (cardCreator != null)
-    cardCreator.addEventListener('submit', sendCreateCardRequest);
 }
 
 function encodeForAjax(data) {
@@ -41,50 +25,34 @@ function sendAjaxRequest(method, url, data, handler) {
   request.send(encodeForAjax(data));
 }
 
-function sendItemUpdateRequest() {
-  let item = this.closest('li.item');
-  let id = item.getAttribute('data-id');
-  let checked = item.querySelector('input[type=checkbox]').checked;
-
-  sendAjaxRequest('post', '/api/item/' + id, {done: checked}, itemUpdatedHandler);
+function sendNotDeleteRequest(){
+  sendAjaxRequest('post', 'api/notification/delete', {id:id} , removeNotificationHandler);
 }
 
-function sendDeleteItemRequest() {
-  let id = this.closest('li.item').getAttribute('data-id');
-
-  sendAjaxRequest('delete', '/api/item/' + id, null, itemDeletedHandler);
+function removeNotificationHandler(){
+  let notification = JSON.parse(this.responseText);
+  alert(notification);
+  //let divNotification = document.getElementById(notification.id);
+  //divNotification.remove();
 }
 
-function sendCreateItemRequest(event) {
-  let id = this.closest('article').getAttribute('data-id');
-  let description = this.querySelector('input[name=description]').value;
 
-  if (description != '')
-    sendAjaxRequest('put', '/api/cards/' + id, {description: description}, itemAddedHandler);
-
-  event.preventDefault();
+function sendProjectFavoriteRequest() {
+  let url = window.location.href;
+  let id = url.substring(url.lastIndexOf('/') + 1);
+  if(favoriteButton.innerText == 'FAVORITE'){
+    favoriteButton.innerText = 'REMOVE FAVORITE';
+    sendAjaxRequest('post', '/api/project/favorite/create', {id:id} , projectFavoriteHandler);
+  }else if(favoriteButton.innerText == 'REMOVE FAVORITE'){
+    favoriteButton.innerText = 'FAVORITE';
+    sendAjaxRequest('post', '/api/project/favorite/delete', {id:id} , projectRemoveFavoriteHandler);
+  }
 }
 
-function sendDeleteCardRequest(event) {
-  let id = this.closest('article').getAttribute('data-id');
-
-  sendAjaxRequest('delete', '/api/cards/' + id, null, cardDeletedHandler);
+function projectFavoriteHandler() {
 }
 
-function sendCreateCardRequest(event) {
-  let name = this.querySelector('input[name=name]').value;
-
-  if (name != '')
-    sendAjaxRequest('put', '/api/cards/', {name: name}, cardAddedHandler);
-
-  event.preventDefault();
-}
-
-function itemUpdatedHandler() {
-  let item = JSON.parse(this.responseText);
-  let element = document.querySelector('li.item[data-id="' + item.id + '"]');
-  let input = element.querySelector('input[type=checkbox]');
-  element.checked = item.done == "true";
+function projectRemoveFavoriteHandler() {
 }
 
 function itemAddedHandler() {

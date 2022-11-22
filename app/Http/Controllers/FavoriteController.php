@@ -26,13 +26,24 @@ class FavoriteController extends Controller
                 'id_project' => $request->get('id'),
             )
         );
-        
 
-
-        return redirect('/project/{$request->get("id")}');
     }
 
     public function delete(Request $request){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+        $project = Project::find($request->get('id'))->first();
+        if(!isset($project) || !$project->is_member(User::find(Auth::user()->id)->first())){
+            return redirect('/project/{$request->get("id")}');
+        }
+
+        DB::table('favorite_proj')->where(
+            array(
+                'id_user' => Auth::user()->id,
+                'id_project' => $request->get('id'),
+            )
+        )->delete();
         
     }
 }

@@ -29,6 +29,10 @@
     font-size: 20px;
 }
 
+.notifications {
+    display: none;
+}
+
 .dropdown {
     width: 20%;
 }

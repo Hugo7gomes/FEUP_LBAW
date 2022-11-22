@@ -4,7 +4,7 @@
 
 <link href="{{ asset('css/project.css') }}" rel="stylesheet">
 <script src={{ asset('js/task.js') }} defer></script>
-<script src={{ asset('js/notification.js') }} defer></script>
+<script src={{ asset('js/app.js') }} defer></script>
 <header>
           @include('partials.header')
           @yield('header')
@@ -43,7 +43,7 @@
   </div>
 </div> -->
 
-<button type="button" class="btn btn-outline-dark addTask" data-toggle="modal" data-target="#exampleModalCenter">Add task</button>
+<!-- <button type="button" class="btn btn-outline-dark addTask" data-toggle="modal" data-target="#exampleModalCenter">Add task</button>
 <div class="modal fade .modal-dialog-centered" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -62,13 +62,13 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
-<!-- <form method = "POST" action = "{{route('project/favorite', ['id'=>$project->id])}}">
-    @csrf
-    <button type = "submit" class="btn btn-outline-dark favoriteButton">Favorite</button>
-</form>
+
+<button type = "submit" class="btn btn-outline-dark favoriteButton">Favorite</button>
+
+
 <button class="btn btn-outline-dark addTask" >Add task</button>
 <div id="createTask">
 <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
@@ -115,7 +115,7 @@
     
     <button type="submit" class="btn btn-outline-dark" id="createTaskButton">Create task</button>
 </form>
-</div> -->
+</div> 
 
 <div class="buttons">
 <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">

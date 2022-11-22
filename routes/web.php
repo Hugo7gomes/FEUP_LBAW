@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return redirect('/home');
-});
+    return redirect('home');
+})->name('/');
 
 Route::get('home','HomepageController@show')->name('home');
 Route::get('faq','HomepageController@show')->name('faq');
@@ -50,7 +50,10 @@ Route::post('project/leave','ProjectController@leave')->name('project/leave');
 Route::post('project/inviteMember', 'InviteController@create')->name('project/inviteMember');
 Route::post('project/acceptInvite}', 'InviteController@accept')->name('project/acceptInvite');
 Route::post('project/rejectInvite}', 'InviteController@reject')->name('project/rejectInvite');
-Route::post('project/favorite', 'FavoriteController@create')->name('project/favorite');
+
+Route::post('api/project/favorite/create', 'FavoriteController@create');
+Route::post('api/project/favorite/delete', 'FavoriteController@delete');
+Route::post('api/notification/delete', 'NotificationController@delete');
 
 
 //Task
