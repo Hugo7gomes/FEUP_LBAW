@@ -119,13 +119,4 @@
 </div>
 </main>
 
-<!-- <div class="teamMembers">
-    <h3>Team Members</h3>
-    @foreach ($coordinators as $coordinator)
-    <div class="coordinator"><b><a href = "/profile/{{$coordinator['username']}}">{{$coordinator['username']}}</a></b></div>
-    
-    @endforeach
-    @foreach ($collaborators as $collaborator)
-    <div class="collaborator"><a href = "/profile/{{$collaborator['username']}}">{{$collaborator['username']}}</a></div>
-    @endforeach
-</div> -->
+
