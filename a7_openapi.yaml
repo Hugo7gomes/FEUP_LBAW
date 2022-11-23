@@ -141,6 +141,9 @@ paths:
                   type: string
                 password:
                   type: string
+                photo:
+                  type: string
+                  format: byte
               required:
                 - name
                 - email
@@ -198,6 +201,8 @@ paths:
               type: object
               properties:
                 email:
+                  type: string
+                username:
                   type: string
                 password:
                   type: string
@@ -275,6 +280,35 @@ paths:
         '200':
           description: 'Ok'
 
+  /api/profile:
+    get:
+      operationId: R110
+      summary: "R110: Search Profile API"
+      description: "Searches for accounts and returns the results as JSON. Access: USR"
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+     
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          description: Bad Request
+
+
   /project/create:
     get:
       operationId: R201
@@ -292,7 +326,7 @@ paths:
               schema:
                 type: string
               examples:
-                302Success:
+                302Error:
                   description: 'Not Authenticated. Redirect to login page.'
                   value: '/login'
 
@@ -374,7 +408,7 @@ paths:
               schema:
                 type: string
               examples:
-                302Success:
+                302Error:
                   description: 'Not Authenticated. Redirect to home page.'
                   value: '/'
         '403':
@@ -658,6 +692,34 @@ paths:
                 302Failure:
                   description: 'Failed desfavorite. Redirect to project page'
                   value: '/project'
+  
+  /api/project:
+    get:
+      operationId: R214
+      summary: "R214: Search Projects and Tasks API"
+      description: "Searches for projects and tasks and returns the results as JSON. Access: USR"
+      tags:
+        - 'M02: Project Management'
+
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '400':
+          description: Bad Request
 
 
   /task:
@@ -876,6 +938,34 @@ paths:
         "403":
           description: 'Forbidden'
 
+  /api/task:
+    get:
+      operationId: R308
+      summary: "R308: Search Tasks API"
+      description: "Searches for tasks and returns the results as JSON. Access: CLB"
+      tags:
+        - 'M02: Project Management'
+
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+        '400':
+          description: Bad Request
+
   
   /contacts:   
     get:
@@ -944,3 +1034,54 @@ paths:
           description: 'OK. Show UI about '
 
 
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        name:
+          type: string
+        avatar:
+          type: string
+          format: byte
+
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+    
+    Task:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        details:
+          type: string
+        state:
+          type: string
+        creation_date:
+          type: string
+        user_creator:
+          type: object
+          items:
+            $ref: '#/components/schemas/User'
+        user_assigned:
+          type: object
+          items:
+            $ref: '#/components/schemas/User'
