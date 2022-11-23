@@ -72,6 +72,22 @@
     background-color: transparent;
 }
 
+
+/* NOTIFICATIONS */
+
+.bi-x {
+    color:black;
+    font-size: 30px;
+}
+
+.bi-x:hover {
+    color:red;
+}
+
+.deleteNot {
+    cursor: pointer;
+}
+
 .notificationButton:hover, .profileButton:hover {
     background-color: transparent;
     opacity: 1;
@@ -83,4 +99,29 @@
 #notificationButton:hover, #profileButton:hover, #notificationButton:after, #profileButton:after, #notificationButton:before, #profileButton:before {
     background-color: transparent;
 }
+
+.notifications {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.list-group-flush {
+    /* width: 18rem; */
+}
+
+ul {
+    width: 18rem;
+}
+
+.list-group-item {
+    font-size: 13px;
+    align-items: baseline;
+    margin: 0%;
+}
+
+.notificationDiv {
+    margin: 0%;
+}
+
 

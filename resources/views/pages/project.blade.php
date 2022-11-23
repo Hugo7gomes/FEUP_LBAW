@@ -6,6 +6,7 @@
 
 <link href="{{ asset('css/project.css') }}" rel="stylesheet">
 <script src={{ asset('js/task.js') }} defer></script>
+<script src={{ asset('js/favorite.js') }} defer></script>
 
 <main>
 @section('projectSide')
@@ -63,11 +64,24 @@
 </div> -->
 
 
+<div class = "allButtons">
+  <button type = "submit" class="btn btn-outline-dark favoriteButton Button">Favorite</button>
 
-<button type = "submit" class="btn btn-outline-dark favoriteButton">Favorite</button>
+  <button class="btn btn-outline-dark addTask Button" >Add task</button>
+
+<!-- FALTA MOSTRAR DETAILS DO PROJETO -->
+    @if ($project->is_coordinator($user))
+  <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark Button" id="editProjectButton">Edit project</button></a>
+    @endif
+
+  <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">
+    @csrf
+    <button type="submit" class="btn btn-outline-danger Button" id="leaveProjectButton">Leave Project</button>
+  </form>
+
+</div>
 
 
-<button class="btn btn-outline-dark addTask" >Add task</button>
 <div id="createTask">
 <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
       @csrf
@@ -115,42 +129,32 @@
 </form>
 </div> 
 
-<div class="buttons">
-<form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">
-    @csrf
-    <button type="submit" class="btn btn-outline-dark" id="leaveProjectButton">Leave Project</button>
-</form>
-</div>
+
 <div class="container text-center boardView" id="boardView">
     <div class="row">
     <h2>Board View</h2>
     <div class="col tasksToDo">
         <h3>To do</h3>
         @foreach ($tasksToDo as $task)
-        <a href = "{{route('task', ['id' => $task->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
+        <a href = "{{route('task/edit', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
     <div class="col tasksDoing">
         <h3>Doing</h3>
         @foreach ($tasksDoing as $task)
-        <a href = "{{route('task', ['id' => $task->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
+        <a href = "{{route('task/edit', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
     <div class="col tasksDone">
         <h3>Done</h3>
         @foreach ($tasksDone as $task)
-        <a href = "{{route('task', ['id' => $task->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
+        <a href = "{{route('task/edit', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
 </div>
 </div>
 
-<!-- FALTA MOSTRAR DETAILS DO PROJETO -->
-<div class="buttons">
-@if ($project->is_coordinator($user))
-    <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark" id="editProjectButton">Edit project</button></a>
-@endif
-</div>
+
 <div class="container text-center" id="addMember">
     @if ($project->is_coordinator($user))
     <form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">

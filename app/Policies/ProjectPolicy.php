@@ -25,8 +25,17 @@ class ProjectPolicy
 
     public function update(User $user, Project $project)
     {
-      // Any user can list its own cards
       return $project->is_coordinator($user);
+    }
+
+    public function removeMember(User $user, Project $project){
+      $userActual = User::find(Auth::user()->id);
+      return $project->is_coordinator($userActual);
+    }
+
+    public function upgradeMember(User $user, Project $project){
+      $userActual = User::find(Auth::user()->id);
+      return $project->is_coordinator($userActual);
     }
 
     public function create(User $user)

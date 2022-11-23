@@ -170,21 +170,11 @@ select.optionsPriority, select.optionsUserAssigned {
     padding: 10px;
 }
 
-#leaveProjectButton {
-    position: absolute;
-    z-index: 2;
-    right: 8%;
+.allButtons {
+    display: flex;
+    justify-content: flex-start;
 }
 
-#editProjectButton {
-    position: absolute;
-    z-index: 2;
-    right: 18%;
-    top: 14.5%;
+.Button {
+    margin-right: 10px;
 }
-
-.buttons {
-    display: grid;
-}
-
-

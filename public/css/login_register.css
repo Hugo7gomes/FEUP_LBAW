@@ -8,10 +8,18 @@ body{
     align-content: center;
 }
 
-.logo {
+/* .logo {
     width: 300px;
     justify-self: start;
     margin-left: 5%;
+} */
+
+.logo {
+    width: 300px;
+    /* display: grid; */
+    margin-left: 0%;
+    /* margin-left: 0%;
+    justify-self: start; */
 }
 
 .loginBoard, .registerBoard {
@@ -21,7 +29,6 @@ body{
     position: relative;
     display: grid;
     margin: auto;
-    left: 7%;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
 }
 
@@ -30,7 +37,8 @@ body{
 }
 
 .registerBoard {
-    height: 35vw;
+    height: 32vw;
+    top: 8%;
 }
 
 .loginBoard h1, .registerBoard h1{
@@ -38,7 +46,15 @@ body{
     text-align: center;
     padding-top:1em;
     font-weight: bold;
+}
+
+.loginBoard h1 {
     padding-bottom: 20px;
+}
+
+.registerBoard h1 {
+    position: relative;
+    top: 10%;
 }
 
 .loginBoard form, .registerBoard form {
@@ -52,6 +68,10 @@ body{
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
 }
 
+#passwordConfirmReg {
+    margin-bottom: 35px;
+}
+
 .loginButton, .registerButton {
     display: grid;
     margin: auto;
@@ -62,7 +82,7 @@ body{
     font-size: 15px;
 }
 
-form .loginField, form .registerField {
+form .loginField {
     border-bottom: 0.1em solid #666666;
     margin: 1em 0;
 }

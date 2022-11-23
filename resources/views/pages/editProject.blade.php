@@ -40,7 +40,7 @@
       <button class = "btn btn-outline-dark dropCButton" ><i class ="bi bi-bell"></i></button>
       <div class = 'custom-select coordinatorDropdown'>
           <button class = "btn btn-outline-dark removeMember">Remove</button>
-          <button class = "btn btn-outline-dark upgradeMember">Upgrade to coordinator</button>
+          <button class = "btn btn-outline-dark upgradeMember">Promote to coordinator</button>
       </div>
     </div> 
     @endforeach

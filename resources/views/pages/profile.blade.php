@@ -23,22 +23,18 @@
     <div class="row">
       <div class="col-lg-4">
         <div class="card mb-4">
-          <div class="card-body text-center">
+          <div class="card-body text-center" id="profile">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{ $user['name'] }}</h5>
             <p class="text-muted mb-1">{{ $user['email'] }}</p>
           </div>
         </div>
-        <!-- <div class="card mb-4 mb-lg-0">
-          <div class="card-body p-0">
-            
-          </div>
-        </div> -->
+
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
-          <div class="card-body">
+          <div class="card-body" id="form">
             <div class="row">
             <form method="POST" action = "{{ route('profile') }}" id="userInf">
               @csrf
@@ -131,10 +127,10 @@
             <div class="card mb-4 mb-md-0">
               <div class="card-body">
               <section id="userProjects">
-                <h2>My projects</h2>
+                <h3>My projects</h3>
                 <div class="userProjects">
                 @foreach ($projects as $project)
-                    <div class="item">
+                    <div class="item" id="project">
                         <div class="col-xs-12 col-sm-6 col-md-2">
                             <div id="projectPhoto">{{ strtok($project->name, ' ') }}</div>
                         </div>

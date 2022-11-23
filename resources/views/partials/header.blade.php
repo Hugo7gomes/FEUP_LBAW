@@ -17,12 +17,20 @@
           <div class = "dropdown-menu notifications">
             @if(isset($notifications))
               @foreach ($notifications as $notification)
-              <div class = 'notificationDiv' id = {{$notification->id}}>
-                <span>{{$notification->text()}}</span>
-                <button class="deleteNot"><i class="bi bi-x-lg"></i></button>
-              </div>
-                @if($notification->type == 'Invite')
-                  <div>
+                @if($notification->type != 'Invite')
+                  <div class ="card notificationDiv" style="width: 18rem;" id = {{$notification->id}}>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <!-- <div class=""> -->
+                          {{$notification->text()}}
+                        <i class="deleteNot bi bi-x"></i>
+                        <!-- </div> -->
+                      </li>
+                    </ul>
+                  </div>
+                @elseif($notification->type == 'Invite')
+                  <div class = 'notificationDiv' id = {{$notification->id}}>
+                    <span>{{$notification->text()}}</span>
                     <form method = "POST" action ="{{ route('project/acceptInvite',['id_project' => $notification->id_project]) }}">
                       @csrf
                       <button type="submit" class="btn btn-outline-dark acceptInviteButton">Accept</button>

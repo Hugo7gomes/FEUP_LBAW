@@ -1,37 +1,55 @@
 #userName, #userUsername, #userEmail, #userPhone, #password, #new_password {
     width: 75%;
-    font-size: 15px;
 }
 
-#profileBoard {
-    background-color: white;
+.col-sm-9 {
+    padding: 15px;
+}
+
+.card-body, .mb-0 {
+    font-size: 18px;
 }
 
 .card-body > h5 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     padding-top: 20px;
 }
 
-#profile {
-    height: 29vw;
-    padding-top: 10%;
-    font-size: 18px;
+#otherprofile {
+    height: 30vw;
 }
 
-#form {
-    height: 29vw;
-    padding-top: 5%;
+#info, #projects {
+    height: 14.5vw;
 }
 
+img {
+    padding-top: 20px;
+}
+
+.col-sm-3 > label {
+    position: relative;
+    top: 20%;
+}
+
+#othersProfileBoard {
+    background-color: white;
+}
+
+#userProjects {
+    display: flex;
+    flex-direction: column;
+}
 
 .userProjects {
     display: flex;
     flex-direction: row;
+    font-size: 20px;
+    color: black;
 }
 
-#userProjects h3 {
-    font-weight: bold;
+#usersProjects h3 {
     font-size: 25px;
     color: black;
     padding: 2% 0% 0% 2%;
@@ -39,6 +57,9 @@
     right: 10px;
 }
 
+#profile > h5 {
+    font-size: 20px;
+}
 
 .row form {
     box-sizing: border-box;
@@ -58,20 +79,6 @@
     border-radius: 5px;
 }
 
-#updateProfileButton {
-    margin: auto;
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-    width: 5vw;
-    font-size: 12px;
-    justify-content: center;
-}
-
-#project {
-    padding: 10px;
-}
-
 #projectPhoto {
     width: 60px;
     height: 60px;
@@ -79,10 +86,8 @@
     background: #EEEE;
     font-size: 15px;
     color: black;
-    /* text-align: center; */
+    text-align: center;
     line-height: 150px;
     margin: 20px 0;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
-    display: flex;
-    flex-wrap: nowrap;
 }

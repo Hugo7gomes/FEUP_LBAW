@@ -513,7 +513,7 @@ CREATE TRIGGER task_assign_update_notification
 CREATE FUNCTION assign_task() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF NOT EXISTS (SELECT * FROM role WHERE NEW.id_user_assigned = id_user AND NEW.id_project = id_project) THEN
+    IF New.id_user_assigned NOT NULL AND NOT EXISTS (SELECT * FROM role WHERE NEW.id_user_assigned = id_user AND NEW.id_project = id_project) THEN
         RAISE EXCEPTION 'User assigned not in the project';
     END IF;
     RETURN NEW;

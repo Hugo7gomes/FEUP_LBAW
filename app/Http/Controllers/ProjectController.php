@@ -192,8 +192,11 @@ class ProjectController extends Controller
     public function removeMember(Request $request){
         $project = Project::find($request->get('id'));
         $user = User::where('username',$request->get('username'))->first();
-        //$this->authorize('removeMember', $project);
+        $this->authorize('removeMember', $project);
         $project->removeMember($user);
+
+        $invite = Invite::where('id_project',$request->get("id"))->where('id_user_receiver',$user->id)->first();
+        $invite->delete();
 
         return $user;
     }
@@ -201,10 +204,10 @@ class ProjectController extends Controller
     public function upgradeMember(Request $request){
         $project = Project::find($request->get('id'));
         $user = User::where('username',$request->get('username'))->first();
-        //$this->authorize('upgradeMember', $project);
+        $this->authorize('upgradeMember', $project);
         DB::table('role')
-        ->where([['id_project', $project->id],['id_user',$user->id]])  // find your user by their email // optional - to ensure only one record is updated.
-        ->update(array('role' => 'Coordinator'));  // update the record in the DB. 
+        ->where([['id_project', $project->id],['id_user',$user->id]]) 
+        ->update(array('role' => 'Coordinator')); 
 
     }
 
