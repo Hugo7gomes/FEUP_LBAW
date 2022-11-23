@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
+@section('name', $user->name)
+
+@section('content')
+
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<header>
-          @include('partials.header')
-          @yield('header')
-</header>
 <main>
 <div class="container text-center" id="profileBoard">
   <div class="row">
@@ -151,4 +151,6 @@
   </div>
 </section>
 </main>
+
+@endsection
 

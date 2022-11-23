@@ -41,7 +41,3 @@
     </header>
   </div>
   @endsection
-
-<!-- <button class="fa-regular fa-bell"></button>
-<button class="fa-solid fa-user"></button> -->
-<!--<button class="fa-regular fa-user"</button>-->

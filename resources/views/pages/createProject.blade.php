@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
+@section('createProject')
+
+@section('content')
+
 <link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
 
-<header>
-          @include('partials.header')
-          @yield('header')
-</header>
+
 <main>
 <div id="createProject">
   <form method="POST" action = "{{ route('project/create') }}" class="createProjectForm">
@@ -26,3 +27,4 @@
   </form>
 </div>
 </main>
+@endsection

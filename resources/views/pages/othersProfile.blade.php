@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-<header>
-          @include('partials.header')
-          @yield('header')
-</header>
+@section('name', $user->name)
+
+@section('content')
+
 <main>
 <div id="profileBoard">
     <div id="userProfile">
@@ -28,3 +28,5 @@
     <button class="fa-solid fa-plus inviteToProject" onclick=""></button>
 </div>
 </main>
+
+@endsection

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('edit task', $task->name)
+
+@section('content')
+
 <link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
 
 <header>
@@ -49,3 +53,5 @@
 </form>
 </div>
 </main>
+
+@endsection

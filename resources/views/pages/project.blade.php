@@ -2,13 +2,11 @@
 
 @section('name', $project->name)
 
+@section('content')
+
 <link href="{{ asset('css/project.css') }}" rel="stylesheet">
 <script src={{ asset('js/task.js') }} defer></script>
-<script src={{ asset('js/app.js') }} defer></script>
-<header>
-          @include('partials.header')
-          @yield('header')
-</header>
+
 <main>
 @section('projectSide')
   @include('partials.project_side', ['projects' => $user->projects])
@@ -167,5 +165,6 @@
     @endif
 </div>
 </main>
+@endsection
 
 

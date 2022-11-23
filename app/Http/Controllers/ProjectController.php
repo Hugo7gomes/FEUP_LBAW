@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Invite;
+use App\Models\Role;
 
 class ProjectController extends Controller
 {
@@ -184,6 +186,25 @@ class ProjectController extends Controller
         $invite->save();
 
         return redirect("/profile");
+
+    }
+
+    public function removeMember(Request $request){
+        $project = Project::find($request->get('id'));
+        $user = User::where('username',$request->get('username'))->first();
+        //$this->authorize('removeMember', $project);
+        $project->removeMember($user);
+
+        return $user;
+    }
+
+    public function upgradeMember(Request $request){
+        $project = Project::find($request->get('id'));
+        $user = User::where('username',$request->get('username'))->first();
+        //$this->authorize('upgradeMember', $project);
+        DB::table('role')
+        ->where([['id_project', $project->id],['id_user',$user->id]])  // find your user by their email // optional - to ensure only one record is updated.
+        ->update(array('role' => 'Coordinator'));  // update the record in the DB. 
 
     }
 

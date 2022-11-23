@@ -1,32 +1,42 @@
-<!-- @extends('layouts.app')
+@extends('layouts.authenticate')
+
+@section('login')
 
 @section('content')
-<form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
 
-    <label for="email">E-mail</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-    @if ($errors->has('email'))
-        <span class="error">
-          {{ $errors->first('email') }}
-        </span>
-    @endif
+<link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
 
-    <label for="password" >Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-        <span class="error">
-            {{ $errors->first('password') }}
-        </span>
-    @endif
-
-    <label>
-        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-    </label>
-
-    <button type="submit">
-        Login
-    </button>
-    <a class="button button-outline" href="{{ route('register') }}">Register</a>
-</form>
-@endsection -->
+<header>
+    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+</header>
+<div class = "loginBoard">
+    <h1>Welcome Back!</h1>
+    <form method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+        <div class="loginField">
+            <input id="emailLogin" name="email" type="text" placeholder="E-mail" required autofocus>
+            @if ($errors->has('email'))
+            <span class="error">
+                {{ $errors->first('email') }}
+            </span>
+            @endif
+            <input id="passLogin" name="password" type="password" placeholder="Password" required>
+            @if ($errors->has('password'))
+            <span class="error">
+                {{ $errors->first('password') }}
+            </span>
+            @endif
+            <span class="forgotPass">Forgot your password?</span>
+            </div>
+            <button class="loginButton" type="submit">
+                Login
+            </button>
+            <div class = "signupLink">
+                Not a member?<a href="{{ route('register') }}"> Register</a>
+            </div>
+        </div>
+    </form>
+</div>
+           
+@endsection

@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
-<link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
+@section('edit name', $project->name)
 
-<header>
-          @include('partials.header')
-          @yield('header')
-</header>
+@section('content')
+
+<link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
+<script src={{ asset('js/teamMembers.js') }} defer></script>
+
+
 <main>
 <div id="projectUpdate">
 <form method="POST" action = "{{route('project/edit', ['id' => $project->id])}}" class="editProjectForm"> <!-- METER SLUG CORRETA -->
@@ -28,11 +30,21 @@
 <div class="teamMembers">
     <h3>Team Members</h3>
     @foreach ($coordinators as $coordinator)
-    <div class="coordinator"><b><a href = "/profile/{{$coordinator['username']}}">{{$coordinator['username']}}</a></b></div>
-    
+    <div class="coordinator dropdown">
+      <a href = "/profile/{{$coordinator['username']}}" class = "username">{{$coordinator['username']}}</a>
+    </div>              
     @endforeach
     @foreach ($collaborators as $collaborator)
-    <div class="collaborator"><a href = "/profile/{{$collaborator['username']}}">{{$collaborator['username']}}</a></div>
+    <div class="collaborator dropdown">
+      <a href = "/profile/{{$collaborator['username']}}" class = "username">{{$collaborator['username']}}</a>
+      <button class = "btn btn-outline-dark dropCButton" ><i class ="bi bi-bell"></i></button>
+      <div class = 'custom-select coordinatorDropdown'>
+          <button class = "btn btn-outline-dark removeMember">Remove</button>
+          <button class = "btn btn-outline-dark upgradeMember">Upgrade to coordinator</button>
+      </div>
+    </div> 
     @endforeach
 </div>
 </main>
+ 
+@endsection

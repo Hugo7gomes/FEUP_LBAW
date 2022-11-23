@@ -57,5 +57,14 @@ class Project extends Model
         );
     }
 
+    public function removeMember(User $user){
+        DB::table('role')->where(
+            array(
+                'id_user' => $user->id,
+                'id_project' => $this->id
+            )
+        )->delete();
+    }
+
     
 }
