@@ -168,7 +168,7 @@ paths:
   /profile:
     get:
       operationId: R106
-      summary: 'R106: View personal profile'
+      summary: 'R106: View Personal Profile'
       description: 'Show the individual user profile. Access: USR ADM'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -312,7 +312,7 @@ paths:
   /project/create:
     get:
       operationId: R201
-      summary: 'R201: Create project Form'
+      summary: 'R201: Create Project Form'
       description: 'Provide new project form. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -332,7 +332,7 @@ paths:
 
     post:
       operationId: R202
-      summary: 'R202: Create Project'
+      summary: 'R202: Create Project Action'
       description: 'Processes the project creation form submission. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -416,7 +416,7 @@ paths:
       
     patch:  
       operationId: R205
-      summary: 'R205: Edit project details'
+      summary: 'R205: Edit Project Details'
       description: 'Edit project information. Access: CRD'
       tags:
         - 'M02: Project Management'
@@ -549,9 +549,9 @@ paths:
                   value: '/project'
   
   /project/acceptInvite:
-    delete:
+    post:
       operationId: R209
-      summary: '209: Accept project invite'
+      summary: '209: Accept Project Invite'
       description: 'Accept project invite. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -575,7 +575,7 @@ paths:
   /project/rejectInvite:
     delete:
       operationId: R210
-      summary: '210: Reject project invite'
+      summary: '210: Reject Project Invite'
       description: 'Reject project invite. Access: ACO'
       tags:
         - 'M02: Project Management'
@@ -598,7 +598,7 @@ paths:
   /api/notification/delete:
     delete:
       operationId: R211
-      summary: '211: Delete notification'
+      summary: '211: Delete Notification'
       description: 'Delete notification. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -659,7 +659,7 @@ paths:
     delete:
       operationId: R213
       summary: 'R213: Remove Favourite Project'
-      description: 'Remove project from favourites. Access: USR'
+      description: 'Delete project from favourites. Access: USR'
       tags:
         - 'M02: Project Management'
 
@@ -680,17 +680,17 @@ paths:
 
       responses:
         '302':
-          description: 'Redirect after processing the new unfavorite project information.'
+          description: 'Redirect after processing the new desfavorite project information.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful unfavorite. Redirect to project page'
+                  description: 'Successful desfavorite. Redirect to project page'
                   value: '/project'
                 302Failure:
-                  description: 'Failed unfavorite. Redirect to project page'
+                  description: 'Failed desfavorite. Redirect to project page'
                   value: '/project'
   
   /api/project:
@@ -725,7 +725,7 @@ paths:
   /task:
     get:
       operationId: R301
-      summary: 'R301: See info of a task'
+      summary: 'R301: See Task Info'
       description: 'Provide task info. Access: CLB ADM'
       tags:
         - 'M03: Task Management'
@@ -782,7 +782,7 @@ paths:
   /task/edit:
     get:
       operationId: R303
-      summary: 'R303 Edit task Form'
+      summary: 'R303 Edit Task Form'
       description: 'Provide edit task form. Access: CLB'
       tags:
         - 'M03: Task Management'
@@ -794,7 +794,7 @@ paths:
     
     patch:
       operationId: R304
-      summary: 'R304: Edit task Action'
+      summary: 'R304: Edit Task Action'
       description: 'Processes the edit task form submission. Access: CLB CRD'
       tags:
         - 'M03: Task Management'
@@ -909,8 +909,8 @@ paths:
   /task/comment/delete:
      delete:
       operationId: R307
-      summary: 'R307: Delete a comment Task'
-      description: 'Delete a comment on a task. Access: CRD ADM'
+      summary: 'R307: Delete Task Comment'
+      description: 'Delete a comment on task. Access: CRD ADM'
       tags:
         - 'M03: Task Management'
 
@@ -982,19 +982,56 @@ paths:
   /faqs:   
     get:
       operationId: R402
-      summary: 'R402: View FAQ Page'
-      description: "View FAQ page. Access: PUB"
+      summary: 'R402: View Faqs Page'
+      description: "View faqs page. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
         
       responses:
         '200':
           description: 'OK. Show UI Faqs'
+    
+    post:
+      operationId: R403
+      summary: 'R403: Add a New Faq'
+      description: 'Add a new faq. Access: ADM'
+      tags:
+        - 'M03: Task Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                answer:
+                  type: string
+              required:
+                - question
+                - answer
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new comment on a task.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful creation. Redirect to homePage'
+                  value: '/task'
+                302Failure:
+                  description: 'Failed creation. Redirect to homePage'
+                  value: '/task'
 
   /about:   
     get:
       operationId: R403
-      summary: 'R402: View about Page'
+      summary: 'R403: View about Page'
       description: "View about page. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
@@ -1006,7 +1043,7 @@ paths:
   /:   
     get:
       operationId: R404
-      summary: 'R404: homePage Page'
+      summary: 'R404: Redirect to homePage'
       description: "home page shortcut. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
@@ -1025,7 +1062,7 @@ paths:
   /home:   
     get:
       operationId: R405
-      summary: 'R405: View home Page'
+      summary: 'R405: View homePage'
       description: "View home page. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
@@ -1064,6 +1101,18 @@ components:
           items:
             $ref: '#/components/schemas/User'
     
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        author:
+          $ref: '#/components/schemas/User'
+        date:
+          type: string
+        comment:
+          type: string
+    
     Task:
       type: object
       properties:
@@ -1075,6 +1124,9 @@ components:
           type: string
         state:
           type: string
+          enum: ['To Do', 'Doing', 'Done']
+        priority:
+          type: string
         creation_date:
           type: string
         user_creator:
@@ -1085,3 +1137,7 @@ components:
           type: object
           items:
             $ref: '#/components/schemas/User'
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
