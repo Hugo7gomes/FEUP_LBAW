@@ -520,7 +520,7 @@ paths:
       summary: '209: Accept project invite'
       description: 'Accept project invite. Access: USR'
       tags:
-        - 'M02 - Project Management'
+        - 'M02: Project Management'
 
       requestBody:
         required: true
@@ -544,7 +544,7 @@ paths:
       summary: '210: Reject project invite'
       description: 'Reject project invite. Access: ACO'
       tags:
-        - 'M02 - Project Management'
+        - 'M02: Project Management'
 
       requestBody:
         required: true
@@ -567,7 +567,7 @@ paths:
       summary: '211: Delete notification'
       description: 'Delete notification. Access: USR'
       tags:
-        - 'M02 - Project Management'
+        - 'M02: Project Management'
 
       requestBody:
         required: true
