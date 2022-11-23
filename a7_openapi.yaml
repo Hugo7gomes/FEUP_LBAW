@@ -1,0 +1,946 @@
+openapi: 3.0.0
+
+info:
+  version: '1.0'
+  title: 'LBAW Workfluido Web API'
+  description: 'Web Resources Specification (A7) for Workfluido'
+
+servers:
+- url: http://lbaw2281.lbaw.fe.up.pt
+  description: Production server
+
+externalDocs:
+  description: Find more info here.
+  url: https://git.fe.up.pt/lbaw/lbaw2223/lbaw2281/-/wikis/eap
+
+tags:
+  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M02: Project Management'
+  - name: 'M03: Task Management'
+  - name: 'M04: User Administration and Static pages'
+
+paths:
+  /login:
+    get:
+      operationId: R101
+      summary: 'R101: Login Form'
+      description: 'Provide login form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show Log-in UI'
+        '302':
+          description: 'Redirect if user is logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Authenticated. Redirect to homePage.'
+                  value: '/'
+
+
+    post:
+      operationId: R102
+      summary: 'R102: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:         # <!--- form field name
+                  type: string
+                password:      # <!--- form field name
+                  type: string
+              required:
+                  - email
+                  - password
+
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to homePage.'
+                  value: '/'
+                302Error:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+
+  /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to home page.'
+                  value: '/'
+
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show register UI'
+        '302':
+          description: 'Redirect if user is logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Authenticated. Redirect to home page.'
+                  value: '/'
+
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - name
+                - email
+                - password
+                - username
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to home page.'
+                  value: '/'
+                302Failure:
+                  description: 'Failed authentication. Redirect to register form.'
+                  value: '/register'
+
+  /profile:
+    get:
+      operationId: R106
+      summary: 'R106: View personal profile'
+      description: 'Show the individual user profile. Access: USR ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show User Profile UI'
+        '302':
+          description: 'Redirect if user is not logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Error:
+                  description: 'Not Authenticated. Redirect to login form.'
+                  value: '/login'
+
+    patch:  # <!--- Editar perfil update parts of the resource
+      operationId: R107
+      summary: 'R107: Edit Profile'
+      description: 'Edit account information. Access: USR ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                name:
+                  type: string
+                photo:
+                  type: string
+                  format: byte
+      responses:
+        '200':
+          description: 'Ok'
+        "401":
+          description: "Unauthorized"
+        
+    delete:
+      operationId: R108
+      summary: 'R108: Delete Account'
+      description: 'Delete account. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+              required:
+                - user_id
+      responses:
+        '200':
+          description: 'Ok'
+        "401":
+          description: "Unauthorized"   # <!--- Caso do coordenador
+
+  /profile/{username}:
+    get:
+      operationId: R109
+      summary: 'R109: View User Profile'
+      description: 'Show user profile. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show UI User Profile'
+        '404':
+          description: 'Not Found. Show UI User Not Found'
+
+    delete:
+      operationId: R110
+      summary: 'R110: Ban Account'
+      description: 'Ban an account. Access: ADM'
+      tags:
+        - 'M04: User Administration and Static pages'
+        
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok'
+
+  /project/create:
+    get:
+      operationId: R201
+      summary: 'R201: Create project Form'
+      description: 'Provide new project form. Access: USR'
+      tags:
+        - 'M02: Project Management'
+      responses:
+        '200':
+          description: 'Ok. Show Project create form UI'
+        '302':
+          description: 'Redirect if user is not logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Not Authenticated. Redirect to login page.'
+                  value: '/login'
+
+    post:
+      operationId: R202
+      summary: 'R202: Create Project'
+      description: 'Processes the project creation form submission. Access: USR'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+              required:
+                - name
+                - description
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new project information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful creation. Redirect to homePage'
+                  value: '/'
+                302Failure:
+                  description: 'Failed creation. Redirect to homePage'
+                  value: '/'
+
+  /project/{project_id}:
+    get:
+      operationId: R203
+      summary: 'R203: Get Project Information'
+      description: "Get project information. Access: CLB ADM"
+      tags:
+        - 'M02: Project Manegement'
+
+      parameters:
+        - in: path
+          name: project_id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: Success
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+
+  
+  /project/edit:
+    get:
+      operationId: R204
+      summary: 'R204: Edit Project Information'
+      description: "Edit project information. Access: CRD"
+      tags:
+        - 'M02: Project Manegement'
+      responses:
+        '200':
+          description: 'Ok. Show Project Edit UI'
+        '302':
+          description: 'Redirect if user not logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Not Authenticated. Redirect to home page.'
+                  value: '/'
+        '403':
+          description: 'Forbidden, user dont have that privileges'
+      
+    patch:  
+      operationId: R206
+      summary: 'R206: Edit project details'
+      description: 'Edit project information. Access: CRD'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+                name:
+                  type: string
+                details:
+                  type: string
+      responses:
+        '200':
+          description: 'Ok'
+        "401":
+          description: 'Unauthorized'
+    
+  /project/delete:
+    delete:
+      operationId: R205
+      summary: 'R205: Delete Project'
+      description: 'Delete project. Access: CRD'
+      tags:
+        - 'M02: Project Management'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+  
+      responses:
+        '302':
+          description: 'Redirect after processing the delete project request.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful. Redirect to homePage.'
+                  value: '/'
+        "403":
+          description: 'Forbidden'
+
+  /project/leave:
+     delete:
+      operationId: R206
+      summary: 'R206: Leave Project'
+      description: 'Leave a project. Access: CLB'
+      tags:
+        - 'M02: Project Management'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+                user_id:
+                  type: integer
+  
+      responses:
+        '302':
+          description: 'Redirect after processing the leave request.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful. Redirect to homePage.'
+                  value: '/'
+                302Failure:
+                  description: 'Failed. Redirect to the project.'
+                  value: '/project'
+        "403":
+          description: 'Forbidden'
+
+  
+  /project/inviteMember:
+    post:
+      operationId: R207
+      summary: 'R207: Invite Member'
+      description: 'Processes new user invite. Access: CRD'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id_project:
+                  type: integer
+                id_user:
+                  type: integer
+              required:
+                - id_project
+                - id_user
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new invite to the project.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful request. Redirect to project.'
+                  value: '/project'
+                302Failure:
+                  description: 'Failed request. Redirect to project.'
+                  value: '/project'
+  
+  /project/acceptInvite:
+    delete:
+      operationId: R208
+      summary: '208: Accept project invite'
+      description: 'Accept project invite. Access: USR'
+      tags:
+        - 'M02 - Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                project_id:
+                  type: integer
+
+      responses:
+        '200':
+          description: 'Ok'
+
+  /project/rejectInvite:
+    delete:
+      operationId: R209
+      summary: '209: Reject project invite'
+      description: 'Reject project invite. Access: ACO'
+      tags:
+        - 'M02 - Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                project_id:
+                  type: integer
+      responses:
+        '200':
+          description: 'Ok'
+  
+  /api/notification/delete:
+    delete:
+      operationId: R210
+      summary: '210: Delete notification'
+      description: 'Delete notification. Access: USR'
+      tags:
+        - 'M02 - Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id_notification:
+                  type: integer
+      responses:
+        '200':
+          description: 'Ok'
+
+
+  /api/project/favorite/create:
+    post:
+      operationId: R211
+      summary: 'R211: Favourite Project'
+      description: 'Add project to favourites. Access: USR'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+                - project_id
+                - user_id
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new favorite project information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful favorite. Redirect to project page'
+                  value: '/project'
+                302Failure:
+                  description: 'Failed creation. Redirect to project page'
+                  value: '/project'
+
+  /api/project/favorite/delete:
+    delete:
+      operationId: R212
+      summary: 'R212: Remove Favourite Project'
+      description: 'Delete project from favourites. Access: USR'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+                - project_id
+                - user_id
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new desfavorite project information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful desfavorite. Redirect to project page'
+                  value: '/project'
+                302Failure:
+                  description: 'Failed desfavorite. Redirect to project page'
+                  value: '/project'
+
+
+  /task:
+    get:
+      operationId: R213
+      summary: 'R213: See info of a task'
+      description: 'Provide task info. Access: CLB ADM'
+      tags:
+        - 'M03: Task Management'
+      responses:
+        '200':
+          description: 'Ok. Show task UI'
+        '401':
+          description: 'Unauthorized'     
+
+  /task/create:
+    post:
+      operationId: R217
+      summary: 'R217: Create Task'
+      description: 'Processes the task creation form submission. Access: CLB '
+      tags:
+        - 'M03: Task Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                details:
+                  type: string
+                priority:
+                  type: string
+                user_assigned:
+                  type: integer
+              required:
+                - name
+                - details
+                - priority
+                - user_assigned
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new project information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful creation. Redirect to project.'
+                  value: '/project'
+                302Failure:
+                  description: 'Failed creation. Redirect to project.'
+                  value: '/project'
+
+  /task/edit:
+    get:
+      operationId: R218
+      summary: 'R218 Edit task Form'
+      description: 'Provide edit task form. Access: CLB'
+      tags:
+        - 'M03: Task Management'
+      responses:
+        '200':
+          description: 'Ok. Show Edit task UI'
+        '401':
+          description: 'Unauthorized'
+    
+    patch:
+      operationId: R219
+      summary: 'R219: Edit task Action'
+      description: 'Processes the edit task form submission. Access: CLB CRD'
+      tags:
+        - 'M03: Task Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                details:
+                  type: string
+                priority:
+                  type: string
+                user_assigned:
+                  type: integer
+              required:
+                - name
+                - details
+                - priority
+                - user_assigned
+
+      responses:
+        '302':
+          description: 'Redirect after edit task.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful editing. Redirect to project page.'
+                  value: '/project'
+        '401':
+          description: 'forbidden'
+  
+  /task/delete:
+   delete:
+      operationId: R214
+      summary: 'R214: Delete Task'
+      description: 'Delete task. Access: CRD ADM'
+      tags:
+        - 'M03: Task Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                task_id:
+                  type: integer
+
+      responses:
+        '302':
+          description: 'Redirect after processing the delete task request.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful. Redirect to homePage.'
+                  value: '/'
+        "403":
+          description: 'Forbidden'
+
+  /task/comment:
+    post:
+      operationId: R215
+      summary: 'R215: Comment Task'
+      description: 'Comment a task. Access: CLB'
+      tags:
+        - 'M03: Task Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                id_user:
+                  type: integer
+                priority:
+                  type: string
+              required:
+                - comment
+                - id_user
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new comment on a task.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful creation. Redirect to homePage'
+                  value: '/task'
+                302Failure:
+                  description: 'Failed creation. Redirect to homePage'
+                  value: '/task'
+  
+  /task/comment/delete:
+     delete:
+      operationId: R214
+      summary: 'R214: Delete a comment Task'
+      description: 'Delete a comment on task. Access: CRD ADM'
+      tags:
+        - 'M03: Task Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                comment_id:
+                  type: integer
+
+      responses:
+        '302':
+          description: 'Redirect after processing the delete comment request.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful. Redirect to homePage.'
+                  value: '/'
+        "403":
+          description: 'Forbidden'
+
+  
+  /contacts:   
+    get:
+      operationId: R401
+      summary: 'R401: View Contacts Page'
+      description: "View contacts page. Access: PUB"
+      tags:
+        - 'M04: User Administration and Static pages'      
+        
+      responses:
+        '200':
+          description: 'OK. Show UI Contacts'
+
+  /faqs:   
+    get:
+      operationId: R402
+      summary: 'R402: View faqs Page'
+      description: "View faqs page. Access: PUB"
+      tags:
+        - 'M04: User Administration and Static pages'      
+        
+      responses:
+        '200':
+          description: 'OK. Show UI Faqs'
+
+  /about:   
+    get:
+      operationId: R403
+      summary: 'R402: View about Page'
+      description: "View about page. Access: PUB"
+      tags:
+        - 'M04: User Administration and Static pages'      
+        
+      responses:
+        '200':
+          description: 'OK. Show UI about '
+  
+  /:   
+    get:
+      operationId: R404
+      summary: 'R404: homePage Page'
+      description: "home page shortcut. Access: PUB"
+      tags:
+        - 'M04: User Administration and Static pages'      
+      responses:
+        '302':
+          description: 'Redirect to homePage.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Authenticated. Redirect to homePage.'
+                  value: '/home'
+
+  /home:   
+    get:
+      operationId: R405
+      summary: 'R405: View home Page'
+      description: "View home page. Access: PUB"
+      tags:
+        - 'M04: User Administration and Static pages'      
+      responses:
+        '200':
+          description: 'OK. Show UI about '
+
+
