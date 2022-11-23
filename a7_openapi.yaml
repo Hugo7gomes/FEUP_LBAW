@@ -944,7 +944,7 @@ paths:
       summary: "R308: Search Tasks API"
       description: "Searches for tasks and returns the results as JSON. Access: CLB"
       tags:
-        - 'M02: Project Management'
+        - 'M03: Task Management'
 
       parameters:
         - in: query
