@@ -381,8 +381,8 @@ paths:
           description: 'Forbidden, user dont have that privileges'
       
     patch:  
-      operationId: R206
-      summary: 'R206: Edit project details'
+      operationId: R205
+      summary: 'R205: Edit project details'
       description: 'Edit project information. Access: CRD'
       tags:
         - 'M02: Project Management'
@@ -408,8 +408,8 @@ paths:
     
   /project/delete:
     delete:
-      operationId: R205
-      summary: 'R205: Delete Project'
+      operationId: R206
+      summary: 'R206: Delete Project'
       description: 'Delete project. Access: CRD'
       tags:
         - 'M02: Project Management'
@@ -440,8 +440,8 @@ paths:
 
   /project/leave:
      delete:
-      operationId: R206
-      summary: 'R206: Leave Project'
+      operationId: R207
+      summary: 'R207: Leave Project'
       description: 'Leave a project. Access: CLB'
       tags:
         - 'M02: Project Management'
@@ -478,8 +478,8 @@ paths:
   
   /project/inviteMember:
     post:
-      operationId: R207
-      summary: 'R207: Invite Member'
+      operationId: R208
+      summary: 'R208: Invite Member'
       description: 'Processes new user invite. Access: CRD'
       tags:
         - 'M02: Project Management'
@@ -516,8 +516,8 @@ paths:
   
   /project/acceptInvite:
     delete:
-      operationId: R208
-      summary: '208: Accept project invite'
+      operationId: R209
+      summary: '209: Accept project invite'
       description: 'Accept project invite. Access: USR'
       tags:
         - 'M02 - Project Management'
@@ -540,8 +540,8 @@ paths:
 
   /project/rejectInvite:
     delete:
-      operationId: R209
-      summary: '209: Reject project invite'
+      operationId: R210
+      summary: '210: Reject project invite'
       description: 'Reject project invite. Access: ACO'
       tags:
         - 'M02 - Project Management'
@@ -563,8 +563,8 @@ paths:
   
   /api/notification/delete:
     delete:
-      operationId: R210
-      summary: '210: Delete notification'
+      operationId: R211
+      summary: '211: Delete notification'
       description: 'Delete notification. Access: USR'
       tags:
         - 'M02 - Project Management'
@@ -585,8 +585,8 @@ paths:
 
   /api/project/favorite/create:
     post:
-      operationId: R211
-      summary: 'R211: Favourite Project'
+      operationId: R212
+      summary: 'R212: Favourite Project'
       description: 'Add project to favourites. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -623,8 +623,8 @@ paths:
 
   /api/project/favorite/delete:
     delete:
-      operationId: R212
-      summary: 'R212: Remove Favourite Project'
+      operationId: R213
+      summary: 'R213: Remove Favourite Project'
       description: 'Delete project from favourites. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -662,8 +662,8 @@ paths:
 
   /task:
     get:
-      operationId: R213
-      summary: 'R213: See info of a task'
+      operationId: R301
+      summary: 'R301: See info of a task'
       description: 'Provide task info. Access: CLB ADM'
       tags:
         - 'M03: Task Management'
@@ -675,8 +675,8 @@ paths:
 
   /task/create:
     post:
-      operationId: R217
-      summary: 'R217: Create Task'
+      operationId: R302
+      summary: 'R302: Create Task'
       description: 'Processes the task creation form submission. Access: CLB '
       tags:
         - 'M03: Task Management'
@@ -719,8 +719,8 @@ paths:
 
   /task/edit:
     get:
-      operationId: R218
-      summary: 'R218 Edit task Form'
+      operationId: R303
+      summary: 'R303 Edit task Form'
       description: 'Provide edit task form. Access: CLB'
       tags:
         - 'M03: Task Management'
@@ -731,8 +731,8 @@ paths:
           description: 'Unauthorized'
     
     patch:
-      operationId: R219
-      summary: 'R219: Edit task Action'
+      operationId: R304
+      summary: 'R304: Edit task Action'
       description: 'Processes the edit task form submission. Access: CLB CRD'
       tags:
         - 'M03: Task Management'
@@ -774,8 +774,8 @@ paths:
   
   /task/delete:
    delete:
-      operationId: R214
-      summary: 'R214: Delete Task'
+      operationId: R305
+      summary: 'R305: Delete Task'
       description: 'Delete task. Access: CRD ADM'
       tags:
         - 'M03: Task Management'
@@ -806,8 +806,8 @@ paths:
 
   /task/comment:
     post:
-      operationId: R215
-      summary: 'R215: Comment Task'
+      operationId: R306
+      summary: 'R306: Comment Task'
       description: 'Comment a task. Access: CLB'
       tags:
         - 'M03: Task Management'
@@ -846,8 +846,8 @@ paths:
   
   /task/comment/delete:
      delete:
-      operationId: R214
-      summary: 'R214: Delete a comment Task'
+      operationId: R307
+      summary: 'R307: Delete a comment Task'
       description: 'Delete a comment on task. Access: CRD ADM'
       tags:
         - 'M03: Task Management'
