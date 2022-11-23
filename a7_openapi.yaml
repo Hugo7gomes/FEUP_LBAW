@@ -659,7 +659,7 @@ paths:
     delete:
       operationId: R213
       summary: 'R213: Remove Favourite Project'
-      description: 'Delete project from favourites. Access: USR'
+      description: 'Remove project from favourites. Access: USR'
       tags:
         - 'M02: Project Management'
 
@@ -680,17 +680,17 @@ paths:
 
       responses:
         '302':
-          description: 'Redirect after processing the new desfavorite project information.'
+          description: 'Redirect after processing the new unfavorite project information.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful desfavorite. Redirect to project page'
+                  description: 'Successful unfavorite. Redirect to project page'
                   value: '/project'
                 302Failure:
-                  description: 'Failed desfavorite. Redirect to project page'
+                  description: 'Failed unfavorite. Redirect to project page'
                   value: '/project'
   
   /api/project:
@@ -910,7 +910,7 @@ paths:
      delete:
       operationId: R307
       summary: 'R307: Delete a comment Task'
-      description: 'Delete a comment on task. Access: CRD ADM'
+      description: 'Delete a comment on a task. Access: CRD ADM'
       tags:
         - 'M03: Task Management'
 
@@ -982,8 +982,8 @@ paths:
   /faqs:   
     get:
       operationId: R402
-      summary: 'R402: View faqs Page'
-      description: "View faqs page. Access: PUB"
+      summary: 'R402: View FAQ Page'
+      description: "View FAQ page. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
         
