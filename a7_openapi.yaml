@@ -339,7 +339,7 @@ paths:
       summary: 'R203: Get Project Information'
       description: "Get project information. Access: CLB ADM"
       tags:
-        - 'M02: Project Manegement'
+        - 'M02: Project Management'
 
       parameters:
         - in: path
@@ -363,7 +363,7 @@ paths:
       summary: 'R204: Edit Project Information'
       description: "Edit project information. Access: CRD"
       tags:
-        - 'M02: Project Manegement'
+        - 'M02: Project Management'
       responses:
         '200':
           description: 'Ok. Show Project Edit UI'
