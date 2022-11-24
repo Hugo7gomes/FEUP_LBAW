@@ -53,7 +53,7 @@ Route::post('api/project/upgradeMember','ProjectController@upgradeMember');
 //Task
 Route::get('task','TaskController@show')->name('task');
 Route::post('task/create','TaskController@create')->name('task/create');
-Route::get('task/edit','TaskController@showUpdate')->name('task/edit');
+Route::get('task/edit','TaskController@showUpdate')->name('task/editShow');
 Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');
 

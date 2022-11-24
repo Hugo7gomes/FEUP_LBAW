@@ -87,19 +87,19 @@
     <div class="col tasksToDo">
         <h3>To do</h3>
         @foreach ($tasksToDo as $task)
-        <a href = "{{route('task/edit', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
+        <a href = "{{route('task/editShow', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
     <div class="col tasksDoing">
         <h3>Doing</h3>
         @foreach ($tasksDoing as $task)
-        <a href = "{{route('task/edit', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
+        <a href = "{{route('task/editShow', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
     <div class="col tasksDone">
         <h3>Done</h3>
         @foreach ($tasksDone as $task)
-        <a href = "{{route('task/edit', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
+        <a href = "{{route('task/editShow', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
 </div>
