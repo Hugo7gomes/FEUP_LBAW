@@ -80,7 +80,7 @@ paths:
                   value: '/login'
 
   /logout:
-    post:
+    get:
       operationId: R103
       summary: 'R103: Logout Action'
       description: 'Logout the current authenticated user. Access: USR ADM'
@@ -693,11 +693,11 @@ paths:
                   description: 'Failed desfavorite. Redirect to project page'
                   value: '/project'
   
-  /api/project:
+  /api/search:
     get:
       operationId: R214
       summary: "R214: Search Projects and Tasks API"
-      description: "Searches for projects and tasks and returns the results as JSON. Access: USR"
+      description: "Search for projects and tasks and returns the results as JSON. Access: USR"
       tags:
         - 'M02: Project Management'
 
@@ -717,7 +717,8 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Project'
+                  $ref: 
+                    -'#/components/schemas/Project' '#/components/schemas/Project'
         '400':
           description: Bad Request
 
@@ -1014,33 +1015,6 @@ paths:
         "403":
           description: 'Forbidden'
 
-  /api/task:
-    get:
-      operationId: R308
-      summary: "R308: Search Tasks API"
-      description: "Searches for tasks and returns the results as JSON. Access: CLB"
-      tags:
-        - 'M03: Task Management'
-
-      parameters:
-        - in: query
-          name: query
-          description: String to use for full-text search
-          schema:
-            type: string
-          required: false
-
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Project'
-        '400':
-          description: Bad Request
 
   
   /contacts:   
