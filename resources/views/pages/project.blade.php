@@ -21,7 +21,7 @@
 
 <!-- FALTA MOSTRAR DETAILS DO PROJETO -->
     @if ($project->is_coordinator($user))
-  <a href = "{{route('project/edit', ['id' => $project->id])}}"><button class="btn btn-outline-dark Button" id="editProjectButton">Edit project</button></a>
+  <a href = "{{route('project/editShow', ['id' => $project->id])}}"><button class="btn btn-outline-dark Button" id="editProjectButton">Edit project</button></a>
     @endif
 
   <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}">

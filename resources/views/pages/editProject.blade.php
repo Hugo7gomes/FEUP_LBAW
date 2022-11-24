@@ -47,7 +47,6 @@
       @endforeach
       @foreach ($collaborators as $collaborator)
       <div class="collaborator dropdown">
-      <ul class="dropdown-menu">
         <li class="dropdown-item nav-item">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 40px;">
@@ -60,7 +59,6 @@
             </div>
           </div>
         </li>   
-      </ul> 
       </div>          
       @endforeach
     </ul>

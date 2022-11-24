@@ -16,6 +16,10 @@
   <div class="col-md-3 text-end">
     <button class="loginButton"><a id="loginButton" href="{{ route('login') }}">LOGIN</a></button>
   </div>
+  @else
+  <div class="col-md-3 text-end">
+    <button class="profileButton"><a id="profileButton" href="{{ route('profile') }}">PROFILE</a></button>
+  </div>
   @endif
 </header>
 

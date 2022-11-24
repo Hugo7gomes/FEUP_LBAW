@@ -15,7 +15,7 @@
           <h2 id = "tasksTitleSearch" style="display: none;">Tasks</h2>
           <div id = "tasksSearch"></div>
         </div>
-        <a href = "{{route('profile')}}"><button class="profileButton"><i class="bi bi-person"></i></button></a>
+        <a href = "{{route('profile')}}" ><i class="bi bi-person"></i></a>
         <div class="dropdown">
           <button class=" notificationButton"><i class="bi bi-bell" id="notificationButton"></i></button>
           <div class = "dropdown-menu notifications container">

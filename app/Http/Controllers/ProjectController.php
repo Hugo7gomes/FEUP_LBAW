@@ -136,8 +136,10 @@ class ProjectController extends Controller
             $coordinator = User::find($coordinatorId['id_user']);
             array_push($coordinators,$coordinator);
         }
+
+        $notifications = $user->notifications;
         
-        return view('pages.editProject',['user' => $user, 'project'=>$project, 'coordinators'=>$coordinators,'collaborators'=>$collaborators]); 
+        return view('pages.editProject',['user' => $user, 'notifications' => $notifications,'project'=>$project, 'coordinators'=>$coordinators,'collaborators'=>$collaborators]); 
     }
 
 

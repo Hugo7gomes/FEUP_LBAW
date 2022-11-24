@@ -55,6 +55,7 @@
     position: relative;
     left: 14vw;
     border: 0;
+    border: solid 1px black;
 }
 
 .logoutButton {
@@ -112,13 +113,8 @@
 .notificationButton:hover, .profileButton:hover, .logoutButton:hover {
     background-color: transparent;
     opacity: 1;
-    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
     border-radius: 100px;
     color: black;
-}
-
-#notificationButton:hover, #profileButton:hover, #notificationButton:after, #profileButton:after, #notificationButton:before, #profileButton:before {
-    background-color: transparent;
 }
 
 .notifications {
