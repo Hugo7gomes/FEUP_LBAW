@@ -1029,7 +1029,7 @@ paths:
         '200':
           description: 'OK. Show UI Contacts'
 
-  /faqs:   
+  /faq:   
     get:
       operationId: R402
       summary: 'R402: View Faqs Page'
