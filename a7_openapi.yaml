@@ -721,6 +721,82 @@ paths:
         '400':
           description: Bad Request
 
+  /api/project/removeMember:
+    delete:
+      operationId: R215
+      summary: 'R215: Remove Member From Project'
+      description: 'Remove Member From Project. Access: ADM'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+                - project_id
+                - user_id
+
+      responses:
+        '302':
+          description: 'Redirect after removing a member from the team.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful member remove. Redirect to project page'
+                  value: '/project'
+                302Failure:
+                  description: 'Fail to remove member. Redirect to project page'
+                  value: '/project'
+
+  /api/project/upgradeMember:
+    patch:
+      operationId: R216
+      summary: 'R216: Upgrade Member position on Project'
+      description: 'Upgrade Member position on Project. Access: CRD'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+                user_id:
+                  type: integer
+              required:
+                - project_id
+                - user_id
+
+      responses:
+        '302':
+          description: 'Redirect after upgrade member position on team.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful member upgrade status. Redirect to project page'
+                  value: '/project'
+                302Failure:
+                  description: 'Fail to upgrade member status. Redirect to project page'
+                  value: '/project'
+
 
   /task:
     get:
@@ -1127,6 +1203,7 @@ components:
           enum: ['To Do', 'Doing', 'Done']
         priority:
           type: string
+          enum: ['High', 'Medium', 'Low']
         creation_date:
           type: string
         user_creator:
