@@ -1072,7 +1072,7 @@ paths:
       summary: 'R403: Add a New Faq'
       description: 'Add a new faq. Access: ADM'
       tags:
-        - 'M03: Task Management'
+        - 'M04: User Administration and Static pages' 
 
       requestBody:
         required: true
@@ -1106,8 +1106,8 @@ paths:
 
   /about:   
     get:
-      operationId: R403
-      summary: 'R403: View about Page'
+      operationId: R404
+      summary: 'R404: View about Page'
       description: "View about page. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
@@ -1118,8 +1118,8 @@ paths:
   
   /:   
     get:
-      operationId: R404
-      summary: 'R404: Redirect to homePage'
+      operationId: R405
+      summary: 'R405: Redirect to homePage'
       description: "home page shortcut. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
@@ -1137,8 +1137,8 @@ paths:
 
   /home:   
     get:
-      operationId: R405
-      summary: 'R405: View homePage'
+      operationId: R406
+      summary: 'R406: View homePage'
       description: "View home page. Access: PUB"
       tags:
         - 'M04: User Administration and Static pages'      
