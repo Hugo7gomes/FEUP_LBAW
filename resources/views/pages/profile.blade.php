@@ -7,6 +7,11 @@
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<section id="projectSide">
+@include('partials.project_side')
+  @yield('project_side')
+</section>
+
 <main>
 <div class="container text-center" id="profileBoard">
   <div class="row">
@@ -91,7 +96,7 @@
                   <label for="exampleFormControlInput1" class="mb-0">Password</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name = "password" placeholder= "User's password" id="password" class="text-muted mb-0">
+                  <input type="password" name = "password" placeholder= "User's password" id="password" class="text-muted mb-0">
                   @if($errors->has('password'))
                     <div class="error">{{ $errors->first('password') }}</div>
                   @endif
@@ -103,7 +108,7 @@
                   <label for="exampleFormControlInput1" class="mb-0">New Password</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name = "new_password" placeholder= "User's new password" id="new_password" class="text-muted mb-0">
+                  <input type="password" name = "new_password" placeholder= "User's new password" id="new_password" class="text-muted mb-0">
                   @if($errors->has('name'))
                     <div class="error">{{ $errors->first('name') }}</div>
                   @endif
@@ -132,7 +137,7 @@
                 @foreach ($projects as $project)
                     <div class="item" id="project">
                         <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div id="projectPhoto">{{ strtok($project->name, ' ') }}</div>
+                            <div class="projectPhoto">{{ strtok($project->name, ' ') }}</div>
                         </div>
                     </div>
                 @endforeach

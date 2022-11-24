@@ -1,4 +1,4 @@
-let coordinatorButtons = document.getElementsByClassName("dropCoordinatorButton");
+let coordinatorButtons = document.getElementsByClassName("dropCButton");
 [].forEach.call(coordinatorButtons, function(btton) {
     btton.addEventListener('click', openDropDown);
 });
@@ -8,7 +8,11 @@ function openDropDown(event){
     let buttonI = event.target;
     let buttonDrop = buttonI.parentElement;
     let divDrop = buttonDrop.nextElementSibling;
-    divDrop.classList.toggle("show");
+    if(divDrop.style.display == "none"){
+        divDrop.style.display = "block"
+    }else{
+        divDrop.style.display = "none"
+    }
 }
 
 let removeMemberButtons = document.getElementsByClassName("removeMember");
@@ -18,8 +22,9 @@ let removeMemberButtons = document.getElementsByClassName("removeMember");
 
 function removeMemberRequest(event){
     let button = event.target;
-    let div = button.parentElement.parentElement;
-    let username = div.firstElementChild.innerText;
+    let div = button.parentElement.parentElement.parentElement;
+    let img = div.firstElementChild;
+    let username = img.nextElementSibling.innerText;
     let url = window.location.href;
     let id = url.substring(url.lastIndexOf('=') + 1);
 
@@ -38,14 +43,17 @@ let upgradeMemberButtons = document.getElementsByClassName("upgradeMember");
 
 function upgradeMemberRequest(event){
     let button = event.target;
-    let div = button.parentElement.parentElement;
-    let username = div.firstElementChild.innerText;
+    let div = button.parentElement.parentElement.parentElement;
+    let img = div.firstElementChild;
+    let username = img.nextElementSibling.innerText;
     let url = window.location.href;
     let id = url.substring(url.lastIndexOf('=') + 1);
-    sendAjaxRequest('get', 'api/project/upgradeMember', {id:id, username:username} , upgradeMemberHandler);
+    console.log(username)
+    console.log(id)
+    sendAjaxRequest('post', '/api/project/upgradeMember', {id:id, username:username} , upgradeMemberHandler);
 }
 
 function upgradeMemberHandler(){
-    console.log(this.responseText);
+    location.reload();
 }
 

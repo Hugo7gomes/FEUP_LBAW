@@ -9,64 +9,14 @@
 <script src={{ asset('js/favorite.js') }} defer></script>
 
 <main>
-@section('projectSide')
-  @include('partials.project_side', ['projects' => $user->projects])
-@endsection
-<section id="projectSide">
-    @yield('projectSide')
-</section>
-
-
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <button type="button" class="btn btn-outline-dark addTask" data-toggle="modal" data-target="#exampleModalCenter">Add task</button>
-<div class="modal fade .modal-dialog-centered" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">Add task</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2>ola</h2>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 
 <div class = "allButtons">
-  <button type = "submit" class="btn btn-outline-dark favoriteButton Button">Favorite</button>
-
+  @if($project->is_favorite($user))
+  <button type = "submit" class="btn btn-outline-dark favoriteButton Button">FAVORITE</button>
+  @else
+  <button type = "submit" class="btn btn-outline-danger favoriteButton Button">REMOVE FAVORITE</button>
+  @endif
   <button class="btn btn-outline-dark addTask Button" >Add task</button>
 
 <!-- FALTA MOSTRAR DETAILS DO PROJETO -->
@@ -80,6 +30,7 @@
   </form>
 
 </div>
+
 
 
 <div id="createTask">

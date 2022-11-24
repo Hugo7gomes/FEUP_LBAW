@@ -68,14 +68,14 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="card mb-4 mb-md-0">
-              <div class="card-body" id="projects">
+              <div class="card-body">
               <section id="usersProjects">
-                <h3><b>{{ $user['name']}}</b>  's projects</h3>
+                <h3><b>{{ $user['name']}}</b>'s projects</h3>
                 <div class="userProjects">
                 @foreach ($projects as $project)
-                    <div class="item">
+                    <div class="item" id="project">
                         <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div id="projectPhoto">{{ strtok($project->name, ' ') }}</div>
+                            <div class="projectPhoto">{{ strtok($project->name, ' ') }}</div>
                         </div>
                     </div>
                 @endforeach

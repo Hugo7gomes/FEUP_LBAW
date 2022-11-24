@@ -22,6 +22,7 @@ class ProjectController extends Controller
         $project = Project::find($id);  
         $user = User::find(Auth::user()->id);
 
+
         $this->authorize('show',$project);
 
 
@@ -68,7 +69,6 @@ class ProjectController extends Controller
     }
 
 
-    //Testar create
     public function create(Request $request){
         if(!Auth::check()){
             return redirect("/home");
@@ -204,20 +204,12 @@ class ProjectController extends Controller
     public function upgradeMember(Request $request){
         $project = Project::find($request->get('id'));
         $user = User::where('username',$request->get('username'))->first();
-        $this->authorize('upgradeMember', $project);
+        //$this->authorize('upgradeMember', $project);
         DB::table('role')
         ->where([['id_project', $project->id],['id_user',$user->id]]) 
         ->update(array('role' => 'Coordinator')); 
 
-    }
-
-    public function search($query, $search)
-    {
-        if (!$search) {
-            return $query;
-        }
-        return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', [$search])
-            ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', [$search]);
-    }
+        return Role::where([['id_user',$user->id],['id_project',$project->id]]);
+    } 
 
 }

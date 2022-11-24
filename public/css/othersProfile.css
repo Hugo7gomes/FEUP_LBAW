@@ -37,9 +37,10 @@ img {
     background-color: white;
 }
 
-#userProjects {
+#usersProjects {
     display: flex;
     flex-direction: column;
+    height: 13vw;
 }
 
 .userProjects {
@@ -79,15 +80,21 @@ img {
     border-radius: 5px;
 }
 
-#projectPhoto {
+#project {
+    padding: 10px;
+}
+
+.projectPhoto {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background: #EEEE;
     font-size: 15px;
     color: black;
-    text-align: center;
     line-height: 150px;
     margin: 20px 0;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
 }

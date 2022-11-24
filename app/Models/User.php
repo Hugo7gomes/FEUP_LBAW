@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Models\Photo;
 use App\Models\Project;
+use App\Models\Task;
+
 
 
 class User extends Authenticatable
@@ -40,11 +42,12 @@ class User extends Authenticatable
      * The projects this user participates in.
      */
      public function projects() {  
-      return $this->belongsToMany(Project::class,
+        return $this->belongsToMany(Project::class,
                                  'role',
                                  'id_user',
                                  'id_project');
     }
+
 
     /**
      * The user's photo

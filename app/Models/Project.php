@@ -37,6 +37,10 @@ class Project extends Model
         return ($this->hasMany('App\Models\Role','id_project')->where('id_user', $user->id)->get()->isNotEmpty());
     }
 
+    public function is_favorite(User $user){
+        return ($this->hasMany('App\Models\Favorite','id_project')->where('id_user', $user->id)->get()->isNotEmpty());
+    }
+
     public function becomeCoordinator(User $user){
         DB::table('role')->insert(
             array(

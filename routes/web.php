@@ -20,14 +20,6 @@ Route::get('faq','HomepageController@show')->name('faq');
 Route::get('about','HomepageController@show')->name('about');
 Route::get('contacts','HomepageController@show')->name('contacts');
 
-
-// API
-/*Route::put('api/cards', 'CardController@create');
-Route::delete('api/cards/{card_id}', 'CardController@delete');
-Route::put('api/cards/{card_id}/', 'ItemController@create');
-Route::post('api/item/{id}', 'ItemController@update');
-Route::delete('api/item/{id}', 'ItemController@delete');*/
-
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -55,7 +47,7 @@ Route::post('api/project/favorite/create', 'FavoriteController@create');
 Route::post('api/project/favorite/delete', 'FavoriteController@delete');
 Route::post('api/project/removeMember','ProjectController@removeMember');
 Route::post('api/notification/delete', 'NotificationController@delete');
-Route::get('api/project/upgradeMember','ProjectController@upgradeMember');
+Route::post('api/project/upgradeMember','ProjectController@upgradeMember');
 
 
 //Task
@@ -64,5 +56,8 @@ Route::post('task/create','TaskController@create')->name('task/create');
 Route::get('task/edit','TaskController@showUpdate')->name('task/edit');
 Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');
+
+//Search
+Route::post('api/search', 'SearchController@search');
 
 

@@ -1,27 +1,20 @@
-<!-- <link href="{{ asset('css/project_side.css') }}" rel="stylesheet"> -->
-<!-- <article class="l-navbar projectSide">
-  <div><i class='bx bx-layer nav_logo-icon'></i>
-    <ul class="nav flex-column">
+<link href="{{ asset('css/project_side.css') }}" rel="stylesheet">
+
+@section('project_side')
+<div class="projectSide d-flex flex-column flex-shrink-0 bg-light">
+  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    <li class="nav-item mySideProjects">
       @foreach ($projects as $project)
-      <li class="nav_logo">
-        <div class="nav_list"><a class="nav-link active" aria-current="page" href="#">{{ $project['name']}}</a></div>
-      </li>
+        <div class="item" id="project">
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            <div class="projectsPhoto">
+            <a href = "/project/{{$project['id']}}" class="projectSideNav nav-item">{{ strtok($project->name, ' ') }}</a>
+            </div>
+          </div> 
+        </div>
       @endforeach
-    </ul>
+    </li>
+    <a><button class="fa-solid fa-plus addProject" onclick="window.location='{{ route("project/create") }}'"><i class="bi bi-plus"></i></button></a>
+  </ul>
   </div>
-<a><button class="fa-solid fa-plus addProject" onclick="window.location='{{ route("project/create") }}'">Add Project</button></a>
-</article> -->
-
-
-<!-- <div class="l-navbar" id="nav-bar">
-  <nav class="nav">
-    <div class="nav_list"> 
-      @foreach ($projects as $project)
-      <a href="#" class="nav_link"> 
-        <span class="nav_name">{{ $project['name']}}</span> 
-      </a> 
-      @endforeach
-    </div> 
-    <a><button class="fa-solid fa-plus addProject" onclick="window.location='{{ route("project/create") }}'">Add Project</button></a>
-  </nav>
-</div> -->
+@endsection

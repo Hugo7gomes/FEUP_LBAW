@@ -9,9 +9,9 @@ main {
     padding: 0px;
 }
 
-/* .form-control {
-    border: 2px solid rgba(187, 186, 186, 0.908);
-} */
+#createTask {
+    /* display: none; */
+}
 
 #createTask > form {
     background-color: white;

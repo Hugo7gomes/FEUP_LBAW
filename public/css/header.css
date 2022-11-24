@@ -17,12 +17,10 @@
 
 #searchbar {
     width: 270px;
-    /* margin-left: 120%;
-    margin-top: 12%; */
     font-size: 14px;
     font-weight: 600;
     margin: auto;
-    /* box-shadow: rgba(0, 0, 0, 0.18) 1px 1px; */
+    margin-left: 30%;
 }
 
 .notifications > span {
@@ -45,26 +43,48 @@
 }
 
 
-.notificationButton, .profileButton {
+.notificationButton {
+    background-color: white;
+    position: relative;
+    left: 14.5vw;
+    border: 0;
+}
+
+.profileButton {
+    background-color: white;
+    position: relative;
+    left: 14vw;
+    border: 0;
+}
+
+.logoutButton {
     background-color: white;
     border: 0;
+}
+
+.bi {
+    display: grid;
+    align-items: baseline;
 }
 
 .bi-bell {
     color: #606c76;
     font-size: 30px;
-    display: grid;
-    grid-area: left;
 }
 
 .bi-person {
     color: #606c76;
     font-size: 35px;
-    position: relative;
     opacity: 0.9;
 }
 
-.bi-bell:hover, .bi-person:hover {
+.bi-box-arrow-right {
+    color: #606c76;
+    font-size: 35px;
+    opacity: 0.9;
+}
+
+.bi-bell:hover, .bi-person:hover, .bi-box-arrow-right:hover {
     color: black;
     opacity: 1;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -86,9 +106,10 @@
 
 .deleteNot {
     cursor: pointer;
+    margin-left: 5%;
 }
 
-.notificationButton:hover, .profileButton:hover {
+.notificationButton:hover, .profileButton:hover, .logoutButton:hover {
     background-color: transparent;
     opacity: 1;
     /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
@@ -101,27 +122,50 @@
 }
 
 .notifications {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
+    display: none;
 }
 
 .list-group-flush {
     /* width: 18rem; */
+    /* max-width: 18rem; */
 }
 
-ul {
-    width: 18rem;
+li {
+    /* width: 18rem; */
+
 }
 
-.list-group-item {
+.text {
+    max-width: 300px;
+    display: flex;
+    font-size: 20px;
+}
+
+li.list-group-item {
     font-size: 13px;
-    align-items: baseline;
+    justify-items: baseline;
     margin: 0%;
+    display: flex;
+    flex-direction: row;
 }
 
 .notificationDiv {
     margin: 0%;
 }
+
+.buttonsInvite {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonsInvite > form {
+    margin: 3%;
+}
+
+
+
 
 

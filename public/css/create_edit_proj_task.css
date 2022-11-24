@@ -45,7 +45,8 @@ main {
     margin-bottom: 30px;
 }
 
-.dropdown {
+
+/* .dropdown {
     position: relative;
     display: inline-block;
   }
@@ -69,4 +70,66 @@ main {
   
 .dropdown a:hover {background-color: #ddd;}
 
-.show {display: block;}
+.show {display: block;} */
+
+
+/* TEAM MEMBERS NAV */
+#teamMembers {
+    width: 150px;
+    height: 70%;
+    margin-top: 90px;
+    margin-left: 50px;
+    border-radius: 10px;
+    padding-left: 10px;
+    top: 50px;
+    position: fixed;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
+}
+
+#teamMembersTitle {
+    font-size: 30px;
+    font-weight: bold;
+    margin: auto;
+}
+
+hr {
+    height: 2px;
+    margin: 1rem 0;
+    background-color: black;
+    border: 0;
+    opacity: 0.25;
+}
+
+.usernameCollaborator, .usernameCoordinator {
+    color: black;
+    font-size: 15px;
+    background-color: white;
+    padding-left: 10px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.dropCButton {
+    border: 0;
+    background-color: white;
+    color: grey;
+    cursor: pointer;
+    width: 10px;
+}
+
+.dropCButton:hover {
+    color: black;
+}
+
+.coordinatorDropdown {
+    display: none;
+}
+
+.dropdown-menu {
+    border: none;
+}

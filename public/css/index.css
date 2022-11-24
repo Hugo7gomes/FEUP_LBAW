@@ -1,64 +1,76 @@
 header{
+    height: 90px;
     display: flex;
     justify-content: space-around;
     position: relative;
-    align-items: center;
+    align-items: baseline;
     align-content: center;
-    top: 10em;
+}
+
+body{
+    margin: 0px;
 }
 
 .logo {
     width: 240px;
     justify-self: start;
-    margin-left: 2%;
 }
 
 .background {
     background-color: rgba(0, 0, 0, 0.6);
+    height: min-content;
 }
 
 main{
-    height: 100vh;
     background-image: url('../docs/images/background.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    /* background-size: cover; */
+    background-size: auto;
 }
 
-a{
-    text-decoration: none;
-    color: rgba(241, 128, 37, 0.934);
-}
-
-a:hover{
-    color: rgba(179, 77, 9, 0.93);
-}
-
-#logo{
+/* #logo{
     width: 20vw;
     font-family: "Bodoni MT";
     font-size: 8em;
-}
-
-nav{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 5em;
-    width: 30vw;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgb(34, 34, 34);
-    position: relative;
-    right: 1.5em;
-}
-
-/* #loginInitial{
-    background-color: rgba(241, 128, 37, 0.934);
-    color: white;
-    padding: 0.7em 2em;
-    border-radius: 10%;
-    font-size: 4em;
-}
-
-#initial_login:hover{
-    background-color: rgba(179, 77, 9, 0.93);
 } */
+
+#headerInfo {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #666666;
+}
+
+#faq, #about, #contacts, a{
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.loginButton {
+    background-color: black;
+    border: solid black;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    border-bottom: 0.1em solid #666666;
+    margin: 1em 0;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+#loginButton {
+    color: white;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+#loginButton:hover {
+    opacity: 1;
+}
+
