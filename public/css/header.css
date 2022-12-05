@@ -9,6 +9,10 @@
     justify-items: space-between;
 }
 
+.link:hover {
+    text-decoration: none;
+}
+
 .logo {
     width: 240px;
     justify-self: start;

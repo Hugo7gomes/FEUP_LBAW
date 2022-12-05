@@ -16,9 +16,13 @@ body{
     justify-self: start;
 }
 
-.background {
+#background {
     background-color: rgba(0, 0, 0, 0.6);
-    height: min-content;
+    /* height: min-content; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 main{

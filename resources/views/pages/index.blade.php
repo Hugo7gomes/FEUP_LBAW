@@ -25,7 +25,7 @@
 
 <main>
   <div class="p-5 text-center bg-image">
-    <img src="{{ URL::to('/images/background.png') }}" class= "background">
+    <img src="{{ URL::to('/images/background.png') }}" id= "background">
     <div class="d-flex justify-content-center align-items-center h-100">
       <div class="text-white">
       </div>

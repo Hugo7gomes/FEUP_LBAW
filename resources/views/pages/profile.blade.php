@@ -35,7 +35,6 @@
             <p class="text-muted mb-1">{{ $user['email'] }}</p>
           </div>
         </div>
-
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
@@ -116,34 +115,6 @@
               </div>
               <button type="submit" data-href="/profile/{{$user->username}}" class="btn btn-outline-dark" id="updateProfileButton">Update</button>
             </form>
-            </div>
-            <hr>
-            
-            <div class="row">
-              <div class="col-sm-3">
-              </div>
-              <div class="col-sm-9">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-              <section id="userProjects">
-                <h3>My projects</h3>
-                <div class="userProjects">
-                @foreach ($projects as $project)
-                    <div class="item" id="project">
-                        <div class="col-xs-12 col-sm-6 col-md-2">
-                            <div class="projectPhoto">{{ strtok($project->name, ' ') }}</div>
-                        </div>
-                    </div>
-                @endforeach
-                </div>
-              </section>
-              </div>
             </div>
           </div>
         </div>
