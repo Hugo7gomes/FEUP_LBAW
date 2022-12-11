@@ -1,12 +1,11 @@
 let buttonNotif = document.getElementById('notificationButton')
-let divNotif = document.getElementsByClassName('notifications')[0]
-divNotif.style.display = "none";
+let divNotif = document.getElementsByClassName('not')[0]
 buttonNotif.addEventListener('click',openNotifications);
 
 function openNotifications(event){
     if (divNotif.style.display == "none") {
         divNotif.style.display = "block";
-    } else if(divNotif.style.display == "block"){
+    } else{
         divNotif.style.display = "none";
     }
 }

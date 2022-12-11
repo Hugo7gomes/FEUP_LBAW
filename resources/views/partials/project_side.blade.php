@@ -2,9 +2,9 @@
 
 @section('project_side')
 <div class="projectSide d-flex flex-column flex-shrink-0 bg-light">
-  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+  <ul id = "leftCol" class=" nav nav-pills nav-flush flex-column mb-auto text-center">
+    @foreach ($projects as $project)
     <li class="nav-item mySideProjects">
-      @foreach ($projects as $project)
         <div class="item" id="project">
           <div class="col-xs-12 col-sm-6 col-md-2">
             <div class="projectsPhoto">
@@ -12,8 +12,8 @@
             </div>
           </div> 
         </div>
-      @endforeach
     </li>
+    @endforeach
     <a><button class="fa-solid fa-plus addProject" onclick="window.location='{{ route("project/create") }}'"><i class="bi bi-plus"></i></button></a>
   </ul>
   </div>

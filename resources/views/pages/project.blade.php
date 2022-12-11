@@ -10,16 +10,14 @@
 
 <main>
 
-
 <div class = "allButtons">
   @if($project->is_favorite($user))
-  <button type = "submit" class="btn btn-outline-dark favoriteButton Button">FAVORITE</button>
+  <button type = "submit" class="btn btn-outline-danger favoriteButton Button">REMOVE FAVORITE</button> 
   @else
-  <button type = "submit" class="btn btn-outline-danger favoriteButton Button">REMOVE FAVORITE</button>
+  <button type = "submit" class="btn btn-outline-dark favoriteButton Button">FAVORITE</button>
   @endif
   <button class="btn btn-outline-dark addTask Button" >Add task</button>
 
-<!-- FALTA MOSTRAR DETAILS DO PROJETO -->
     @if ($project->is_coordinator($user))
   <a href = "{{route('project/editShow', ['id' => $project->id])}}"><button class="btn btn-outline-dark Button" id="editProjectButton">Edit project</button></a>
     @endif
@@ -33,7 +31,7 @@
 
 
 
-<div id="createTask">
+<div id="createTask" style="display: none;">
 <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
       @csrf
 
@@ -83,41 +81,26 @@
 
 <div class="container text-center boardView" id="boardView">
     <div class="row">
-    <h2>Board View</h2>
-    <div class="col tasksToDo">
+    <h2>Board View - {{ $project->name }}</h2>
+    <div class="col task tasksToDo">
         <h3>To do</h3>
         @foreach ($tasksToDo as $task)
         <a href = "{{route('task/editShow', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
-    <div class="col tasksDoing">
+    <div class="col task tasksDoing">
         <h3>Doing</h3>
         @foreach ($tasksDoing as $task)
         <a href = "{{route('task/editShow', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
-    <div class="col tasksDone">
+    <div class="col task tasksDone">
         <h3>Done</h3>
         @foreach ($tasksDone as $task)
         <a href = "{{route('task/editShow', ['taskId' => $task->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $task['name']}}</div></a>
         @endforeach
     </div>
 </div>
-</div>
-
-
-<div class="container text-center" id="addMember">
-    @if ($project->is_coordinator($user))
-    <form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">
-        @csrf
-        <label for="projects">Choose a profile</label>
-        <input type="text" name="username" class="form-group"  id="chooseProfile" placeholder="username">
-        @if($errors->has('userNotFound'))
-                <div class="error">{{ $errors->first('userNotFound') }}</div>
-        @endif
-        <button type="submit" class="btn btn-outline-dark addMemberButton">Add member</button>
-    </form>
-    @endif
 </div>
 </main>
 @endsection

@@ -5,7 +5,6 @@
 @section('content')
 
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <section id="projectSide">
 @include('partials.project_side')
@@ -13,16 +12,6 @@
 </section>
 
 <main>
-<div class="container text-center" id="profileBoard">
-  <div class="row">
-    <div class="col-sm-9" id="userInfo">
-      <div class="row">
-      <div class="col-8 col-sm-6">
-      </div>
-    </div>
-  </div>
-</div>
-
 <section style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
@@ -113,7 +102,7 @@
                   @endif
                 </div>
               </div>
-              <button type="submit" data-href="/profile/{{$user->username}}" class="btn btn-outline-dark" id="updateProfileButton">Update</button>
+              <button type="submit" data-href="/profile/{{$user->username}}" class="btn btn-outline-dark btn-lg" id="updateProfileButton">Update</button>
             </form>
             </div>
           </div>

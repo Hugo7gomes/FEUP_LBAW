@@ -86,7 +86,7 @@ class InviteController extends Controller
         );
 
 
-        return redirect("profile");
+        return redirect()->back();
     }
 
     public function reject(Request $request){
@@ -101,6 +101,6 @@ class InviteController extends Controller
         $notification = Notification::where('id_invite',$invite->id)->first();
         $notification->delete();
         
-        return redirect("profile");
+        return redirect()->back();
     }
 }

@@ -140,3 +140,37 @@ hr {
     bottom: 35px;
 }
 
+#chooseProfile {
+    width: 20%;
+    font-size: 14px;
+    background-color: white;
+}
+
+.addToProject {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: white;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 1%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
+}
+
+.addToProject > label {
+    background-color: white;
+    padding-bottom: 10px;
+}
+
+.addMember {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
+    padding: 5px;
+}
+
+#addMember {
+    margin-left: -10px;
+    padding: 10px;
+}
+

@@ -63,8 +63,6 @@ class ProjectController extends Controller
 
         $notifications = $user->notifications;
 
-
-
         return view('pages.project',['notifications' => $notifications,'user' => $user,'tasksToDo' => $tasksToDo, 'tasksDoing' => $tasksDoing, 'tasksDone' => $tasksDone, 'project' => $project, 'coordinators' => $coordinators, 'collaborators' => $collaborators]);
     }
 

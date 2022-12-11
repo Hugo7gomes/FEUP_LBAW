@@ -53,7 +53,7 @@
           <a href = "/profile/{{$collaborator['username']}}" class = "usernameCollaborator nav-item" aria-current="page">{{$collaborator['username']}}</a>
           <div class="dropdown-content">
             <button class = "dropCButton" ><i class ="bi bi-caret-down-fill"></i></button>
-            <div class = 'custom-select coordinatorDropdown'>
+            <div class = 'custom-select coordinatorDropdown' style="display: none;">
                 <button class = "btn btn-outline-secondary removeMember">Remove</button>
                 <button class = "btn btn-outline-secondary upgradeMember">Promote to coordinator</button>
             </div>
@@ -63,5 +63,20 @@
       @endforeach
     </ul>
   </div>
+
+  <div class="container text-center" id="addMember">
+    @if ($project->is_coordinator($user))
+    <form method = "POST" class="addToProject" action="{{ route('project/inviteMember', ['id'=> $project->id]) }}">
+        @csrf
+        <label for="projects">Choose a profile</label>
+        <input type="text" name="username" class="form-group"  id="chooseProfile" placeholder="username">
+        @if($errors->has('userNotFound'))
+                <div class="error">{{ $errors->first('userNotFound') }}</div>
+        @endif
+        <button type="submit" class="btn btn-outline-dark addMemberButton">Add member</button>
+    </form>
+    @endif
+  </div>
+
   </main>
 @endsection

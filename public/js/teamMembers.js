@@ -1,7 +1,20 @@
-let coordinatorButtons = document.getElementsByClassName("dropCButton");
-[].forEach.call(coordinatorButtons, function(btton) {
-    btton.addEventListener('click', openDropDown);
-});
+function addEventListeners() {
+    let coordinatorButtons = document.getElementsByClassName("dropCButton");
+    [].forEach.call(coordinatorButtons, function(btton) {
+        btton.addEventListener('click', openDropDown);
+    });
+
+    let removeMemberButtons = document.getElementsByClassName("removeMember");
+    [].forEach.call(removeMemberButtons, function(btton) {
+        btton.addEventListener('click', removeMemberRequest);
+    });
+
+    let upgradeMemberButtons = document.getElementsByClassName("upgradeMember");
+    [].forEach.call(upgradeMemberButtons, function(btton) {
+        btton.addEventListener('click', upgradeMemberRequest);
+    });
+
+}
 
 
 function openDropDown(event){
@@ -15,10 +28,7 @@ function openDropDown(event){
     }
 }
 
-let removeMemberButtons = document.getElementsByClassName("removeMember");
-[].forEach.call(removeMemberButtons, function(btton) {
-    btton.addEventListener('click', removeMemberRequest);
-});
+
 
 function removeMemberRequest(event){
     let button = event.target;
@@ -36,11 +46,6 @@ function removeMemberHandler(){
     location.reload();
 }
 
-let upgradeMemberButtons = document.getElementsByClassName("upgradeMember");
-[].forEach.call(upgradeMemberButtons, function(btton) {
-    btton.addEventListener('click', upgradeMemberRequest);
-});
-
 function upgradeMemberRequest(event){
     let button = event.target;
     let div = button.parentElement.parentElement.parentElement;
@@ -56,4 +61,6 @@ function upgradeMemberRequest(event){
 function upgradeMemberHandler(){
     location.reload();
 }
+
+addEventListeners();
 

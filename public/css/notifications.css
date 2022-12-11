@@ -1,0 +1,133 @@
+.container-fluid {
+    z-index: 1;
+    position: absolute;
+}
+
+.not {
+    width: 30vw;
+}
+
+.text {
+    font-size: 2rem;
+}
+
+.deleteNot {
+    font-size: 3rem;
+}
+
+.deleteNot:hover {
+    color: red;
+}
+
+li.list-group-item {
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+@media only screen and (max-width: 450px) {
+    .not {
+        width: 90vw;
+    }
+
+}
+
+/* .dropdown {
+    float: right;
+    width: 20%;
+    display: block;
+    padding-right: 10vw;
+    z-index: 3;
+    height: 250px;
+    overflow: auto;
+}
+
+.dropdown-menu {
+    overflow-wrap: inherit;
+    overflow: hidden;
+}
+
+.notifications > span {
+    font-size: 20px;
+}
+
+.notifications {
+    display: block;
+    opacity: 0;
+}
+
+.dropdown {
+    width: 20%;
+}
+
+.dropdown-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
+
+@media only screen and (max-width: 400px) {
+    .dropdown {
+        max-width: max-content;
+        width: 200%;
+        z-index: 3;
+    }
+    
+    .dropdown-menu {
+        overflow-wrap: inherit;
+        overflow: hidden;
+    }
+
+} */
+
+
+/* NOTIFICATIONS */
+
+/* .bi-x {
+    color:black;
+    font-size: 30px;
+}
+
+.bi-x:hover {
+    color:red;
+}
+
+.deleteNot {
+    cursor: pointer;
+    margin-left: 5%;
+}
+
+.notificationButton:hover, .profileButton:hover, .logoutButton:hover {
+    background-color: transparent;
+    opacity: 1;
+    border-radius: 100px;
+    color: black;
+}
+
+.text {
+    max-width: 300px;
+    display: flex;
+    font-size: 20px;
+}
+
+li.list-group-item {
+    font-size: 13px;
+    justify-items: baseline;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.buttonsInvite {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonsInvite > form {
+    margin: 3%;
+} */
+
