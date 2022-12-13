@@ -10,21 +10,30 @@ main {
 }
 
 #createTask {
-    display: none;
+    margin-bottom: 40px;
 }
 
 #createTask > form {
     background-color: white;
-    width: 50%;
+    width: 50vw;
     margin: auto;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
     border-radius: 5px;
 }
 
+#createTaskButton {
+    width: 20vw;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 #boardView {
-    margin-left: -10px;
     padding-bottom: 80px;
+    padding-right: 2vw;
+    margin: auto;
+    max-width: 150vw;
 }
 
 .boardView {
@@ -57,9 +66,9 @@ main {
     padding-right: 12px;
     border-radius: 5px;
     color: black;
-    font-size: 20px;
+    font-size: 22px;
     text-align: left;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .task {
@@ -73,6 +82,19 @@ main {
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
     border-radius: 5px;
     text-align: left;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#tasks:hover {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#page-item {
+    border-radius: 20px;
+    padding-top: 20px;
+    margin: auto;
 }
 
 .editProjectButton {
@@ -89,44 +111,30 @@ main {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-/* .createTask {
-    background-color: white;
-}
-
-#createTask {
-    display: none;
+.form-group, .form_select {
     background-color: white;
     padding: 10px;
-    border-radius: 5px;
-    width: 50%;
-    margin: auto;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-} */
-
-.form-group, .custom-select {
-    background-color: white;
-
 }
 
 .createTaskForm {
-    background-color:white;;
-}
-
-#createTask > form {
-    /* display: none; */
-    background-color: white;
+    background-color:white;
+    width: 100vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 select.optionsPriority, select.optionsUserAssigned {
     font-weight: bold;
     font-size: 14px;
     color: #606c76;
-    width: 40%;}
+    height: 40px;
+    border-radius: 5px;
+}
 
-#taskName, #userEmail {
+#taskName, #userEmail, #projectDetails {
     color: black;
     font-weight: bold;
-    width: 40%;
     font-size: 14px;
 }
 
@@ -137,4 +145,15 @@ select.optionsPriority, select.optionsUserAssigned {
 
 .Button {
     margin-right: 10px;
+}
+
+.w-5 {
+    display: none;
+}
+
+@media only screen and (max-width: 490px) {
+    #createTask > form {
+        width: 85vw;
+    }
+
 }

@@ -78,6 +78,9 @@
     background-color: transparent;
 }
 
+.bla:hover{
+    background-color: white !important;
+}
 
 
 

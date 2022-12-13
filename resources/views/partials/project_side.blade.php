@@ -8,7 +8,7 @@
         <div class="item" id="project">
           <div class="col-xs-12 col-sm-6 col-md-2">
             <div class="projectsPhoto">
-            <a href = "/project/{{$project['id']}}" class="projectSideNav nav-item">{{ strtok($project->name, ' ') }}</a>
+              <a href = "/project/{{$project['id']}}" class="projectSideNav nav-item">{{ strtok($project->name, ' ') }}</a>
             </div>
           </div> 
         </div>

@@ -2,6 +2,7 @@ const projectsDiv = document.getElementById('projectsSearch')
 const tasksDiv = document.getElementById('tasksSearch')
 const tasksTitleSearch = document.getElementById('tasksTitleSearch')
 const projectsTitleSearch = document.getElementById('projectsTitleSearch')
+const searchDiv = document.getElementById('searchDiv')
 
 let searchBar = document.getElementById("searchbar")
 searchBar.addEventListener('keyup', searchRequest);
@@ -21,9 +22,11 @@ function searchHandler(){
     if(searchBar.value == ""){
         projectsTitleSearch.style.display = "none";
         tasksTitleSearch.style.display = "none";
+        searchDiv.style.display = "none";
     }else{
         projectsTitleSearch.style.display = "block";
         tasksTitleSearch.style.display = "block";
+        searchDiv.style.display = "block";
     }
     if((projects.length)>0){
         addProjects(projects)
@@ -47,7 +50,7 @@ function createProject(project){
     let projectSearch = document.createElement('div');
     projectSearch.classList.add('projectSearch');
     projectSearch.innerHTML = `
-        <a href="project/${project.id}"><span>${project.name}</span></a>
+        <div class="col-lg"><a href="project/${project.id}"><span>${project.name}</span></a><div>
     `
 
     return projectSearch;

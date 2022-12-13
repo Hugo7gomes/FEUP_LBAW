@@ -59,7 +59,7 @@ class InviteController extends Controller
             $notification->type = 'Invite';
             $notification->save();
         }
-
+        
         return redirect()->back();
 
     }

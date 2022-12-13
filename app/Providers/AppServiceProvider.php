@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
             URL::forceRootUrl($app_url);
             $schema = explode(':', $app_url)[0];
             URL::forceScheme($schema);
-        }    
+        }
+        
+        
     }
 }

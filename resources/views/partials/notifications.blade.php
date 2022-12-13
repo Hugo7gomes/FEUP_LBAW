@@ -1,6 +1,6 @@
 <link href="{{ asset('css/notifications.css') }}" rel="stylesheet">
 
-<div class="container-fluid" >
+<div class="notificationDiv container-fluid " >
   <!-- Notifications -->
   <ul class="navbar-nav d-flex flex-row me-1" >
     <li class="nav-item me-3 me-lg-0">

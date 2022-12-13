@@ -30,6 +30,10 @@ main {
     margin-bottom: 15px;
 }
 
+label[for=projectNewName] {
+    margin: auto;
+}
+
 #projectName, #projectNewName, #taskNewName {
     margin-top: 30px;
 }
@@ -44,6 +48,11 @@ main {
     align-items: center;
     margin-bottom: 30px;
 }
+
+/* .projectUpdateForm > label {
+    display: block;
+    position:relative;
+} */
 
 
 /* .dropdown {
@@ -150,12 +159,17 @@ hr {
     color: black;
     font-weight: bold;
     font-size: 14px;
-    background-color: white;
+    /* background-color: white; */
     text-align: left;
     padding-top: 10px;
     padding-left: 1%;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
+    /* box-shadow: rgba(0, 0, 0, 0.18) 1px 1px; */
+}
+
+#addMembersTitle {
+    font-size: 40px;
+    font-weight: 600;
 }
 
 .addToProject > label {
@@ -167,10 +181,16 @@ hr {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
     padding: 5px;
+    /* justify-content: space-between; */
+    align-items: space-between;
 }
 
 #addMember {
-    margin-left: -10px;
+    /* margin-left: -10px; */
+    margin: auto;
     padding: 10px;
+    width: 50%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
 }
 

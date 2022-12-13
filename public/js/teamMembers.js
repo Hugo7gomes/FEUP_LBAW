@@ -20,7 +20,9 @@ function addEventListeners() {
 function openDropDown(event){
     let buttonI = event.target;
     let buttonDrop = buttonI.parentElement;
-    let divDrop = buttonDrop.nextElementSibling;
+    let div = buttonDrop.nextElementSibling;
+    let divDrop = div.firstElementChild;
+
     if(divDrop.style.display == "none"){
         divDrop.style.display = "block"
     }else{

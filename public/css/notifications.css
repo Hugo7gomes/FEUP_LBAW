@@ -19,13 +19,24 @@
     color: red;
 }
 
+li.list-group-item:hover {
+    background-color: #EEEE;
+    border-radius: 5px;
+}
+
 li.list-group-item {
 
     display: flex;
     flex-direction: row;
 }
 
-
+.notificationDiv{
+    scroll-behavior: smooth;
+    height:400px;
+    overflow:scroll;
+    overflow-x:hidden;
+    
+}
 
 @media only screen and (max-width: 450px) {
     .not {

@@ -10,6 +10,7 @@ use App\Models\Project;
 use App\Models\User;
 use App\Models\Invite;
 use App\Models\Role;
+use App\Models\Task;
 
 class ProjectController extends Controller
 {
@@ -26,8 +27,15 @@ class ProjectController extends Controller
         $this->authorize('show',$project);
 
 
-        $tasks = $project->tasks; //get tasks
-
+        $tasksToDo = Task::where('id_project', $id)->where('state', 'To Do')->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'tasksToDo'
+        ); 
+        $tasksDoing = Task::where('id_project', $id)->where('state', 'Doing')->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'tasksDoing'
+        );
+        $tasksDone = Task::where('id_project', $id)->where('state', 'Done')->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'tasksDone'
+        );
        
         $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
         
@@ -45,21 +53,6 @@ class ProjectController extends Controller
             array_push($coordinators,$coordinator);
         }
         
-        
-        
-        $tasksToDo = array();
-        $tasksDone = array();
-        $tasksDoing = array();
-
-        foreach($tasks as $task){
-            if($task->state == 'To Do'){
-                array_push($tasksToDo, $task);
-            }elseif($task->state == 'Doing'){
-                array_push($tasksDoing, $task);
-            }elseif($task->state == 'Done'){
-                array_push($tasksDone, $task);
-            }
-        }
 
         $notifications = $user->notifications;
 

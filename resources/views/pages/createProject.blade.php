@@ -18,7 +18,7 @@
         @endif
     </div>
     <div class="form-group">
-        <input type="text" name="details" class="form-control" id="projectDetails" placeholder="Details">
+        <textarea type="text" name="details" class="form-control" id="projectDetails" placeholder="Details" rows = "3"></textarea>
         @if($errors->has('details'))
           <div class="error">{{ $errors->first('details') }}</div>
         @endif
