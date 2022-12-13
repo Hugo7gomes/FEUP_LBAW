@@ -22,10 +22,7 @@
       @include('partials.header')
       @yield('header')
     </header>
-    <section id = 'search'>
-      @include('partials.search')
-      @yield('search')
-    </section>
+ 
     <section id = 'notifications'>
       @include('partials.notifications')
       @yield('notifications')

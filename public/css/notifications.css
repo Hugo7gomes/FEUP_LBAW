@@ -31,16 +31,27 @@ li.list-group-item {
 }
 
 .notificationDiv{
+    position: absolute;
     scroll-behavior: smooth;
     height:400px;
+    right: -17px;
+    width: 40%;
     overflow:scroll;
     overflow-x:hidden;
-    
 }
 
 @media only screen and (max-width: 450px) {
     .not {
         width: 90vw;
+    }
+
+    .notificationDiv{
+        scroll-behavior: smooth;
+        height:400px;
+        right: 0;
+        width: 100%;
+        overflow:scroll;
+        overflow-x:hidden;
     }
 
 }
