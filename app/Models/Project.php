@@ -67,6 +67,20 @@ class Project extends Model
         )->delete();
     }
 
+    private function order(String $priority){
+        switch($priority){
+            case "Low":
+                return 0;
+                break;
+            case "Medium":
+                return 1;
+                break;
+            case "High":
+                return 2;
+                break;
+        }
+    }
+
     public function tasksToDo(){
         return Task::where('id_project', $this->id)->where('state', 'To Do')->simplePaginate(
             $perPage = 10, $columns = ['*'], $pageName = 'tasksToDo'

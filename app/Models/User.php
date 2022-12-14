@@ -45,7 +45,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Project::class,
                                  'role',
                                  'id_user',
-                                 'id_project');
+                                 'id_project')->simplePaginate(
+                                    $perPage = 4, $columns = ['*'], $pageName = 'projects'
+                                );
     }
 
 
