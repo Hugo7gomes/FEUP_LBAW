@@ -13,16 +13,5 @@ use App\Models\Notification;
 
 class RoleController extends Controller
 {
-    public function create(Request $request){
-        /*$role = new Role();
-        $role->role = 'Collaborator';
-        $role->id_user = Auth::user()->id;
-        $role->id_project = $request->get('id_project');
 
-       
-        $role->save();*/
-
-        
-
-    }
 }

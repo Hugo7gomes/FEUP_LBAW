@@ -9,36 +9,18 @@ use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Project;
+use App\Models\Notification;
 
 
 class TaskController extends Controller
 {
 
-
-    public function show(Request $request){
-        //FALTA TESTAR
-        if(!Auth::check()){
-            return redirect("/home");
-        }
-
-        $task = Task::find($request->id);
-        if(is_null($task)){
-            return abort(404);
-        }
-        $user = User::find(Auth::user()->id);
-
-        $this->authorize('show',$task);
-        return response()->json('sim');
-        return view('pages.editTask',['user'=>$user,'task'=>$task]);
-    }
-
     public function create(Request $request){
-
-        //FALTA TESTAR
         if(!Auth::check()){
             return redirect("/home");
         }
         
+        $project = Project::find($request->id);
 
         $validator = Validator::make($request->all(),[
             'name' => 'min:4|string|max:255|required',
@@ -62,7 +44,7 @@ class TaskController extends Controller
         $task->creation_date = now();
         $task->id_user_creator = Auth::user()->id;
         $userToAssign = User::where('name',$request->input('userAssigned'))->first();
-        $project = Project::find($request->id);
+
         if (!isset($userToAssign)){
             $task->id_user_assigned = NULL;
         }else{
@@ -72,11 +54,12 @@ class TaskController extends Controller
             }
             $task->id_user_assigned = User::where('name',$request->input('userAssigned'))->first()->id;   
         }
+        
         $task->priority = $request->input('priority');
         $task->id_project = $request->id;
 
         $user = User::find(Auth::user()->id);
-        $this->authorize('create', $task);
+        $this->authorize('create_update_delete', $task);
         $task->save();
 
         return redirect("/project/$request->id");
@@ -126,7 +109,9 @@ class TaskController extends Controller
         $task->priority = empty($request->get('priority')) ? $task->priority : $request->input('priority');
         $task->id_user_assigned = $id_userToAssing;
         $task->state = empty($request->get('state')) ? $task->state : $request->input('state');
-        //$this->authorize('update', $task);
+        
+        $this->authorize('create_update_delete', $task);
+        
         $task->save();
 
         return redirect("/project/$project->id");
@@ -145,26 +130,12 @@ class TaskController extends Controller
         $project = Project::find($request->get('projectId'));
         $user = User::find(Auth::user()->id);
 
-        $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
-        
-        $collaboratorsIds = $project->collaborators()->get('id_user');
-        
-        $collaborators = array();//collaborators
-        foreach ($collaboratorsIds as $collaboratorId){
-            $collaborator = User::find($collaboratorId['id_user']);
-            array_push($collaborators,$collaborator);
-        }
-
-        $coordinators = array();
-        foreach ($coordinatorsIds as $coordinatorId){
-            $coordinator = User::find($coordinatorId['id_user']);
-            array_push($coordinators,$coordinator);
-        }
+        $this->authorize('create_update_delete', $task);
 
         $userToAssign = User::find($task->id_user_assigned);
 
 
-        return view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'coordinators' => $coordinators, 'collaborators' => $collaborators    ]);
+        return view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project]);
     }
 
     public function delete(Request $request){
@@ -176,7 +147,12 @@ class TaskController extends Controller
             return abort(404);
         }
         $user = User::find(Auth::user()->id);
-        //$this->authorize('delete', $task);
+        
+        $this->authorize('create_update_delete', $task);
+        
+
+        $taskNotification = Notification::where('id_task', $task->id);
+        $taskNotification->delete();
         $task->delete();
         return redirect("/project/$task->id_project");
 

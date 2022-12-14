@@ -21,40 +21,8 @@ class TaskPolicy
         //
     }
 
-    public function show(User $user, Task $task)
-    {
-      // Only a collaborator from project task can see it
-      $project = Project::find($task->id_project); 
-      if(is_null($project)){
-        return false;
-      }else{
-        return $project->is_member($user);
-      }
-    }
 
-    public function create(User $user, Task $task)
-    {
-      // Only a collaborator from project task can see it
-      $project = Project::find($task->id_project); 
-      if(is_null($project)){
-        return false;
-      }else{
-        return $project->is_member($user);
-      }
-    }
-
-    public function delete(User $user, Task $task)
-    {
-      // Only a collaborator from project task can see it
-      $project = Project::find($task->id_project); 
-      if(is_null($project)){
-        return false;
-      }else{
-        return $project->is_member($user);
-      }
-    }
-
-    public function update(User $user, Task $task)
+    public function create_update_delete(User $user, Task $task)
     {
       // Only a collaborator from project task can see it
       $project = Project::find($task->id_project); 

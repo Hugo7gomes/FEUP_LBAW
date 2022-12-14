@@ -3,7 +3,7 @@
 @section('project_side')
 <div class="projectSide d-flex flex-column flex-shrink-0 bg-light">
   <ul id = "leftCol" class=" nav nav-pills nav-flush flex-column mb-auto text-center">
-    @foreach ($projects as $project)
+    @foreach ($user->projects as $project)
     <li class="nav-item mySideProjects">
         <div class="item" id="project">
           <div class="col-xs-12 col-sm-6 col-md-2">

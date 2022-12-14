@@ -14,49 +14,18 @@ use App\Models\Task;
 
 class ProjectController extends Controller
 {
+
+
     public function show(int $id){
-        //policy para ver se ele pode ver este projeto
         if(!Auth::check()){
             return redirect("/home");
         }
-        
         $project = Project::find($id);  
         $user = User::find(Auth::user()->id);
 
-
         $this->authorize('show',$project);
-
-
-        $tasksToDo = Task::where('id_project', $id)->where('state', 'To Do')->simplePaginate(
-            $perPage = 10, $columns = ['*'], $pageName = 'tasksToDo'
-        ); 
-        $tasksDoing = Task::where('id_project', $id)->where('state', 'Doing')->simplePaginate(
-            $perPage = 10, $columns = ['*'], $pageName = 'tasksDoing'
-        );
-        $tasksDone = Task::where('id_project', $id)->where('state', 'Done')->simplePaginate(
-            $perPage = 10, $columns = ['*'], $pageName = 'tasksDone'
-        );
-       
-        $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
-        
-        $collaboratorsIds = $project->collaborators()->get('id_user');
-        
-        $collaborators = array();//collaborators
-        foreach ($collaboratorsIds as $collaboratorId){
-            $collaborator = User::find($collaboratorId['id_user']);
-            array_push($collaborators,$collaborator);
-        }
-
-        $coordinators = array();
-        foreach ($coordinatorsIds as $coordinatorId){
-            $coordinator = User::find($coordinatorId['id_user']);
-            array_push($coordinators,$coordinator);
-        }
-        
-
-        $notifications = $user->notifications;
-
-        return view('pages.project',['notifications' => $notifications,'user' => $user,'tasksToDo' => $tasksToDo, 'tasksDoing' => $tasksDoing, 'tasksDone' => $tasksDone, 'project' => $project, 'coordinators' => $coordinators, 'collaborators' => $collaborators]);
+    
+        return view('pages.project',['user' => $user, 'project' => $project]);
     }
 
 
@@ -106,31 +75,13 @@ class ProjectController extends Controller
         if(!Auth::check()){
             return redirect("/home");
         }
-        //só se for coordenador
+        
         $project = Project::find($request->id);  
-
         $user = User::find(Auth::user()->id);
+
         $this->authorize('showUpdate', $project);
-
-        $coordinatorsIds = $project->coordinators()->get('id_user');//coordinator
         
-        $collaboratorsIds = $project->collaborators()->get('id_user');
-        
-        $collaborators = array();//collaborators
-        foreach ($collaboratorsIds as $collaboratorId){
-            $collaborator = User::find($collaboratorId['id_user']);
-            array_push($collaborators,$collaborator);
-        }
-
-        $coordinators = array();
-        foreach ($coordinatorsIds as $coordinatorId){
-            $coordinator = User::find($coordinatorId['id_user']);
-            array_push($coordinators,$coordinator);
-        }
-
-        $notifications = $user->notifications;
-        
-        return view('pages.editProject',['user' => $user, 'notifications' => $notifications,'project'=>$project, 'coordinators'=>$coordinators,'collaborators'=>$collaborators]); 
+        return view('pages.editProject',['user' => $user,'project'=>$project]); 
     }
 
 
@@ -141,6 +92,7 @@ class ProjectController extends Controller
 
         $project = Project::find($request->get('id'));
         $user = User::find(Auth::user()->id);
+        
         $this->authorize('update', $project);
         
         $validator = Validator::make($request->all(),[
@@ -171,6 +123,7 @@ class ProjectController extends Controller
 
         $project = Project::find($request->get('id'));
         $user = User::find(Auth::user()->id);
+        
         $this->authorize('leave', $project);
 
         $user->leaveProject($project);
@@ -184,25 +137,28 @@ class ProjectController extends Controller
 
     public function removeMember(Request $request){
         $project = Project::find($request->get('id'));
-        $user = User::where('username',$request->get('username'))->first();
+        $userToRemove = User::where('username',$request->get('username'))->first();
+        
         $this->authorize('removeMember', $project);
-        $project->removeMember($user);
-
-        $invite = Invite::where('id_project',$request->get("id"))->where('id_user_receiver',$user->id)->first();
+        
+        $project->removeMember($userToRemove);
+        $invite = Invite::where('id_project',$request->get("id"))->where('id_user_receiver',$userToRemove->id)->first();
         $invite->delete();
 
-        return $user;
+        return $userToRemove;
     }
 
     public function upgradeMember(Request $request){
         $project = Project::find($request->get('id'));
-        $user = User::where('username',$request->get('username'))->first();
-        //$this->authorize('upgradeMember', $project);
+        $userToUpgrade = User::where('username',$request->get('username'))->first();
+        
+        $this->authorize('upgradeMember', $project);
+        
         DB::table('role')
-        ->where([['id_project', $project->id],['id_user',$user->id]]) 
+        ->where([['id_project', $project->id],['id_user',$userToUpgrade->id]]) 
         ->update(array('role' => 'Coordinator')); 
 
-        return Role::where([['id_user',$user->id],['id_project',$project->id]]);
+        return Role::where([['id_user',$userToUpgrade->id],['id_project',$project->id]]);
     } 
 
 }

@@ -39,7 +39,7 @@ class InviteController extends Controller
             $invite->id_user_sender = Auth::user()->id;
             $invite->id_user_receiver = $userReceiver->id;
             $user = User::find(Auth::user()->id);
-            //$this->authorize('create',$invite); 
+            $this->authorize('create',$invite); 
             $invite->save();
         }elseif($invite->state == 'Received'){
             $errors['userNotFound'] = "User already invited";
@@ -71,6 +71,9 @@ class InviteController extends Controller
             return redirect()->back();
         }
 
+        $user = User::find(Auth::user()->id);
+        $this->authorize('accept_reject', $invite);
+
         $invite->state = 'Accepted';
         $invite->save();
 
@@ -96,6 +99,10 @@ class InviteController extends Controller
             //erro nao existe invite para adicionar este colaborador
             return redirect()->back();
         }
+
+        $user = User::find(Auth::user()->id);
+        $this->authorize('accept_reject', $invite);
+
         $invite->state = 'Rejected';
         $invite->save();
         $notification = Notification::where('id_invite',$invite->id)->first();

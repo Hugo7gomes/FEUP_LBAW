@@ -35,7 +35,7 @@
 <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
       @csrf
     <div class="form-group">
-        <input type="text" name="name" class="form-control" id="taskName" placeholder="Name">
+        <input type="text" name="name" class="form-control" id="taskName" placeholder="Name" required>
         @if($errors->has('name'))
           <div class="error">{{ $errors->first('name') }}</div>
         @endif
@@ -49,10 +49,10 @@
     <div class="form_select">
       <select name="userAssigned" class="optionsUserAssigned custom-select">
           <option selected>User assigned</option>
-          @foreach ($coordinators as $coordinator)
+          @foreach ($project->getCoordinators() as $coordinator)
               <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
           @endforeach
-          @foreach ($collaborators as $collaborator)
+          @foreach ($project->getCollaborators() as $collaborator)
               <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
           @endforeach
           <label for="floatingInput">User Assigned</label>
@@ -83,24 +83,24 @@
       <h2>Board View - {{ $project->name }}</h2>
       <div class="col task tasksToDo">
           <h3>To do</h3>
-          @foreach ($tasksToDo as $taskToDo)
+          @foreach ($project->tasksToDo() as $taskToDo)
           <a href = "{{route('task/editShow', ['taskId' => $taskToDo->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskToDo['name']}}</div></a>
           @endforeach
-          <span id="page-item">{{$tasksToDo->links()}}</span>
+          <span id="page-item">{{$project->tasksToDo()->links()}}</span>
       </div>
       <div class="col task tasksDoing">
           <h3>Doing</h3>
-          @foreach ($tasksDoing as $taskDoing)
+          @foreach ($project->tasksDoing() as $taskDoing)
           <a href = "{{route('task/editShow', ['taskId' => $taskDoing->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDoing['name']}}</div></a>
           @endforeach
-          <span>{{$tasksDoing->links()}}</span>
+          <span>{{$project->tasksDoing()->links()}}</span>
       </div>
       <div class="col task tasksDone">
           <h3>Done</h3>
-          @foreach ($tasksDone as $taskDone)
+          @foreach ($project->tasksDone() as $taskDone)
           <a href = "{{route('task/editShow', ['taskId' => $taskDone->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDone['name']}}</div></a>
           @endforeach
-          <span>{{$tasksDone->links()}}</span>
+          <span>{{$project->tasksDone()->links()}}</span>
       </div>
     </div>
 </div>

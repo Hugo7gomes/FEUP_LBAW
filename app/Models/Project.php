@@ -17,9 +17,6 @@ class Project extends Model
     /**
      * Project's tasks
      */
-    public function tasks() {  
-        return $this->hasMany('App\Models\Task', 'id_project');
-    }
 
     public function coordinators(){
         return $this->hasMany('App\Models\Role','id_project')->where('role','Coordinator');
@@ -48,7 +45,7 @@ class Project extends Model
                 'id_user' => $user->id,
                 'id_project' => $this->id
             )
-            );
+        );
     }
 
     public function addCollaborator(User $user){
@@ -69,6 +66,49 @@ class Project extends Model
             )
         )->delete();
     }
+
+    public function tasksToDo(){
+        return Task::where('id_project', $this->id)->where('state', 'To Do')->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'tasksToDo'
+        );
+    }
+
+    public function tasksDoing(){
+        return Task::where('id_project', $this->id )->where('state', 'Doing')->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'tasksDoing'
+        );
+    }
+
+    public function tasksDone(){
+        return Task::where('id_project', $this->id)->where('state', 'Done')->simplePaginate(
+            $perPage = 10, $columns = ['*'], $pageName = 'tasksDone'
+        );
+    }
+
+    public function getCollaborators(){
+        $collaboratorsIds = $this->collaborators()->get('id_user');
+        
+        $collaborators = array();//collaborators
+        foreach ($collaboratorsIds as $collaboratorId){
+            $collaborator = User::find($collaboratorId['id_user']);
+            array_push($collaborators,$collaborator);
+        }
+
+        return $collaborators;
+    }
+
+    public function getCoordinators(){
+        $coordinatorsIds = $this->coordinators()->get('id_user');//coordinator
+       
+     
+       $coordinators = array();
+       foreach ($coordinatorsIds as $coordinatorId){
+           $coordinator = User::find($coordinatorId['id_user']);
+           array_push($coordinators,$coordinator);
+       }
+
+       return $coordinators;
+   }
 
     
 }

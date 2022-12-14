@@ -30,4 +30,8 @@ class InvitePolicy
             return $project->is_coordinator($user);
         }
     }
+
+    public function accept_reject(User $user, Invite $invite){
+        return $user->id == $invite->id_user_receiver;
+    }
 }

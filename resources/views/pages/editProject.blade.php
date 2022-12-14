@@ -53,7 +53,7 @@
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
-    @foreach ($coordinators as $coordinator)
+    @foreach ($project->getCoordinators() as $coordinator)
     <div class="coordinator dropdown">
       <li class=" bla dropdown-item nav-item">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
@@ -61,7 +61,7 @@
       </li>  
     </div>              
     @endforeach
-    @foreach ($collaborators as $collaborator)
+    @foreach ($project->getCollaborators() as $collaborator)
     <div class="collaborator dropdown">
       <li class="bla dropdown-item nav-item">
         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">

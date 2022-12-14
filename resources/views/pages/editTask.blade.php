@@ -25,10 +25,10 @@
     <div class="custom-select">
         <select name="userAssigned" class="newUserAssigned">
             <option selected>{{ $userToAssign->name ?? 'User assigned' }}</option>
-            @foreach ($coordinators as $coordinator)
+            @foreach ($project->getCoordinators() as $coordinator)
                 <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
             @endforeach
-            @foreach ($collaborators as $collaborator)
+            @foreach ($project->getCollaborators() as $collaborator)
                 <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
             @endforeach
             <label for="floatingInput">User Assigned</label>

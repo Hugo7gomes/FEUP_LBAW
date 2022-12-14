@@ -13,29 +13,30 @@ use App\Models\Projects;
 class ProfileController extends Controller
 {
     public function show(){
-
         if(!Auth::check()){
             return redirect("/home");
         }
-
+        
         $user = User::find(Auth::user()->id);
-        $notifications = $user->notifications;
-        $this->authorize('show', $user);
-        return view('pages.profile',['notifications' => $notifications, 'projects' => $user->projects, 'user' => $user, 'photo' => $user->photo]);
-    }
 
+        $this->authorize('show', $user);
+        
+        return view('pages.profile',[ 'user' => $user]);
+    }
+    
     public function showUser($username){
         if(!Auth::check()){
             return redirect("/home");
         }
 
-        $user = User::where('username', $username)->first();
+        $user = User::find(Auth::user()->id);
+        $userProfile = User::where('username', $username)->first();
 
-        if(is_null($user)){
+        if(is_null($userProfile)){
             return abort(404);
         }
         
-        return view('pages.othersProfile',['projects' => $user->projects, 'user' => $user, 'photo' => $user->photo]);
+        return view('pages.othersProfile',[ 'user' => $user, 'userProfile' => $userProfile]);
     }
 
     public function update(Request $request){
@@ -67,8 +68,8 @@ class ProfileController extends Controller
         }   
 
         if(!Auth::check()) return redirect('/');
-        $user = User::find(Auth::user()->id);
-        //$this->authorize('update', $user);
+        
+        $this->authorize('update', $user);
     
         $user->name = empty($request->get('name')) ? $user->name : $request->input('name');
         $user->email = empty($request->get('email')) ? $user->email : $request->input('email');

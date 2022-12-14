@@ -3,8 +3,8 @@
 <div class="notificationDiv container-fluid " >
   <div class="dropdown">
     <ul class="not dropdown-menu dropdown-menu-right" style="display:none; "aria-labelledby="navbarDropdownMenuLink">
-      @if(isset($notifications) && count($notifications)> 0)  
-        @foreach ($notifications as $notification)
+      @if(count($user->notifications)> 0)  
+        @foreach ($user->notifications as $notification)
           <div class="row"> 
             @if($notification->type != 'Invite')
               <div class ="divNot col"  id = {{$notification->id}}>
