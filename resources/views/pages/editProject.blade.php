@@ -28,7 +28,6 @@
     </div>
     <button type="submit" class="btn btn-outline-dark" id="updateProjectButton">Update Project</button>
   </form>
-<!-- </div> -->
 
   <div class="container text-center" id="addMember">
     <span class="fs-4" id="addMembersTitle">Add Member</span>

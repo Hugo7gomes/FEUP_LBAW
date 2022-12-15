@@ -1,21 +1,62 @@
-<link href="{{ asset('css/project_side.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('css/project_side.css') }}" rel="stylesheet"> -->
+
+
 
 @section('project_side')
-<div class="projectSide d-flex flex-column flex-shrink-0 bg-light">
-  <ul id = "leftCol" class=" nav nav-pills nav-flush flex-column mb-auto text-center">
-    @foreach ($user->projects() as $project)
-    <li class="nav-item mySideProjects">
-        <div class="item" id="project">
-          <div class="col-xs-12 col-sm-6 col-md-2">
-            <div class="projectsPhoto">
-              <a href = "/project/{{$project['id']}}" class="projectSideNav nav-item">{{ strtok($project->name, ' ') }}</a>
-            </div>
-          </div> 
+<div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-5 fw-semibold">Collapsible</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+          Home
+        </button>
+        <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Overview</a></li>
+            <li><a href="#" class="link-dark rounded">Updates</a></li>
+            <li><a href="#" class="link-dark rounded">Reports</a></li>
+          </ul>
         </div>
-    </li>
-    @endforeach
-    <span id="page-item">{{$user->projects()->links()}}</span>
-    <a><button class="fa-solid fa-plus addProject" onclick="window.location='{{ route("project/create") }}'"><i class="bi bi-plus"></i></button></a>
-  </ul>
-</div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          Dashboard
+        </button>
+        <div class="collapse" id="dashboard-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">Overview</a></li>
+            <li><a href="#" class="link-dark rounded">Weekly</a></li>
+            <li><a href="#" class="link-dark rounded">Monthly</a></li>
+            <li><a href="#" class="link-dark rounded">Annually</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          Orders
+        </button>
+        <div class="collapse" id="orders-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-dark rounded">New</a></li>
+            <li><a href="#" class="link-dark rounded">Processed</a></li>
+            <li><a href="#" class="link-dark rounded">Shipped</a></li>
+            <li><a href="#" class="link-dark rounded">Returned</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="border-top my-3"></li>
+      <li class="mb-1">
+        <!-- <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+          Account
+        </button> -->
+        <form method="POST">
+          @csrf
+          <button type="submit" class="btn btn-outline-danger Button" id="leaveProjectButton">Leave Project</button>
+        </form>
+      </li>
+    </ul>
+  </div>
 @endsection

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<link href="{{ asset('css/profile.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('css/profile.css') }}" rel="stylesheet"> -->
 
 <section id="projectSide">
 @include('partials.project_side')

@@ -19,9 +19,11 @@ main {
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
     border-radius: 5px;
+    padding-left: 2%;
+    padding-top: 3%;
 }
 
-#projectName, #projectDetails, #projectNewName, #projectNewDetails, #taskNewName, #taskNewDetails {
+#projectName, #projectDetails, #taskNewName, #taskNewDetails {
     color: black;
     font-weight: bold;
     width: 40%;
@@ -30,12 +32,21 @@ main {
     margin-bottom: 15px;
 }
 
-label[for=projectNewName] {
-    margin: auto;
+#projectNewName, #projectNewDetails{
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    /* margin: auto; */
+    margin-bottom: 15px;
+    width: 70%;
 }
 
+/* label[for=projectNewName] {
+    margin: auto;
+} */
+
 #projectName, #projectNewName, #taskNewName {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 #projectDetails, #projectNewDetails, #taskNewDetails {
@@ -80,6 +91,9 @@ label[for=projectNewName] {
 /* .dropdown a:hover {background-color: #ddd;} */
 
 /* .show {display: block;} */
+
+
+
 
 
 /* TEAM MEMBERS NAV */
@@ -156,15 +170,10 @@ hr {
 }
 
 .addToProject {
-    color: black;
-    font-weight: bold;
     font-size: 14px;
-    /* background-color: white; */
     text-align: left;
     padding-top: 10px;
     padding-left: 1%;
-    border-radius: 5px;
-    /* box-shadow: rgba(0, 0, 0, 0.18) 1px 1px; */
 }
 
 #addMembersTitle {
@@ -172,25 +181,18 @@ hr {
     font-weight: 600;
 }
 
-.addToProject > label {
+/* .addToProject > label {
     background-color: white;
     padding-bottom: 10px;
-}
-
-.addMember {
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
-    padding: 5px;
-    /* justify-content: space-between; */
-    align-items: space-between;
-}
+} */
 
 #addMember {
-    /* margin-left: -10px; */
     margin: auto;
+    border-radius: 5px;
     padding: 10px;
     width: 50%;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
+    margin-top: 15px;
 }
 
