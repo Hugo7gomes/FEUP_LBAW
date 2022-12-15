@@ -6,11 +6,6 @@
 
 <!-- <link href="{{ asset('css/profile.css') }}" rel="stylesheet"> -->
 
-<section id="projectSide">
-@include('partials.project_side')
-  @yield('project_side')
-</section>
-
 <main>
 <section style="background-color: #eee;">
   <div class="container py-5">

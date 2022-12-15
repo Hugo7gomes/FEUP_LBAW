@@ -1,0 +1,20 @@
+#offcanvasNavbarDark {
+    padding-left: 1%;
+    width: 70vw;
+}
+
+.editTaskForm {
+    width: 60vw;
+    padding-top: 20px;
+    font-weight: 600;
+    font-size: larger;
+}
+
+.editTaskForm > label {
+    /* padding-top: 20px; */
+}
+
+
+
+
+

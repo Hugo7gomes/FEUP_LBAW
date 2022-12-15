@@ -9,6 +9,11 @@
 
 
 <main>
+<section id="projectSide">
+    @include('partials.project_side')
+    @yield('project_side')
+  </section>
+
 <div id="projectUpdate">
   <form method="POST" action = "{{route('project/edit', ['id' => $project->id])}}" class="editProjectForm"> <!-- METER SLUG CORRETA -->
     @csrf

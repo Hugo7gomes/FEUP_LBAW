@@ -33,7 +33,7 @@ Route::post('profile','ProfileController@update');
 Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina de outro utilizador
 
 //Project
-Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+']);
+Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+'])->name('project');
 Route::get('project/create','ProjectController@showCreate')->name('project/create');
 Route::post('project/create','ProjectController@create');
 Route::get('project/edit','ProjectController@showUpdate')->name('project/editShow');

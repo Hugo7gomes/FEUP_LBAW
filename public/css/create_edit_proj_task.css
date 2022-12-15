@@ -12,7 +12,7 @@ main {
 }
 
 
-#createProject > form, #projectUpdate > form, #taskUpdate > form {
+#createProject > form, #projectUpdate > form {
     background-color: white;
     width: 50%;
     margin: auto;
@@ -23,7 +23,9 @@ main {
     padding-top: 3%;
 }
 
-#projectName, #projectDetails, #taskNewName, #taskNewDetails {
+#projectName, #projectDetails 
+/* #taskNewName, #taskNewDetails */
+ {
     color: black;
     font-weight: bold;
     width: 40%;
@@ -41,11 +43,10 @@ main {
     width: 70%;
 }
 
-/* label[for=projectNewName] {
-    margin: auto;
-} */
 
-#projectName, #projectNewName, #taskNewName {
+#projectName, #projectNewName
+/* #taskNewName  */
+{
     margin-top: 25px;
 }
 
@@ -59,40 +60,6 @@ main {
     align-items: center;
     margin-bottom: 30px;
 }
-
-/* .projectUpdateForm > label {
-    display: block;
-    position:relative;
-} */
-
-
-/* .dropdown {
-    position: relative;
-    display: inline-block;
-  } */
-  
-/* .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-} */
-  
-/* .dropdown-content button {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-} */
-  
-/* .dropdown a:hover {background-color: #ddd;} */
-
-/* .show {display: block;} */
-
-
 
 
 
