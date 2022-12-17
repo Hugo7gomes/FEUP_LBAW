@@ -22,12 +22,13 @@ body {
 }
 
 #headerInfo {
-    margin: auto;
-    margin-top: 4vw;
+    /* margin: auto; */
+    margin-top: 5vw;
+    margin-left: 8vw;
     color: black;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #666666;
+    border-bottom: 1px solid black;
 }
 
 #faq, #about, #contacts, a{
@@ -39,25 +40,8 @@ body {
     padding: 20px;
 }
 
-/* .loginButton {
-    background-color: black;
-    border: solid black;
-    width: 150px;
-    height: 40px;
-    font-size: 15px;
-    border-bottom: 0.1em solid #666666;
-    font-weight: bold;
-    font-size: 15px;
-    border-radius: 10px;
-} */
-
-
-#loginButton {
-    position: relative;
-    
+.botao {
+    margin-top: 5vw;
 }
 
-/* #loginButton:hover {
-    opacity: 1;
-} */
 

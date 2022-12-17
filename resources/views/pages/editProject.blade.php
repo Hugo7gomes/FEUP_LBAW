@@ -5,6 +5,7 @@
 @section('content')
 
 <link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
+
 <script src={{ asset('js/teamMembers.js') }} defer></script>
 
 <main>
@@ -23,7 +24,7 @@
           <div class="error">{{ $errors->first('name') }}</div>
         @endif
       </div>
-      <div class="form-group">
+      <div class="projectUpdateForm form-group">
         <label for="projectNewDetails">Description</label>
         <textarea name="details" class="form-control" rows = "3" id="projectNewDetails" placeholder="{{ $project->details }}"></textarea>
         @if($errors->has('details'))

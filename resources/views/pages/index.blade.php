@@ -12,7 +12,7 @@
       <div id="about"><a href="{{ route('about') }}">About</a></div>
       <div id="contacts"><a href="{{ route('contacts') }}">Contacts</a></div>
     </div>
-    <div class="col-md-3 text-end">
+    <div class="botao col-md-3 text-end">
       <button class="btn btn-outline-dark btn-lg"><a id="loginButton" href="{{ route('login') }}">LOGIN</a></button>
     </div>
   </header>

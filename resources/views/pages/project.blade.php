@@ -5,7 +5,9 @@
 @section('content')
 
 <link href="{{ asset('css/project.css') }}" rel="stylesheet">
+<link href="{{ asset('css/edit_task_side_nav.css') }}" rel="stylesheet">
 <script src={{ asset('js/favorite.js') }} defer></script>
+<script src={{ asset('js/task.js') }} defer></script>
 
 <main>
   <section id="projectSide">
@@ -32,7 +34,9 @@
             </button>
           </div>
           @foreach ($project->tasksToDo() as $taskToDo)
-            <a class = "taskLink" href = "{{route('task/editShow', ['taskId' => $taskToDo->id, 'projectId' => $project->id])}}" ><div id="tasks">{{ $taskToDo['name']}}</div></a>
+            <a class = "taskLink" >
+              <div id="tasks">{{ $taskToDo['name']}}</div>
+            </a>
           @endforeach
           <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -110,6 +114,8 @@
       </div>
     </div>
   </div> 
+  <div class = "offcanvasDiv">
+  </div>
 </main>
 @endsection
 

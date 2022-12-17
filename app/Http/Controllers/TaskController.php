@@ -135,7 +135,7 @@ class TaskController extends Controller
         $userToAssign = User::find($task->id_user_assigned);
 
 
-        return view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project]);
+        return view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render();
     }
 
     public function delete(Request $request){
