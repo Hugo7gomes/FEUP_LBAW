@@ -1,6 +1,8 @@
 .navbar-fixed-left {
-  position: fixed;
-  left: 0;
+  position: sticky;
+  left: 0 !important;
+  top: var(--offset);
   width: 240px;
-  z-index: 600;
-  }
+  height: 100%;
+  z-index: 3;
+}

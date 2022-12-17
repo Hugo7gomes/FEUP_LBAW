@@ -41,16 +41,17 @@ class User extends Authenticatable
     /**
      * The projects this user participates in.
      */
-     public function projects() {  
+    public function projects() {  
         return $this->belongsToMany(Project::class,
                                  'role',
                                  'id_user',
-                                 'id_project')->simplePaginate(
-                                    $perPage = 4, $columns = ['*'], $pageName = 'projects'
-                                );
+                                 'id_project')->orderBy('id', 'ASC');
     }
 
-
+    public function favoriteProjects() {
+        return $this->hasMany('App\Models\Favorite','id_user');
+    }
+    
     /**
      * The user's photo
      */

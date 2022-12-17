@@ -9,18 +9,19 @@
 
 <main>
   <section id="projectSide">
-    @include('partials.project_side')
-    @yield('project_side')
-  </section>
-
+      @include('partials.project_side')
+      @yield('project_side')
+  </section> 
   <div class="container text-center boardView" id="boardView">
       <div class="row">
-        <h2>Board View - {{ $project->name }}</h2>
-        @if($project->is_favorite($user))
-          <button type = "submit" class="btn btn-outline-danger favoriteButton Button">REMOVE FAVORITE</button> 
-        @else
-        <button type = "submit" class="btn btn-outline-dark favoriteButton Button">FAVORITE</button>
-        @endif
+        <div class="boardViewHeader">
+          <h2>Board View - {{ $project->name }}</h2>
+          @if($project->is_favorite($user))
+            <button type = "submit" class="btn btn-outline-danger btn-sm favoriteButton Button">REMOVE FAVORITE</button> 
+          @else
+          <button type = "submit" class="btn btn-outline-dark btn-sm favoriteButton Button">FAVORITE</button>
+          @endif
+        </div>
         <div class="col task tasksToDo">
           <div class="tasksToDoHeader">
             <h3>To do</h3>
@@ -31,21 +32,25 @@
             </button>
           </div>
           @foreach ($project->tasksToDo() as $taskToDo)
-          <a href = "{{route('task/editShow', ['taskId' => $taskToDo->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskToDo['name']}}</div></a>
+            <a class = "taskLink" href = "{{route('task/editShow', ['taskId' => $taskToDo->id, 'projectId' => $project->id])}}" ><div id="tasks">{{ $taskToDo['name']}}</div></a>
           @endforeach
-          <span id="page-item">{{$project->tasksToDo()->links()}}</span>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <span class="page-item">{{$project->tasksToDo()->links()}}</span>
+            </ul>
+          </nav>
         </div>
         <div class="col task tasksDoing">
             <h3>Doing</h3>
             @foreach ($project->tasksDoing() as $taskDoing)
-            <a href = "{{route('task/editShow', ['taskId' => $taskDoing->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDoing['name']}}</div></a>
+              <a class = "taskLink" href = "{{route('task/editShow', ['taskId' => $taskDoing->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDoing['name']}}</div></a>
             @endforeach
             <span>{{$project->tasksDoing()->links()}}</span>
         </div>
         <div class="col task tasksDone">
             <h3>Done</h3>
             @foreach ($project->tasksDone() as $taskDone)
-            <a href = "{{route('task/editShow', ['taskId' => $taskDone->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDone['name']}}</div></a>
+              <a class = "taskLink" href = "{{route('task/editShow', ['taskId' => $taskDone->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDone['name']}}</div></a>
             @endforeach
             <span>{{$project->tasksDone()->links()}}</span>
         </div>
@@ -101,9 +106,6 @@
               </div>
               <button type="submit" class="btn btn-outline-dark" id="createTaskButton">Create task</button>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

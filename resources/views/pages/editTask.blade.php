@@ -143,6 +143,6 @@
         </li>
      </ul>
     </div>
-    </div>
+</div>
 
       @endsection

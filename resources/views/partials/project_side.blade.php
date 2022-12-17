@@ -11,25 +11,45 @@
           New
         </a>
         <div class="collapse show" id="favoriteProjects-collapse">
-          <ul class="nav nav-pills btn-toggle-nav list-unstyled fw-normal pb-1 large">
-            <li class = "nav-item"><a href="#" class="nav-link link-dark rounded font-weight-bold">Project1</a></li>
+          <ul class=" nav-pills btn-toggle-nav list-unstyled fw-normal pb-1 large">
+            @foreach ($user->favoriteProjects as $projectFavorite)
+              <li><a href="{{url('project/'.$projectFavorite->id_project)}}" class="nav-link link-dark rounded font-weight-bold">{{$projectFavorite->id_project}}</a></li>
+            @endforeach
           </ul>
         </div>
       </li>
       <li class="border-top my-3"></li>
-      @if(Request::is('project/edit*'))
+      @if(Request::is('*/edit'))
       <ul class = "nav nav-pills flex-sm-column mb-auto ">
           <li class = "nav-item">
             <a href = "{{url('project/'.$project->id)}}" class="nav-link link-dark" id="boardProjectButton">Board</a>
           </li>
           <li class = "nav-item">
-            <a href = "{{route('project/editShow', ['id' => $project->id])}}" class="nav-link active" id="teamMembersProjectButton">General Settings</a>
+            <a href = "{{route('project.editShow', ['project_id' => $project->id])}}" class="nav-link active" id="teamMembersProjectButton">General Settings</a>
           </li>
           <li class = "nav-item">
-            <a  href = "/" class="nav-link link-dark " id="teamMembersProjectButton">Project Members</a>
+            <a  href = "{{route('project.members', ['project_id' => $project->id])}}" class="nav-link link-dark " id="teamMembersProjectButton">Project Members</a>
           </li>
           <li class = "nav-item">
-            <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}" >
+            <form method="POST" action = "{{ route('project.leave', ['project_id' => $project->id]) }}" >
+              @csrf
+              <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="leaveProjectButton">Leave Project</button>
+            </form>
+          <li>
+      </ul>
+      @elseif (Request::is('*/members'))
+      <ul class = "nav nav-pills flex-sm-column mb-auto ">
+          <li class = "nav-item">
+            <a href = "{{url('project/'.$project->id)}}" class="nav-link link-dark" id="boardProjectButton">Board</a>
+          </li>
+          <li class = "nav-item">
+            <a href = "{{route('project.editShow', ['project_id' => $project->id])}}" class="nav-link link-dark" id="teamMembersProjectButton">General Settings</a>
+          </li>
+          <li class = "nav-item">
+            <a  href = "{{route('project.members', ['project_id' => $project->id])}}" class="nav-link active " id="teamMembersProjectButton">Project Members</a>
+          </li>
+          <li class = "nav-item">
+            <form method="POST" action = "{{ route('project.leave', ['project_id' => $project->id]) }}" >
               @csrf
               <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="leaveProjectButton">Leave Project</button>
             </form>
@@ -41,13 +61,13 @@
             <a href = "{{url('project/'.$project->id)}}" class="nav-link active" id="boardProjectButton">Board</a>
           </li>
           <li class = "nav-item">
-            <a href = "{{route('project/editShow', ['id' => $project->id])}}" class="nav-link link-dark" id="teamMembersProjectButton">General Settings</a>
+          <a href = "{{route('project.editShow', ['project_id' => $project->id])}}" class="nav-link link-dark" id="teamMembersProjectButton">General Settings</a>
           </li>
           <li class = "nav-item">
-            <a  href = "/" class="nav-link link-dark " id="teamMembersProjectButton">Project Members</a>
+            <a  href = "{{route('project.members', ['project_id' => $project->id])}}" class="nav-link link-dark " id="teamMembersProjectButton">Project Members</a>
           </li>
           <li class = "nav-item">
-            <form method="POST" action = "{{ route('project/leave', ['id'=>$project->id]) }}" >
+            <form method="POST" action = "{{ route('project.leave', ['project_id' => $project->id]) }}" >
               @csrf
               <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="leaveProjectButton">Leave Project</button>
             </form>

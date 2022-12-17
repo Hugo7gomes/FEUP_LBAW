@@ -2,9 +2,8 @@ header{
     height: 90px;
     display: flex;
     justify-content: space-around;
-    position: relative;
-    align-items: baseline;
-    align-content: center;
+    /* position: relative; */
+    align-items: center;
 }
 
 body{
@@ -12,34 +11,19 @@ body{
 }
 
 .logo {
-    width: 240px;
-    justify-self: start;
+    width: 270px;
+    margin-top: 4vw;
 }
 
-#background {
-    background-color: rgba(0, 0, 0, 0.6);
-    /* height: min-content; */
+body {
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
 }
-
-main{
-    background-image: url('../docs/images/background.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background-size: cover; */
-    background-size: auto;
-}
-
-/* #logo{
-    width: 20vw;
-    font-family: "Bodoni MT";
-    font-size: 8em;
-} */
 
 #headerInfo {
+    margin: auto;
+    margin-top: 4vw;
     color: black;
     display: flex;
     flex-direction: row;
@@ -55,27 +39,25 @@ main{
     padding: 20px;
 }
 
-.loginButton, .profileButton {
+/* .loginButton {
     background-color: black;
     border: solid black;
     width: 150px;
     height: 40px;
     font-size: 15px;
     border-bottom: 0.1em solid #666666;
-    margin: 1em 0;
     font-weight: bold;
     font-size: 15px;
     border-radius: 10px;
+} */
+
+
+#loginButton {
+    position: relative;
+    
 }
 
-
-#loginButton, #profileButton {
-    color: white;
-    cursor: pointer;
-    opacity: 0.9;
-}
-
-#loginButton:hover {
+/* #loginButton:hover {
     opacity: 1;
-}
+} */
 

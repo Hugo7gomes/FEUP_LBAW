@@ -33,12 +33,14 @@ Route::post('profile','ProfileController@update');
 Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina de outro utilizador
 
 //Project
-Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+'])->name('project');
 Route::get('project/create','ProjectController@showCreate')->name('project/create');
 Route::post('project/create','ProjectController@create');
-Route::get('project/edit','ProjectController@showUpdate')->name('project/editShow');
-Route::post('project/edit','ProjectController@update')->name('project/edit');
-Route::post('project/leave','ProjectController@leave')->name('project/leave');
+Route::get('project/{project_id}/members','ProjectController@showMembers')->name('project.members');
+Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+'])->name('project');
+Route::get('project/{project_id}/edit','ProjectController@showUpdate')->name('project.editShow');
+Route::post('project/{project_id}/edit','ProjectController@update')->name('project.edit');
+
+Route::post('project/{project_id}/leave','ProjectController@leave')->name('project.leave');
 Route::post('project/inviteMember', 'InviteController@create')->name('project/inviteMember');
 Route::post('project/acceptInvite}', 'InviteController@accept')->name('project/acceptInvite');
 Route::post('project/rejectInvite}', 'InviteController@reject')->name('project/rejectInvite');

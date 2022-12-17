@@ -32,7 +32,8 @@ main {
 #boardView {
     padding-bottom: 80px;
     padding-right: 2vw;
-    margin: auto;
+    margin-top: 2vw;
+    margin-left: 20vw;
     max-width: 150vw;
     z-index: 0;
 }
@@ -43,12 +44,17 @@ main {
     align-content: space-between; 
 }
 
-.row > h2 {
+.boardViewHeader {
+    border-bottom: 4px solid black;
+}
+
+
+.boardViewHeader > h2 {
     text-align: left;
     color: black;
     font-weight: bold;
     font-size: 27px;
-    border-bottom: 4px solid black;
+    /* border-bottom: 4px solid black; */
     height: 50px;
 }
 

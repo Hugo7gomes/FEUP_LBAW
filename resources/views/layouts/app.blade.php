@@ -29,5 +29,5 @@
     @include('partials.footer')
     @yield('footer') 
   </footer>
-  </html>
+</html>
 

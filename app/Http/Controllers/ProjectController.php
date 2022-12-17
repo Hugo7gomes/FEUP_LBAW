@@ -71,12 +71,12 @@ class ProjectController extends Controller
         return view('pages.createProject', ['user' => $user]);
     }
 
-    public function showUpdate(Request $request){
+    public function showUpdate(int $project_id){
         if(!Auth::check()){
             return redirect("/home");
         }
         
-        $project = Project::find($request->id);  
+        $project = Project::find($project_id);  
         $user = User::find(Auth::user()->id);
 
         $this->authorize('showUpdate', $project);
@@ -85,12 +85,12 @@ class ProjectController extends Controller
     }
 
 
-    public function update(Request $request){
+    public function update($project_id, Request $request){
         if(!Auth::check()){
             return redirect("/home");
         }
 
-        $project = Project::find($request->get('id'));
+        $project = Project::find($project_id);
         $user = User::find(Auth::user()->id);
         
         $this->authorize('update', $project);
@@ -112,27 +112,40 @@ class ProjectController extends Controller
         $project->details = empty($request->get('details')) ? $project->details : $request->input('details');
         $project->save();
 
-        return redirect("/project/$project->id");
+        return redirect("/project/$project->id/edit");
 
     }
 
-    public function leave(Request $request){
+    public function leave($project_id){
         if(!Auth::check()){
             return redirect("/home");
         }
 
-        $project = Project::find($request->get('id'));
+        $project = Project::find($project_id);
         $user = User::find(Auth::user()->id);
         
         $this->authorize('leave', $project);
 
         $user->leaveProject($project);
-        $invite = Invite::where('id_user_receiver',Auth::user()->id)->where('id_project',$request->get('id'))->first();
+        $invite = Invite::where('id_user_receiver',Auth::user()->id)->where('id_project',$project_id)->first();
         $invite->state = 'Rejected';
         $invite->save();
 
         return redirect("/profile");
 
+    }
+
+  
+    public function showMembers(int $project_id){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+        $project = Project::find($project_id);  
+        $user = User::find(Auth::user()->id);
+
+        $this->authorize('show',$project);
+    
+        return view('pages.teamMembers',['user' => $user, 'project' => $project]);
     }
 
     public function removeMember(Request $request){
