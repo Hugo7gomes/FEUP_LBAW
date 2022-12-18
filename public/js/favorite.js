@@ -28,6 +28,7 @@ function projectFavoriteHandler() {
     favoriteButton.innerText = 'REMOVE FAVORITE';
     favoriteButton.classList = "btn btn-outline-danger favoriteButton Button"
   }
+
 }
 
 function projectRemoveFavoriteHandler() {

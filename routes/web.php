@@ -48,8 +48,9 @@ Route::post('project/rejectInvite}', 'InviteController@reject')->name('project/r
 Route::post('api/project/{project_id}/favorite/create', 'FavoriteController@create');
 Route::post('api/project/{project_id}/favorite/delete', 'FavoriteController@delete');
 Route::post('api/project/removeMember','ProjectController@removeMember');
-Route::post('api/notification/delete', 'NotificationController@delete');
 Route::post('api/project/upgradeMember','ProjectController@upgradeMember');
+Route::post('api/notification/delete', 'NotificationController@delete');
+
 
 
 //Task

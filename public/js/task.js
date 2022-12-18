@@ -6,8 +6,7 @@ const divOffcanvas = document.getElementsByClassName('offcanvasDiv')[0];
 
 function openSideTask(event){
     let taskId = event.target.parentElement.id;
-    let url = window.location.href;
-    let projectId = url.substring(url.lastIndexOf('/') + 1);
+    let projectId = getProjectIdFromUrl();
     sendAjaxRequest('get', '../api/project/'+projectId+'/task/'+ taskId, {} ,showTaskHandler);
 }
 

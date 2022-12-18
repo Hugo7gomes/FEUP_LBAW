@@ -5,12 +5,19 @@ function encodeForAjax(data) {
     }).join('&');
   }
   
-  function sendAjaxRequest(method, url, data, handler) {
-    let request = new XMLHttpRequest();
-  
-    request.open(method, url, true);
-    request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.addEventListener('load', handler);
-    request.send(encodeForAjax(data));
-  }
+function sendAjaxRequest(method, url, data, handler) {
+  let request = new XMLHttpRequest();
+
+  request.open(method, url, true);
+  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.addEventListener('load', handler);
+  request.send(encodeForAjax(data));
+}
+
+function getProjectIdFromUrl(){
+  let url = window.location.href;
+  url = url.split('?');
+  let projectId = url[0].substring(url[0].lastIndexOf('/') + 1);
+  return projectId;
+}

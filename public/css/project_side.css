@@ -1,5 +1,6 @@
 .navbar-fixed-left {
   position: sticky;
+  margin-right: 0%;
   left: 0 !important;
   top: var(--offset);
   width: 240px;

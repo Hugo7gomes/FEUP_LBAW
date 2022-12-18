@@ -37,8 +37,7 @@ function removeMemberRequest(event){
     let div = button.parentElement.parentElement.parentElement;
     let img = div.firstElementChild;
     let username = img.nextElementSibling.innerText;
-    let url = window.location.href;
-    let id = url.substring(url.lastIndexOf('=') + 1);
+    let id = getProjectIdFromUrl();
 
 
     sendAjaxRequest('post', '/api/project/removeMember', {id:id, username:username} , removeMemberHandler);
