@@ -34,7 +34,7 @@
             </button>
           </div>
           @foreach ($project->tasksToDo() as $taskToDo)
-            <a class = "taskLink" >
+            <a id = {{$taskToDo->id}} class = "taskLink" >
               <div id="tasks">{{ $taskToDo['name']}}</div>
             </a>
           @endforeach
@@ -47,14 +47,18 @@
         <div class="col task tasksDoing">
             <h3>Doing</h3>
             @foreach ($project->tasksDoing() as $taskDoing)
-              <a class = "taskLink" href = "{{route('task/editShow', ['taskId' => $taskDoing->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDoing['name']}}</div></a>
+              <a id = {{$taskDoing->id}} class = "taskLink" >
+                <div id="tasks">{{ $taskDoing['name']}}</div>
+              </a>
             @endforeach
             <span>{{$project->tasksDoing()->links()}}</span>
         </div>
         <div class="col task tasksDone">
             <h3>Done</h3>
             @foreach ($project->tasksDone() as $taskDone)
-              <a class = "taskLink" href = "{{route('task/editShow', ['taskId' => $taskDone->id, 'projectId' => $project->id])}}"><div id="tasks">{{ $taskDone['name']}}</div></a>
+              <a id = {{$taskDone->id}} class = "taskLink" >
+                <div id="tasks">{{ $taskDone['name']}}</div>
+              </a>
             @endforeach
             <span>{{$project->tasksDone()->links()}}</span>
         </div>

@@ -2,7 +2,7 @@
 <div class="offcanvas offcanvas-end text-bg-dark show" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel" aria-modal="true" role="dialog">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">{{ $project->name }}</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white closeButton" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
     <h3 class="offcanvas-title" id="offcanvasNavbarDarkLabelTask">{{ $task->name }}</h3>

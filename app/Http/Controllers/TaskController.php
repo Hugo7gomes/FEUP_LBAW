@@ -118,16 +118,16 @@ class TaskController extends Controller
     }
 
 
-    public function showUpdate(Request $request){
+    public function showUpdate($project_id, $task_id){
         if(!Auth::check()){
             return redirect("/home");
         }
 
-        $task = Task::find($request->get('taskId'));
+        $task = Task::find($task_id);
         if(is_null($task)){
             return abort(404);
         }
-        $project = Project::find($request->get('projectId'));
+        $project = Project::find($project_id);
         $user = User::find(Auth::user()->id);
 
         $this->authorize('create_update_delete', $task);
@@ -135,7 +135,7 @@ class TaskController extends Controller
         $userToAssign = User::find($task->id_user_assigned);
 
 
-        return view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render();
+        return json_encode(view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render());
     }
 
     public function delete(Request $request){

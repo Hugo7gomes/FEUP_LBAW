@@ -35,8 +35,8 @@ Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina d
 //Project
 Route::get('project/create','ProjectController@showCreate')->name('project/create');
 Route::post('project/create','ProjectController@create');
-Route::get('project/{project_id}/members','ProjectController@showMembers')->name('project.members');
 Route::get('project/{project_id}','ProjectController@show')->where(['project_id'=>'[0-9]+'])->name('project');
+Route::get('project/{project_id}/members','ProjectController@showMembers')->name('project.members');
 Route::get('project/{project_id}/edit','ProjectController@showUpdate')->name('project.editShow');
 Route::post('project/{project_id}/edit','ProjectController@update')->name('project.edit');
 
@@ -54,7 +54,7 @@ Route::post('api/project/upgradeMember','ProjectController@upgradeMember');
 
 //Task
 Route::post('task/create','TaskController@create')->name('task/create');
-Route::get('task/edit','TaskController@showUpdate')->name('task/editShow');
+Route::get('api/project/{project_id}/task/{task_id}','TaskController@showUpdate');
 Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');
 
