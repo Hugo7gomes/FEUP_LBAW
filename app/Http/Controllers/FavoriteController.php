@@ -12,38 +12,42 @@ use App\Models\Project;
 
 class FavoriteController extends Controller
 {
-    public function create(Request $request){
+    public function create(int $project_id){
         if(!Auth::check()){
             return redirect("/home");
         }
-        $project = Project::find($request->get('id'))->first();
-        if(!isset($project) || !$project->is_member(User::find(Auth::user()->id)->first())){
-            return redirect('/project/{$request->get("id")}');
+        $project = Project::find($project_id);
+        $user = User::find(Auth::user()->id);
+        if(!isset($project) || !$project->is_member($user)){
+            return json_encode(null);
         }
         DB::table('favorite_proj')->insert(
             array(
                 'id_user' => Auth::user()->id,
-                'id_project' => $request->get('id'),
+                'id_project' => $project_id,
             )
         );
-
+        return json_encode($project);
     }
 
-    public function delete(Request $request){
+    public function delete(int $project_id){
         if(!Auth::check()){
             return redirect("/home");
         }
-        $project = Project::find($request->get('id'))->first();
-        if(!isset($project) || !$project->is_member(User::find(Auth::user()->id)->first())){
-            return redirect('/project/{$request->get("id")}');
+        $project = Project::find($project_id);
+        $user = User::find(Auth::user()->id);
+        if(!isset($project) || !$project->is_member($user)){
+            return json_encode(null);
         }
 
         DB::table('favorite_proj')->where(
             array(
                 'id_user' => Auth::user()->id,
-                'id_project' => $request->get('id'),
+                'id_project' => $project_id,
             )
         )->delete();
+
+        return json_encode($project);
         
     }
 }

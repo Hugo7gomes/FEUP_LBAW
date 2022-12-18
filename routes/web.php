@@ -45,8 +45,8 @@ Route::post('project/inviteMember', 'InviteController@create')->name('project/in
 Route::post('project/acceptInvite}', 'InviteController@accept')->name('project/acceptInvite');
 Route::post('project/rejectInvite}', 'InviteController@reject')->name('project/rejectInvite');
 
-Route::post('api/project/favorite/create', 'FavoriteController@create');
-Route::post('api/project/favorite/delete', 'FavoriteController@delete');
+Route::post('api/project/{project_id}/favorite/create', 'FavoriteController@create');
+Route::post('api/project/{project_id}/favorite/delete', 'FavoriteController@delete');
 Route::post('api/project/removeMember','ProjectController@removeMember');
 Route::post('api/notification/delete', 'NotificationController@delete');
 Route::post('api/project/upgradeMember','ProjectController@upgradeMember');

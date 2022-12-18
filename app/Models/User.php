@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -49,7 +49,10 @@ class User extends Authenticatable
     }
 
     public function favoriteProjects() {
-        return $this->hasMany('App\Models\Favorite','id_user');
+        return DB::table('project')
+        ->join('favorite_proj', 'favorite_proj.id_project', '=', 'project.id')
+        ->select('project.*', 'favorite_proj.*')
+        ->where('favorite_proj.id_user', $this->id)->get();
     }
     
     /**

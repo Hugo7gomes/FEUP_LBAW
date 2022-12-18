@@ -11,9 +11,9 @@
           New
         </a>
         <div class="collapse show" id="favoriteProjects-collapse">
-          <ul class=" nav-pills btn-toggle-nav list-unstyled fw-normal pb-1 large">
-            @foreach ($user->favoriteProjects as $projectFavorite)
-              <li><a href="{{url('project/'.$projectFavorite->id_project)}}" class="nav-link link-dark rounded font-weight-bold">{{$projectFavorite->id_project}}</a></li>
+          <ul class=" favoriteProjects nav-pills btn-toggle-nav list-unstyled fw-normal pb-1 large">
+            @foreach ($user->favoriteProjects() as $projectFavorite)
+              <li id = "proj{{$projectFavorite->id}}" ><a href="{{url('project/'.$projectFavorite->id)}}" class="nav-link link-dark rounded font-weight-bold">{{$projectFavorite->name}}</a></li>
             @endforeach
           </ul>
         </div>

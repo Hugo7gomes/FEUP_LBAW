@@ -1,0 +1,24 @@
+.modal-title {
+    font-weight: 600;
+}
+
+.modal-body > form {
+    margin: auto;
+}
+
+#projectMembers {
+    background-color: white;
+    padding: 1%;
+}
+
+.members {
+    margin-top: 1px solid black;
+    margin: auto;
+    width: 70vw;
+    align-items: start;
+}
+
+.members > li {
+    padding: 1%;
+    left: 0;
+}

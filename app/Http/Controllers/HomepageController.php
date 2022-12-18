@@ -11,8 +11,8 @@ class HomepageController extends Controller
     public function show(){
         if(Auth::check()){
             $user = User::find(Auth::user()->id);
-            if(!($user->favoriteProjects->isEmpty())){
-                return redirect('/project/'.$user->favoriteProjects()->first()->id_project);
+            if(!($user->favoriteProjects()->isEmpty())){
+                return redirect('/project/'.$user->favoriteProjects()->first()->id);
             }
             if(!($user->projects->isEmpty())){
                 return redirect('/project/'.$user->projects()->first()->id);
