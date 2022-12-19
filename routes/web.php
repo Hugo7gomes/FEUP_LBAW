@@ -58,8 +58,9 @@ Route::post('task/create','TaskController@create')->name('task/create');
 Route::get('api/project/{project_id}/task/{task_id}','TaskController@showUpdate');
 Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');
-
+Route::post('task/{task_id}/comment/create', 'TaskController@addComment')->name('comment.create');
 //Search
-Route::post('api/search', 'SearchController@search');
+Route::get('search','SearchController@Show')->name('search');
+Route::get('api/search', 'SearchController@search');
 
 

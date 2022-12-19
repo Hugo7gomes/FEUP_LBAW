@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Notification;
+use App\Models\Comment;
 
 
 class TaskController extends Controller
@@ -156,5 +157,17 @@ class TaskController extends Controller
         $task->delete();
         return redirect("/project/$task->id_project");
 
+    }
+
+    public function addComment(Request $request, $task_id){
+        $comment = new Comment();
+        $comment->comment = $request->input('comment');
+        $comment->date = now();
+        $comment->id_task = $task_id;
+        $comment->id_user = Auth::user()->id;
+        $user = User::find(Auth::user()->id);
+        //$this->authorize('create_update_delete', $task);
+        $comment->save();
+        return redirect("project/1");
     }
 }

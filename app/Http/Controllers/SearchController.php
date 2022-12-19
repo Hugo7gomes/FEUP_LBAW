@@ -10,6 +10,11 @@ use App\Models\Task;
 
 class SearchController extends Controller
 {
+    public function show(){
+        $user = User::find(Auth::user()->id);
+        return view('pages.search',['user'=> $user]);
+    }
+
     public function search(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -38,11 +43,9 @@ class SearchController extends Controller
             ->limit(5)->get();*/
         }
 
-       
-        $result['projects'] = $projects;//meter uma view a mostrar os projects
-        $result['tasks'] = $tasks;
-        return $result;
-        //$result['tasks'] = $tasks;
+        
+        return response()->json($projects);//Problema a retornar view 
+        
     }
       
 }

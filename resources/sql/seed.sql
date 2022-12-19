@@ -510,21 +510,7 @@ CREATE TRIGGER task_assign_update_notification
 
 -------------------------------------------------------------------------------------
 --TRIGGER15
-CREATE FUNCTION assign_task() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    IF New.id_user_assigned NOT NULL AND NOT EXISTS (SELECT * FROM role WHERE NEW.id_user_assigned = id_user AND NEW.id_project = id_project) THEN
-        RAISE EXCEPTION 'User assigned not in the project';
-    END IF;
-    RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
 
-CREATE TRIGGER assign_task
-        AFTER UPDATE OF id_user_assigned ON task
-        FOR EACH ROW
-        EXECUTE PROCEDURE assign_task();
 
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaoaraujo@gmail.com', 'joaoaraujo76', 'João Araújo', '1234', '934212314');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('liavieira@gmail.com', 'liavieira02', 'Lia Vieira', '1234', '934772314');

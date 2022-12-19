@@ -10,6 +10,7 @@ class Comment extends Model
     use HasFactory;
 
     protected $table = 'comment';
+    public $timestamps  = false;
 
     /**
      * Get comment owner

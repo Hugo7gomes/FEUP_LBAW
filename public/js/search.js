@@ -1,7 +1,4 @@
 const projectsDiv = document.getElementById('projectsSearch')
-const tasksDiv = document.getElementById('tasksSearch')
-const tasksTitleSearch = document.getElementById('tasksTitleSearch')
-const projectsTitleSearch = document.getElementById('projectsTitleSearch')
 const searchDiv = document.getElementById('searchDiv')
 
 let searchBar = document.getElementById("searchbar")
@@ -10,30 +7,13 @@ searchBar.addEventListener('keyup', searchRequest);
 /* function */
 function searchRequest(event){
     projectsDiv.innerHTML = ""
-    tasksDiv.innerHTML = ""
     let search = searchBar.value.trim()
-    sendAjaxRequest('post', '/api/search', {search:search} , searchHandler);
+    sendAjaxRequest('get', '/api/search', {search:search} , searchHandler);
 }
 
 function searchHandler(){
-    let result = JSON.parse(this.responseText);
-    let projects = result.projects
-    let tasks = result.tasks
-    if(searchBar.value == ""){
-        projectsTitleSearch.style.display = "none";
-        tasksTitleSearch.style.display = "none";
-        searchDiv.style.display = "none";
-    }else{
-        projectsTitleSearch.style.display = "block";
-        tasksTitleSearch.style.display = "block";
-        searchDiv.style.display = "block";
-    }
-    if((projects.length)>0){
-        addProjects(projects)
-    }
-    if((tasks.length)>0){
-        addTasks(tasks);
-    }
+    projects = this.responseText.projects;
+    projectsDiv.innerHTML = projects
   
     
 }

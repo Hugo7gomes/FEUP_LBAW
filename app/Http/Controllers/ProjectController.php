@@ -67,7 +67,6 @@ class ProjectController extends Controller
 
         $user = User::find(Auth::user()->id);
         
-        
 
         return view('pages.createProject', ['user' => $user]);
     }
