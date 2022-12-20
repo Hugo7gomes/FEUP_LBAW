@@ -53,7 +53,6 @@ Route::post('api/project/upgradeMember','ProjectController@upgradeMember');
 Route::post('api/notification/delete', 'NotificationController@delete');
 
 
-
 //Task
 Route::post('task/create','TaskController@create')->name('task/create');
 Route::get('api/project/{project_id}/task/{task_id}','TaskController@showUpdate');
@@ -64,3 +63,5 @@ Route::get('task/delete','TaskController@delete')->name('task/delete');
 Route::post('api/search', 'SearchController@search');
 
 
+//admin
+Route::get('admin/dashboard','ProfileController@show')->name('dashboard'); // dashboard admin

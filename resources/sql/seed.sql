@@ -524,7 +524,7 @@ INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiago
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '1234', '934211114');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','1234', '944212314');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '1234', '934211114');
-INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '123456', '934211114', True);
+INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '$2a$12$.o/uY9I28CSCS7Z0zgisYeNHJksb/2A8E8abAICr0EAwSJCe8jy1u', '934211114', True);
 
 
 INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',1);

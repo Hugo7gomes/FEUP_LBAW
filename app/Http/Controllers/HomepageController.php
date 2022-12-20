@@ -11,16 +11,23 @@ class HomepageController extends Controller
     public function show(){
         if(Auth::check()){
             $user = User::find(Auth::user()->id);
+
+            if(($user->administrator)){
+                return redirect('/admin/dashboard');
+            }
+
             if(!($user->favoriteProjects()->isEmpty())){
                 return redirect('/project/'.$user->favoriteProjects()->first()->id);
             }
+
             if(!($user->projects->isEmpty())){
                 return redirect('/project/'.$user->projects()->first()->id);
             }
 
             return redirect('/project/create');
+        }
 
-        }else{
+        else{
             return view('pages.index');
         }
     }

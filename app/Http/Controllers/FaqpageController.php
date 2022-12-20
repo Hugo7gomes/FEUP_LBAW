@@ -12,12 +12,11 @@ class FaqpageController extends Controller
     public function show(){
         $faqs = Faq::all();
         if(Auth::check()){
-            $admin = User::find(Auth::user()->administrator);
             $user = User::find(Auth::user()->id);
-            return view('pages.faqPage',['faqs' => $faqs, 'admin' => True, 'user' =>$user]);
+            return view('pages.faqPage',['faqs' => $faqs, 'user' => $user]);
         }
         else{
-            return view('pages.faqPage',['faqs' => $faqs, 'admin' => False, 'user' => null]);
+            return view('pages.faqPage',['faqs' => $faqs, 'user' => null]);
         }
     }
 
