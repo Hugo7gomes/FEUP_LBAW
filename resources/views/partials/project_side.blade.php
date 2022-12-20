@@ -1,15 +1,15 @@
 <link href="{{ asset('css/project_side.css') }}" rel="stylesheet">
 <script src={{ asset('js/sideNav.js') }} defer></script>
 @section('project_side')
-  <nav class="navbar-fixed-left d-block bg-white" style="width: 350px;">
+  <nav class="navbar-fixed-left d-block bg-white">
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#favoriteProjects-collapse" aria-expanded="true">
-          Favorite Projects
-        </button>
-        <a href='{{ route("project/create") }}' class="btn btn-toggle align-items-center rounded collapsed btn-secondary" aria-expanded="true">
-          New
-        </a>
+          <button id="favoriteProjectsTitle" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#favoriteProjects-collapse" aria-expanded="true">
+          <i class="bi bi-chevron-down"></i><span class="">Favorite Projects</span>
+          </button>
+          <a href='{{ route("project/create") }}' id="newProject" class="btn btn-toggle align-items-center rounded collapsed btn-secondary" aria-expanded="true">
+            New
+          </a>
         <div class="collapse show" id="favoriteProjects-collapse">
           <ul class=" favoriteProjects nav-pills btn-toggle-nav list-unstyled fw-normal pb-1 large">
             @foreach ($user->favoriteProjects() as $projectFavorite)

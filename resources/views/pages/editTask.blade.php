@@ -11,21 +11,21 @@
                 <div id="taskUpdate">
                     <form method="POST" action = "{{route('task/edit', ['id' => $task->id])}}" class="editTaskForm">
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group editTask">
                             <label for="taskName">Name</label>
                             <input type="text" name="name" class="form-control" id="taskNewName" placeholder="{{ $task->name ?? 'Task Name' }}">
                             @if($errors->has('name'))
                             <div class="error">{{ $errors->first('name') }}</div>
                             @endif
                         </div>
-                        <div class="form-group">
+                        <div class="form-group editTask">
                             <label for="taskDetails">Details</label>
                             <textarea name="details" class="form-control" rows = "3" id="projectDetails" placeholder="{{ $task->details ?? 'Task details'}}"></textarea>
                             @if($errors->has('details'))
                             <div class="error">{{ $errors->first('details') }}</div>
                             @endif
                         </div>
-                        <div class="form_select">
+                        <div class="form_select editTask">
                         <label for="taskUser">User Assigned</label>
                             <select name="userAssigned" class="newUserAssigned custom-select">
                                 <option selected>{{ $userToAssign->name ?? 'User assigned' }}</option>
@@ -41,7 +41,7 @@
                             <div class="error">{{ $errors->first('id_user_assigned') }}</div>
                             @endif
                         </div>
-                        <div class="form_select">
+                        <div class="form_select editTask">
                         <label for="taskPriority">Priority</label>
                             <select name="priority" class="optionsPriority custom-select">
                                 <option selected>{{ $task->priority }}</option>
@@ -53,7 +53,7 @@
                                 <div class="error">{{ $errors->first('priority') }}</div>
                             @endif
                         </div>
-                        <div class="form_select">
+                        <div class="form_select editTask">
                         <label for="taskState">State</label>
                             <select name="state" class="optionsState custom-select">
                                 <option selected>{{ $task->state }}</option>
@@ -69,18 +69,46 @@
                         <a href = "{{route('task/delete', ['id' => $task->id])}}"><button class="btn btn-outline-danger" type="button" id="deleteTaskButton">Delete Task</button></a>
                     </form>
                 </div>
-                @foreach ($task->comments as $comment)
-                    <span>{{$comment->comment}}</span><br>
-                @endforeach
-                <form method = "Post" action = "{{route('comment.create', ['task_id' => $task->id])}}">
+            </li>
+            @if (count($task->comments)>0)
+            <section>
+                <div class="container my-5 py-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-12 col-lg-10">
+                            <div class="card text-dark">
+                            <h4 class="mb-0">Comments</h4>
+                            @foreach ($task->comments as $comment)
+                            <div class="card-body p-4">   
+                                <div class="d-flex flex-start">
+                                    <img class="rounded-circle shadow-1-strong me-3"
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60"
+                                        height="60" />
+                                    <div>
+                                        <h6 class="fw-bold mb-1"></h6>
+                                        <div class="d-flex align-items-center mb-3">
+                                        <p class="mb-0">{{$comment->date}}</p>
+                                        </div>
+                                        <p class="mb-0">{{$comment->comment}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-0">
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            @endif
+
+                <form method = "Post" action = "{{route('comment.create', ['task_id' => $task->id])}}" class="editTaskForm">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group editTask">
                         <label for="comment">Comment</label>
                         <textarea name="comment" class="form-control" rows = "3" placeholder="Leave a comment"></textarea>
                     </div>
                     <button type="submit" class="btn btn-outline-light" >Comment</button>
                 </form>
-            </li>
         </ul>
     </div>
 </div>

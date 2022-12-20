@@ -1,11 +1,12 @@
-main {
-    padding-top: 20px;
-    background-color: #EEEE;
-    padding-left: 0%;
-}
+
 
 #createProject, #projectUpdate, #taskUpdate {
     padding-bottom: 50px;
+}
+
+#projectUpdate {
+    padding-top: 5%;
+    width: 90%;
 }
 
 

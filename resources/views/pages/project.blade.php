@@ -74,19 +74,19 @@
         <div class="modal-body">
           <form method="POST" action = "{{ route('task/create', ['id'=>$project->id]) }}" class="createTaskForm">
                 @csrf
-              <div class="form-group">
+              <div class="form-group newTask">
                   <input type="text" name="name" class="form-control" id="taskName" placeholder="Name" required>
                   @if($errors->has('name'))
                     <div class="error">{{ $errors->first('name') }}</div>
                   @endif
               </div>
-              <div class="form-group">
+              <div class="form-group newTask">
                 <textarea name="details" class="form-control" rows = "3" id="projectDetails" placeholder="Details"></textarea>
                 @if($errors->has('details'))
                   <div class="error">{{ $errors->first('details') }}</div>
                 @endif
               </div>
-              <div class="form_select">
+              <div class="form_select newTaskSelect">
                 <select name="userAssigned" class="optionsUserAssigned custom-select">
                     <option selected>User assigned</option>
                     @foreach ($project->getCoordinators() as $coordinator)
@@ -101,7 +101,7 @@
                   <div class="error">{{ $errors->first('id_user_assigned') }}</div>
                 @endif
               </div>
-              <div class="form_select">
+              <div class="form_select newTaskSelect">
                   <select name="priority" class="optionsPriority custom-select">
                       <option selected>Priority</option>
                       <option value="Low">Low</option>
