@@ -509,22 +509,6 @@ CREATE TRIGGER task_assign_update_notification
         EXECUTE PROCEDURE task_assign_update_notification();
 
 -------------------------------------------------------------------------------------
---TRIGGER15
-CREATE FUNCTION assign_task() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    IF New.id_user_assigned NOT NULL AND NOT EXISTS (SELECT * FROM role WHERE NEW.id_user_assigned = id_user AND NEW.id_project = id_project) THEN
-        RAISE EXCEPTION 'User assigned not in the project';
-    END IF;
-    RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER assign_task
-        AFTER UPDATE OF id_user_assigned ON task
-        FOR EACH ROW
-        EXECUTE PROCEDURE assign_task();
 
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaoaraujo@gmail.com', 'joaoaraujo76', 'João Araújo', '1234', '934212314');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('liavieira@gmail.com', 'liavieira02', 'Lia Vieira', '1234', '934772314');
@@ -540,7 +524,7 @@ INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiago
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '1234', '934211114');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','1234', '944212314');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '1234', '934211114');
-INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '1234', '934211114', True);
+INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '123456', '934211114', True);
 
 
 INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',1);
@@ -588,8 +572,8 @@ INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Quando é que isso e
 INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Amanha acabo sem falta!','2022-10-30',1,2);
 
 INSERT INTO faq (question,answer) VALUES ('Como Criar uma conta?', 'Na página incial ou em qualquer página se não tiveres ainda com a conta loggada, no canto superior direito, terás a opção de dar login. Clicar nessa opção que te redirecionará para uma página onde te poderás registar.');
-INSERT INTO faq (question,answer) VALUES ('Como Apagar a conta ?', 'Na página do teu perfil encontar lá essa oplção');
-INSERT INTO faq (question,answer) VALUES ('Posso apagar a conta sendo coordendor do projeto ?', 'Não, caso sejas coordenador de um projeto apenas poderás apagar a tua conta depois de passares esse cargo a alguém da tua equipa');
+INSERT INTO faq (question,answer) VALUES ('Como Apagar a conta ?', 'Na página do teu perfil encontar lá essa opção.');
+INSERT INTO faq (question,answer) VALUES ('Posso apagar a conta sendo coordendor do projeto ?', 'Não, caso sejas coordenador de um projeto apenas poderás apagar a tua conta depois de passares esse cargo a alguém da tua equipa.');
 INSERT INTO faq (question,answer) VALUES ('Fui banido, posso aceder à conta ?', 'A nossa equipa conta com administradores, que terão o poder de banir quálquer usuário que faça comentários negativos, ou ponha em causa a ética do website. Uma vez banidos, deixam de poder aceder às vossas contas.');
 
 INSERT INTO ban (reason,date,id_banned,id_admin) VALUES ('Mau comportamento','2022-10-30',13,15);

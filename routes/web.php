@@ -16,7 +16,8 @@ Route::get('/', function () {
 })->name('/');
 
 Route::get('home','HomepageController@show')->name('home');
-Route::get('faq','HomepageController@show')->name('faq');
+Route::get('faq','FaqpageController@show')->name('faq');
+Route::post('faq', 'FaqpageController@create')->name('createFaq');
 Route::get('about','HomepageController@show')->name('about');
 Route::get('contacts','HomepageController@show')->name('contacts');
 

@@ -27,6 +27,7 @@
                 {{ $errors->first('password') }}
             </span>
             @endif
+            <br>
             <span class="forgotPass">Forgot your password?</span>
             </div>
             <button class="loginButton" type="submit">
