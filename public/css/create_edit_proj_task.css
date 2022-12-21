@@ -46,10 +46,7 @@
     width: 90%;
 }
 
-
-#projectName, #projectNewName
-/* #taskNewName  */
-{
+#projectName {
     margin-top: 25px;
 }
 

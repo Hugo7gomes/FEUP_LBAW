@@ -26,6 +26,14 @@
             <div class="row">
             <form method="POST" action = "{{ route('profile') }}" id="userInf">
               @csrf
+              <div class="form-group formsName">
+                <label for="exampleFormControlInput1" class="mb-0">Name</label>
+                <input type="text" name = "name" placeholder= "{{ $user['name'] }}" id="userName" class="text-muted mb-0">
+                @if($errors->has('name'))
+                <div class="error">{{ $errors->first('name') }}</div>
+                @endif
+              </div>
+
               <div class="formsName">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">Name</label>

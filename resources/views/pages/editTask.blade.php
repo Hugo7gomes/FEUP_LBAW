@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group editTask">
                             <label for="taskDetails">Details</label>
-                            <textarea name="details" class="form-control" rows = "3" id="projectDetails" placeholder="{{ $task->details ?? 'Task details'}}"></textarea>
+                            <textarea name="details" class="form-control" rows = "3" id="taskNewDetails" placeholder="{{ $task->details ?? 'Task details'}}"></textarea>
                             @if($errors->has('details'))
                             <div class="error">{{ $errors->first('details') }}</div>
                             @endif
@@ -107,7 +107,7 @@
                         <label for="comment">Comment</label>
                         <textarea name="comment" class="form-control" rows = "3" placeholder="Leave a comment"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-outline-light" >Comment</button>
+                    <button type="submit" class="btn btn-outline-light" id="commentButton">Comment</button>
                 </form>
         </ul>
     </div>

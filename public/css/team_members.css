@@ -7,12 +7,15 @@
 }
 
 #projectMembers {
+    bottom: 20%;
     background-color: white;
     padding: 1%;
+    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
+    border-radius: 5px;
+    margin: auto;
 }
 
 .members {
-    margin-top: 1px solid black;
     margin: auto;
     width: 70vw;
     align-items: start;
@@ -21,4 +24,14 @@
 .members > li {
     padding: 1%;
     left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #EEE;
+    margin: 0.5%;
+    border-radius: 5px;
+}
+
+.addMemberButton {
+    display: flex;
 }

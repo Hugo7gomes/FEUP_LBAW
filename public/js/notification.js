@@ -1,5 +1,5 @@
 let buttonNotif = document.getElementById('notificationButton')
-let divNotif = document.getElementsByClassName('not')[0]
+let divNotif = document.getElementsByClassName('notificationDiv')[0]
 buttonNotif.addEventListener('click',openNotifications);
 
 function openNotifications(event){

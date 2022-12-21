@@ -39,8 +39,15 @@
     align-content: space-between; 
 }
 
+.favoriteButton {
+    display: inline;
+    height: 45px;
+    margin-left: 50%;
+}
 
 .boardViewHeader {
+    display: flex;
+    flex-wrap: nowrap;
     border-bottom: 4px solid black;
 }
 
@@ -49,8 +56,7 @@
     text-align: left;
     color: black;
     font-weight: bold;
-    font-size: 27px;
-    
+    font-size: 30px;
     height: 50px;
 }
 
@@ -63,6 +69,10 @@
 
 .addTaskToDo {
     border: none;
+}
+
+.tasksToDoHeader > button{
+
 }
 
 .tasksToDoHeader > h3, .tasksDoing > h3, .tasksDone > h3 {
@@ -140,6 +150,10 @@ select.optionsPriority, select.optionsUserAssigned {
     color: black;
     font-weight: bold;
     font-size: 14px;
+}
+
+.bi-plus-lg {
+    display: inline;
 }
 
 .allButtons {

@@ -1,8 +1,4 @@
 function addEventListeners() {
-    let coordinatorButtons = document.getElementsByClassName("dropCButton");
-    [].forEach.call(coordinatorButtons, function(btton) {
-        btton.addEventListener('click', openDropDown);
-    });
 
     let removeMemberButtons = document.getElementsByClassName("removeMember");
     [].forEach.call(removeMemberButtons, function(btton) {
@@ -16,31 +12,15 @@ function addEventListeners() {
 
 }
 
-
-function openDropDown(event){
-    let buttonI = event.target;
-    let buttonDrop = buttonI.parentElement;
-    let div = buttonDrop.nextElementSibling;
-    let divDrop = div.firstElementChild;
-
-    if(divDrop.style.display == "none"){
-        divDrop.style.display = "block"
-    }else{
-        divDrop.style.display = "none"
-    }
-}
-
-
-
 function removeMemberRequest(event){
     let button = event.target;
-    let div = button.parentElement.parentElement.parentElement;
-    let img = div.firstElementChild;
-    let username = img.nextElementSibling.innerText;
-    let id = getProjectIdFromUrl();
+    let div = button.parentElement.parentElement;
+    let a = div.firstElementChild.firstElementChild.nextElementSibling;
+    let username = a.innerText;
+    let url = window.location.href;
+    let id = url.split('/')[4]
 
-
-    sendAjaxRequest('post', '/api/project/removeMember', {id:id, username:username} , removeMemberHandler);
+    sendAjaxRequest('post', '/api/project/'+id+'/removeMember', {username:username} , removeMemberHandler);
 }
 
 function removeMemberHandler(){
@@ -49,14 +29,12 @@ function removeMemberHandler(){
 
 function upgradeMemberRequest(event){
     let button = event.target;
-    let div = button.parentElement.parentElement.parentElement;
-    let img = div.firstElementChild;
-    let username = img.nextElementSibling.innerText;
+    let div = button.parentElement.parentElement;
+    let a = div.firstElementChild.firstElementChild.nextElementSibling;
+    let username = a.innerText;
     let url = window.location.href;
-    let id = url.substring(url.lastIndexOf('=') + 1);
-    console.log(username)
-    console.log(id)
-    sendAjaxRequest('post', '/api/project/upgradeMember', {id:id, username:username} , upgradeMemberHandler);
+    let id = url.split('/')[4]
+    sendAjaxRequest('post', '/api/project/'+id+'/upgradeMember', {username:username} , upgradeMemberHandler);
 }
 
 function upgradeMemberHandler(){

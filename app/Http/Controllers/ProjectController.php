@@ -148,8 +148,8 @@ class ProjectController extends Controller
         return view('pages.teamMembers',['user' => $user, 'project' => $project]);
     }
 
-    public function removeMember(Request $request){
-        $project = Project::find($request->get('id'));
+    public function removeMember(int $project_id, Request $request){
+        $project = Project::find($project_id);
         $userToRemove = User::where('username',$request->get('username'))->first();
         
         $this->authorize('removeMember', $project);
@@ -161,8 +161,8 @@ class ProjectController extends Controller
         return $userToRemove;
     }
 
-    public function upgradeMember(Request $request){
-        $project = Project::find($request->get('id'));
+    public function upgradeMember(int $project_id,Request $request){
+        $project = Project::find($project_id);
         $userToUpgrade = User::where('username',$request->get('username'))->first();
         
         $this->authorize('upgradeMember', $project);

@@ -14,7 +14,7 @@
             <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('profile')}}" class = "link" ><i class="bi bi-person"></i></a></button>
           </div>
           <div class = "btn-group mr-5" role = "group">
-            <button type = "button" class = "btn btn-secondary btn-light rounded" id="notificationButton" ><i class="bi bi-bell" ></i></button>
+          <button class="btn btn-secondary btn-light rounded" type="button" id="notificationButton"><i class="bi bi-bell" ></i></button>
           </div> 
           <div class = "btn-group mr-5" role = "group">
             <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('logout')}}" class = "link"><i class="bi bi-box-arrow-right"></i></a></button>

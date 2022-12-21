@@ -10,16 +10,24 @@
     font-size: larger;
 }
 
-.editTaskForm > label {
-    /* padding-top: 20px; */
+.editTask > input, .editTask > select, .editTask > textarea {
+    font-weight: 600;
+    font-size: 16px;
+    color: #606c76;
 }
+
 
 .editTask {
     padding: 10px;
 }
 
-#deleteTaskButton, #updateTaskButton {
-    margin: auto;
+
+#updateTaskButton, #commentButton {
+    margin-left: 1%;
+}
+
+#deleteTaskButton {
+    margin-left: 5%;
 }
 
 

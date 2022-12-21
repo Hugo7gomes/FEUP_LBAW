@@ -24,18 +24,24 @@
         <div class="col members">
           @foreach ($project->getCoordinators() as $coordinator)
             <li class="bla dropdown-item nav-item">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
-              <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
-              <span>Coordinator</span>
+              <div class="memberInfo">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
+                <span>Coordinator</span>
+              </div>
             </li>         
           @endforeach
           @foreach ($project->getCollaborators() as $collaborator)
             <li class="bla dropdown-item nav-item">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
-              <a href = "/profile/{{$collaborator['username']}}" class = "usernameCollaborator nav-item" aria-current="page">{{$collaborator['username']}}</a>
-              <span>Collaborator</span>
+              <div class="memberInfo">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                <a href = "/profile/{{$collaborator['username']}}" class = "usernameCollaborator nav-item" aria-current="page">{{$collaborator['username']}}</a>
+                <span>Collaborator</span>
+              </div>
+              <div class="memberButtons">
                 <button class = "btn btn-outline-secondary removeMember">Remove</button>
                 <button class = "btn btn-outline-secondary upgradeMember">Promote to coordinator</button>
+              </div>
             </li>             
           @endforeach
         </div>
