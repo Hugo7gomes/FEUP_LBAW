@@ -119,7 +119,7 @@
     </div>
   </div> 
   <div class = "offcanvasDiv">
-  </div>
+</div>
 </main>
 @endsection
 

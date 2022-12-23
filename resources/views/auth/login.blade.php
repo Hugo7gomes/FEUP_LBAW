@@ -15,13 +15,15 @@
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="loginField">
-            <input id="emailLogin" name="email" type="text" placeholder="E-mail" required autofocus>
+            <div class="form-group">
+            <input id="emailLogin" name="email" type="text" class="form-control" placeholder="E-mail" required autofocus>
             @if ($errors->has('email'))
             <span class="error">
                 {{ $errors->first('email') }}
             </span>
             @endif
-            <input id="passLogin" name="password" type="password" placeholder="Password" required>
+            </div>
+            <input id="passLogin" name="password" class="form-control" type="password" placeholder="Password" required>
             @if ($errors->has('password'))
             <span class="error">
                 {{ $errors->first('password') }}
@@ -29,7 +31,7 @@
             @endif
             <span class="forgotPass">Forgot your password?</span>
             </div>
-            <button class="loginButton" type="submit">
+            <button class="btn btn-outline-dark loginButton" type="submit">
                 Login
             </button>
             <div class = "signupLink">

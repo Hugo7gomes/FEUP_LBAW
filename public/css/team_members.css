@@ -17,7 +17,7 @@
 
 .members {
     margin: auto;
-    width: 70vw;
+    width: 70%;
     align-items: start;
 }
 
@@ -34,4 +34,8 @@
 
 .addMemberButton {
     display: flex;
+}
+
+.memberInfo a {
+    color: black;
 }

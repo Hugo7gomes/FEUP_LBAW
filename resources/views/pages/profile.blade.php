@@ -4,7 +4,7 @@
 
 @section('content')
 
-<!-- <link href="{{ asset('css/profile.css') }}" rel="stylesheet"> -->
+<link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 
 <main>
 <section style="background-color: #eee;">
@@ -27,79 +27,71 @@
             <form method="POST" action = "{{ route('profile') }}" id="userInf">
               @csrf
               <div class="form-group formsName">
-                <label for="exampleFormControlInput1" class="mb-0">Name</label>
-                <input type="text" name = "name" placeholder= "{{ $user['name'] }}" id="userName" class="text-muted mb-0">
-                @if($errors->has('name'))
-                <div class="error">{{ $errors->first('name') }}</div>
-                @endif
-              </div>
-
-              <div class="formsName">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">Name</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name = "name" placeholder= "{{ $user['name'] }}" id="userName" class="text-muted mb-0">
+                  <input type="text" name = "name" placeholder= "{{ $user['name'] }}" id="userName" class="form-control text-muted mb-0">
                   @if($errors->has('name'))
                   <div class="error">{{ $errors->first('name') }}</div>
                   @endif
                 </div>
               </div>
 
-              <div class="formsUsername">
+              <div class="form-group formsUsername">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">Username</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name = "username" placeholder= "{{ $user['username'] }}" id="userUsername" class="text-muted mb-0">
+                  <input type="text" name = "username" placeholder= "{{ $user['username'] }}" id="userUsername" class="form-control text-muted mb-0">
                   @if($errors->has('username'))
                       <div class="error">{{ $errors->first('username') }}</div>
                   @endif
                 </div>
               </div>
 
-              <div class="formsEmail">
+              <div class="form-group formsEmail">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">Email</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="text" name = "email" placeholder= "{{ $user['email'] }}" id="userEmail" class="text-muted mb-0">
+                  <input type="text" name = "email" placeholder= "{{ $user['email'] }}" id="userEmail" class="form-control text-muted mb-0">
                   @if($errors->has('email'))
                       <div class="error">{{ $errors->first('email') }}</div>
                   @endif
                 </div>
               </div>
 
-              <div class="formsPhone">
+              <div class="form-group formsPhone">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">Phone Number</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="tel" name = "phone_number" placeholder= "{{ $user['phone_number'] ?? 'No phoneNumber'}}" id="userPhone" class="text-muted mb-0">
+                  <input type="tel" name = "phone_number" placeholder= "{{ $user['phone_number'] ?? 'No phoneNumber'}}" id="userPhone" class="form-control text-muted mb-0">
                   @if($errors->has('phone_number'))
                     <div class="error">{{ $errors->first('phone_number') }}</div>
                   @endif
                 </div>
               </div>
 
-              <div class="formsPassword">
+              <div class="form-group formsPassword">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">Password</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="password" name = "password" placeholder= "User's password" id="password" class="text-muted mb-0">
+                  <input type="password" name = "password" placeholder= "User's password" id="password" class="form-control text-muted mb-0">
                   @if($errors->has('password'))
                     <div class="error">{{ $errors->first('password') }}</div>
                   @endif
                 </div>
               </div>
 
-              <div class="formsNewPassword">
+              <div class="form-group formsNewPassword">
                 <div class="col-sm-3">
                   <label for="exampleFormControlInput1" class="mb-0">New Password</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="password" name = "new_password" placeholder= "User's new password" id="new_password" class="text-muted mb-0">
+                  <input type="password" name = "new_password" placeholder= "User's new password" id="new_password" class="form-control text-muted mb-0">
                   @if($errors->has('name'))
                     <div class="error">{{ $errors->first('name') }}</div>
                   @endif

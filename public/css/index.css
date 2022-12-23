@@ -40,6 +40,14 @@ body {
     padding: 20px;
 }
 
+a:hover {
+    color: black;
+}
+
+#loginButton:hover {
+    color: white;
+}
+
 .botao {
     margin-top: 5vw;
 }

@@ -9,8 +9,9 @@ main {
   padding-left: 2%;
   float: left;
   width: 350px;
-  height: 150%;
+  height: 180%;
   z-index: 0;
+  overflow: hidden;
 }
 
 .list-unstyled {

@@ -15,36 +15,46 @@
   <form method="POST" action="{{ route('register') }}">
       {{ csrf_field() }}
       <div class="registerField">
-        <input id="nameReg" type="text" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus>
+        <div class="form-group nameReg">
+        <input id="nameReg" type="text" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}" required autofocus>
         @if ($errors->has('name'))
           <span class="error">
               {{ $errors->first('name') }}
           </span>
         @endif
+        </div>
+        <div class="form-group usernameReg">
         <!-- <label for="username">Username</label> -->
-        <input id="usernameReg" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required autofocus>
+        <input id="usernameReg" type="text" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}" required autofocus>
         @if ($errors->has('username'))
           <span class="error">
               {{ $errors->first('username') }}
           </span>
         @endif
+        </div>
+        <div class="form-group emailReg">
       <!-- <label for="email">E-mail</label> -->
-        <input id="emailReg" type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required>
+        <input id="emailReg" type="email" name="email" class="form-control" placeholder="E-mail" value="{{ old('email') }}" required>
         @if ($errors->has('email'))
           <span class="error">
               {{ $errors->first('email') }}
           </span>
         @endif
+        </div>
+        <div class="form-group passReg">
       <!-- <label for="password">Password</label> -->
-        <input id="passwordReg" type="password" name="password" placeholder="Password" required>
+        <input id="passwordReg" type="password" name="password" class="form-control" placeholder="Password" required>
         @if ($errors->has('password'))
           <span class="error">
               {{ $errors->first('password') }}
           </span>
         @endif
+        </div>
+        <div class="form-group confirmPassReg">
         <!-- <label for="password-confirm">Confirm Password</label> -->
-        <input id="passwordConfirmReg" type="password" name="password_confirmation" placeholder="Confirm Password" required>
-        <button class="registerButton" type="submit">
+        <input id="passwordConfirmReg" type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
+        </div>
+        <button class="btn btn-outline-dark registerButton" type="submit">
           Register
         </button>
       <div class = "loginLink">

@@ -3,8 +3,7 @@ main {
 }
 
 #userName, #userUsername, #userEmail, #userPhone, #password, #new_password {
-    width: 75%;
-    font-size: 15px;
+    font-weight: 600;
 }
 
 #profileBoard {
@@ -20,28 +19,13 @@ main {
 #profile {
     padding-top: 10%;
     font-size: 18px;
-    height: 490px;
+    padding-bottom: 71%;
 }
 
 #form {
     padding-top: 5%;
+    font-weight: 600;
 }
-
-
-.userProjects {
-    display: flex;
-    flex-direction: row;
-}
-
-#userProjects h3 {
-    font-weight: bold;
-    font-size: 25px;
-    color: black;
-    padding: 2% 0% 0% 2%;
-    display: flex;
-    right: 10px;
-}
-
 
 .row form {
     box-sizing: border-box;
@@ -66,25 +50,6 @@ main {
     display: flex;
     align-items: center;
     margin-top: 30px;
-    font-size: 12px;
-    justify-content: center;
-}
-
-#project {
-    padding: 10px;
-}
-
-.projectPhoto {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #EEEE;
     font-size: 15px;
-    color: black;
-    line-height: 150px;
-    margin: 20px 0;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
-    display: flex;
-    flex-wrap: nowrap;
     justify-content: center;
 }

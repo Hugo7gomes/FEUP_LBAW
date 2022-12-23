@@ -1,25 +1,18 @@
 body{
-    margin: 0;
-    padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-content: center;
 }
 
-/* .logo {
-    width: 300px;
-    justify-self: start;
-    margin-left: 5%;
-} */
+body {
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .logo {
     width: 300px;
-    /* display: grid; */
-    margin-left: 0%;
-    /* margin-left: 0%;
-    justify-self: start; */
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .loginBoard, .registerBoard {
@@ -27,45 +20,41 @@ body{
     border-radius: 10px;
     width: 48vw;
     position: relative;
-    display: grid;
+    display: grid;      
     margin: auto;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
+    top: 10vw;
 }
 
 .loginBoard {
-    height: 28vw;
+    padding-bottom: 1%;
 }
 
 .registerBoard {
-    height: 32vw;
-    top: 8%;
+    padding-bottom: 2%;
 }
 
 .loginBoard h1, .registerBoard h1{
     color: #C35817;
     text-align: center;
-    padding-top:1em;
+    padding: 8%;
     font-weight: bold;
+    font-size: 45px;
 }
 
-.loginBoard h1 {
-    padding-bottom: 20px;
-}
-
-.registerBoard h1 {
+.loginBoard h1, .registerBoard h1 {
     position: relative;
     top: 10%;
 }
 
 .loginBoard form, .registerBoard form {
-    width: 55%;
     margin: auto;
-}
-
+    width: 70%;
+}   
 
 #emailLogin, #passLogin, #nameReg, #usernameReg, #emailReg, #passwordReg, #passwordConfirmReg {
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
+    margin: 5px;
+    font-weight: bold;
 }
 
 #passwordConfirmReg {
@@ -75,16 +64,24 @@ body{
 .loginButton, .registerButton {
     display: grid;
     margin: auto;
-    background-color: black;
-    border: solid black;
     width: 150px;
     height: 40px;
-    font-size: 15px;
+    font-size: 18px;
+}
+
+.loginButton {
+    margin-top: 10%;
 }
 
 form .loginField {
+    padding-bottom: 5%;
     border-bottom: 0.1em solid #666666;
     margin: 1em 0;
+}
+
+.loginField {
+    display: flex;
+    flex-direction: column;
 }
 
 .forgotPass{
@@ -92,9 +89,11 @@ form .loginField {
     text-align: center;
     color: #666666 ;
     font-size: 15px;
+    margin-bottom: 10px;
+    padding-top: 2%;
 }
 
-.forgotPass:hover, .signupLink a:hover{
+.forgotPass:hover, .signupLink a:hover, .loginLink a:hover{
     text-decoration: underline;
     color:black;
 }
@@ -107,7 +106,7 @@ form .loginField {
     color: #666666;
 }
 
-.signupLink a, .loginLink a{
+.signupLink a, .loginLink a {
     font-weight: bold;
     color: black;
     text-decoration: none;

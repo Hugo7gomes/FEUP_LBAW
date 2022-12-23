@@ -173,5 +173,5 @@ class ProjectController extends Controller
 
         return Role::where([['id_user',$userToUpgrade->id],['id_project',$project->id]]);
     } 
-
+    
 }

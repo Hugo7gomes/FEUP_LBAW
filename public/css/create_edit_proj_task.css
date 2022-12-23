@@ -4,6 +4,10 @@
     padding-bottom: 50px;
 }
 
+#createProject {
+    padding-top: 150px;
+}
+
 #projectUpdate {
     padding-top: 5%;
     width: 90%;
@@ -21,12 +25,10 @@
     padding-top: 3%;
 }
 
-#projectName, #projectDetails 
-/* #taskNewName, #taskNewDetails */
- {
+#projectName, #projectDetails {
     color: black;
     font-weight: bold;
-    width: 40%;
+    width: 80%;
     font-size: 14px;
     margin: auto;
     margin-bottom: 15px;
@@ -61,105 +63,9 @@
     margin-bottom: 30px;
 }
 
-
-
-/* TEAM MEMBERS NAV */
-#teamMembers {
-    width: 150px;
-    height: 70%;
-    margin-top: 90px;
-    margin-left: 50px;
-    border-radius: 10px;
-    padding-left: 10px;
-    top: 50px;
-    position: fixed;
-    z-index: 1;  
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
-}
-
-#teamMembersTitle {
-    font-size: 30px;
-    font-weight: bold;
-    margin: auto;
-}
-
-hr {
-    height: 2px;
-    margin: 1rem 0;
-    background-color: black;
-    border: 0;
-    opacity: 0.25;
-}
-
-.usernameCollaborator, .usernameCoordinator {
-    color: black;
-    font-size: 15px;
-    background-color: white;
-    padding-left: 10px;
-}
-
-.nav-item {
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; */
-}
-
-.dropCButton {
-    border: 0;
-    background-color: white;
-    color: grey;
-    cursor: pointer;
-    width: 10px;
-}
-
-.dropCButton:hover {
-    color: black;
-}
-
-.coordinatorDropdown {
-    display: none;
-}
-
-.dropdown-menu {
-    border: none;
-}
-
-.dropdown-content {
-    position: relative;
-    left: 100px;
-    bottom: 35px;
-}
-
-#chooseProfile {
-    width: 20%;
-    font-size: 14px;
-    background-color: white;
-}
-
-.addToProject {
-    font-size: 14px;
-    text-align: left;
-    padding-top: 10px;
-    padding-left: 1%;
-}
-
-#addMembersTitle {
-    font-size: 40px;
+.createProjectForm > h4 {
     font-weight: 600;
+    font-size: 22px;
+    margin-left: 10%;
+    margin-bottom: 5%;
 }
-
-/* .addToProject > label {
-    background-color: white;
-    padding-bottom: 10px;
-} */
-
-#addMember {
-    margin: auto;
-    border-radius: 5px;
-    padding: 10px;
-    width: 50%;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
-    margin-top: 15px;
-}
-
