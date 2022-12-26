@@ -18,11 +18,6 @@
       @include('partials.header')
       @yield('header')
     </header>
- 
-    <section id = 'notifications'>
-      @include('partials.notifications')
-      @yield('notifications')
-    </section>
     <section id="content">
       @yield('content')
     </section>

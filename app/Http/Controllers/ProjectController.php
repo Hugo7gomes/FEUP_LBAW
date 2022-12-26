@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Invite;
 use App\Models\Role;
 use App\Models\Task;
+use App\Models\Favorite;
 
 class ProjectController extends Controller
 {
@@ -127,10 +128,16 @@ class ProjectController extends Controller
         $this->authorize('leave', $project);
 
         $user->leaveProject($project);
+        $favorite = Favorite::where('id_user', Auth::user()->id)->where('id_projects', $project->id)->first();
+        if($favorite !== null){
+            $favorite->delete();
+        }
         $invite = Invite::where('id_user_receiver',Auth::user()->id)->where('id_project',$project_id)->first();
-        $invite->state = 'Rejected';
-        $invite->save();
-
+        if($invite !== null){
+            $invite->state = 'Rejected';
+            $invite->save();
+        }
+        
         return redirect("/profile");
 
     }

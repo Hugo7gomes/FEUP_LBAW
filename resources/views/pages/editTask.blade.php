@@ -71,8 +71,8 @@
                     </form>
                 </div>
             </li>
+            <section id = "sectionComments">
             @if (count($task->comments)>0)
-            <section>
                 <div class="container my-5 py-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
@@ -99,8 +99,8 @@
                         </div>
                     </div>
                 </div>
-            </section>
             @endif
+            </section>
 
                 <div class="editTaskForm">
                     @csrf

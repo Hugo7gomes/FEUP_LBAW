@@ -1,6 +1,6 @@
 const taskButtons = document.getElementsByClassName('taskLink');
-let taskId;
-let projectId;
+var taskId;
+var projectId;
 [].forEach.call(taskButtons, function(btton) {
     btton.addEventListener('click', openSideTask);
 });
@@ -29,17 +29,29 @@ function showTaskHandler(){
 function addComment(event){
     const inputBox = document.getElementById('inputComment');
     let comment = inputBox.value;
-    sendAjaxRequest('get', '../api/project/'+projectId+'/task/'+taskId+'/addComment', {comment:comment}, addCommentHandler);
+    sendAjaxRequest('post', '../api/project/'+projectId+'/task/'+taskId+'/addComment', {task_id: taskId, comment:comment}, addCommentHandler);
 }
 
 function addCommentHandler(){
-    const divComments = document.getElementById('divComments');
-    if(divComments != null){
-        let divNewComment = document.createElement('div');
-        divNewComment.classList = "card-body p-4"
-        divNewComment.innerHTML = JSON.parse(this.responseText);
-        divComments.append(divNewComment);
+    var divComments = document.getElementById('divComments');
+    if(divComments == null){
+        var sectionComments = document.getElementById('sectionComments');
+        sectionComments.innerHTML = `
+        <div class="container my-5 py-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="card text-dark" id = "divComments">
+                        <h4 class="mb-0">Comments</h4>
+                    </div>
+                </div>
+            </div>
+        </div>`
+        divComments = document.getElementById('divComments');
     }
+    let divNewComment = document.createElement('div');
+    divNewComment.classList = "card-body p-4"
+    divNewComment.innerHTML = JSON.parse(this.responseText);
+    divComments.append(divNewComment);
 }
 
 

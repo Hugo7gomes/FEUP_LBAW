@@ -2,7 +2,7 @@
 
 <div class="notificationDiv container-fluid " >
   <div class="dropdown">
-    <ul class="not dropdown-menu dropdown-menu-right" style="display:none; "aria-labelledby="navbarDropdownMenuLink">
+    <ul class="not dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
       @if(count($user->notifications)> 0)  
         @foreach ($user->notifications as $notification)
           <div class="row"> 

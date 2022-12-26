@@ -1,12 +1,16 @@
-.container-fluid {
+/* .container-fluid {
     z-index: 1;
     position: absolute;
 }
 
 .not {
     width: 30vw;
+    z-index: 6;
 }
-
+.notificationDiv{
+    display: block  ;
+    z-index: 6;
+}
 .text {
     font-size: 2rem;
 }
@@ -29,16 +33,8 @@ li.list-group-item {
     display: flex;
     flex-direction: row;
 }
+ */
 
-.notificationDiv{
-    position: absolute;
-    scroll-behavior: smooth;
-    height:400px;
-    right: -17px;
-    width: 40%;
-    overflow:scroll;
-    overflow-x:hidden;
-}
 
 @media only screen and (max-width: 450px) {
     .not {

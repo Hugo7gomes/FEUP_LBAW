@@ -159,11 +159,11 @@ class TaskController extends Controller
 
     }
 
-    public function addComment(Request $request, $task_id){
+    public function addComment(Request $request){
         $comment = new Comment();
-        $comment->comment = "fffff";
+        $comment->comment = $request->get('comment');
         $comment->date = now();
-        $comment->id_task = $task_id;
+        $comment->id_task = $request->get('task_id');
         $comment->id_user = Auth::user()->id;
         $user = User::find(Auth::user()->id);
         //$this->authorize('create_update_delete', $task);
