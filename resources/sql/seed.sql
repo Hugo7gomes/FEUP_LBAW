@@ -512,21 +512,21 @@ CREATE TRIGGER task_assign_update_notification
 --TRIGGER15
 
 
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaoaraujo@gmail.com', 'joaoaraujo76', 'João Araújo', '1234', '934212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('liavieira@gmail.com', 'liavieira02', 'Lia Vieira', '1234', '934772314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaomoreira@gmail.com', 'joaomoreira07', 'João Moreira','1234', '944212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('hugogomes@gmail.com', 'hugogomes82', 'Hugo Gomes', '1234', '934211114');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('diogoneves@gmail.com', 'neves76', 'Diogo Neves', '1234', '934212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagoaleixo@gmail.com', 'aleixo02', 'Tiago Aleixo', '1234', '934772314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('diogobabo@gmail.com', 'diogo_babo07', 'Diogo Babo','1234', '944212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagobranquinho@gmail.com', 'branquinho82', 'Tiago Branquinho', '1234', '934211114');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('alexandrecorreia@gmail.com', 'alex_correia76', 'Alexandre Correia', '1234', '934212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('henriquesilva@gmail.com', 'henriquesilva02', 'Henrique Silva', '1234', '934772314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagomartins@gmail.com', 'tiagomartins07', 'Tiago Martins','1234', '944212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '1234', '934211114');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','1234', '944212314');
-INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '1234', '934211114');
-INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '1234', '934211114', True);
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaoaraujo@gmail.com', 'joaoaraujo76', 'João Araújo', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('liavieira@gmail.com', 'liavieira02', 'Lia Vieira', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934772314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaomoreira@gmail.com', 'joaomoreira07', 'João Moreira','$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('hugogomes@gmail.com', 'hugogomes82', 'Hugo Gomes', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('diogoneves@gmail.com', 'neves76', 'Diogo Neves', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagoaleixo@gmail.com', 'aleixo02', 'Tiago Aleixo', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934772314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('diogobabo@gmail.com', 'diogo_babo07', 'Diogo Babo','$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagobranquinho@gmail.com', 'branquinho82', 'Tiago Branquinho', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('alexandrecorreia@gmail.com', 'alex_correia76', 'Alexandre Correia', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('henriquesilva@gmail.com', 'henriquesilva02', 'Henrique Silva', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934772314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiagomartins@gmail.com', 'tiagomartins07', 'Tiago Martins','$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '944212314');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114');
+INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114', True);
 
 
 INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',1);

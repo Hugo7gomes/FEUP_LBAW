@@ -1,4 +1,5 @@
 <!-- BOOTSTRAP SIDENAV -->
+<script src={{ asset('js/comment.js') }} defer></script>
 <div class="offcanvas offcanvas-end text-bg-dark show" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel" aria-modal="true" role="dialog">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">{{ $project->name }}</h5>
@@ -75,7 +76,7 @@
                 <div class="container my-5 py-5">
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-12 col-lg-10">
-                            <div class="card text-dark">
+                            <div class="card text-dark" id = "divComments">
                             <h4 class="mb-0">Comments</h4>
                             @foreach ($task->comments as $comment)
                             <div class="card-body p-4">   
@@ -101,14 +102,14 @@
             </section>
             @endif
 
-                <form method = "Post" action = "{{route('comment.create', ['task_id' => $task->id])}}" class="editTaskForm">
+                <div class="editTaskForm">
                     @csrf
                     <div class="form-group editTask">
                         <label for="comment">Comment</label>
-                        <textarea name="comment" class="form-control" rows = "3" placeholder="Leave a comment"></textarea>
+                        <textarea name="comment" id="inputComment" class="form-control" rows = "3" placeholder="Leave a comment"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-outline-light" id="commentButton">Comment</button>
-                </form>
+                    <button  class="btn btn-outline-light" id="commentButton">Comment</button>
+                </div>
         </ul>
     </div>
 </div>

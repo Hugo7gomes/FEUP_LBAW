@@ -161,13 +161,13 @@ class TaskController extends Controller
 
     public function addComment(Request $request, $task_id){
         $comment = new Comment();
-        $comment->comment = $request->input('comment');
+        $comment->comment = "fffff";
         $comment->date = now();
         $comment->id_task = $task_id;
         $comment->id_user = Auth::user()->id;
         $user = User::find(Auth::user()->id);
         //$this->authorize('create_update_delete', $task);
         $comment->save();
-        return redirect("project/1");
+        return json_encode(view('partials.comment',['comment' => $comment])->render());
     }
 }
