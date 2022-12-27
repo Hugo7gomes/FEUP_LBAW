@@ -32,12 +32,48 @@
             <a  href = "{{route('project.members', ['project_id' => $project->id])}}" class="nav-link link-dark " id="teamMembersProjectButton">Project Members</a>
           </li>
           <li class = "nav-item">
-            <form method="POST" action = "{{ route('project.leave', ['project_id' => $project->id]) }}" >
-              @csrf
-              <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="leaveProjectButton">Leave Project</button>
-            </form>
+            <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#leaveModal" id="leaveProjectButton">Leave Project</button>
           <li>
       </ul>
     </ul>
   </nav>
+  @if($project->is_unique_coordinator($user))
+  <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Danger - Leaving project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Só um coordenador nao pode sair</p>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  @else
+  <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Danger - Leaving project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Vai perder acesso a este projeto</p>
+        </div>
+        <div class="modal-footer">
+          <form method="POST" action = "{{ route('project.leave', ['project_id' => $project->id]) }}" >
+            @csrf
+            <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="leaveProjectButton">Leave Project</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
 @endsection

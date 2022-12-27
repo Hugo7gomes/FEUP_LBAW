@@ -117,9 +117,8 @@
         </div>
       </div>
     </div>
-  </div> 
-  <div class = "offcanvasDiv">
-</div>
+  </div>
+  <div class = "offcanvasDiv"></div>
 </main>
 @endsection
 

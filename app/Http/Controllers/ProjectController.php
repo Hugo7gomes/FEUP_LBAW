@@ -128,10 +128,8 @@ class ProjectController extends Controller
         $this->authorize('leave', $project);
 
         $user->leaveProject($project);
-        $favorite = Favorite::where('id_user', Auth::user()->id)->where('id_projects', $project->id)->first();
-        if($favorite !== null){
-            $favorite->delete();
-        }
+        $favorite = Favorite::where([['id_user', Auth::user()->id],['id_project',$project_id]]);
+        $favorite->delete();
         $invite = Invite::where('id_user_receiver',Auth::user()->id)->where('id_project',$project_id)->first();
         if($invite !== null){
             $invite->state = 'Rejected';

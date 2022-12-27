@@ -24,7 +24,9 @@ function showTaskHandler(){
     closeDivButton.addEventListener('click', closeSideTask);
     const addCommentButton = document.getElementById('commentButton');
     addCommentButton.addEventListener('click', addComment);
+    
 }
+
 
 function addComment(event){
     const inputBox = document.getElementById('inputComment');

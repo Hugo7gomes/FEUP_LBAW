@@ -26,6 +26,10 @@ class Project extends Model
         return $this->hasMany('App\Models\Role','id_project')->where('role','Collaborator');
     }
 
+    public function is_unique_coordinator(User $user){
+        return $this->is_coordinator($user) && (count($this->coordinators) == 1);
+    }
+
     public function is_coordinator(User $user){
         return ($this->coordinators()->where('id_user',$user->id)->get()->isNotEmpty());
     }
