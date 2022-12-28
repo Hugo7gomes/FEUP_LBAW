@@ -23,7 +23,7 @@
                       @csrf
                       <button type="submit" class="btn btn-success acceptInviteButton">Accept</button>
                     </form>
-                    <li>            <form method = "POST" action ="{{ route('project/rejectInvite',['id_project' => $notification->id_project]) }}">
+                    <form method = "POST" action ="{{ route('project/rejectInvite',['id_project' => $notification->id_project]) }}">
                       @csrf
                       <button type="submit" class="btn btn-danger acceptInviteButton">Reject</button>
                     </form>

@@ -1,5 +1,11 @@
 .not {
     width: 30vw;
+    border-radius: 5px;
+    padding: 0;
+    border: solid 2px #dddd;
+    height: 25vw;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .text {
@@ -8,6 +14,24 @@
 
 .deleteNot {
     font-size: 30px;
+}
+
+li.list-group-item {
+
+    display: flex;
+    flex-direction: row;
+}
+
+.deleteNot:hover {
+    cursor: pointer;
+}
+
+.acceptInviteButton {
+    margin: 5px;
+}
+
+.divNot > ul {
+    border-bottom: solid 2px #dddd;
 }
 
 /* .notificationDiv{
