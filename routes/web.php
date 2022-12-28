@@ -41,7 +41,7 @@ Route::get('project/{project_id}/edit','ProjectController@showUpdate')->name('pr
 Route::post('project/{project_id}/edit','ProjectController@update')->name('project.edit');
 
 Route::post('project/{project_id}/leave','ProjectController@leave')->name('project.leave');
-Route::post('project/inviteMember', 'InviteController@create')->name('project/inviteMember');
+Route::post('api/project/{project_id}/inviteMember', 'InviteController@create');
 Route::post('project/acceptInvite}', 'InviteController@accept')->name('project/acceptInvite');
 Route::post('project/rejectInvite}', 'InviteController@reject')->name('project/rejectInvite');
 

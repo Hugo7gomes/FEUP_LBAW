@@ -1,14 +1,3 @@
-let buttonNotif = document.getElementById('notificationButton')
-let divNotif = document.getElementsByClassName('notificationDiv')[0]
-buttonNotif.addEventListener('click',openNotifications);
-
-function openNotifications(event){
-    if (divNotif.style.display == "none") {
-        divNotif.style.display = "block";
-    } else{
-        divNotif.style.display = "none";
-    }
-}
 
 let deleteNotButtons = document.querySelectorAll('.deleteNot');
 [].forEach.call(deleteNotButtons, function(deleteButton) {
@@ -17,7 +6,7 @@ let deleteNotButtons = document.querySelectorAll('.deleteNot');
 
 function sendNotDeleteRequest(event){
     var button = event.target;
-    let id = button.closest('div.col').id;
+    let id = button.closest('.divNot').id;
     sendAjaxRequest('post', '/api/notification/delete', {id:id} , removeNotificationHandler);
 }
 

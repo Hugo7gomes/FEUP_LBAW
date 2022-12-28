@@ -157,13 +157,17 @@ class ProjectController extends Controller
         $project = Project::find($project_id);
         $userToRemove = User::where('username',$request->get('username'))->first();
         
-        $this->authorize('removeMember', $project);
+        //$this->authorize('removeMember', $project);
         
-        $project->removeMember($userToRemove);
-        $invite = Invite::where('id_project',$request->get("id"))->where('id_user_receiver',$userToRemove->id)->first();
-        $invite->delete();
+        $userToRemove->leaveProject($project);
+        $favorite = Favorite::where([['id_user', $userToRemove->id],['id_project',$project_id]]);
+        $favorite->delete();
+        $invite = Invite::where('id_user_receiver',$userToRemove->id)->where('id_project',$project_id)->first();
+        if($invite !== null){
+            $invite->state = 'Rejected';
+            $invite->save();
+        }
 
-        return $userToRemove;
     }
 
     public function upgradeMember(int $project_id,Request $request){

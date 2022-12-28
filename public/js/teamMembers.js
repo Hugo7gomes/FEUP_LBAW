@@ -10,6 +10,8 @@ function addEventListeners() {
         btton.addEventListener('click', upgradeMemberRequest);
     });
 
+    let addMemberButton = document.getElementsByClassName('addMemberButtonModal')[0];
+    addMemberButton.addEventListener('click', addMember);
 }
 
 function removeMemberRequest(event){
@@ -21,6 +23,18 @@ function removeMemberRequest(event){
     let id = url.split('/')[4]
 
     sendAjaxRequest('post', '/api/project/'+id+'/removeMember', {username:username} , removeMemberHandler);
+}
+
+function addMember(event){
+    let usernameMember = document.getElementById('chooseProfile').value;
+    let url = window.location.href;
+    let id = url.split('/')[4];
+    sendAjaxRequest('post', '/api/project/'+id+'/inviteMember', {id:id, usernameMember:usernameMember} , inviteMemberHandler);
+}
+
+function inviteMemberHandler(){
+    let divError = document.getElementsByClassName('errorMember')[0];
+    divError.innerText = JSON.parse(this.responseText)['message'];
 }
 
 function removeMemberHandler(){

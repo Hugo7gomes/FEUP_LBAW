@@ -1,6 +1,7 @@
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 <script src={{ asset('js/ajax.js') }} defer></script>
 <script src={{ asset('js/search.js') }} defer></script>
+<script src={{ asset('js/notification.js') }} defer></script>
 @section('header')
   <div class="headerContainer" id="headerContainer">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

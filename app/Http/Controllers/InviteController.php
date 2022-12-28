@@ -13,37 +13,37 @@ use App\Models\Notification;
 
 class InviteController extends Controller
 {
-    public function create(Request $request){
+    public function create(int $project_id, Request $request){
         if(!Auth::check()){
             return redirect("/home");
         }
 
-        $userReceiver = User::where('username',$request->input('username'))->first();
-        $project = Project::find($request->get('id'));
+        $userReceiver = User::where('username',$request->get('usernameMember'))->first();
+        $project = Project::find($project_id);
         if(!isset($userReceiver)){
-            $errors['userNotFound'] = "User not found";
-            return redirect()->back()->withInput()->withErrors($errors);
+            $errors['message'] = "User not found";
+            return $errors;
         }
         if($project->is_member($userReceiver)){
-            $errors['userNotFound'] = "User already collaborator";
-            return redirect()->back()->withInput()->withErrors($errors);
+            $errors['message'] = "User already collaborator";
+            return $errors;
         }
 
-        $invite = Invite::where('id_project',$request->get("id"))->where('id_user_receiver',$userReceiver->id)->first();
+        $invite = Invite::where('id_project',$project_id)->where('id_user_receiver',$userReceiver->id)->first();
         
         if(!isset($invite)){
             $invite = new Invite();
             $invite->state = 'Received';
             $invite->date = now();
-            $invite->id_project = $request->get('id');
+            $invite->id_project = $project_id;
             $invite->id_user_sender = Auth::user()->id;
             $invite->id_user_receiver = $userReceiver->id;
             $user = User::find(Auth::user()->id);
             $this->authorize('create',$invite); 
             $invite->save();
         }elseif($invite->state == 'Received'){
-            $errors['userNotFound'] = "User already invited";
-            return redirect()->back()->withInput()->withErrors($errors);
+            $errors['message'] = "User already invited";
+            return $errors;
         }elseif($invite->state == 'Rejected'){
             $invite->state = 'Received';
             $invite->date = now();
@@ -51,7 +51,7 @@ class InviteController extends Controller
 
             $notification = new Notification();
             $notification->date = now();
-            $notification->id_project =$request->get("id");
+            $notification->id_project =$project_id;
             $notification->id_invite =$invite->id;
             $notification->id_comment = NULL;
             $notification->id_task =NULL;
@@ -59,8 +59,8 @@ class InviteController extends Controller
             $notification->type = 'Invite';
             $notification->save();
         }
-        
-        return redirect()->back();
+        $errors['message'] = "User invite sent";
+        return $errors;
 
     }
 
@@ -88,8 +88,10 @@ class InviteController extends Controller
             )
         );
 
+        $project = Project::find($request->get('id_project'));
 
-        return redirect()->back();
+        return redirect("/project/$project->id");
+        
     }
 
     public function reject(Request $request){
