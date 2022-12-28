@@ -22,6 +22,10 @@
       @include('partials.header')
       @yield('header')
     </header>
+    <section id = "searchSection">
+      @include('pages.search')
+      @yield('search')
+    </section>
     <section id="content">
       @yield('content')
     </section>

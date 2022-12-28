@@ -61,6 +61,6 @@ Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');
 //Search
 Route::get('search','SearchController@Show')->name('search');
-Route::get('api/search', 'SearchController@search');
+Route::post('api/search', 'SearchController@search');
 
 

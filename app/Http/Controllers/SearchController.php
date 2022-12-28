@@ -18,7 +18,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $user = User::find(Auth::user()->id);
-        $searchText = $request->input('search');
+        $searchText = $request->get('search');
 
         $taskIds = Task::select('id')
         ->join('role', 'task.id_project', '=', 'role.id_project')
@@ -35,16 +35,16 @@ class SearchController extends Controller
         $tasks = array();
         $projects = array();
         if(isset($searchText)){
-            $projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
-            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->limit(5)->get();
+            /*$projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->limit(5)->get();*/
 
-            /*$tasks = $tasksFirst->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+            $tasks = $user->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
             ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])
-            ->limit(5)->get();*/
+            ->limit(5)->get();
         }
 
-        
-        return response()->json($projects);//Problema a retornar view 
+        $result['projects'] = $tasks;
+        return json_encode($result);//Problema a retornar view 
         
     }
       

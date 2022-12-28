@@ -6,7 +6,7 @@
   <div class="headerContainer" id="headerContainer">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="searchbar">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="searchbar">
         <div class = "btn-toolbar allButtons" role="toolbar">
           <div class = "btn-group mr-5" role = "group">
             <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('profile')}}" class = "link" ><i class="bi bi-person"></i></a></button>

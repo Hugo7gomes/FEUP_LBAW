@@ -48,6 +48,17 @@ class User extends Authenticatable
                                  'id_project')->orderBy('id', 'ASC');
     }
 
+    public function tasks(){
+        $projects =  $this->projects();
+        $tasks = collect();
+        foreach($projects->get() as $project){
+            foreach($project->tasks() as $task){
+                $tasks->add($tasks);
+            }
+        }
+        return $tasks; 
+    }
+
     public function favoriteProjects() {
         return DB::table('project')
         ->join('favorite_proj', 'favorite_proj.id_project', '=', 'project.id')

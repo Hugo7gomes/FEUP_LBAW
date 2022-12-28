@@ -59,7 +59,7 @@ class InviteController extends Controller
             $notification->type = 'Invite';
             $notification->save();
         }
-        $errors['message'] = "User invite sent";
+        $errors['message'] = "User invite sent";        
         return $errors;
 
     }

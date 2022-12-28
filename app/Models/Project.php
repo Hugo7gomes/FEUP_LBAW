@@ -85,6 +85,9 @@ class Project extends Model
         }
     }
 
+    public function tasks(){
+        return Task::where('id_project', $this->id);
+    }
     public function tasksToDo(){
         return Task::where('id_project', $this->id)->where('state', 'To Do')->simplePaginate(
             $perPage = 10, $columns = ['*'], $pageName = 'tasksToDo'
