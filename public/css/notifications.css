@@ -1,4 +1,20 @@
-/* .container-fluid {
+.not {
+    width: 30vw;
+}
+
+.text {
+    font-size: 20px;
+}
+
+.deleteNot {
+    font-size: 30px;
+}
+
+/* .notificationDiv{
+    display: block;
+    z-index: 6;
+}
+ .container-fluid {
     z-index: 1;
     position: absolute;
 }
@@ -33,7 +49,7 @@ li.list-group-item {
     display: flex;
     flex-direction: row;
 }
- */
+ 
 
 
 @media only screen and (max-width: 450px) {
@@ -50,9 +66,9 @@ li.list-group-item {
         overflow-x:hidden;
     }
 
-}
+} 
 
-/* .dropdown {
+.dropdown {
     float: right;
     width: 20%;
     display: block;
@@ -103,8 +119,8 @@ li.list-group-item {
 
 
 /* NOTIFICATIONS */
-
-/* .bi-x {
+/* 
+ .bi-x {
     color:black;
     font-size: 30px;
 }
@@ -147,4 +163,4 @@ li.list-group-item {
 
 .buttonsInvite > form {
     margin: 3%;
-} 
+}  */

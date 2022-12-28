@@ -111,7 +111,8 @@ class TaskController extends Controller
         $task->id_user_assigned = $id_userToAssing;
         $task->state = empty($request->get('state')) ? $task->state : $request->input('state');
         
-        $this->authorize('create_update_delete', $task);
+        $user = User::find(Auth::user()->id);
+        //$this->authorize('create_update_delete', $task);
         
         $task->save();
 

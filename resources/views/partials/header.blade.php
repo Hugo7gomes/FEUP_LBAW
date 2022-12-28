@@ -1,9 +1,6 @@
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 <script src={{ asset('js/ajax.js') }} defer></script>
-<script src={{ asset('js/notification.js') }} defer></script>
 <script src={{ asset('js/search.js') }} defer></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 @section('header')
   <div class="headerContainer" id="headerContainer">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -14,7 +11,11 @@
             <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('profile')}}" class = "link" ><i class="bi bi-person"></i></a></button>
           </div>
           <div class = "btn-group mr-5" role = "group">
-          <button class="btn btn-secondary btn-light rounded" type="button" id="notificationButton"><i class="bi bi-bell" ></i></button>
+            <button class="btn btn-secondary btn-light rounded" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-bell" ></i></button>
+            <section id = 'notifications'>
+              @include('partials.notifications')
+              @yield('notifications')
+            </section>
           </div> 
           <div class = "btn-group mr-5" role = "group">
             <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('logout')}}" class = "link"><i class="bi bi-box-arrow-right"></i></a></button>
