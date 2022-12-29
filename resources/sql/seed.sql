@@ -64,7 +64,6 @@ CREATE TABLE users (
     deleted BOOL DEFAULT FALSE,
     administrator BOOL DEFAULT FALSE,
     remember_token VARCHAR
-
 );
 
 -- Table2: photo

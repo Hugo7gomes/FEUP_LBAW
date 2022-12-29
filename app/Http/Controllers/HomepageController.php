@@ -16,17 +16,17 @@ class HomepageController extends Controller
                 return redirect('/admin/dashboard');
             }
 
-            if(!($user->favoriteProjects()->isEmpty())){
+            elseif(!($user->favoriteProjects()->isEmpty())){
                 return redirect('/project/'.$user->favoriteProjects()->first()->id);
             }
 
-            if(!($user->projects->isEmpty())){
+            elseif(!($user->projects->isEmpty())){
                 return redirect('/project/'.$user->projects()->first()->id);
             }
-
-            return redirect('/project/create');
+            else{
+                return redirect('/project/create');
+            }
         }
-
         else{
             return view('pages.index');
         }

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<!-- <link href="{{ asset('css/profile.css') }}" rel="stylesheet"> -->
+<!-- <link href="{{ asset('css/profile.css') }}" rel="stylesheet"> --> 
 
 <main>
 <section style="background-color: #eee;">
@@ -25,6 +25,7 @@
           <div class="card-body" id="form">
             <div class="row">
             <form method="POST" action = "{{ route('profile') }}" id="userInf">
+              <h1 id = "change_profile_title"> Change Profile</h1>
               @csrf
               <div class="formsName">
                 <div class="col-sm-3">

@@ -23,11 +23,6 @@ main {
     height: 490px;
 }
 
-#form {
-    padding-top: 5%;
-}
-
-
 .userProjects {
     display: flex;
     flex-direction: row;
@@ -40,17 +35,6 @@ main {
     padding: 2% 0% 0% 2%;
     display: flex;
     right: 10px;
-}
-
-
-.row form {
-    box-sizing: border-box;
-}
-
-.formsName, .formsUsername, .formsEmail, .formsPhone, .formsPassword, .formsNewPassword {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
 }
 
 .mb-0 {
@@ -88,3 +72,85 @@ main {
     flex-wrap: nowrap;
     justify-content: center;
 }
+
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  #change_profile_title{
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    border-bottom: 4px;
+    text-align: center;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #333;
+  }
+
+  .formsName,
+  .formsUsername,
+  .formsEmail,
+  .formsPhone,
+  .formsPassword,
+  .formsNewPassword {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .col-sm-3 {
+    width: 30%;
+    font-weight: bold;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .col-sm-9 {
+    width: 70%;
+  }
+  
+  input[type="text"],
+  input[type="tel"],
+  input[type="password"] {
+    width: 100%;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0 10px;
+    font-size: 14px;
+    transition: all 0.3s;
+  }
+  
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="password"]:focus {
+    border: 1px solid #333;
+    outline: none;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    height: 40px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #555;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }

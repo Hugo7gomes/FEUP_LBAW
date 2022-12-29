@@ -64,4 +64,4 @@ Route::post('api/search', 'SearchController@search');
 
 
 //admin
-Route::get('admin/dashboard','ProfileController@show')->name('dashboard'); // dashboard admin
+Route::get('admin/dashboard','AdminController@show')->name('admin/dashboard'); // dashboard admin
