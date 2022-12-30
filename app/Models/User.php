@@ -11,6 +11,7 @@ use App\Models\Task;
 
 
 
+
 class User extends Authenticatable
 {
     use Notifiable;

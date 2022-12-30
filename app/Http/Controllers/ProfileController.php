@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Models\Photo;
 use App\Models\Projects;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class ProfileController extends Controller
 {
@@ -81,4 +83,33 @@ class ProfileController extends Controller
 
         return back()->with("status","Profile updated");
     }
+
+    private function saveImage(String $imgData, int $id){
+        $fileName = 'user/'.$id.'.png';
+
+        Storage::disk('local')->put($fileName, base64_decode($imgData));
+    }
+
+    public function updateAvatar(Request $request){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+        
+        $user = User::find(Auth::user()->id);
+        
+        $photo = Photo::where('id_user', $user->id)->first();
+        if(!empty($request->get('avatar'))){
+            $photo->path = "storage/avatars/user".$user->id.".png";
+            $photo->save();
+            $fileName = "user".$user->id.".png";
+            $request->file('avatar')->storeAs(
+                storage_path('avatars'), $fileName
+            );
+        }
+
+        return redirect("profile");
+
+    }
+
+    
 }

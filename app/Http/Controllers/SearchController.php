@@ -34,16 +34,18 @@ class SearchController extends Controller
         $result = array();  
         $tasks = array();
         $projects = array();
+        $users = array();
         if(isset($searchText)){
-            /*$projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
-            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->limit(5)->get();*/
+            $projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
 
-            $tasks = $user->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
-            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])
-            ->limit(5)->get();
+            $users = User::where('username', 'like' , '%'.$searchText.'%')->get();
+            $tasks = Task::where('name','like', '%'.$searchText.'%')->get();
         }
 
-        $result['projects'] = $tasks;
+        $result['projects'] = $projects;
+        $result['users'] = $users;
+        $result['tasks'] = $tasks;
         return json_encode($result);//Problema a retornar view 
         
     }

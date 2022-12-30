@@ -1,57 +1,45 @@
-.wrapper {
-    max-width: 4500px;
-    margin: 150px auto;
+.searchDrop{
+  width: 30vw;
+  border-radius: 5px;
+  padding: 0;
+  border: solid 2px #dddd;
+  height: 25vw;
+  overflow: scroll;
+  overflow-x: hidden;
+  /* margin: auto; */
 }
 
-.wrapper .search-input {
-    position: relative;
-    width: 100%;
-    background: #FFF;
-    border-radius: 5px;
-    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+#searchDiv {
+    margin: auto;
+    width: 25%;
 }
 
-.search-input input {
-    height: 55px;
-    width: 100%;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    padding: 0 60px 0 20px;
-    font-size: 18px;
-}
-
-.search-input .icon {
-    height: 55px;
-    position: absolute;
-    top:0;
-    right:0;
-    text-align: center;
-}
-
-.search-input .autocom-box {
-    max-height: 280px;
-    padding: 0;
-    overflow-y: auto;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.search-input.active .autocom-box {
-    padding: 10px 8px;
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.autocom-box li {
-    list-style:none;
-    padding: 8px 12px;
-    width: 100%;
-    cursor: default;
-    border-radius: 3px;
+#divResultProjects::-webkit-scrollbar {
     display: none;
 }
 
-.search-input.active .autocom-box li {
-    display: block;
+#divResultProjects h2, #divResultUsers h2 {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px;
 }
+
+#divResultProjects > a > article, #divResultUsers > a > article {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#divResultProjects > a > article > h3, #divResultUsers > a > article > h3 {
+    font-size: 18px;
+    color: black;
+}
+
+#divResultProjects > a > article:hover, #divResultUsers > a > article:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+#divResultProjects > a:hover, #divResultUsers > a:hover {
+    text-decoration: none;
+}
+

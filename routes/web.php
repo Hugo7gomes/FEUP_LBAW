@@ -29,7 +29,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 //Profile
 Route::get('profile','ProfileController@show')->name('profile');//mostrar pagina do utilizador logado
-Route::post('profile','ProfileController@update');  
+Route::post('profile','ProfileController@update');
+Route::post('profile/avatar','ProfileController@updateAvatar')->name('profile.avatar');  
 Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina de outro utilizador
 
 //Project

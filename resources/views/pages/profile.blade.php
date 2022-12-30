@@ -13,8 +13,14 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center" id="profile">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 150px;">
+            <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+              <form method="POST" action = "{{route('profile.avatar')}}" enctype="multipart/form-data">>
+                @csrf
+                <div class='input-group input-group-sm'>
+                  <input class="form-control" name = "avatar" type="file" accept="image/png, image/gif, image/jpeg" id='fileAvatar'>
+                  <button class="btn btn-outline-secondary" type="submit" id='saveAvatar'><i class="bi bi-check"></i></button>
+                </div>
+              </form>
             <h5 class="my-3">{{ $user['name'] }}</h5>
             <p class="text-muted mb-1">{{ $user['email'] }}</p>
           </div>

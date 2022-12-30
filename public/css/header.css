@@ -9,6 +9,15 @@
     justify-items: space-between;
 }
 
+#searchSection {
+    margin: auto;
+    width: 50%; 
+    display: flex;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
 .link:hover {
     text-decoration: none;
 }

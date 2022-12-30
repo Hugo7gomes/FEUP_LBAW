@@ -10,5 +10,5 @@ class Photo extends Model
     use HasFactory;
     protected $table = 'photo';
 
-    
+    public $timestamps  = false;
 }
