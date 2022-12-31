@@ -29,7 +29,7 @@
                 {{ $errors->first('password') }}
             </span>
             @endif
-            <span class="forgotPass">Forgot your password?</span>
+            <a href="{{route('password.request')}}"><span class="forgotPass">Forgot your password?</span></a>
             </div>
             <button class="btn btn-outline-dark loginButton" type="submit">
                 Login

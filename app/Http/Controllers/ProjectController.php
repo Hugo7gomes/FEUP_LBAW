@@ -25,7 +25,7 @@ class ProjectController extends Controller
         $user = User::find(Auth::user()->id);
 
         $this->authorize('show',$project);
-    
+        
         return view('pages.project',['user' => $user, 'project' => $project]);
     }
 
@@ -80,7 +80,7 @@ class ProjectController extends Controller
         $project = Project::find($project_id);  
         $user = User::find(Auth::user()->id);
 
-        $this->authorize('showUpdate', $project);
+        $this->authorize('update', $project);
         
         return view('pages.editProject',['user' => $user,'project'=>$project]); 
     }
@@ -140,6 +140,21 @@ class ProjectController extends Controller
 
     }
 
+    public function archive($project_id){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+        
+        $project = Project::find($project_id);
+        $user = User::find(Auth::user()->id);
+        
+        $this->authorize('archive', $project);
+
+        $project->archived = TRUE;
+        $project->save();
+        return redirect("/project/$project->id");
+    }
+
   
     public function showMembers(int $project_id){
         if(!Auth::check()){
@@ -157,7 +172,8 @@ class ProjectController extends Controller
         $project = Project::find($project_id);
         $userToRemove = User::where('username',$request->get('username'))->first();
         
-        //$this->authorize('removeMember', $project);
+        $user = User::find(Auth::user()->id);
+        $this->authorize('removeMember', $project);
         
         $userToRemove->leaveProject($project);
         $favorite = Favorite::where([['id_user', $userToRemove->id],['id_project',$project_id]]);
@@ -174,6 +190,7 @@ class ProjectController extends Controller
         $project = Project::find($project_id);
         $userToUpgrade = User::where('username',$request->get('username'))->first();
         
+        $user = User::find(Auth::user()->id);
         $this->authorize('upgradeMember', $project);
         
         DB::table('role')
@@ -182,5 +199,7 @@ class ProjectController extends Controller
 
         return Role::where([['id_user',$userToUpgrade->id],['id_project',$project->id]]);
     } 
+
+    
     
 }

@@ -18,28 +18,28 @@
     display: none;
 }
 
-#divResultProjects h2, #divResultUsers h2 {
+#divResultProjects h2, #divResultUsers h2, #divResultTasks h2  {
     font-size: 22px;
     font-weight: bold;
     padding: 10px;
 }
 
-#divResultProjects > a > article, #divResultUsers > a > article {
+#divResultProjects > a > article, #divResultUsers > a > article, #divResultTasks > a > article {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
 
-#divResultProjects > a > article > h3, #divResultUsers > a > article > h3 {
+#divResultProjects > a > article > h3, #divResultUsers > a > article > h3, #divResultTasks > a > article > h3 {
     font-size: 18px;
     color: black;
 }
 
-#divResultProjects > a > article:hover, #divResultUsers > a > article:hover {
+#divResultProjects > a > article:hover, #divResultUsers > a > article:hover, #divResultTasks > a > article:hover {
     cursor: pointer;
     background-color: #ddd;
 }
 
-#divResultProjects > a:hover, #divResultUsers > a:hover {
+#divResultProjects > a:hover, #divResultUsers > a:hover, #divResultTasks > a:hover {
     text-decoration: none;
 }
 

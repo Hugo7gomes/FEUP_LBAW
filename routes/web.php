@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,11 +29,17 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
+Route::get('forgot-password','ForgotPasswordController@show')->middleware('guest')->name('password.request');
+Route::post('forgot-password', 'ForgotPasswordController@request')->middleware('guest')->name('password.email');
+Route::get('reset-password', 'ForgotPasswordController@showRecover')->middleware('guest')->name('password.reset');
+Route::post('reset-password', 'ForgotPasswordController@recover')->middleware('guest')->name('password.update');
+
 //Profile
-Route::get('profile','ProfileController@show')->name('profile');//mostrar pagina do utilizador logado
+Route::get('profile','ProfileController@show')->name('profile');
 Route::post('profile','ProfileController@update');
 Route::post('profile/avatar','ProfileController@updateAvatar')->name('profile.avatar');  
 Route::get('profile/{username}','ProfileController@showUser');//mostrar pagina de outro utilizador
+Route::post('profile/delete','ProfileController@delete')->name('profile.delete');
 
 //Project
 Route::get('project/create','ProjectController@showCreate')->name('project/create');
@@ -42,6 +50,7 @@ Route::get('project/{project_id}/edit','ProjectController@showUpdate')->name('pr
 Route::post('project/{project_id}/edit','ProjectController@update')->name('project.edit');
 
 Route::post('project/{project_id}/leave','ProjectController@leave')->name('project.leave');
+Route::post('project/{project_id}/archive','ProjectController@archive')->name('project.archive');
 Route::post('api/project/{project_id}/inviteMember', 'InviteController@create');
 Route::post('project/acceptInvite}', 'InviteController@accept')->name('project/acceptInvite');
 Route::post('project/rejectInvite}', 'InviteController@reject')->name('project/rejectInvite');
@@ -56,7 +65,7 @@ Route::post('api/notification/delete', 'NotificationController@delete');
 
 //Task
 Route::post('task/create','TaskController@create')->name('task/create');
-Route::get('api/project/{project_id}/task/{task_id}','TaskController@showUpdate');
+Route::get('api/project/{project_id}/task/{task_id}','TaskController@showTask');
 Route::post('api/project/{project_id}/task/{task_id}/addComment','TaskController@addComment');
 Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');

@@ -1,8 +1,10 @@
 @if($comment !== null)
     <div class="d-flex flex-start">
-        <img class="rounded-circle shadow-1-strong me-3"
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp" alt="avatar" width="60"
-            height="60" />
+        @if($user->photo != null)
+            <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="60" height="60">
+        @else
+            <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="60" height="60">
+        @endif
         <div>
             <h6 class="fw-bold mb-1"></h6>
             <div class="d-flex align-items-center mb-3">

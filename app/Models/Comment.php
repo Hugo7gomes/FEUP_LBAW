@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Comment extends Model
 {
@@ -17,7 +18,7 @@ class Comment extends Model
      */
 
     public function owner(){
-        $this->hasOne('App\Models\User','id_user');
+        return $this->belongsTo(User::class, 'id_user');
     }
 
     

@@ -112,7 +112,7 @@ class TaskController extends Controller
         $task->state = empty($request->get('state')) ? $task->state : $request->input('state');
         
         $user = User::find(Auth::user()->id);
-        //$this->authorize('create_update_delete', $task);
+        $this->authorize('create_update_delete', $task);
         
         $task->save();
 
@@ -120,7 +120,7 @@ class TaskController extends Controller
     }
 
 
-    public function showUpdate($project_id, $task_id){
+    public function showTask($project_id, $task_id){
         if(!Auth::check()){
             return redirect("/home");
         }
@@ -132,12 +132,18 @@ class TaskController extends Controller
         $project = Project::find($project_id);
         $user = User::find(Auth::user()->id);
 
-        $this->authorize('create_update_delete', $task);
+        $this->authorize('show', $task);
 
         $userToAssign = User::find($task->id_user_assigned);
 
+        if(!$project->archived){
+            return json_encode(view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render());
+        }else{
+            //retornar view task archived
+        }
 
-        return json_encode(view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render());
+
+        
     }
 
     public function delete(Request $request){
@@ -152,12 +158,11 @@ class TaskController extends Controller
         
         $this->authorize('create_update_delete', $task);
         
-
         $taskNotification = Notification::where('id_task', $task->id);
         $taskNotification->delete();
         $task->delete();
-        return redirect("/project/$task->id_project");
 
+        return redirect("/project/$task->id_project");
     }
 
     public function addComment(Request $request){
@@ -166,9 +171,13 @@ class TaskController extends Controller
         $comment->date = now();
         $comment->id_task = $request->get('task_id');
         $comment->id_user = Auth::user()->id;
+
+        $task = Task::find($request->get('task_id'));
         $user = User::find(Auth::user()->id);
-        //$this->authorize('create_update_delete', $task);
+        
+        $this->authorize('create_update_delete', $task);
+        
         $comment->save();
-        return json_encode(view('partials.comment',['comment' => $comment])->render());
+        return json_encode(view('partials.comment',['comment' => $comment, 'user' => $user])->render());
     }
 }

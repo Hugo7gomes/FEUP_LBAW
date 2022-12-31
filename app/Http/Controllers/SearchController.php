@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Project;
 
 
 class SearchController extends Controller
@@ -19,17 +20,7 @@ class SearchController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $searchText = $request->get('search');
-
-        $taskIds = Task::select('id')
-        ->join('role', 'task.id_project', '=', 'role.id_project')
-        ->where('id_user', $user->id)
-        ->get();
-        
-        $tasksFirst = array();
-        foreach ($taskIds as $taskId){
-            $task = Task::find($taskId)->first();
-            array_push($tasksFirst,$task);
-        }
+        $project = Project::find($request->get('projectId'));
 
         $result = array();  
         $tasks = array();
@@ -39,8 +30,13 @@ class SearchController extends Controller
             $projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
             ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
 
-            $users = User::where('username', 'like' , '%'.$searchText.'%')->get();
-            $tasks = Task::where('name','like', '%'.$searchText.'%')->get();
+            $users = User::where([
+                ['username', 'like' , '%'.$searchText.'%'],
+                ['administrator', 'FALSE'],
+            ])->get();
+            
+            $tasks = $project->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
         }
 
         $result['projects'] = $projects;

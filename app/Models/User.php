@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 use App\Models\Photo;
 use App\Models\Project;
@@ -47,6 +48,15 @@ class User extends Authenticatable
                                  'role',
                                  'id_user',
                                  'id_project')->orderBy('id', 'ASC');
+    }
+
+    public function is_only_coordinator(){
+        $projects = $this->projects;
+        foreach($projects as $project){
+            if($project->is_unique_coordinator($this)){
+                return True;
+            }
+        }
     }
 
     public function tasks(){

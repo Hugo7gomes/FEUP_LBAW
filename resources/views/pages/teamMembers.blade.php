@@ -29,7 +29,11 @@
           @foreach ($project->getCoordinators() as $coordinator)
             <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                @if($coordinator->photo != null)
+                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                @else
+                  <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                @endif  
                 <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
                 <span>Coordinator</span>
               </div>
@@ -38,7 +42,11 @@
           @foreach ($project->getCollaborators() as $collaborator)
             <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                @if($collaborator->photo != null)
+                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                @else
+                  <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                @endif  
                 <a href = "/profile/{{$collaborator['username']}}" class = "usernameCollaborator nav-item" aria-current="page">{{$collaborator['username']}}</a>
                 <span>Collaborator</span>
               </div>

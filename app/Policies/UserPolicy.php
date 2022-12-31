@@ -28,6 +28,6 @@ class UserPolicy
 
     public function delete(User $user, User $model)
     {
-      return $user->id == $model->id;
+      return false;
     }
 }

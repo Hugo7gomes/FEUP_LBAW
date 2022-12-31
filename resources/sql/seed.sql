@@ -1,5 +1,6 @@
 create schema if not exists lbaw;
 
+DROP TABLE IF EXISTS password_resets CASCADE;
 DROP TABLE IF EXISTS task CASCADE;
 DROP TABLE IF EXISTS photo CASCADE;
 DROP TABLE IF EXISTS project CASCADE;
@@ -121,7 +122,7 @@ CREATE TABLE comment (
     id SERIAL PRIMARY KEY,
     comment TEXT NOT NULL,
     ban BOOL DEFAULT FALSE,
-    date DATE NOT NULL,
+    date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
     id_task INTEGER NOT NULL REFERENCES task(id),
     id_user INTEGER NOT NULL REFERENCES users(id)
 );
@@ -182,6 +183,11 @@ CREATE TABLE favorite_proj (
     PRIMARY KEY (id_user, id_project)
 );
 
+CREATE TABLE password_resets (
+    email VARCHAR NOT NULL, 
+    token VARCHAR NOT NULL ,
+    created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL
+);
 ---------------------------------------------------------------------------------
 --Indexes
 
@@ -529,16 +535,6 @@ INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisi
 INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114', True);
 
 
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user1.jpeg',1);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user2.jpeg',2);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user4.jpeg',4);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user5.jpeg',5);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user6.jpeg',6);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user7.jpeg',7);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user8.jpeg',8);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/user9.jpeg',9);
-INSERT INTO photo (path,id_user) VALUES ('docs/profiles/admin.jpeg',14);
-
 
 INSERT INTO project (name, details, creation_date, id_creator) VALUES ('Trabalho de LBAW', 'O intuito do trabalho é desenvolver um site de apoio a workflow de equipas', '2022-10-01', 1);
 INSERT INTO project (name, details, creation_date, id_creator) VALUES ('Trabalho de PFL', 'O intuito do trabalho é aprender o conceito de programação funcional em haskell', '2022-10-01', 2);
@@ -566,12 +562,6 @@ INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUE
 INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Accepted','2022-10-30',3,3,4);
 INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Received','2022-10-30',4,4,5);
 INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Rejected','2022-10-30',4,4,6);
-
-INSERT INTO comment (comment,date,id_task,id_user) VALUES ('tu és mesmo bom em css','2022-10-30',3,3);
-INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Acrescenta só uma botão de sidebar está perfeito','2022-10-30',3,2);
-INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Bom trabalho Hugo, vais ser promovido','2022-10-30',3,1);
-INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Quando é que isso está pronto? Quero começar a popular a base de dados','2022-10-30',1,1);
-INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Amanha acabo sem falta!','2022-10-30',1,2);
 
 INSERT INTO faq (question,answer) VALUES ('Como Criar uma conta?', 'Na página incial ou em qualquer página se não tiveres ainda com a conta loggada, no canto superior direito, terás a opção de dar login. Clicar nessa opção que te redirecionará para uma página onde te poderás registar.');
 INSERT INTO faq (question,answer) VALUES ('Como Apagar a conta ?', 'Na página do teu perfil encontar lá essa oplção');

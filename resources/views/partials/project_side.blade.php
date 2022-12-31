@@ -33,7 +33,12 @@
           </li>
           <li class = "nav-item">
             <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#leaveModal" id="leaveProjectButton">Leave Project</button>
-          <li>
+          </li>
+          @if($project->is_coordinator($user))
+          <li class = "nav-item">
+            <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#archiveModal" id="leaveProjectButton">Archive Project</button>
+          </li>
+          @endif
       </ul>
     </ul>
   </nav>
@@ -47,9 +52,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Só um coordenador nao pode sair</p>
-        </div>
-        <div class="modal-footer">
+          <p>You are the only coordinator so you cannot leave the project</p>
         </div>
       </div>
     </div>
@@ -64,12 +67,34 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Vai perder acesso a este projeto</p>
+          <p>Are you sure you want to leave the project?</p>
         </div>
         <div class="modal-footer">
           <form method="POST" action = "{{ route('project.leave', ['project_id' => $project->id]) }}" >
             @csrf
             <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="leaveProjectButton">Leave Project</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
+  @if($project->is_coordinator($user))
+  <div class="modal " id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Danger - Archive Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>This project will become read-only</p>
+        </div>
+        <div class="modal-footer">
+          <form method="POST" action = "{{ route('project.archive', ['project_id' => $project->id]) }}" >
+            @csrf
+            <button type="submit" class="btn btn-outline-danger nav-link btn-block text-left" id="archiveProjectButton">Archive Project</button>
           </form>
         </div>
       </div>

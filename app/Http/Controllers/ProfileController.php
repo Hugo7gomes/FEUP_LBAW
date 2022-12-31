@@ -42,6 +42,7 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request){
+
         if(!Auth::check()){
             return redirect("/home");
         }
@@ -84,31 +85,64 @@ class ProfileController extends Controller
         return back()->with("status","Profile updated");
     }
 
-    private function saveImage(String $imgData, int $id){
-        $fileName = 'user/'.$id.'.png';
-
-        Storage::disk('local')->put($fileName, base64_decode($imgData));
-    }
-
     public function updateAvatar(Request $request){
         if(!Auth::check()){
             return redirect("/home");
         }
-        
+        $validate = $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+
         $user = User::find(Auth::user()->id);
+        $this->authorize('update', $user);
         
         $photo = Photo::where('id_user', $user->id)->first();
-        if(!empty($request->get('avatar'))){
-            $photo->path = "storage/avatars/user".$user->id.".png";
+        if($photo == null){
+            $photo = new Photo();
+            $photo->path = "avatars/user".$user->id."."."png";
+            $photo->id_user = $user->id;
+        }
+
+        $file = $request->file('avatar');
+        $path = public_path('avatars/').$photo->path;
+        $imageName = "user".$user->id."."."png";
+        if($file != null){
+            if(file_exists($path)){
+                unlink($path);
+            }
+            $imageName = "user".$user->id."."."png";
+            $file->move(public_path('avatars/'), $imageName);
+            $photo->path = 'avatars/'.$imageName;
             $photo->save();
-            $fileName = "user".$user->id.".png";
-            $request->file('avatar')->storeAs(
-                storage_path('avatars'), $fileName
-            );
         }
 
         return redirect("profile");
+    }
 
+    public function delete(Request $request){
+        if(!Auth::check()){
+            return redirect("/home");
+        }
+
+        $user = User::find(Auth::user()->id);
+        
+        //$this->authorize('delete', $user);
+
+        $user->email = "anonymous".$user->id."@anonymous.com";
+        $user->username = "anonymous".$user->id;
+        $user->name = "Anonymous";
+        $user->phone_number = "";
+        $user->deleted = TRUE;
+        $user->password = "";
+        $photo = Photo::where('id_user', $user->id)->first();
+        if($photo != null){
+            $photo->delete();
+        }
+
+        $user->save();
+
+        return redirect("home");
     }
 
     

@@ -18,39 +18,24 @@ class ProjectPolicy
       return $project->is_member($user);
     }
 
-
-    public function showUpdate(User $user, Project $project){
-      return $project->is_coordinator($user);
-    }
-
     public function update(User $user, Project $project)
     {
-      return $project->is_coordinator($user);
+      return $project->is_coordinator($user) && !$project->archived;
     }
 
     public function removeMember(User $user, Project $project){
-      $userActual = User::find(Auth::user()->id);
-      return $project->is_coordinator($userActual);
-    }
+      return $project->is_coordinator($user) && !$project->archived;
+    } 
 
     public function upgradeMember(User $user, Project $project){
-      $userActual = User::find(Auth::user()->id);
-      return $project->is_coordinator($userActual);
-    }
-
-    public function create(User $user)
-    {
-      // Any user can create a new profile
-      return Auth::check();
-    }
-
-    public function delete(User $user, User $model)
-    {
-      // Only a profile owner can delete it
-      return $user->id == $model->id;
+      return $project->is_coordinator($user) && !$project->archived;
     }
 
     public function leave(User $user, Project $project){
-      return $project->is_member($user) && !$project->is_coordinator($user);
+      return $project->is_member($user) && !$project->is_unique_coordinator($user) && !$project->archived;
+    }
+
+    public function archive(User $user, Project $project){
+      return $project->is_coordinator($user);
     }
 }
