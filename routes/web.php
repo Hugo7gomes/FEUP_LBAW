@@ -18,8 +18,8 @@ Route::get('/', function () {
 Route::get('home','HomepageController@show')->name('home');
 Route::get('faq','FaqpageController@show')->name('faq');
 Route::post('faq', 'FaqpageController@create')->name('createFaq');
-Route::get('about','HomepageController@show')->name('about');
-Route::get('contacts','HomepageController@show')->name('contacts');
+Route::get('about','AboutpageController@show')->name('about');
+Route::get('contact','ContactpageController@show')->name('contact');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
