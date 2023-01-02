@@ -57,6 +57,10 @@
     border: 0;
 }
 
+#sideNavButton {
+    display: none;
+}
+
 .bi {
     display: grid;
     align-items: baseline;
@@ -79,7 +83,13 @@
     opacity: 0.9;
 }
 
-.bi-bell:hover, .bi-person:hover, .bi-box-arrow-right:hover {
+.bi-list {
+    font-size: 35px;
+    opacity: 0.9;
+    color: #606c76;
+}
+
+.bi-bell:hover, .bi-person:hover, .bi-box-arrow-right:hover, .bi-list:hover {
     color: black;
     opacity: 1;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -90,6 +100,13 @@
 .bla:hover{
     background-color: white !important;
 }
+
+@media only screen and (max-width: 1400px) {
+    #sideNavButton {
+        display: block;
+    }
+} 
+
 
 
 

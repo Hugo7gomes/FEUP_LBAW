@@ -11,9 +11,10 @@
 
 <main>
   <section id="projectSide">
-      @include('partials.project_side')
-      @yield('project_side')
+    @include('partials.project_side')
+    @yield('project_side')
   </section> 
+
   <div class="container text-center boardView" id="boardView">
       <div class="row">
         <div class="boardViewHeader">

@@ -33,4 +33,27 @@ main {
   margin-left: 13%;
 }
 
+@media only screen and (max-width: 1400px) {
+  #projectSide {
+    display: none;
+  }
+  
+}  
+
+@media only screen and (max-width: 1024px) {
+  .navbar-fixed-left {
+    width: 250px;
+  }
+  
+} 
+
+@media only screen and (max-width: 768px) {
+  .navbar-fixed-left {
+    display: flex;
+    z-index: 3;
+    width: 100vw;
+  }
+  
+} 
+
 

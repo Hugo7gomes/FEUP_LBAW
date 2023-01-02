@@ -13,6 +13,9 @@
         </section>
         <div class = "btn-toolbar allButtons" role="toolbar">
           <div class = "btn-group mr-5" role = "group">
+            <button type = "button" class = "btn btn-secondary btn-light rounded" id = "sideNavButton"><i class="bi bi-list"></i></button>
+          </div>
+          <div class = "btn-group mr-5" role = "group">
             <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('profile')}}" class = "link" ><i class="bi bi-person"></i></a></button>
           </div>
           <div class = "btn-group mr-5" role = "group">

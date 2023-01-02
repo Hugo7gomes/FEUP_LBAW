@@ -8,3 +8,21 @@ if (window.location.href.indexOf("members") > -1) {
 }else{
     board.classList = 'nav-link active'
 }
+
+let buttonSideNav = document.getElementById('sideNavButton'); 
+let projectSide = document.getElementById('projectSide');
+buttonSideNav.addEventListener('click', openSideNav);
+
+function openSideNav(event){
+    if(projectSide.style.display != "block"){
+        projectSide.style.display = "block";
+    }else{
+        projectSide.style.display = "none";
+    }
+    
+}
+
+
+
+
+
