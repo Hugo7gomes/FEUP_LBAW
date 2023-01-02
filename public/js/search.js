@@ -20,6 +20,10 @@ function searchRequest(event) {
 
     let url = window.location.href;
     let projectId = url.split('/')[4];
+    if(projectId.indexOf('?') > -1){
+        projectId = projectId.split('?')[0];
+    }
+
     sendAjaxRequest('post', '/api/search', { projectId: projectId, search: search }, searchHandler);
 }
 

@@ -102,3 +102,7 @@ img {
     flex-wrap: nowrap;
     justify-content: center;
 }
+
+#sideNavButton {
+    display: none;
+}

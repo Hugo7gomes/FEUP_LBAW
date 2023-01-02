@@ -70,7 +70,6 @@ Route::post('api/project/{project_id}/task/{task_id}/addComment','TaskController
 Route::post('task/edit','TaskController@update')->name('task/edit');
 Route::get('task/delete','TaskController@delete')->name('task/delete');
 //Search
-Route::get('search','SearchController@Show')->name('search');
-Route::post('api/search', 'SearchController@search');
+Route::post('/api/search', 'SearchController@search');
 
 

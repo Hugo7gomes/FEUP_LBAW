@@ -22,6 +22,10 @@ main {
     padding-bottom: 71%;
 }
 
+#profile > img {
+    margin-bottom: 25px;
+}
+
 #form {
     padding-top: 5%;
     font-weight: 600;
@@ -52,4 +56,7 @@ main {
     margin-top: 30px;
     font-size: 15px;
     justify-content: center;
+}
+#sideNavButton {
+    display: none;
 }

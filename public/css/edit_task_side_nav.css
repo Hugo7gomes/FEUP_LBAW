@@ -3,6 +3,14 @@
     width: 70vw;
 }
 
+#offcanvasNavbarDarkLabelTask, #offcanvasNavbarDarkLabel {
+    width: 60vw;
+}
+
+#offcanvasNavbarDarkLabelTask, #offcanvasNavbarDarkLabel {
+    word-break: break-all;
+}
+
 .editTaskForm {
     width: 60vw;
     padding-top: 20px;
@@ -29,6 +37,24 @@
 #deleteTaskButton {
     margin-left: 5%;
 }
+
+
+@media only screen and (max-width: 768px) {
+    #offcanvasNavbarDark {
+      width: 70%;
+    }
+} 
+
+@media only screen and (max-width: 425px) {
+    #offcanvasNavbarDark {
+      width: 100%;
+    }
+
+    #taskUpdate > form, .editTaskForm {
+        margin-right: 0;
+        width: 90%;
+    }
+} 
 
 
 

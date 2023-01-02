@@ -44,6 +44,7 @@ main {
   #projectSide {
     opacity: 0;
     width: 0;
+    display: none;
     z-index: 1;
     height: 100vh;
     transition: linear .3s;
@@ -62,6 +63,7 @@ main {
   #projectSide {
     width: 0;
     opacity: 0;
+    display: none;
     z-index: 2;
     max-width: 40%;
     /* height: 100vh; */

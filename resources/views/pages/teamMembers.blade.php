@@ -21,7 +21,7 @@
     @endif
       <div class="row">
           <div class="col">
-          <input type="text" name="username" class="form-group" placeholder="Search?">
+            <input type="text" name="username" class="form-group" placeholder="Search?">
           </div>
       </div>
       <div class="row">

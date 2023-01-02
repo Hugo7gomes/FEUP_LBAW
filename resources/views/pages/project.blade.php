@@ -17,14 +17,18 @@
 
   <div class="container text-center boardView" id="boardView">
       <div class="row justify-content-between boardViewHeader">
-        <div class="col-4">
+        <div class="col-6">
           <h2>Board View - {{ $project->name }}</h2>
         </div>
         <div class="col-4">
           @if($project->is_favorite($user))
-            <button type = "submit" class="btn btn-outline-danger btn-sm favoriteButton Button">REMOVE FAVORITE</button> 
+              <button type = "submit" class="btn btn-outline-danger btn-sm favoriteButton Button">REMOVE FAVORITE</button> 
           @else
-          <button type = "submit" class="btn btn-outline-dark btn-sm favoriteButton Button">FAVORITE</button>
+            @if(count($user->favoriteProjects()) <= 10)
+              <button type = "submit" class="btn btn-outline-dark btn-sm favoriteButton Button">FAVORITE</button>
+            @else
+              <button class="btn btn-outline-dark btn-sm favoriteButton Button" data-bs-toggle="modal" data-bs-target="#favoriteModal">Favorite</button>
+            @endif
           @endif
         </div>
       </div>
@@ -131,6 +135,22 @@
       </div>
     </div>
   </div>
+  @if(count($user->favoriteProjects()) > 10)
+  <div class="modal " id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reached the limit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>You reached the limit of favorite projects. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
   <div class = "offcanvasDiv"></div>
 </main>
 @endsection
