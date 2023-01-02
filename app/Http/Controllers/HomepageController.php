@@ -17,7 +17,7 @@ class HomepageController extends Controller
                 Auth::logout();
             }
             
-            if($user->admin){
+            if($user->administrator){
                 return redirect('/admin/dashboard');
             }
 

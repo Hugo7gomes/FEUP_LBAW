@@ -11,10 +11,11 @@ class AdminController extends Controller
 {
     public function show(){ 
             $user = User::find(Auth::user()->id);
+
             $bannedUsers = User::join('ban', 'ban.id_banned', '=', 'users.id')
             ->select('users.username', 'ban.reason', 'ban.date')
             ->get();
             
-            return view('pages.dashboardAdmin',['bans' => $bannedUsers, 'user' =>$user]);
+            return view('pages.dashboardAdmin',['bans' => $bannedUsers, 'user' =>$user, 'loggedIn' => Auth::check()]);
     }
 }

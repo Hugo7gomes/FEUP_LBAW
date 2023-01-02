@@ -4,11 +4,7 @@
 
 @section('content')
 
-<<<<<<< HEAD
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
-=======
-<!-- <link href="{{ asset('css/profile.css') }}" rel="stylesheet"> --> 
->>>>>>> admin
 
 <main>
 <section style="background-color: #eee;">

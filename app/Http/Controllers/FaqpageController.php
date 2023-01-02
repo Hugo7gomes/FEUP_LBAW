@@ -11,13 +11,14 @@ class FaqpageController extends Controller
 {
     public function show(){
         $faqs = Faq::all();
+        
         if(Auth::check()){
             $user = User::find(Auth::user()->id);
-            return view('pages.faqPage',['faqs' => $faqs, 'user' => $user]);
         }
         else{
-            return view('pages.faqPage',['faqs' => $faqs, 'user' => null]);
+            $user = null;
         }
+        return view('pages.faqPage',['faqs' => $faqs, 'user' =>$user]);
     }
 
     public function create(Request $request){
