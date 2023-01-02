@@ -16,15 +16,19 @@
   </section> 
 
   <div class="container text-center boardView" id="boardView">
-      <div class="row">
-        <div class="boardViewHeader">
+      <div class="row justify-content-between boardViewHeader">
+        <div class="col-4">
           <h2>Board View - {{ $project->name }}</h2>
+        </div>
+        <div class="col-4">
           @if($project->is_favorite($user))
             <button type = "submit" class="btn btn-outline-danger btn-sm favoriteButton Button">REMOVE FAVORITE</button> 
           @else
           <button type = "submit" class="btn btn-outline-dark btn-sm favoriteButton Button">FAVORITE</button>
           @endif
         </div>
+      </div>
+      <div class="row">
         <div class="col task tasksToDo">
           <div class="tasksToDoHeader">
             <h3>To do</h3>
@@ -40,8 +44,8 @@
             </a>
           @endforeach
           <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <span class="page-item">{{$project->tasksToDo()->links()}}</span>
+            <ul class="pagination justify-content-center">
+              <span class="page-item">{{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}</span>
             </ul>
           </nav>
         </div>
@@ -52,7 +56,11 @@
                 <div id="tasks">{{ $taskDoing['name']}}</div>
               </a>
             @endforeach
-            <span>{{$project->tasksDoing()->links()}}</span>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <span class="page-item">{{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}</span>
+              </ul>
+            </nav>
         </div>
         <div class="col task tasksDone">
             <h3>Done</h3>
@@ -61,7 +69,11 @@
                 <div id="tasks">{{ $taskDone['name']}}</div>
               </a>
             @endforeach
-            <span>{{$project->tasksDone()->links()}}</span>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <span class="page-item">{{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}</span>
+              </ul>
+            </nav>
         </div>
       </div>
   </div>

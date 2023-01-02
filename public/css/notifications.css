@@ -3,7 +3,7 @@
     border-radius: 5px;
     padding: 0;
     border: solid 2px #dddd;
-    height: 25vw;
+    max-height: 19vw;
     overflow: scroll;
     overflow-x: hidden;
 }
@@ -13,7 +13,7 @@
   }
 
 .text {
-    font-size: 20px;
+    font-size: 100%;
 }
 
 .deleteNot {
@@ -21,9 +21,9 @@
 }
 
 li.list-group-item {
-
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .deleteNot:hover {
@@ -38,49 +38,9 @@ li.list-group-item {
     border-bottom: solid 2px #dddd;
 }
 
-/* .notificationDiv{
-    display: block;
-    z-index: 6;
-}
- .container-fluid {
-    z-index: 1;
-    position: absolute;
-}
-
-.not {
-    width: 30vw;
-    z-index: 6;
-}
-.notificationDiv{
-    display: block  ;
-    z-index: 6;
-}
-.text {
-    font-size: 2rem;
-}
-
-.deleteNot {
-    font-size: 3rem;
-}
-
-.deleteNot:hover {
-    color: red;
-}
-
-li.list-group-item:hover {
-    background-color: #EEEE;
-    border-radius: 5px;
-}
-
-li.list-group-item {
-
-    display: flex;
-    flex-direction: row;
-}
- 
 
 
-@media only screen and (max-width: 450px) {
+/* @media only screen and (max-width: 450px) {
     .not {
         width: 90vw;
     }
@@ -94,42 +54,8 @@ li.list-group-item {
         overflow-x:hidden;
     }
 
-} 
-
-.dropdown {
-    float: right;
-    width: 20%;
-    display: block;
-    padding-right: 10vw;
-    z-index: 3;
-    height: 250px;
-    overflow: auto;
 }
 
-.dropdown-menu {
-    overflow-wrap: inherit;
-    overflow: hidden;
-}
-
-.notifications > span {
-    font-size: 20px;
-}
-
-.notifications {
-    display: block;
-    opacity: 0;
-}
-
-.dropdown {
-    width: 20%;
-}
-
-.dropdown-menu {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: baseline;
-}
 
 @media only screen and (max-width: 400px) {
     .dropdown {
@@ -144,51 +70,3 @@ li.list-group-item {
     }
 
 } */
-
-
-/* NOTIFICATIONS */
-/* 
- .bi-x {
-    color:black;
-    font-size: 30px;
-}
-
-.bi-x:hover {
-    color:red;
-}
-
-.deleteNot {
-    cursor: pointer;
-    margin-left: 5%;
-}
-
-.notificationButton:hover, .profileButton:hover, .logoutButton:hover {
-    background-color: transparent;
-    opacity: 1;
-    border-radius: 100px;
-    color: black;
-}
-
-.text {
-    max-width: 300px;
-    display: flex;
-    font-size: 20px;
-}
-
-li.list-group-item {
-    font-size: 13px;
-    justify-items: baseline;
-    margin: 0%;
-    display: flex;
-    flex-direction: row;
-}
-
-
-.buttonsInvite {
-    display: flex;
-    flex-direction: column;
-}
-
-.buttonsInvite > form {
-    margin: 3%;
-}  */

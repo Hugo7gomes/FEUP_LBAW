@@ -15,18 +15,18 @@ class Notification extends Model
 
     public function text() {
         if($this->type == 'Invite'){
-            return (User::find(Invite::find($this->id_invite)->id_user_sender)->name).' convidou-te para te juntares a '.(Project::find($this->id_project)->name);
+            return (User::find(Invite::find($this->id_invite)->id_user_sender)->name).' has invited you to join the '.(Project::find($this->id_project)->name).' project';
         }elseif ($this->type == 'Comment'){
             $comment = Comment::find($this->id_comment) ;
             $user = User::find($comment->id_user);
             $task = Task::find($comment->id_task);
             if($user !== null){
-                return ($user->username).' comentou a task '. ($task->name) .' do projeto "'. (Project::find($this->id_project)->name).'"';
+                return ($user->username).' commented the task '. ($task->name) .' of the project "'. (Project::find($this->id_project)->name).'"';
             }
         }elseif ($this->type == 'Assign'){
-            return 'Foi-te atribuida a task "' . (Task::find($this->id_task)->name) . '" do projeto "'. (Project::find($this->id_project)->name). '".';
+            return 'You have been assigned the task "' . (Task::find($this->id_task)->name) . '" of the project "'. (Project::find($this->id_project)->name). '".';
         }elseif ($this->type == 'TaskState'){
-            return 'O estado da task "' . (Task::find($this->id_task)->name) . '" do projeto '. (Project::find($this->id_project)->name). ' foi atualizado ';
+            return 'The state of the task "' . (Task::find($this->id_task)->name) . '" of the project '. (Project::find($this->id_project)->name). ' has been updated';
         }else{
             return "comment";
         }

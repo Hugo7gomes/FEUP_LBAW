@@ -2,6 +2,10 @@ body {
     background-color: #EEEE;
 }
 
+.footer {
+    z-index: 1;
+}
+
 /* #content {
     padding-bottom:90px;
 } */

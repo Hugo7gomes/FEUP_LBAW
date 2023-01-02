@@ -90,19 +90,19 @@ class Project extends Model
     }
     public function tasksToDo(){
         return Task::where('id_project', $this->id)->where('state', 'To Do')->simplePaginate(
-            $perPage = 10, $columns = ['*'], $pageName = 'tasksToDo'
+            $perPage = 8, $columns = ['*'], $pageName = 'tasksToDo'
         );
     }
 
     public function tasksDoing(){
         return Task::where('id_project', $this->id )->where('state', 'Doing')->simplePaginate(
-            $perPage = 10, $columns = ['*'], $pageName = 'tasksDoing'
+            $perPage = 8, $columns = ['*'], $pageName = 'tasksDoing'
         );
     }
 
     public function tasksDone(){
         return Task::where('id_project', $this->id)->where('state', 'Done')->simplePaginate(
-            $perPage = 10, $columns = ['*'], $pageName = 'tasksDone'
+            $perPage = 8, $columns = ['*'], $pageName = 'tasksDone'
         );
     }
 

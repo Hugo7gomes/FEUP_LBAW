@@ -30,9 +30,9 @@
             <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
                 @if($coordinator->photo != null)
-                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @else
-                  <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                  <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @endif  
                 <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
                 <span>Coordinator</span>
@@ -43,9 +43,9 @@
             <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
                 @if($collaborator->photo != null)
-                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @else
-                  <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px;">
+                  <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @endif  
                 <a href = "/profile/{{$collaborator['username']}}" class = "usernameCollaborator nav-item" aria-current="page">{{$collaborator['username']}}</a>
                 <span>Collaborator</span>

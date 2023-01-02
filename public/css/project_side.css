@@ -9,7 +9,7 @@ main {
   padding-left: 2%;
   float: left;
   width: 350px;
-  height: 180%;
+  height: 100vh;
   z-index: 0;
   overflow: hidden;
 }
@@ -35,23 +35,43 @@ main {
 
 @media only screen and (max-width: 1400px) {
   #projectSide {
-    display: none;
+    display: block;
   }
   
 }  
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1400px) {
+  #projectSide {
+    opacity: 0;
+    width: 0;
+    z-index: 1;
+    height: 100vh;
+    transition: linear .3s;
+  }
+
   .navbar-fixed-left {
-    width: 250px;
+    width: 40vw;
+    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
   }
   
 } 
 
 @media only screen and (max-width: 768px) {
+  #projectSide {
+    width: 0;
+    opacity: 0;
+    z-index: 2;
+    max-width: 40%;
+    /* height: 100vh; */
+  }
+
   .navbar-fixed-left {
-    display: flex;
-    z-index: 3;
     width: 100vw;
+    height: 40vh;
+    overflow: scroll;
+    overflow-x: hidden;
   }
   
 } 

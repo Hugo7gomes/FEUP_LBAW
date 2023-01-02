@@ -33,25 +33,18 @@
     z-index: 0;
 }
 
-.boardView {
-    display: flex;
-    flex-direction: row;
-    align-content: space-between; 
-}
-
 .favoriteButton {
     display: inline;
     height: 45px;
+    margin-bottom: 5%;
 }
 
 .boardViewHeader {
-    display: flex;
-    flex-wrap: nowrap;
     border-bottom: 4px solid black;
 }
 
 
-.boardViewHeader > h2 {
+.col-4 > h2 {
     text-align: left;
     color: black;
     font-weight: bold;

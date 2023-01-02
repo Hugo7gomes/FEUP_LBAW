@@ -11,9 +11,11 @@ function searchRequest(event) {
 
     let search = searchBar.value.trim()
     if (search != '') {
+        searchUl.classList.remove('hide');
         searchUl.classList.add('show');
     } else {
         searchUl.classList.remove('show');
+        searchUl.classList.add('hide');
     }
 
     let url = window.location.href;

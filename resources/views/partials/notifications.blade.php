@@ -34,7 +34,7 @@
           @endif
         </div>
       @endforeach
-      @else
+    @else
         <div class ="col" style="width: 18rem;">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">

@@ -1,12 +1,15 @@
 .headerContainer {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
     background-color: white;
     padding-bottom: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     z-index: 3;
     position: sticky;
-    justify-items: space-between;
+    align-items: center;
+}
+
+#headerContainer {
+    background-color: white;
+    margin-right: 0;
 }
 
 #searchSection {
@@ -29,11 +32,10 @@
 }
 
 #searchbar {
-    width: 270px;
+    width: 18vw;
     font-size: 14px;
     font-weight: 600;
     margin: auto;
-    margin-left: 30%;
 }
 
 
@@ -61,30 +63,36 @@
     display: none;
 }
 
-.bi {
-    display: grid;
-    align-items: baseline;
+.allButtons {
+    max-width: fit-content;
+    margin: 0 !important;
+    padding: 0;
 }
+
+/* .allButtons > .btn-group {
+    margin-right: auto;
+} */
 
 .bi-bell {
     color: #606c76;
-    font-size: 30px;
+    font-size: 2vw;
 }
 
 .bi-person {
     color: #606c76;
-    font-size: 35px;
+    font-size: 2vw;
     opacity: 0.9;
 }
 
 .bi-box-arrow-right {
     color: #606c76;
-    font-size: 35px;
+    font-size: 2vw;
     opacity: 0.9;
+    margin-right: 2px;
 }
 
 .bi-list {
-    font-size: 35px;
+    font-size: 2vw;
     opacity: 0.9;
     color: #606c76;
 }
@@ -104,6 +112,29 @@
 @media only screen and (max-width: 1400px) {
     #sideNavButton {
         display: block;
+    }
+} 
+
+@media only screen and (max-width: 768px) {
+    .logo {
+        width: 100%;
+    }
+
+    #searchbar {
+        font-size: 12px;
+    }
+
+    .allButtons {
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .bi-bell, .bi-person, .bi-box-arrow-right, .bi-list {
+        font-size: 5vw;
+        margin: 0;
+        padding: 0;
     }
 } 
 

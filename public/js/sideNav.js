@@ -14,10 +14,10 @@ let projectSide = document.getElementById('projectSide');
 buttonSideNav.addEventListener('click', openSideNav);
 
 function openSideNav(event){
-    if(projectSide.style.display != "block"){
-        projectSide.style.display = "block";
+    if(projectSide.style.opacity != "1"){
+        projectSide.style.opacity = "1";
     }else{
-        projectSide.style.display = "none";
+        projectSide.style.opacity = "0";
     }
     
 }
