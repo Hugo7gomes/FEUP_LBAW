@@ -2,6 +2,9 @@ main{
     padding: 2em;
 }
 
+#all_faqs{
+    margin-bottom: 5em;
+}
 
 .faq {
     margin-bottom: 40px;

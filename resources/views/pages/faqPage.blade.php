@@ -36,12 +36,14 @@
             </form> 
         @endif
         <h1>Faqs:</h1>
+        <div id = "all_faqs">
         @foreach ($faqs as $faq)
             <div class="faq">
                 <div class="faq-question">{{$faq->question }}</div>
                 <div class="faq-answer">{{$faq->answer}}</div>
             </div>
         @endforeach
+        <div id = "all_faqs">
     </main>
   </body>
   <footer class="footer container" id = "footerEnd">
@@ -67,12 +69,14 @@
         </header>
         <main>
             <h1>Faqs:</h1>
+            <div id = "all_faqs">
             @foreach ($faqs as $faq)
-                <div class="faq">
-                    <div class="faq-question">{{$faq->question }}</div>
-                    <div class="faq-answer">{{$faq->answer}}</div>
-                </div>
+                    <div class="faq">
+                        <div class="faq-question">{{$faq->question }}</div>
+                        <div class="faq-answer">{{$faq->answer}}</div>
+                    </div>
             @endforeach
+            </div>
         </main>
     </body>
 @endguest
