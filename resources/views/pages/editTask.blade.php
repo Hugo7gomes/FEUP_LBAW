@@ -73,32 +73,29 @@
             </li>
             <section id = "sectionComments">
             @if (count($task->comments)>0)
-                <div class="container my-5 py-5">
+                <div class="container my-5 py-5" id="commentContainer">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-12 col-lg-10">
-                            <div class="card text-dark" id = "divComments">
+                        <div class="card text-dark" id = "divComments">
                             <h4 class="mb-0">Comments</h4>
                             @foreach ($task->comments as $comment)
-                            <div class="card-body p-4">   
-                                <div class="d-flex flex-start">
-                                    <p>{{$comment->owner->name}}</p>
+                            <div class="card-body ">   
+                                <div class="d-flex flex-start comment">
                                     @if($comment->owner->photo != null)
                                         <img src={{asset($comment->owner->photo->path)}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="60" height="60">
                                     @else
                                         <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="60" height="60">
                                     @endif
-                                    <div>
-                                        <h6 class="fw-bold mb-1"></h6>
-                                        <div class="d-flex align-items-center mb-3">
-                                        <p class="mb-0">{{$comment->date}}</p>
+                                    <div class="commentInfo">
+                                        <div class="commentText">
+                                            <p class="commentName">{{$comment->owner->name}}</p>
+                                            <p class="mb-0 commentDate">{{$comment->date}}</p>
                                         </div>
-                                        <p class="mb-0">{{$comment->comment}}</p>
+                                        <p class="mb-0 commentText">{{$comment->comment}}</p>
                                     </div>
                                 </div>
                             </div>
                             <hr class="my-0">
                             @endforeach
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,7 +105,6 @@
             <div class="editTaskForm">
                 @csrf
                 <div class="form-group editTask">
-                    <label for="comment">Comment</label>
                     <textarea name="comment" id="inputComment" class="form-control" rows = "3" placeholder="Leave a comment"></textarea>
                 </div>
                 <button  class="btn btn-outline-light" id="commentButton">Comment</button>
