@@ -17,6 +17,10 @@ class HomepageController extends Controller
                 Auth::logout();
             }
             
+            if($user->admin){
+                return redirect('/admin/dashboard');
+            }
+
             if(!($user->favoriteProjects()->isEmpty())){
                 return redirect('/project/'.$user->favoriteProjects()->first()->id);
             }
@@ -24,10 +28,11 @@ class HomepageController extends Controller
             if(!($user->projects->isEmpty())){
                 return redirect('/project/'.$user->projects()->first()->id);
             }
-
-            return redirect('/project/create');
-
-        }else{
+            else{
+                return redirect('/project/create');
+            }
+        }
+        else{
             return view('pages.index');
         }
     }

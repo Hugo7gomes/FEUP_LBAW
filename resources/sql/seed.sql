@@ -65,7 +65,6 @@ CREATE TABLE users (
     deleted BOOL DEFAULT FALSE,
     administrator BOOL DEFAULT FALSE,
     remember_token VARCHAR
-
 );
 
 -- Table2: photo
@@ -564,8 +563,8 @@ INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUE
 INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Rejected','2022-10-30',4,4,6);
 
 INSERT INTO faq (question,answer) VALUES ('Como Criar uma conta?', 'Na página incial ou em qualquer página se não tiveres ainda com a conta loggada, no canto superior direito, terás a opção de dar login. Clicar nessa opção que te redirecionará para uma página onde te poderás registar.');
-INSERT INTO faq (question,answer) VALUES ('Como Apagar a conta ?', 'Na página do teu perfil encontar lá essa oplção');
-INSERT INTO faq (question,answer) VALUES ('Posso apagar a conta sendo coordendor do projeto ?', 'Não, caso sejas coordenador de um projeto apenas poderás apagar a tua conta depois de passares esse cargo a alguém da tua equipa');
+INSERT INTO faq (question,answer) VALUES ('Como Apagar a conta ?', 'Na página do teu perfil encontar lá essa opção.');
+INSERT INTO faq (question,answer) VALUES ('Posso apagar a conta sendo coordendor do projeto ?', 'Não, caso sejas coordenador de um projeto apenas poderás apagar a tua conta depois de passares esse cargo a alguém da tua equipa.');
 INSERT INTO faq (question,answer) VALUES ('Fui banido, posso aceder à conta ?', 'A nossa equipa conta com administradores, que terão o poder de banir quálquer usuário que faça comentários negativos, ou ponha em causa a ética do website. Uma vez banidos, deixam de poder aceder às vossas contas.');
 
 INSERT INTO ban (reason,date,id_banned,id_admin) VALUES ('Mau comportamento','2022-10-30',13,15);

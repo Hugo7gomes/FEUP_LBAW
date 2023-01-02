@@ -1,0 +1,24 @@
+/* Style the main content */
+main {
+    width: 100%;
+    padding: 2em;
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Style the headings */
+h1 {
+    font-size: 2em;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(200, 106, 24);
+    margin: 0 0 1em 0;
+}
+
+/* Style the list items */
+li {
+    margin: 0.5em 0;
+}

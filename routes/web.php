@@ -18,9 +18,10 @@ Route::get('/', function () {
 })->name('/');
 
 Route::get('home','HomepageController@show')->name('home');
-Route::get('faq','HomepageController@show')->name('faq');
-Route::get('about','HomepageController@show')->name('about');
-Route::get('contacts','HomepageController@show')->name('contacts');
+Route::get('faq','FaqpageController@show')->name('faq');
+Route::post('faq', 'FaqpageController@create')->name('createFaq');
+Route::get('about','AboutpageController@show')->name('about');
+Route::get('contact','ContactpageController@show')->name('contact');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -62,7 +63,6 @@ Route::post('api/project/{project_id}/upgradeMember','ProjectController@upgradeM
 Route::post('api/notification/delete', 'NotificationController@delete');
 
 
-
 //Task
 Route::post('task/create','TaskController@create')->name('task/create');
 Route::get('api/project/{project_id}/task/{task_id}','TaskController@showTask');
@@ -73,3 +73,5 @@ Route::get('task/delete','TaskController@delete')->name('task/delete');
 Route::post('/api/search', 'SearchController@search');
 
 
+//admin
+Route::get('admin/dashboard','AdminController@show')->name('admin/dashboard'); // dashboard admin
