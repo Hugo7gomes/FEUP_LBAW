@@ -6,7 +6,7 @@ let searchDivTasks = document.getElementById("divResultTasks");
 
 let searchBar = document.getElementById("searchbar")
 searchBar.addEventListener('keyup', searchRequest);
-
+let isProject = false;
 function searchRequest(event) {
 
     let search = searchBar.value.trim()
@@ -19,12 +19,17 @@ function searchRequest(event) {
     }
 
     let url = window.location.href;
-    let projectId = url.split('/')[4];
-    if(projectId.indexOf('?') > -1){
-        projectId = projectId.split('?')[0];
+    if(url.indexOf('project') > -1){
+        isProject = true;
+        let projectId = url.split('/')[4];
+        if(projectId.indexOf('?') > -1){
+            projectId = projectId.split('?')[0];
+        }
+        sendAjaxRequest('post', '/api/search', { projectId: projectId, search: search }, searchHandler);
+    }else{
+        sendAjaxRequest('post', '/api/search', {  search: search }, searchHandler);
     }
 
-    sendAjaxRequest('post', '/api/search', { projectId: projectId, search: search }, searchHandler);
 }
 
 function searchHandler() {
@@ -52,13 +57,18 @@ function searchHandler() {
         injectNotFound('Users');
     }
 
-    if (tasks.length > 0) {
-        for (let i = 0; i < tasks.length; i++) {
-            taskInject(tasks[i]);
+    if(isProject){
+        if (tasks.length > 0) {
+            for (let i = 0; i < tasks.length; i++) {
+                taskInject(tasks[i]);
+            }
+        }else {
+            injectNotFound('Tasks');
         }
-    }else {
-        injectNotFound('Tasks');
+    }else{
+        
     }
+  
 }
 
 function injectNotFound(s) {

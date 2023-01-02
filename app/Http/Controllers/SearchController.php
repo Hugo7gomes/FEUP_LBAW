@@ -20,7 +20,9 @@ class SearchController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $searchText = $request->get('search');
-        $project = Project::find($request->get('projectId'));
+        if($request->has('projectId')){
+            $project = Project::find($request->get('projectId'));
+        }
 
         $result = array();  
         $tasks = array();
@@ -35,8 +37,10 @@ class SearchController extends Controller
                 ['administrator', 'FALSE'],
             ])->get();
             
-            $tasks = $project->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
-            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
+            if(null !== $request->get('projectId')){
+                $tasks = $project->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+                ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
+            }
         }
 
         $result['projects'] = $projects;

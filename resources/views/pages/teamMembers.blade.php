@@ -29,8 +29,8 @@
           @foreach ($project->getCoordinators() as $coordinator)
             <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
-                @if($coordinator->photo != null)
-                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
+                @if($coordinator['photo'] != null)
+                  <img src={{asset($coordinator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @else
                   <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @endif  
@@ -42,8 +42,8 @@
           @foreach ($project->getCollaborators() as $collaborator)
             <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
-                @if($collaborator->photo != null)
-                  <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
+                @if($collaborator['photo'] != null)
+                  <img src={{asset($collaborator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @else
                   <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
                 @endif  

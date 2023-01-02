@@ -112,6 +112,9 @@ class Project extends Model
         $collaborators = array();//collaborators
         foreach ($collaboratorsIds as $collaboratorId){
             $collaborator = User::find($collaboratorId['id_user']);
+            if($collaborator->photo){
+                $collaborator['photo'] = $collaborator->photo->path;
+            }
             array_push($collaborators,$collaborator);
         }
 
@@ -125,6 +128,9 @@ class Project extends Model
        $coordinators = array();
        foreach ($coordinatorsIds as $coordinatorId){
            $coordinator = User::find($coordinatorId['id_user']);
+           if($coordinator->photo){
+            $coordinator['photo'] = $coordinator->photo->path;
+           }
            array_push($coordinators,$coordinator);
        }
 
