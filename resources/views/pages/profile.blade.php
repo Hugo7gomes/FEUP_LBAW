@@ -35,6 +35,7 @@
           <div class="card-body" id="form">
             <div class="row">
             <form method="POST" action = "{{ route('profile') }}" id="userInf">
+              <h1 id = "change_profile_title"> Change Profile</h1>
               @csrf
               <div class="form-group formsName">
                 <div class="col-sm-3">
