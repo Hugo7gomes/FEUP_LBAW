@@ -6,16 +6,11 @@
 }
 
 #logo_unauthenticated {
-  width: 270px;
-  margin-top: 4vw;
+  height: 50px;
 }
 
 #headerInfo {
-  margin-top: 5vw;
-  margin-left: 8vw;
-  color: black;
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
@@ -30,6 +25,7 @@
 
 a:hover {
   color: black;
+  text-decoration: underline;
 }
 
 main {
@@ -46,14 +42,18 @@ main {
   font-size: 1.2em;
   line-height: 1.5;
   color: #333;
-  background-color: #EEEE;
   border-radius: 10px;
-  position: absolute;
-  bottom: 25%;
-  left: 5%;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-bottom: 2em;
 }
   
+#header_contacts{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  color: #333;
+}
+
 h1 {
   text-align: center;
   font-size: 2em;
@@ -82,4 +82,18 @@ li {
 .projectLink {
   text-decoration: underline;
 }
-  
+
+@media (max-width: 600px) {
+  #header_contacts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  #header_contacts #headerInfo a {
+    font-size: 14px;
+  }
+  main{
+    margin-top: 4em;
+  }
+}

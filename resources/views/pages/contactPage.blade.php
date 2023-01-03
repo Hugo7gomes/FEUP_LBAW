@@ -55,7 +55,7 @@
         <link href="{{ asset('css/contacts.css') }}" rel="stylesheet">
     </head>
     <body>
-        <header id = "header_contacts>
+        <header id = "header_contacts">
             <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" id= "logo_unauthenticated"></a>
             <div id="headerInfo">
                 <div id="faqs"><a href="{{ route('faq') }}">FAQ</a></div>
