@@ -5,6 +5,9 @@ var projectId;
     btton.addEventListener('click', openSideTask);
 });
 const divOffcanvas = document.getElementsByClassName('offcanvasDiv')[0];
+newUserAssigned
+
+
 
 function openSideTask(event){
     taskId = event.target.parentElement.id;
@@ -31,6 +34,7 @@ function showTaskHandler(){
             closeSideTask();
         }
     };
+    
     //document.getElementsByTagName('html')[0].style.opacity = "0.5";
     //document.getElementsByClassName('offcanvas')[0].style.opacity = "2s";
     
