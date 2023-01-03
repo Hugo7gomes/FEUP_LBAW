@@ -1,12 +1,13 @@
 #header_contacts{
-  height: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    color: #333;
 }
 
 #logo_unauthenticated {
-  height: 50px;
+  height: 15vh;
 }
 
 #headerInfo {

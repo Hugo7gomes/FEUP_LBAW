@@ -43,7 +43,7 @@
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
     border-radius: 0 0 10px 10px;
     margin: auto;
-    height: 60%;
+    height:30%;
     overflow: scroll;
     overflow-x: hidden;
 }

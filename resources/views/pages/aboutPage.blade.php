@@ -23,8 +23,7 @@
     <header>
       @include('partials.header')
       @yield('header')
-    </head
-      <div class="aboutText">er>
+    </header>
     <main>
         <h1>About Workfluido</h1>
         <p>In a world where teamwork has become crucial to combat the constant adversities that have arisen such as remote work, the need for a project management tool has emerged. So, we decided to create Workfluido.</p>
@@ -37,7 +36,6 @@
             <li>Assign tasks to team members</li>
             <li>Comment on the tasks performed by the team</li>
         </ul>
-      </div>
         <p>Whether you're a small startup, a large corporation, or an individual looking to manage a team project, Workfluido has something to offer. Try it out today and see how it can help your team work more efficiently and effectively.</p>
     </main>
   <footer class="footer container" id = "footerEnd">

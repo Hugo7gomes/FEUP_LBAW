@@ -1,4 +1,7 @@
+DROP SCHEMA IF EXISTS lbaw CASCADE;
+
 create schema if not exists lbaw;
+
 
 DROP TABLE IF EXISTS password_resets CASCADE;
 DROP TABLE IF EXISTS task CASCADE;
@@ -531,6 +534,18 @@ INSERT INTO users (email, username, name, password, phone_number) VALUES ('tiago
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('helenacoelho@gmail.com', 'helenacoelho82', 'Helena Coelho', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('zemaciel@gmail.com', 'zemaciel07', 'José Maciel','$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '944212314');
 INSERT INTO users (email, username, name, password, phone_number) VALUES ('ruisilveira@gmail.com', 'ruisilveira82', 'Rui Silveira', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('mariaalmeida@gmail.com', 'maria_almeida', 'Maria Almeida', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212315');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('miguelpereira@gmail.com', 'miguel_pereira', 'Miguel Pereira', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212316');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('danielsantos@gmail.com', 'daniel_santos', 'Daniel Santos', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212317');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('catarinaribeiro@gmail.com', 'catarina_ribeiro', 'Catarina Ribeiro', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212318');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('brunosilva@gmail.com', 'bruno_silva', 'Bruno Silva', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934212319');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('joaocarvalho@gmail.com', 'joao_carvalho', 'JoÃ£o Carvalho', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211300');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('rafaeldias@gmail.com', 'rafael_dias', 'Rafael Dias', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211301');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('anaoliveira@gmail.com', 'ana_oliveira', 'Ana Oliveira', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211302');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('filipecosta@gmail.com', 'filipe_costa', 'Filipe Costa', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211303');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('sararibeiro@gmail.com', 'sara_ribeiro', 'Sara Ribeiro', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211304');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('mariacosta@gmail.com', 'maria_costa', 'Maria Costa', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211305');
+INSERT INTO users (email, username, name, password, phone_number) VALUES ('luisferreira@gmail.com', 'luis_ferreira', 'Luis Ferreira', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211306');
 INSERT INTO users (email, username, name, password, phone_number, administrator) VALUES ('admin@gmail.com', 'admin1', 'admin', '$2y$10$k0I7hCItv7b8em5tq0byDuz4ujFHGzfWgeXy70MxYzVn6nNmu2y82', '934211114', True);
 
 
@@ -542,37 +557,83 @@ INSERT INTO project (name, details, creation_date, id_creator) VALUES ('Trabalho
 INSERT INTO project (name, details, creation_date, id_creator) VALUES ('Trabalho de IPC', 'O intuito do trabalho é perceber e aperfeiçoar o tópico de user interface','2022-10-01', 2);
 
 
-INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Estrututa base de dados', 'To Do', 'Ter em atenção as tabelas todas restrições, primary keys, coinstrains etc','2022-10-31','High',1,1,2);
-INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Popular base de dados', 'To Do', 'Pelo menos 5 tuplis por cada tabela','2022-10-31','High',1,1,1);
-INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Main_page', 'To Do', 'Desenvolver a página de entrada do site, adiconar informação sobre o site, contact us etc','2022-10-31','High',1,1,3);
-INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Main_page_design', 'Done', 'A página incial tem de ser chamativa','2022-10-31','High',1,1,4);
-INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Página_projeto', 'To Do', 'Página do projeto, esta página terá de constar os nomes dos participantes bem como as tasks de cada projeto','2022-10-31','High',1,1,2);
-INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Página_perfil', 'To Do', 'Página do perfil é importante ter uma secção de dados pessoais','2022-10-31','High',1,1,3);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Estrututa base de dados', 'To Do', 'Ter em atenção as tabelas todas restrições, primary keys, coinstrains etc','2022-10-02','High',1,1,2);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Popular base de dados', 'To Do', 'Pelo menos 5 tuplis por cada tabela','2022-10-02','High',1,1,1);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Main_page', 'To Do', 'Desenvolver a página de entrada do site, adiconar informação sobre o site, contact us etc','2022-10-02','High',1,1,3);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Main_page_design', 'Done', 'A página incial tem de ser chamativa','2022-10-02','High',1,1,4);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Página_projeto', 'To Do', 'Página do projeto, esta página terá de constar os nomes dos participantes bem como as tasks de cada projeto','2022-10-02','High',1,1,2);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Página_perfil', 'To Do', 'Página do perfil é importante ter uma secção de dados pessoais','2022-10-02','High',1,1,3);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Criar página_Projeto', 'To Do', 'Página do perfil é importante ter uma secção de dados pessoais','2022-10-02','High',1,3,8);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Criar página_Administrador', 'To Do', 'Criar perfil de utilizador','2022-10-02','High',1,7,1);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Responsive Design', 'Doing', 'Tornar o css responsivo','2022-10-02','Medium',1,12,4);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('About Page', 'Done', 'Página sobre o que pretende workfluido','2022-10-02','High',1,15,6);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Contact Page', 'To Do', 'Página de contactos do workfluido','2022-10-02','Low',1,2,9);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Comment Tasks', 'Doing', 'Comentar tarefas','2022-10-02','Medium',1,2,2);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Banir Utlizador', 'Done', 'Administrador bane um utilizador','2022-10-02','High',1,3,7);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Autenticação', 'To Do', 'Autenticação login e register','2022-10-02','High',1,11,11);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Gerir Passwords', 'To Do', 'Gerenciar passwords','2022-10-02','High',1,12,13);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Javascript funções', 'Doing', 'Desenvolver funções javascript','2022-10-02','High',1,13,2);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('Editar Projetos', 'To Do', 'Editar projeto','2022-10-02','Medium',1,8,1);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A1', 'Done', 'Submeter A1','2022-10-02','Low',1,18,12);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A2', 'Done', 'Submeter A2','2022-10-02','Low',1,19,3);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A3', 'Done', 'Submeter A3','2022-10-02','Low',1,9,7);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A4', 'Done', 'Submeter A4','2022-10-02','Low',1,8,8);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A5', 'Done', 'Submeter A5','2022-10-02','Low',1,15,5);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A6', 'Done', 'Submeter A6','2022-10-02','Low',1,16,6);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A7', 'Done', 'Submeter A8','2022-10-02','Low',1,17,7);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A8', 'Done', 'Submeter A9','2022-10-02','Low',1,18,8);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A9', 'Doing', 'Submeter A10','2022-10-02','Low',1,19,9);
+INSERT INTO task (name,state,details,creation_date,priority,id_project,id_user_creator,id_user_assigned) VALUES ('A10', 'Doing', 'Submeter A10','2022-10-02','Low',1,20,10);
+
 
 INSERT INTO role (role,id_user,id_project) VALUES ('Coordinator', 1,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Coordinator', 5,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Coordinator',14,1);
 INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',2,1);
 INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',3,1);
 INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',4,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',6,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',7,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',8,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',9,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',10,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',11,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',12,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',13,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',15,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',16,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',17,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',18,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',19,1);
+INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',20,1);
 INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',2,2);
 INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',3,3);
 INSERT INTO role (role,id_user,id_project) VALUES ('Collaborator',4,4);
 
-INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Accepted','2022-10-30',2,2,3);
-INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Accepted','2022-10-30',3,3,4);
-INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Received','2022-10-30',4,4,5);
-INSERT INTO invite (state,date,id_project,id_user_sender,id_user_receiver) VALUES ('Rejected','2022-10-30',4,4,6);
 
 INSERT INTO faq (question,answer) VALUES ('Como Criar uma conta?', 'Na página incial ou em qualquer página se não tiveres ainda com a conta loggada, no canto superior direito, terás a opção de dar login. Clicar nessa opção que te redirecionará para uma página onde te poderás registar.');
 INSERT INTO faq (question,answer) VALUES ('Como Apagar a conta ?', 'Na página do teu perfil encontar lá essa opção.');
 INSERT INTO faq (question,answer) VALUES ('Posso apagar a conta sendo coordendor do projeto ?', 'Não, caso sejas coordenador de um projeto apenas poderás apagar a tua conta depois de passares esse cargo a alguém da tua equipa.');
 INSERT INTO faq (question,answer) VALUES ('Fui banido, posso aceder à conta ?', 'A nossa equipa conta com administradores, que terão o poder de banir quálquer usuário que faça comentários negativos, ou ponha em causa a ética do website. Uma vez banidos, deixam de poder aceder às vossas contas.');
 
-INSERT INTO ban (reason,date,id_banned,id_admin) VALUES ('Mau comportamento','2022-10-30',13,15);
-INSERT INTO ban (reason,date,id_banned,id_admin) VALUES ('Comentários racistas','2022-10-30',14,15);
 
-INSERT INTO favorite_proj (id_user,id_project) VALUES (1,1);
-INSERT INTO favorite_proj (id_user,id_project) VALUES (2,1);
-INSERT INTO favorite_proj (id_user,id_project) VALUES (3,1);
-INSERT INTO favorite_proj (id_user,id_project) VALUES (4,1);
-
-
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Excelente trabalho, muito bem feito!', '2022-12-17', 1, 2);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Poderias ter dado mais atenção aos detalhes', '2022-11-12', 1, 4);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho muito fraco, não corresponde ao esperado', '2022-12-22', 1, 1);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Bom trabalho, mas ainda há margem de melhoria', '2022-11-11', 1, 3);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Muito bom, mas há alguns erros que precisam ser corrigidos',     '2023-11-02', 1, 2);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Muito bom trabalho, aprendi muito com ele', '2022-12-07', 1, 5);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho muito bem feito, parabéns!', '2022-12-05', 2, 4);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Bom trabalho, mas ainda há margem de melhoria', '2022-11-22', 3, 1);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho excelente, inspirou-me a fazer o meu próprio', '2022-10-11', 4, 2);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Poderias ter dado mais atenção aos detalhes', '2022-10-12', 7, 13);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho muito fraco, não corresponde ao esperado', '2022-11-22', 8, 12);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Bom trabalho, mas ainda há margem de melhoria', '2022-10-11', 9, 11);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho excepcional, superou todas as minhas expectativas', '2022-11-01', 10, 7);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Muito bom, mas há alguns erros que precisam ser corrigidos', '2023-12-02', 11, 12);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Muito bom trabalho, aprendi muito com ele', '2022-11-07', 12, 3);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Muito bom trabalho, aprendi muito com ele', '2022-10-07', 13, 8);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho muito bem feito, parabéns!', '2022-11-05', 2, 4);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Bom trabalho, mas ainda há margem de melhoria', '2022-12-22', 13, 9);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Trabalho excelente, inspirou-me a fazer o meu próprio', '2022-11-11', 3, 10);
+INSERT INTO comment (comment,date,id_task,id_user) VALUES ('Muito bom, mas algumas partes poderiam ser mais aprofundadas', '2023-12-03', 4, 7);
