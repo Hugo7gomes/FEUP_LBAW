@@ -19,13 +19,13 @@ class InviteController extends Controller
         }
 
         $userReceiver = User::where('username',$request->get('usernameMember'))->first();
-        if($userReceiver->banned()){
-            $errors['message'] = "This user is banned";
+        $project = Project::find($project_id);
+        if(!isset($userReceiver) || $userReceiver->deleted || $userReceiver->administrator){
+            $errors['message'] = "User not found";
             return $errors;
         }
-        $project = Project::find($project_id);
-        if(!isset($userReceiver) || $userReceiver->deleted){
-            $errors['message'] = "User not found";
+        if($userReceiver->banned()){
+            $errors['message'] = "This user is banned";
             return $errors;
         }
         if($project->is_member($userReceiver)){

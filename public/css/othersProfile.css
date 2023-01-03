@@ -20,11 +20,17 @@ main {
     padding-top: 20px;
 }
 
-#otherprofile {
-    /* height: 30vw; */
+#otherprofile, #info {
+    height: 20vw;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-#info, #projects {
+#info > .row {
+    padding-top: 85px;
+}
+
+#projects {
     height: 14.5vw;
 }
 
@@ -35,6 +41,7 @@ img {
 .col-sm-3 > label {
     position: relative;
     top: 20%;
+    font-weight: bold;
 }
 
 #othersProfileBoard {

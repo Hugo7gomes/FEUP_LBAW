@@ -14,6 +14,12 @@ function searchRequest(event) {
     if (search != '') {
         searchUl.classList.remove('hide');
         searchUl.classList.add('show');
+        window.onclick = function(event){
+            if(!event.target.closest('#searchDiv')){
+                searchUl.classList.remove('show');
+                searchUl.classList.add('hide');
+            }
+        };
     } else {
         searchUl.classList.remove('show');
         searchUl.classList.add('hide');

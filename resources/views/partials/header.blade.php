@@ -19,7 +19,7 @@
         <button type = "button" class = "btn btn-secondary btn-light rounded" id = "sideNavButton"><i class="bi bi-list"></i></button>
       </div>
       <div class = "btn-group" role = "group">
-        <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('profile')}}" class = "link" ><i class="bi bi-person"></i></a></button>
+        <a href = "{{route('profile')}}" class = "btn btn-secondary btn-light rounded" id="profileButton"><i class="bi bi-person"></i></a>
       </div>
       <div class = "btn-group" role = "group">
         <button class="btn btn-secondary btn-light rounded" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-bell" ></i></button>
@@ -29,7 +29,7 @@
         </section>
       </div> 
       <div class = "btn-group" role = "group">
-        <button type = "button" class = "btn btn-secondary btn-light rounded" ><a href = "{{route('logout')}}" class = "link"><i class="bi bi-box-arrow-right"></i></a></button>
+        <a href = "{{route('logout')}}" class = "btn btn-secondary btn-light rounded" id="logoutButton"><i class="bi bi-box-arrow-right"></i></a>
       </div>
     </div>
   </div>

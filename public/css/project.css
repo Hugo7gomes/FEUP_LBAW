@@ -83,7 +83,7 @@
     background-color: white;
 }
 
-#tasks {
+.tasks {
     background-color: #EEEE;
     padding: 10px;
     color: black;
@@ -95,7 +95,7 @@
     word-break: break-all;
 }
 
-#tasks:hover {
+.tasks:hover {
     text-decoration: underline;
     cursor: pointer;
 }

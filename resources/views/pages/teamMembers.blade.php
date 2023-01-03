@@ -17,14 +17,16 @@
         <div class="col-6">
           <h2>Team Members</h2>
         </div>
+        @if($project->is_coordinator($user))
         <div class="col-4">
           <button type="submit" class="btn btn-outline-dark addMemberButton" data-bs-toggle="modal" data-bs-target="#addMembers">Add member</button>
         </div>
+        @endif
       </div>
       <div class="row" id="teamMembersBoard">
         <div class="col members">
           @foreach ($project->getCoordinators() as $coordinator)
-            <div class="bla dropdown-item nav-item">
+            <div class="items">
               <div class="memberInfo">
                 @if($coordinator['photo'] != null)
                   <img src={{asset($coordinator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
@@ -37,7 +39,7 @@
             </div>      
           @endforeach
           @foreach ($project->getCollaborators() as $collaborator)
-            <div class="bla dropdown-item nav-item">
+            <div class="items">
               <div class="memberInfo">
                 @if($collaborator['photo'] != null)
                   <img src={{asset($collaborator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
@@ -68,11 +70,13 @@
         </div>
         <div class="modal-body">
             <div class="addToProject" >
-                @csrf
-                <label for="projects">Choose a profile</label>
-                <input type="text" name="username" class="form-group"  id="chooseProfile" placeholder="username" >
+              @csrf
+              <label for="chooseProfile">Choose a profile</label>
+              <div class="add">
+                <input type="text" name="username" class="form-control"  id="chooseProfile" placeholder="username" >
                 <div class="errorMember"></div>
                 <button class="btn btn-outline-dark addMemberButtonModal">Add member</button>
+              </div>
             </div>
         </div>
       </div>

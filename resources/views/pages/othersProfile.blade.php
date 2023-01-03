@@ -10,7 +10,7 @@
 <section style="background-color: #eee;">
   <div class="container py-5">
     <div class="row align-items-center">
-      <div class="col-lg-8">
+      <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center" id="otherprofile">
             @if($userProfile->photo != null)
@@ -33,9 +33,37 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body" id="info">
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="exampleFormControlInput1" class="mb-0">Name</label>
+              </div>
+              <div class="col-sm-9">
+                  <text id="userName" class="text-muted mb-0">{{ $userProfile['name'] }}</text>
+              </div>
+              <div class="col-sm-3">
+                <label for="exampleFormControlInput1" class="mb-0">Username</label>
+              </div>
+              <div class="col-sm-9">
+                  <text id="userName" class="text-muted mb-0">{{ $userProfile['username'] }}</text>
+              </div>
+
+              <div class="col-sm-3">
+                <label for="exampleFormControlInput1" class="mb-0">Email</label>
+              </div>
+              <div class="col-sm-9">
+                  <text id="userName" class="text-muted mb-0">{{ $userProfile['email'] }}</text>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
   </div>
 </section>
+
 @if($user->administrator)
   @if($userProfile->banned())
   <div class="modal " id="unBanAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

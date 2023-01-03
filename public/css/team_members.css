@@ -43,6 +43,13 @@
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
     border-radius: 0 0 10px 10px;
     margin: auto;
+    height: 60%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#teamMembersBoard::-webkit-scrollbar {
+    display: none;
 }
 
 .members {
@@ -63,7 +70,35 @@
 }
 
 
-
 .memberInfo a {
     color: black;
 }
+
+.addMemberButtonModal {
+    font-size: 90%;
+    margin-top: 2%;
+}
+
+.addToProject > label {
+    font-weight: 600;
+}
+
+.add > input {
+    width: 70%;
+}
+
+@media only screen and (max-width: 425px) {
+    
+    #teamMembersBoard {
+        height: 50%;
+    }
+} 
+
+@media only screen and (max-width: 425px) {
+
+    .addMemberButton {
+        font-size: 80%;
+    }
+    
+}  
+

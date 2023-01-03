@@ -43,40 +43,34 @@
           </div>
           @foreach ($project->tasksToDo() as $taskToDo)
             <a id = {{$taskToDo->id}} class = "taskLink" >
-              <div id="tasks">{{ $taskToDo['name']}}</div>
+              <div class="tasks">{{ $taskToDo['name']}}</div>
             </a>
           @endforeach
-          <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li><span class="page-item">{{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}</span></li>
-            </ul>
-          </nav>
+          <div class = " pagination justify-content-center">
+              {{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}
+          </div>
         </div>
         <div class="col task tasksDoing">
             <h3>Doing</h3>
             @foreach ($project->tasksDoing() as $taskDoing)
               <a id = {{$taskDoing->id}} class = "taskLink" >
-                <div id="tasks">{{ $taskDoing['name']}}</div>
+                <div class="tasks">{{ $taskDoing['name']}}</div>
               </a>
             @endforeach
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li><span class="page-item">{{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}</span><li>
-              </ul>
-            </nav>
+            <div class = " pagination justify-content-center">
+              {{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}
+            </div>
         </div>
         <div class="col task tasksDone">
             <h3>Done</h3>
             @foreach ($project->tasksDone() as $taskDone)
               <a id = {{$taskDone->id}} class = "taskLink" >
-                <div id="tasks">{{ $taskDone['name']}}</div>
+                <div class="tasks">{{ $taskDone['name']}}</div>
               </a>
             @endforeach
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-                <li><span class="page-item">{{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}</span></li>
-              </ul>
-            </nav>
+            <div class = " pagination justify-content-center">
+              {{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}
+            </div>
         </div>
       </div>
   </div>

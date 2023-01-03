@@ -24,7 +24,7 @@
       <div class="row" id="teamMembersBoard">
         <div class="col members">
           @foreach ($project->getCoordinators() as $coordinator)
-            <li class="bla dropdown-item nav-item">
+            <div class="items">
               <div class="memberInfo">
                 @if($coordinator['photo'] != null)
                   <img src={{asset($coordinator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
@@ -34,10 +34,10 @@
                 <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
                 <span>Coordinator</span>
               </div>
-            </li>      
+            </div>      
           @endforeach
           @foreach ($project->getCollaborators() as $collaborator)
-            <li class="bla dropdown-item nav-item">
+            <div class="items">
               <div class="memberInfo">
                 @if($collaborator['photo'] != null)
                   <img src={{asset($collaborator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
@@ -52,7 +52,7 @@
                 <button class = "btn btn-outline-secondary removeMember">Remove</button>
                 <button class = "btn btn-outline-secondary upgradeMember">Promote to coordinator</button>
               </div>
-            </li>
+            </div>
             @endif             
           @endforeach
         </div>

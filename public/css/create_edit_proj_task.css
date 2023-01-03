@@ -1,5 +1,3 @@
-
-
 #createProject, #projectUpdate, #taskUpdate {
     padding-bottom: 50px;
 }
@@ -12,7 +10,6 @@
     padding-top: 5%;
     width: 90%;
 }
-
 
 #createProject > form, #projectUpdate > form {
     background-color: white;
@@ -68,4 +65,23 @@
     font-size: 22px;
     margin-left: 10%;
     margin-bottom: 5%;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    #projectUpdate > form {
+        width: 90%;
+        margin-left: 10%;
+        margin-top: 10%;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+
+    #projectUpdate > form {
+        width: 90%;
+        margin-left: 10%;
+        margin-top: 10%;
+    }
 }

@@ -1,6 +1,7 @@
 #offcanvasNavbarDark {
     padding-left: 1%;
     width: 70vw;
+    opacity: 1 !important;
 }
 
 #offcanvasNavbarDarkLabelTask, #offcanvasNavbarDarkLabel {

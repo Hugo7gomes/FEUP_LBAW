@@ -35,11 +35,11 @@
           </li>
           @if(!$project->archived)
             <li class = "nav-item">
-              <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#leaveModal" id="leaveProjectButton">Leave Project</button>
+              <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#leaveModal">Leave Project</button>
             </li>
             @if($project->is_coordinator($user))
             <li class = "nav-item">
-              <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#archiveModal" id="leaveProjectButton">Archive Project</button>
+              <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#archiveModal">Archive Project</button>
             </li>
             @endif
           @endif
@@ -48,11 +48,11 @@
     </ul>
   </nav>
   @if($project->is_unique_coordinator($user))
-  <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Danger - Leaving project</h5>
+          <h5 class="modal-title">Danger - Leaving project</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>
@@ -63,11 +63,11 @@
     </div>
   </div>
   @else
-  <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Danger - Leaving project</h5>
+          <h5 class="modal-title">Danger - Leaving project</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>
@@ -85,11 +85,11 @@
   </div>
   @endif
   @if($project->is_coordinator($user))
-  <div class="modal " id="archiveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal " id="archiveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Danger - Archive Project</h5>
+          <h5 class="modal-title">Danger - Archive Project</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
           </button>
         </div>

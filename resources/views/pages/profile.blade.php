@@ -35,7 +35,7 @@
           <div class="card-body" id="form">
             <div class="row">
             <form method="POST" action = "{{ route('profile') }}" id="userInf">
-              <h1 id = "change_profile_title"> Change Profile</h1>
+              <h3 id = "change_profile_title"> Edit Profile</h3>
               @csrf
               <div class="form-group formsName">
                 <div class="col-sm-3">
@@ -78,7 +78,7 @@
                   <label for="userPhone" class="mb-0">Phone Number</label>
                 </div>
                 <div class="col-sm-9">
-                  <input type="tel" name = "phone_number" placeholder= "{{ $user['phone_number'] ?? 'No phoneNumber'}}" id="userPhone" class="form-control text-muted mb-0">
+                  <input pattern = "(9[1236]\d) ?(\d{3}) ?(\d{3})" name = "phone_number" placeholder= "{{ $user['phone_number'] ?? 'No phoneNumber'}}" id="userPhone" class="form-control text-muted mb-0">
                   @if($errors->has('phone_number'))
                     <div class="error">{{ $errors->first('phone_number') }}</div>
                   @endif

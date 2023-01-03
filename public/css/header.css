@@ -43,8 +43,7 @@
     height: 25vw;
     overflow: scroll;
     overflow-x: hidden;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    /* margin: auto; */
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 #divResultProjects::-webkit-scrollbar {
@@ -113,38 +112,46 @@
     padding: 0;
 }
 
-.btn-group > button {
+.btn-group > button, .perfil {
     background-color: white;
     border: white;
 }
 
+#profileButton, #logoutButton {
+    background-color: white;
+    border: white;
+}
+
+#profileButton:hover, #logoutButton:hover {
+    background-color: #d3d4d5;
+    border: #c6c7c8;
+}
+
 .bi-bell {
     color: #606c76;
-    font-size: 2vw;
+    font-size: 1.7vw;
 }
 
 .bi-person {
     color: #606c76;
-    font-size: 2vw;
+    font-size: 1.7vw;
     opacity: 0.9;
 }
 
 .bi-box-arrow-right {
     color: #606c76;
-    font-size: 2vw;
+    font-size: 1.7vw;
     opacity: 0.9;
     margin-right: 2px;
 }
 
 .bi-list {
-    font-size: 2vw;
+    font-size: 1.7vw;
     opacity: 0.9;
     color: #606c76;
 }
 
-/* .bla:hover{
-    background-color: white !important;
-} */
+
 
 @media only screen and (max-width: 1400px) {
     #sideNavButton {

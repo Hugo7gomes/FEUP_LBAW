@@ -6,8 +6,6 @@
 
 <link href="{{ asset('css/create_edit_proj_task.css') }}" rel="stylesheet">
 
-<script src={{ asset('js/teamMembers.js') }} defer></script>
-
 <main>
   <section id="projectSide">
     @include('partials.project_side')

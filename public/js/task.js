@@ -18,12 +18,21 @@ function closeSideTask(event){
     projectId = undefined;
 }
 
+
 function showTaskHandler(){ 
+
     divOffcanvas.innerHTML = JSON.parse(this.responseText);
     closeDivButton = document.getElementsByClassName('closeButton')[0];
     closeDivButton.addEventListener('click', closeSideTask);
     const addCommentButton = document.getElementById('commentButton');
     addCommentButton.addEventListener('click', addComment);
+    window.onclick = function(event){
+        if(!event.target.closest('.offcanvasDiv')){
+            closeSideTask();
+        }
+    };
+    //document.getElementsByTagName('html')[0].style.opacity = "0.5";
+    //document.getElementsByClassName('offcanvas')[0].style.opacity = "2s";
     
 }
 
