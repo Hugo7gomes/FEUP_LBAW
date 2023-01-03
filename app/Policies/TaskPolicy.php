@@ -29,7 +29,7 @@ class TaskPolicy
       if(is_null($project)){
         return false;
       }else{
-        return $project->is_member($user);
+        return $project->is_member($user) || $user->administrator;
       }
     }
 
@@ -40,7 +40,7 @@ class TaskPolicy
       if(is_null($project)){
         return false;
       }else{
-        return $project->is_member($user) && !$project->archived;
+        return ($project->is_member($user) && !$project->archived) || $user->administrator;
       }
     }
 

@@ -22,6 +22,11 @@ class ProjectPolicy
     {
       return ($project->is_coordinator($user) && !$project->archived) || $user->administrator;
     }
+    
+    public function showUpdate(User $user, Project $project)
+    {
+      return $project->is_coordinator($user) || $user->administrator;
+    }
 
     public function removeMember(User $user, Project $project){
       return ($project->is_coordinator($user) && !$project->archived) || $user->administrator;

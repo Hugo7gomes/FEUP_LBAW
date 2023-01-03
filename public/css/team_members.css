@@ -1,3 +1,33 @@
+#boardView {
+    margin-left: 2%;
+    padding-bottom: 80px;
+    padding-right: 2vw;
+    margin-top: 10vh;
+    max-width: 150vw;
+    z-index: 0;
+}
+
+.addMemberButton {
+    display: inline;
+    height: 45px;
+    margin-bottom: 5%;
+}
+
+.boardViewHeader {
+    border-bottom: 4px solid black;
+    margin: 0;
+}
+
+.col-6 > h2 {
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    font-size: 170%;
+    word-break: break-all;
+}
+
+
+
 .modal-title {
     font-weight: 600;
 }
@@ -6,12 +36,12 @@
     margin: auto;
 }
 
-#projectMembers {
+#teamMembersBoard {
     bottom: 20%;
     background-color: white;
     padding: 1%;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
-    border-radius: 5px;
+    border-radius: 0 0 10px 10px;
     margin: auto;
 }
 
@@ -21,7 +51,7 @@
     align-items: start;
 }
 
-.members > li {
+.members > div {
     padding: 1%;
     left: 0;
     display: flex;
@@ -32,9 +62,7 @@
     border-radius: 5px;
 }
 
-.addMemberButton {
-    display: flex;
-}
+
 
 .memberInfo a {
     color: black;

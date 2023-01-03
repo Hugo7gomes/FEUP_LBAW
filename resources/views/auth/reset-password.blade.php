@@ -14,28 +14,28 @@
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
         <input type="hidden" value="{{ $token }}" name="token">
-        <div class="loginField">
+        <div class="resetField">
             <div class="form-group">
-                <input id="emailLogin" name="email" type="text" class="form-control" placeholder="E-mail" required autofocus>
+                <input id="emailResetPass" name="email" type="text" class="form-control" placeholder="E-mail" required autofocus>
                 @if ($errors->has('email'))
                 <span class="error">
                     {{ $errors->first('email') }}
                 </span>
                 @endif
-                <input type="password" name = "password" placeholder= "New password" id="passLogin">
+                <input type="password" name = "password" class="form-control" placeholder= "New password" id="passReset">
                 @if ($errors->has('password'))
                 <span class="error">
                     {{ $errors->first('password') }}
                 </span>
                 @endif
-                <input type="password" name = "password_confirmation" placeholder= "New password Confirmation" id="passLogin">
+                <input type="password" name = "password_confirmation" class="form-control" placeholder= "New password Confirmation" id="newPassReset">
                 @if ($errors->has('password'))
                 <span class="error">
                     {{ $errors->first('password') }}
                 </span>
                 @endif
             </div>
-            <button class="btn btn-outline-dark loginButton" type="submit">
+            <button class="btn btn-outline-dark resetPassButton" type="submit">
                 Recover password
             </button>
         </div>

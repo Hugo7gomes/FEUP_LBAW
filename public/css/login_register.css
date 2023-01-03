@@ -61,11 +61,16 @@ body {
     font-weight: bold;
 }
 
+#passReset, #newPassReset, #emailResetPass {
+    margin: 10px;
+    font-weight: bold;
+}
+
 #passwordConfirmReg {
     margin-bottom: 35px;
 }
 
-.loginButton, .registerButton {
+.loginButton, .registerButton, .resetPassButton {
     display: grid;
     margin: auto;
     width: 90%;
@@ -73,13 +78,23 @@ body {
     font-size: 18px;
 }
 
-.loginButton {
+.loginButton, .resetPassButton {
     margin-top: 10%;
+}
+
+.resetPassButton {
+    margin-left: 6%;
 }
 
 form .loginField {
     padding-bottom: 5%;
     border-bottom: 0.1em solid #666666;
+    margin: 1em 0;
+}
+
+form .resetField {
+    padding-top: 5%;
+    padding-bottom: 5%;
     margin: 1em 0;
 }
 

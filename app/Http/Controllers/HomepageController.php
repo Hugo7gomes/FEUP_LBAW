@@ -19,7 +19,7 @@ class HomepageController extends Controller
 
             if($user->banned()){
                 Auth::logout();
-                //return abort(403, 'You were banned' );
+                
             }
             
             if($user->administrator){

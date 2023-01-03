@@ -38,6 +38,12 @@ class AdminController extends Controller
             $ban->id_admin = Auth::user()->id;
             $ban->save();
         }
+        foreach($user->projects as $project){
+            if($project->is_unique_coordinator($user)){
+                $project->archived = TRUE;
+                $project->save();
+            }
+        }
         return redirect()->back();
     }
 

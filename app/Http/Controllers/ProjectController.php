@@ -26,7 +26,11 @@ class ProjectController extends Controller
 
         $this->authorize('show',$project);
         
-        return view('pages.project',['user' => $user, 'project' => $project]);
+        if(!$project->archived){
+            return view('pages.project',['user' => $user, 'project' => $project]);
+        }else{
+            return view('pages.archived.project',['user' => $user, 'project' => $project]);
+        }
     }
 
 
@@ -80,9 +84,14 @@ class ProjectController extends Controller
         $project = Project::find($project_id);  
         $user = User::find(Auth::user()->id);
 
-        $this->authorize('update', $project);
+        $this->authorize('showUpdate', $project);
         
-        return view('pages.editProject',['user' => $user,'project'=>$project]); 
+        if(!$project->archived){
+            return view('pages.editProject',['user' => $user,'project'=>$project]); 
+        }else{
+            return view('pages.archived.editProject',['user' => $user,'project'=>$project]); 
+        }
+        
     }
 
 
@@ -164,8 +173,12 @@ class ProjectController extends Controller
         $user = User::find(Auth::user()->id);
 
         $this->authorize('show',$project);
-    
-        return view('pages.teamMembers',['user' => $user, 'project' => $project]);
+        if(!$project->archived){
+            return view('pages.teamMembers',['user' => $user, 'project' => $project]);
+        }else{
+            return view('pages.archived.teamMembers',['user' => $user, 'project' => $project]);
+        }
+        
     }
 
     public function removeMember(int $project_id, Request $request){

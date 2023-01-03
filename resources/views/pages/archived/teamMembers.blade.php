@@ -24,7 +24,7 @@
       <div class="row" id="teamMembersBoard">
         <div class="col members">
           @foreach ($project->getCoordinators() as $coordinator)
-            <div class="bla dropdown-item nav-item">
+            <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
                 @if($coordinator['photo'] != null)
                   <img src={{asset($coordinator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
@@ -34,10 +34,10 @@
                 <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
                 <span>Coordinator</span>
               </div>
-            </div>      
+            </li>      
           @endforeach
           @foreach ($project->getCollaborators() as $collaborator)
-            <div class="bla dropdown-item nav-item">
+            <li class="bla dropdown-item nav-item">
               <div class="memberInfo">
                 @if($collaborator['photo'] != null)
                   <img src={{asset($collaborator['photo'])}} alt="avatar" class="rounded-circle img-fluid" style="width: 40px; height:40px;">
@@ -52,33 +52,12 @@
                 <button class = "btn btn-outline-secondary removeMember">Remove</button>
                 <button class = "btn btn-outline-secondary upgradeMember">Promote to coordinator</button>
               </div>
-            </div>
+            </li>
             @endif             
           @endforeach
         </div>
       </div>
   </div>
-  @if ($project->is_coordinator($user))
-  <div class ="modal" id="addMembers">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Add Member</h4>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-            <div class="addToProject" >
-                @csrf
-                <label for="projects">Choose a profile</label>
-                <input type="text" name="username" class="form-group"  id="chooseProfile" placeholder="username" >
-                <div class="errorMember"></div>
-                <button class="btn btn-outline-dark addMemberButtonModal">Add member</button>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div> 
-  @endif
 </main>
 
 @endsection

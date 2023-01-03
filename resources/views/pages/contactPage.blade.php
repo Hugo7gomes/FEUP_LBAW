@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
+    <title>Contacts</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,32 +47,36 @@
 @endauth
 @guest
 <!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
     <head>
+        <title>Contacts</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
         <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link href="{{ asset('css/contacts.css') }}" rel="stylesheet">
     </head>
     <body>
         <header>
-            <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+            <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
             <div id="headerInfo">
                 <div id="faqs"><a href="{{ route('faq') }}">FAQ</a></div>
-                <div id="contacts"><a href="{{ route('about') }}">About</a></div>
+                <div id="about"><a href="{{ route('about') }}">About</a></div>
             </div>
         </header>
         <main>
-            <h1>Contact Us</h1>
-            <p>Got a question or suggestion? We'd love to hear from you!</p>
-            <p>
-                This web app was created by four third year students from class 8 and group 1 of computer engineering and computing at Feup.
-            </p>
-            <ul>
-                <li>Hugo Gomes</li>
-                <li>João Araújo</li>
-                <li>João Moreira</li>
-                <li>Lia Vieira</li>
-                <li>You cand find our project here <a href="https://git.fe.up.pt/lbaw/lbaw2223/lbaw2281/-/wikis/home"></a> </li>
-            </ul>
+            <div class="contactInfo">
+                <h1>Contact Us</h1>
+                <p>Got a question or suggestion? We'd love to hear from you!</p>
+                <p>
+                    This web app was created by four third year students from Class 8 Group 1 of Informatics and Computing Engineering at FEUP:
+                </p>
+                <ul>
+                    <li>Hugo Gomes</li>
+                    <li>João Araújo</li>
+                    <li>João Moreira</li>
+                    <li>Lia Vieira</li>
+                </ul>
+                <a class="projectLink" href="https://git.fe.up.pt/lbaw/lbaw2223/lbaw2281/-/wikis/home">You cand find our project here</a>
+            </div>
         </main>
     </body>
 @endguest

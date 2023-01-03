@@ -139,7 +139,7 @@ class TaskController extends Controller
         if(!$project->archived){
             return json_encode(view('pages.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render());
         }else{
-            //retornar view task archived
+            return json_encode(view('pages.archived.editTask',['user'=>$user,'task'=>$task,'userToAssign' =>$userToAssign, 'project'=>$project])->render());
         }
 
 

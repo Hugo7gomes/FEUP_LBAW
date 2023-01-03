@@ -14,7 +14,7 @@
               </ul>
             </div>
           @elseif($notification->type == 'Invite')
-            <div class ="divNot col" id = {{$notification->id}}>
+            <div class ="divNot col" not-id = {{$notification->id}}>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <span class="text">{{$notification->text()}}</span>

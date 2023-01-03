@@ -23,7 +23,7 @@ body{
     align-items: center;
 }
 
-#about, #contacts, a{
+#faqs, #contacts, a{
     color: black;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
@@ -53,8 +53,8 @@ h1 {
     color: #333;
     background-color: #EEEE;
     border-radius: 10px;
-    position: fixed;
-    bottom: 2%;
+    position: absolute;
+    bottom: 18%;
     left: 5%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }

@@ -48,6 +48,12 @@
     color: black;
     font-weight: bold;
     font-size: 170%;
+    word-break: break-all;
+}
+
+#archived {
+    color: red;
+    font-size: 16px;
 }
 
 .tasksToDo, .tasksDoing, .tasksDone {

@@ -1,40 +1,87 @@
+header{
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body{
+  margin: 0px;
+}
+
+.logo {
+  width: 270px;
+  margin-top: 4vw;
+}
+
+#headerInfo {
+  margin-top: 5vw;
+  margin-left: 8vw;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#faqs, #about, a{
+  color: black;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 20px;
+}
+
+a:hover {
+  color: black;
+}
+
 main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.contactInfo {
+  width: 90%;
+  padding: 20px;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 1.5;
+  color: #333;
+  background-color: #EEEE;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 25%;
+  left: 5%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
   
-  h1 {
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color : rgb(200, 106, 24);
-  }
+h1 {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color : rgb(200, 106, 24);
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
   
-  p {
-    font-size: 1.2em;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
+ul {
+  padding: 0;
+  margin: 0;
+}
   
-  ul {
-    padding: 0;
-    margin: 0;
-  }
+li {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  margin-left: 40px;
+}
+
+.projectLink {
+  text-decoration: underline;
+}
   
-  li {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  
-  a {
-    color: rgb(200, 106, 24);
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }

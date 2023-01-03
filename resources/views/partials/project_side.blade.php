@@ -7,9 +7,11 @@
           <button id="favoriteProjectsTitle" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#favoriteProjects-collapse" aria-expanded="true">
           <i class="bi bi-chevron-down"></i><span class="">Favorite Projects</span>
           </button>
+          @if(!$user->administrator)
           <a href='{{ route("project/create") }}' id="newProject" class="btn btn-toggle align-items-center rounded collapsed btn-secondary" aria-expanded="true">
             New
           </a>
+          @endif
         <div class="collapse show" id="favoriteProjects-collapse">
           <ul class=" favoriteProjects nav-pills btn-toggle-nav list-unstyled fw-normal pb-1 large">
             @foreach ($user->favoriteProjects() as $projectFavorite)
@@ -31,13 +33,15 @@
           <li class = "nav-item">
             <a  href = "{{route('project.members', ['project_id' => $project->id])}}" class="nav-link link-dark " id="teamMembersProjectButton">Project Members</a>
           </li>
-          <li class = "nav-item">
-            <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#leaveModal" id="leaveProjectButton">Leave Project</button>
-          </li>
-          @if($project->is_coordinator($user))
-          <li class = "nav-item">
-            <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#archiveModal" id="leaveProjectButton">Archive Project</button>
-          </li>
+          @if(!$project->archived)
+            <li class = "nav-item">
+              <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#leaveModal" id="leaveProjectButton">Leave Project</button>
+            </li>
+            @if($project->is_coordinator($user))
+            <li class = "nav-item">
+              <button type="button" class="btn btn-outline-danger nav-link btn-block text-left" data-bs-toggle="modal" data-bs-target="#archiveModal" id="leaveProjectButton">Archive Project</button>
+            </li>
+            @endif
           @endif
       </ul>
     </ul>
