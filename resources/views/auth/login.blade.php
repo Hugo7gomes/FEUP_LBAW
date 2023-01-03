@@ -8,7 +8,7 @@
 <link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
 
 <header>
-    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
 </header>
 <div class = "loginBoard" id="loginBoard">
     <h1>Welcome Back!</h1>
@@ -16,12 +16,12 @@
         {{ csrf_field() }}
         <div class="loginField">
             <div class="form-group">
-            <input id="emailLogin" name="email" type="text" class="form-control" placeholder="E-mail" required autofocus>
-            @if ($errors->has('email'))
-            <span class="error">
-                {{ $errors->first('email') }}
-            </span>
-            @endif
+                <input id="emailLogin" name="email" type="text" class="form-control" placeholder="E-mail" required autofocus>
+                @if ($errors->has('email'))
+                <span class="error">
+                    {{ $errors->first('email') }}
+                </span>
+                @endif
             </div>
             <input id="passLogin" name="password" class="form-control" type="password" placeholder="Password" required>
             @if ($errors->has('password'))
@@ -30,7 +30,6 @@
             </span>
             @endif
             <a href="{{route('password.request')}}"><span class="forgotPass">Forgot your password?</span></a>
-            </div>
             <button class="btn btn-outline-dark loginButton" type="submit">
                 Login
             </button>

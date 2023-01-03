@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
+    <title> Workfluido </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,13 +23,11 @@
       @include('partials.header')
       @yield('header')
     </header>
-    <section id="content">
       @yield('content')
-    </section>
-  </body>
   <footer class="footer container" id = "footerEnd">
     @include('partials.footer')
     @yield('footer') 
   </footer>
+  </body>
 </html>
 

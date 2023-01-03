@@ -5,9 +5,9 @@
 @section('header')
   <div class="row justify-content-between headerContainer" id="headerContainer">
     <div class="col-4">
-      <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+      <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
     </div>
-    <div class="col-4" id="searchDiv">
+    <div class="col-4">
       <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="searchbar">
       <section>
             @include('pages.search')

@@ -1,7 +1,7 @@
 <link href="{{ asset('css/header.css') }}" rel="stylesheet">
 
 <div class="dropdown" id="searchDiv">
-    <ul class="searchDrop dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdownMenuLink">
+    <ul class="searchDrop dropdown-menu dropdown-menu-center">
       <li>
         <h2>Projects</h2>
         <div id = "divResultProjects"></div>

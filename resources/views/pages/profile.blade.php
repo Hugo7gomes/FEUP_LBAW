@@ -39,7 +39,7 @@
               @csrf
               <div class="form-group formsName">
                 <div class="col-sm-3">
-                  <label for="exampleFormControlInput1" class="mb-0">Name</label>
+                  <label for="userName" class="mb-0">Name</label>
                 </div>
                 <div class="col-sm-9">
                   <input type="text" name = "name" placeholder= "{{ $user['name'] }}" id="userName" class="form-control text-muted mb-0">
@@ -51,7 +51,7 @@
 
               <div class="form-group formsUsername">
                 <div class="col-sm-3">
-                  <label for="exampleFormControlInput1" class="mb-0">Username</label>
+                  <label for="userUsername" class="mb-0">Username</label>
                 </div>
                 <div class="col-sm-9">
                   <input type="text" name = "username" placeholder= "{{ $user['username'] }}" id="userUsername" class="form-control text-muted mb-0">
@@ -63,7 +63,7 @@
 
               <div class="form-group formsEmail">
                 <div class="col-sm-3">
-                  <label for="exampleFormControlInput1" class="mb-0">Email</label>
+                  <label for="userEmail" class="mb-0">Email</label>
                 </div>
                 <div class="col-sm-9">
                   <input type="text" name = "email" placeholder= "{{ $user['email'] }}" id="userEmail" class="form-control text-muted mb-0">
@@ -75,7 +75,7 @@
 
               <div class="form-group formsPhone">
                 <div class="col-sm-3">
-                  <label for="exampleFormControlInput1" class="mb-0">Phone Number</label>
+                  <label for="userPhone" class="mb-0">Phone Number</label>
                 </div>
                 <div class="col-sm-9">
                   <input type="tel" name = "phone_number" placeholder= "{{ $user['phone_number'] ?? 'No phoneNumber'}}" id="userPhone" class="form-control text-muted mb-0">
@@ -87,7 +87,7 @@
 
               <div class="form-group formsPassword">
                 <div class="col-sm-3">
-                  <label for="exampleFormControlInput1" class="mb-0">Password</label>
+                  <label for="password" class="mb-0">Password</label>
                 </div>
                 <div class="col-sm-9">
                   <input type="password" name = "password" placeholder= "User's password" id="password" class="form-control text-muted mb-0">
@@ -99,7 +99,7 @@
 
               <div class="form-group formsNewPassword">
                 <div class="col-sm-3">
-                  <label for="exampleFormControlInput1" class="mb-0">New Password</label>
+                  <label for="new_password" class="mb-0">New Password</label>
                 </div>
                 <div class="col-sm-9">
                   <input type="password" name = "new_password" placeholder= "User's new password" id="new_password" class="form-control text-muted mb-0">
@@ -119,7 +119,7 @@
   </div>
 </section>
 @if($user->is_only_coordinator())
-<div class="modal " id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal " id="deleteAccountModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -136,7 +136,7 @@
     </div>
   </div>
 @else
-<div class="modal " id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal " id="deleteAccountModal" tabindex="-1" role="dialog"aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
