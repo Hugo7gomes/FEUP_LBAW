@@ -165,10 +165,126 @@ paths:
                   description: 'Failed authentication. Redirect to register form.'
                   value: '/register'
 
-  /profile:
+  /forgot-password:
     get:
       operationId: R106
-      summary: 'R106: View Personal Profile'
+      summary: 'R106: Forgot Password Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show register UI'
+        '302':
+          description: 'Redirect if user is logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Authenticated. Redirect to home page.'
+                  value: '/'
+    
+    post:
+      operationId: R107
+      summary: 'R107: Forgot password Action'
+      description: 'An email is sent to the user in order to recover the password. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+                - email
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful email sent.'
+                  value: '/'
+                302Failure:
+                  description: 'Invalid email. Redirect to register form.'
+                  value: '/register'
+    
+    
+  /reset-password:  
+    get:
+      operationId: R108
+      summary: 'R108: UI after validating the email that was sent'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show reset-password UI'
+        '302':
+          description: 'Redirect if user is logged in.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Authenticated. Redirect to home page.'
+                  value: '/'
+    post:
+      operationId: R109
+      summary: 'R109: Reset password Action'
+      description: 'Reseting the new password. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                token:
+                  type: string
+              required:
+                - email
+                - password
+                - token
+
+      responses:
+        '302':
+          description: 'Redirect after processing the reset information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Login sucessful.'
+                  value: '/'
+                302Failure:
+                  description: 'Invalid credentials. Redirect to register form.'
+                  value: '/register'
+
+  /profile:
+    get:
+      operationId: R110
+      summary: 'R110: View Personal Profile'
       description: 'Show the individual user profile. Access: USR ADM'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -187,8 +303,8 @@ paths:
                   value: '/login'
 
     patch:  # <!--- Editar perfil update parts of the resource
-      operationId: R107
-      summary: 'R107: Edit Profile'
+      operationId: R111
+      summary: 'R111: Edit Profile'
       description: 'Edit account information. Access: USR ADM'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -218,8 +334,8 @@ paths:
           description: "Unauthorized"
         
     delete:
-      operationId: R108
-      summary: 'R108: Delete Account'
+      operationId: R112
+      summary: 'R112: Delete Account'
       description: 'Delete account. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -243,8 +359,8 @@ paths:
 
   /profile/{username}:
     get:
-      operationId: R109
-      summary: 'R109: View User Profile'
+      operationId: R113
+      summary: 'R113: View User Profile'
       description: 'Show user profile. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -262,51 +378,41 @@ paths:
         '404':
           description: 'Not Found. Show UI User Not Found'
 
-    delete:
-      operationId: R110
-      summary: 'R110: Ban Account'
-      description: 'Ban an account. Access: ADM'
-      tags:
-        - 'M04: User Administration and Static pages'
-        
-      parameters:
-        - in: path
-          name: username
-          schema:
-            type: string
-          required: true
-
-      responses:
-        '200':
-          description: 'Ok'
-
-  /api/profile:
-    get:
-      operationId: R110
-      summary: "R110: Search Profile API"
-      description: "Searches for accounts and returns the results as JSON. Access: USR"
+  /profile/avatar:
+    post:
+      operationId: R114
+      summary: 'R114: Upload a picture'
+      description: 'Aploading a avatar picture. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
 
-      parameters:
-        - in: query
-          name: query
-          description: String to use for full-text search
-          schema:
-            type: string
-          required: false
-     
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: byte
+              required:
+                - avatar
+
       responses:
-        '200':
-          description: Success
-          content:
-            application/json:
+        '302':
+          description: 'Redirect after processing the avatar upload.'
+          headers:
+            Location:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        '400':
-          description: Bad Request
+                type: string
+              examples:
+                302Success:
+                  description: 'Upload sucessfull.'
+                  value: '/profile'
+                302Failure:
+                  description: 'Invalid file. Redirect to profile.'
+                  value: '/profile'
 
 
   /project/create:
@@ -389,15 +495,46 @@ paths:
           description: Forbidden
         "404":
           description: Not Found
-
   
-  /project/edit:
+  /project/{project_id}/members:
     get:
       operationId: R204
-      summary: 'R204: Edit Project Information'
-      description: "Edit project information. Access: CRD"
+      summary: 'R204: See Project Team member Information'
+      description: "See project team  members. Access: CLB ADM"
       tags:
         - 'M02: Project Management'
+
+      parameters:
+        - in: path
+          name: project_id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: Success
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+
+  
+  /project/{project_id}/edit:
+    get:
+      operationId: R205
+      summary: 'R205: Show Edit Project Information'
+      description: " Show edit project information. Access: CRD"
+      tags:
+        - 'M02: Project Management'
+
+      parameters:
+        - in: path
+          name: project_id
+          schema:
+            type: integer
+          required: true
+          
       responses:
         '200':
           description: 'Ok. Show Project Edit UI'
@@ -415,8 +552,8 @@ paths:
           description: 'Forbidden, user dont have that privileges'
       
     patch:  
-      operationId: R205
-      summary: 'R205: Edit Project Details'
+      operationId: R206
+      summary: 'R206: Edit Project Details'
       description: 'Edit project information. Access: CRD'
       tags:
         - 'M02: Project Management'
@@ -440,40 +577,8 @@ paths:
         "401":
           description: 'Unauthorized'
     
-  /project/delete:
+  /project/{project_id}/leave:
     delete:
-      operationId: R206
-      summary: 'R206: Delete Project'
-      description: 'Delete project. Access: CRD'
-      tags:
-        - 'M02: Project Management'
-      
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                project_id:
-                  type: integer
-  
-      responses:
-        '302':
-          description: 'Redirect after processing the delete project request.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: 'Successful. Redirect to homePage.'
-                  value: '/'
-        "403":
-          description: 'Forbidden'
-
-  /project/leave:
-     delete:
       operationId: R207
       summary: 'R207: Leave Project'
       description: 'Leave a project. Access: CLB'
@@ -508,12 +613,35 @@ paths:
                   value: '/project'
         "403":
           description: 'Forbidden'
-
   
-  /project/inviteMember:
-    post:
+  /project/{project_id}/archive:
+    patch:
       operationId: R208
-      summary: 'R208: Invite Member'
+      summary: 'R208: Archive a Project'
+      description: 'Arquivar um projeto. Access: CRD ADM'
+      tags:
+        - 'M02: Project Management'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                project_id:
+                  type: integer
+      responses:
+        '200':
+          description: 'Ok'
+        "401":
+          description: 'Unauthorized'
+      
+
+  /api/project/{project_id}/inviteMember:
+    post:
+      operationId: R209
+      summary: 'R209: Invite Member'
       description: 'Processes new user invite. Access: CRD'
       tags:
         - 'M02: Project Management'
@@ -550,8 +678,8 @@ paths:
   
   /project/acceptInvite:
     post:
-      operationId: R209
-      summary: '209: Accept Project Invite'
+      operationId: R210
+      summary: '210: Accept Project Invite'
       description: 'Accept project invite. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -574,8 +702,8 @@ paths:
 
   /project/rejectInvite:
     delete:
-      operationId: R210
-      summary: '210: Reject Project Invite'
+      operationId: R211
+      summary: '211: Reject Project Invite'
       description: 'Reject project invite. Access: ACO'
       tags:
         - 'M02: Project Management'
@@ -597,8 +725,8 @@ paths:
   
   /api/notification/delete:
     delete:
-      operationId: R211
-      summary: '211: Delete Notification'
+      operationId: R212
+      summary: '212: Delete Notification'
       description: 'Delete notification. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -617,10 +745,10 @@ paths:
           description: 'Ok'
 
 
-  /api/project/favorite/create:
+  /api/project/{project_id}/favorite/create:
     post:
-      operationId: R212
-      summary: 'R212: Favourite Project'
+      operationId: R213
+      summary: 'R213: Favourite Project'
       description: 'Add project to favourites. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -655,10 +783,10 @@ paths:
                   description: 'Failed creation. Redirect to project page'
                   value: '/project'
 
-  /api/project/favorite/delete:
+  /api/project/{project_id}/favorite/delete:
     delete:
-      operationId: R213
-      summary: 'R213: Remove Favourite Project'
+      operationId: R214
+      summary: 'R214: Remove Favourite Project'
       description: 'Delete project from favourites. Access: USR'
       tags:
         - 'M02: Project Management'
@@ -697,7 +825,7 @@ paths:
     get:
       operationId: R214
       summary: "R214: Search Projects and Tasks API"
-      description: "Search for projects and tasks and returns the results as JSON. Access: USR"
+      description: "Search for projects, tasks and users and returns the results as JSON. Access: USR"
       tags:
         - 'M02: Project Management'
 
@@ -722,7 +850,7 @@ paths:
         '400':
           description: Bad Request
 
-  /api/project/removeMember:
+  /api/project/{project_id}/removeMember:
     delete:
       operationId: R215
       summary: 'R215: Remove Member From Project'
@@ -760,7 +888,7 @@ paths:
                   description: 'Fail to remove member. Redirect to project page'
                   value: '/project'
 
-  /api/project/upgradeMember:
+  /api/project/{project_id}/upgradeMember:
     patch:
       operationId: R216
       summary: 'R216: Upgrade Member position on Project'
@@ -799,7 +927,7 @@ paths:
                   value: '/project'
 
 
-  /task:
+  /api/project/{project_id}/task/{task_id}:
     get:
       operationId: R301
       summary: 'R301: See Task Info'
@@ -857,21 +985,9 @@ paths:
                   value: '/project'
 
   /task/edit:
-    get:
-      operationId: R303
-      summary: 'R303 Edit Task Form'
-      description: 'Provide edit task form. Access: CLB'
-      tags:
-        - 'M03: Task Management'
-      responses:
-        '200':
-          description: 'Ok. Show Edit task UI'
-        '401':
-          description: 'Unauthorized'
-    
     patch:
-      operationId: R304
-      summary: 'R304: Edit Task Action'
+      operationId: R303
+      summary: 'R303: Edit Task Action'
       description: 'Processes the edit task form submission. Access: CLB CRD'
       tags:
         - 'M03: Task Management'
@@ -913,8 +1029,8 @@ paths:
   
   /task/delete:
    delete:
-      operationId: R305
-      summary: 'R305: Delete Task'
+      operationId: R304
+      summary: 'R304: Delete Task'
       description: 'Delete task. Access: CRD ADM'
       tags:
         - 'M03: Task Management'
@@ -943,10 +1059,10 @@ paths:
         "403":
           description: 'Forbidden'
 
-  /task/comment:
+  /api/project/{project_id}/task/{task_id}/addComment:
     post:
-      operationId: R306
-      summary: 'R306: Comment Task'
+      operationId: R305
+      summary: 'R305: Comment Task'
       description: 'Comment a task. Access: CLB'
       tags:
         - 'M03: Task Management'
@@ -985,8 +1101,8 @@ paths:
   
   /task/comment/delete:
      delete:
-      operationId: R307
-      summary: 'R307: Delete Task Comment'
+      operationId: R306
+      summary: 'R306: Delete Task Comment'
       description: 'Delete a comment on task. Access: CRD ADM'
       tags:
         - 'M03: Task Management'
@@ -1017,7 +1133,7 @@ paths:
 
 
   
-  /contacts:   
+  /contact:   
     get:
       operationId: R401
       summary: 'R401: View Contacts Page'
