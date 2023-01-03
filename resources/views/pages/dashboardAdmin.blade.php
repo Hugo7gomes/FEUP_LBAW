@@ -6,12 +6,12 @@
 
 <main>
     <table>
-        <h1>Histórico de Comportamento:</h1>
+        <h1>Behavior history:</h1>
         <thead>
             <tr>
-                <th>Data de bloqueio</th>
-                <th>Motivo do bloqueio</th>
-                <th>Username bloqueado</th>
+                <th>Block Date</th>
+                <th>Block Reason</th>
+                <th>Username Blocked</th>
             </tr>
         </thead>
         <tbody>

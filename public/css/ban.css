@@ -2,9 +2,9 @@ table {
     border-collapse: collapse;
     width: 100%;
   }
-  
+
   th, td {
-    text-align: left;
+    text-align: center;
     padding: 8px;
   }
   
@@ -13,8 +13,11 @@ table {
   th {
     background-color: #4CAF50;
     color: white;
+    text-align: center;
   }
   
+ 
+
   h1 {
     font-size: larger;
     font-weight: bold;
@@ -27,26 +30,6 @@ table {
     border-bottom: 2px solid #00008b;
   }
 
-  
-  .unblock-button {
-    background-color: #c10f0f;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-  
-  .unblock-button:hover {
-    background-color: white;
-    border-color: #c10f0f;
-    color: red;
-  }
-  
   @media (max-width: 600px) {
     table {
       width: 100%;
