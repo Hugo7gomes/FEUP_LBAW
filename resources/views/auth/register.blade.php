@@ -8,7 +8,7 @@
 <link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
 
 <header>
-    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
 </header>
 <div class = "registerBoard">
   <h1>Register</h1>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group usernameReg">
         <!-- <label for="username">Username</label> -->
-        <input id="usernameReg" type="text" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}" required autofocus>
+        <input id="usernameReg" type="text" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}" required>
         @if ($errors->has('username'))
           <span class="error">
               {{ $errors->first('username') }}
@@ -59,6 +59,7 @@
         </button>
       <div class = "loginLink">
         Already a member?<a href="{{ route('login') }}"> Login</a>
+      </div>
       </div>
     </form>
 </div>

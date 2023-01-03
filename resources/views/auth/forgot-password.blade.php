@@ -8,7 +8,7 @@
 <link href="{{ asset('css/login_register.css') }}" rel="stylesheet">
 
 <header>
-    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+    <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
 </header>
 <div class = "loginBoard">
     <h1>Welcome Back!</h1>
@@ -34,3 +34,4 @@
         </div>
     </form>
 </div>
+@endsection
