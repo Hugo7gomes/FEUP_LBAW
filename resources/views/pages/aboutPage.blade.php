@@ -38,11 +38,11 @@
         </ul>
         <p>Whether you're a small startup, a large corporation, or an individual looking to manage a team project, Workfluido has something to offer. Try it out today and see how it can help your team work more efficiently and effectively.</p>
     </main>
-    </body>
   <footer class="footer container" id = "footerEnd">
     @include('partials.footer')
     @yield('footer') 
   </footer>
+  </body>
 </html>
 @endauth
 @guest

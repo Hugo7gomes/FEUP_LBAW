@@ -1,12 +1,8 @@
 header{
-    height: 90px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 2em;
 }
-
-body{
-    margin: 0px;
+main{
+    margin-bottom: 5em;
 }
 
 .logo {
