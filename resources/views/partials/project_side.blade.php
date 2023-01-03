@@ -47,6 +47,7 @@
       </li>
     </ul>
   </nav>
+  @if(!$project->archived)
   @if($project->is_unique_coordinator($user))
   <div class="modal " id="leaveModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -105,5 +106,6 @@
       </div>
     </div>
   </div>
+  @endif
   @endif
 @endsection

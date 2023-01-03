@@ -14,9 +14,9 @@
         <div class="card mb-4">
           <div class="card-body text-center" id="otherprofile">
             @if($userProfile->photo != null)
-              <img src={{asset($userProfile->photo->path)}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="150px" height="150px">
+              <img src={{asset($userProfile->photo->path)}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="150" height="150">
             @else
-              <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="150px" height="150px">
+              <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle shadow-1-strong me-3" width="150" height="150">
             @endif
             <h5 class="my-3">{{ $userProfile['name'] }}</h5>
             <p class="text-muted mb-1">{{ $userProfile['username'] }}</p>
