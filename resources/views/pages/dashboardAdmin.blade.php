@@ -5,8 +5,8 @@
 <link href="{{ asset('css/ban.css') }}" rel="stylesheet">
 
 <main>
+<h1>Histórico de Comportamento:</h1>
     <table>
-        <h1>Histórico de Comportamento:</h1>
         <thead>
             <tr>
                 <th>Data de bloqueio</th>
