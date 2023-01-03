@@ -66,7 +66,7 @@
 </head>
 <body>
     <header>
-        <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
+        <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo_unauthenticated"></a>
         <div id="headerInfo">
             <div id="about"><a href="{{ route('about') }}">About</a></div>
             <div id="contacts"><a href="{{ route('contact') }}">Contacts</a></div>

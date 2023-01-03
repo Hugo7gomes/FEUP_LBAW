@@ -1,11 +1,15 @@
-header{
-    margin-bottom: 2em;
-}
-main{
-    margin-bottom: 5em;
+#header_about{
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo {
+main{
+    padding-left: 2em;
+}
+
+#logo_unauthenticated {
     width: 270px;
     margin-top: 4vw;
 }

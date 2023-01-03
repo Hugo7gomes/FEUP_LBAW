@@ -69,7 +69,7 @@
         <div class="modal-body">
             <div class="addToProject" >
                 @csrf
-                <label for="projects">Choose a profile</label>
+                <label for="chooseProfile">Choose a profile</label>
                 <input type="text" name="username" class="form-group"  id="chooseProfile" placeholder="username" >
                 <div class="errorMember"></div>
                 <button class="btn btn-outline-dark addMemberButtonModal">Add member</button>

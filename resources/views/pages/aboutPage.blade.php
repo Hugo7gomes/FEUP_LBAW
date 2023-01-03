@@ -54,8 +54,8 @@
         <link href="{{ asset('css/about.css') }}" rel="stylesheet">
     </head>
     <body>
-        <header>
-          <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
+        <header id = "header_about">
+          <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" id= "logo_unauthenticated"></a>
           <div id="headerInfo">
               <div id="faqs"><a href="{{ route('faq') }}">FAQ</a></div>
               <div id="contacts"><a href="{{ route('contact') }}">Contacts</a></div>

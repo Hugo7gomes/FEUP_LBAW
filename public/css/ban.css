@@ -2,9 +2,9 @@ table {
     border-collapse: collapse;
     width: 100%;
   }
-
+  
   th, td {
-    text-align: center;
+    text-align: left;
     padding: 8px;
   }
   
@@ -13,11 +13,8 @@ table {
   th {
     background-color: #4CAF50;
     color: white;
-    text-align: center;
   }
   
- 
-
   h1 {
     font-size: larger;
     font-weight: bold;
@@ -29,6 +26,7 @@ table {
   tr{
     border-bottom: 2px solid #00008b;
   }
+
 
   @media (max-width: 600px) {
     table {

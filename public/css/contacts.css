@@ -1,15 +1,11 @@
-header{
+#header_contacts{
   height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-body{
-  margin: 0px;
-}
-
-.logo {
+#logo_unauthenticated {
   width: 270px;
   margin-top: 4vw;
 }
@@ -39,6 +35,8 @@ a:hover {
 main {
   margin: 0 auto;
   font-family: Arial, sans-serif;
+  padding-left: 2em;
+  padding-top: 2em;
 }
 
 .contactInfo {

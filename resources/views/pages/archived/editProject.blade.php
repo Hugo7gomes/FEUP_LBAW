@@ -17,8 +17,8 @@
   <div id="projectUpdate">
     <form class="editProjectForm"> <!-- METER SLUG CORRETA -->
       <div class="projectUpdateForm form-group">
-        <label for="projectNewName">Name</label>
-        <div type="text" name="name" class="form-control" id="projectNewName" placeholder="{{ $project->name }}" autofocus>{{ $project->name }}</div>
+        <label>Name</label>
+        <div class="form-control" id="projectNewName" autofocus>{{ $project->name }}</div>
         @if($errors->has('name'))
           <div class="error">{{ $errors->first('name') }}</div>
         @endif
@@ -29,8 +29,8 @@
         @if($errors->has('details'))
           <div class="error">{{ $errors->first('details') }}</div>
         @endif
-    </form>
     </div>
+    </form>
   </div>
 </main>
 @endsection

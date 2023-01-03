@@ -35,7 +35,7 @@
             <li>João Araújo</li>
             <li>João Moreira</li>
             <li>Lia Vieira</li>
-            <li>You cand find our project here <a href="https://git.fe.up.pt/lbaw/lbaw2223/lbaw2281/-/wikis/home"> Workfluido</a> </li>
+            <li>You cand find our project here<a href="https://git.fe.up.pt/lbaw/lbaw2223/lbaw2281/-/wikis/home">Workfluido</a> </li>
         </ul>
     </main>
     </body>
@@ -55,8 +55,8 @@
         <link href="{{ asset('css/contacts.css') }}" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" class= "logo"></a>
+        <header id = "header_contacts>
+            <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" alt="LBAW logo" id= "logo_unauthenticated"></a>
             <div id="headerInfo">
                 <div id="faqs"><a href="{{ route('faq') }}">FAQ</a></div>
                 <div id="about"><a href="{{ route('about') }}">About</a></div>

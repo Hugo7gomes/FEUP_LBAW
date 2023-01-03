@@ -45,7 +45,7 @@
           @endforeach
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              <span class="page-item">{{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}</span>
+              <li><span class="page-item">{{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}</span></li>
             </ul>
           </nav>
         </div>
@@ -58,7 +58,7 @@
             @endforeach
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
-                <span class="page-item">{{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}</span>
+                <li><span class="page-item">{{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}</span></li>
               </ul>
             </nav>
         </div>
@@ -71,7 +71,7 @@
             @endforeach
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
-                <span class="page-item">{{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}</span>
+                <li><span class="page-item">{{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}</span></li>
               </ul>
             </nav>
         </div>
