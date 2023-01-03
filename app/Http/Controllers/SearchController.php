@@ -20,7 +20,7 @@ class SearchController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $searchText = $request->get('search');
-        if($request->has('projectId')){
+        if(null !== $request->get('projectId')){
             $project = Project::find($request->get('projectId'));
         }
 
@@ -29,24 +29,41 @@ class SearchController extends Controller
         $projects = array();
         $users = array();
         if(isset($searchText)){
-            $projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
-            ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
-
-            $users = User::where([
-                ['username', 'like' , '%'.$searchText.'%'],
-                ['administrator', 'FALSE'],
-            ])->get();
-            
-            if(null !== $request->get('projectId')){
-                $tasks = $project->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+            if(!$user->administrator){
+                    $projects = $user->projects()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
                 ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
+
+                $users = User::where([
+                    ['username', 'like' , '%'.$searchText.'%'],
+                    ['administrator', 'FALSE'],
+                    ['deleted', 'FALSE']
+                ])->get();
+                
+                if(null !== $request->get('projectId')){
+                    $tasks = $project->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+                    ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
+                }
+            }else{
+                $projects = Project::whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+                ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
+
+                $users = User::where([
+                    ['username', 'like' , '%'.$searchText.'%']
+                ])->get();
+
+                if(null !== $request->get('projectId')){
+                    $tasks = $project->tasks()->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', [$searchText])
+                    ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', [$searchText])->get();
+                }
+                
             }
+            
         }
 
         $result['projects'] = $projects;
         $result['users'] = $users;
         $result['tasks'] = $tasks;
-        return json_encode($result);//Problema a retornar view 
+        return json_encode($result);
         
     }
       

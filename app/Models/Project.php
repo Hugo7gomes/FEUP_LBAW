@@ -115,7 +115,10 @@ class Project extends Model
             if($collaborator->photo){
                 $collaborator['photo'] = $collaborator->photo->path;
             }
-            array_push($collaborators,$collaborator);
+            if(!$collaborator->banned() && !$collaborator->deleted){
+                array_push($collaborators,$collaborator);
+            }
+            
         }
 
         return $collaborators;
@@ -131,7 +134,9 @@ class Project extends Model
            if($coordinator->photo){
             $coordinator['photo'] = $coordinator->photo->path;
            }
-           array_push($coordinators,$coordinator);
+            if(!$coordinator->banned() && !$coordinator->deleted){
+                    array_push($coordinators,$coordinator);
+            }
        }
 
        return $coordinators;

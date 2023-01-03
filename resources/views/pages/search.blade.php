@@ -11,7 +11,7 @@
         <div id = "divResultUsers"></div>
       </li>
       <li>
-        <h2>Tasks from this project</h2>
+        <h2 class ="tasksFromProjectH2">Tasks from this project</h2>
         <div id = "divResultTasks"></div>
       </li>
     </ul>

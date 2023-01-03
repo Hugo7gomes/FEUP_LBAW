@@ -16,6 +16,11 @@ class HomepageController extends Controller
             if($user->deleted){
                 Auth::logout();
             }
+
+            if($user->banned()){
+                Auth::logout();
+                //return abort(403, 'You were banned' );
+            }
             
             if($user->administrator){
                 return redirect('/admin/dashboard');

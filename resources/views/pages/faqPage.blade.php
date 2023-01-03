@@ -14,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
+    
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -52,31 +53,32 @@
   </footer>
 </html>
 @endauth
+
 @guest
-    <!DOCTYPE html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
-        <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
-            <div id="headerInfo">
-                <div id="about"><a href="{{ route('about') }}">About</a></div>
-                <div id="contacts"><a href="{{ route('contact') }}">Contacts</a></div>
+<!DOCTYPE html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> 
+    <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="{{ asset('css/faq.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+        <div id="headerInfo">
+            <div id="about"><a href="{{ route('about') }}">About</a></div>
+            <div id="contacts"><a href="{{ route('contact') }}">Contacts</a></div>
+        </div>
+    </header>
+    <main>
+        <h1>FAQ</h1>
+        <div id = "all_faqs">
+        @foreach ($faqs as $faq)
+            <div class="faq">
+                <div class="faq-question">{{$faq->question}}</div>
+                <div class="faq-answer">{{$faq->answer}}</div>
             </div>
-        </header>
-        <main>
-            <h1>Faqs:</h1>
-            <div id = "all_faqs">
-            @foreach ($faqs as $faq)
-                    <div class="faq">
-                        <div class="faq-question">{{$faq->question }}</div>
-                        <div class="faq-answer">{{$faq->answer}}</div>
-                    </div>
-            @endforeach
-            </div>
-        </main>
-    </body>
+        @endforeach
+        </div>
+    </main>
+</body>
 @endguest

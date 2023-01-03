@@ -37,7 +37,7 @@
                 <a href = "/profile/{{$coordinator['username']}}" class = "usernameCoordinator nav-item"><b>{{$coordinator['username']}}</b></a>
                 <span>Coordinator</span>
               </div>
-            </li>         
+            </li>      
           @endforeach
           @foreach ($project->getCollaborators() as $collaborator)
             <li class="bla dropdown-item nav-item">
@@ -55,8 +55,8 @@
                 <button class = "btn btn-outline-secondary removeMember">Remove</button>
                 <button class = "btn btn-outline-secondary upgradeMember">Promote to coordinator</button>
               </div>
-              @endif
-            </li>             
+            </li>
+            @endif             
           @endforeach
         </div>
       </div>

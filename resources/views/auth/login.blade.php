@@ -10,7 +10,7 @@
 <header>
     <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
 </header>
-<div class = "loginBoard">
+<div class = "loginBoard" id="loginBoard">
     <h1>Welcome Back!</h1>
     <form method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
@@ -40,5 +40,4 @@
         </div>
     </form>
 </div>
-           
 @endsection

@@ -11,7 +11,6 @@
     <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
 </header>
 <div class = "loginBoard">
-    <h1>Welcome Back!</h1>
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
         <input type="hidden" value="{{ $token }}" name="token">

@@ -18,7 +18,7 @@ class UserPolicy
 
     public function update(User $user, User $model)
     {
-      return $user->id == $model->id;
+      return $user->id == $model->id && !$user->banned() && !$user->deleted;
     }
 
     public function create(User $user)
@@ -28,6 +28,6 @@ class UserPolicy
 
     public function delete(User $user, User $model)
     {
-      return false;
+      return !$user->is_only_coordinator();
     }
 }

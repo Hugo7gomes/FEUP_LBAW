@@ -29,9 +29,13 @@
                         <div class="form_select editTask">
                         <label for="taskUser">User Assigned</label>
                             <select name="userAssigned" class="newUserAssigned custom-select">
-                                <option selected>{{ $userToAssign->name ?? 'User assigned' }}</option>
+                                @if(!$userToAssign->banned())
+                                    <option selected>{{ $userToAssign->name ?? 'User assigned' }}</option>
+                                @else
+                                    <option selected>Banned Account</option>
+                                @endif
                                 @foreach ($project->getCoordinators() as $coordinator)
-                                    <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
+                                        <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
                                 @endforeach
                                 @foreach ($project->getCollaborators() as $collaborator)
                                     <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
@@ -78,6 +82,7 @@
                         <div class="card text-dark" id = "divComments">
                             <h4 class="mb-0">Comments</h4>
                             @foreach ($task->comments as $comment)
+                            @if(!$comment->owner->banned())
                             <div class="card-body ">   
                                 <div class="d-flex flex-start comment">
                                     @if($comment->owner->photo != null)
@@ -95,6 +100,7 @@
                                 </div>
                             </div>
                             <hr class="my-0">
+                            @endif
                             @endforeach
                         </div>
                     </div>

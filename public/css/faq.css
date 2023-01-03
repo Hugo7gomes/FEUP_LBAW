@@ -1,17 +1,62 @@
+header{
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body{
+    margin: 0px;
+}
+
+.logo {
+    width: 270px;
+    margin-top: 4vw;
+}
+
+#headerInfo {
+    margin-top: 5vw;
+    margin-left: 8vw;
+    color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+#about, #contacts, a{
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 20px;
+}
+
+a:hover {
+    color: black;
+}
+
 main{
     padding: 2em;
 }
 
+main > h1{
+    margin-top: 8vh;
+    margin-left: 7vw;
+    margin-bottom: 4vh;
+}
+
 #all_faqs{
     margin-bottom: 5em;
+    margin-left: 7vw;
 }
 
 .faq {
     margin-bottom: 40px;
-    background-color: #f8f8f8;
+    background-color: #DDDD;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    width: 80vw;
 }
 
 .faq-question {

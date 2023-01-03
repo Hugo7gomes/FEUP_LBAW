@@ -3,6 +3,7 @@ const searchUl = document.getElementsByClassName('searchDrop')[0]
 let searchDivProjects = document.getElementById("divResultProjects");
 let searchDivUsers = document.getElementById("divResultUsers");
 let searchDivTasks = document.getElementById("divResultTasks");
+let h2Tasks = document.getElementsByClassName('tasksFromProjectH2')[0];
 
 let searchBar = document.getElementById("searchbar")
 searchBar.addEventListener('keyup', searchRequest);
@@ -20,14 +21,18 @@ function searchRequest(event) {
 
     let url = window.location.href;
     if(url.indexOf('project') > -1){
-        isProject = true;
-        let projectId = url.split('/')[4];
-        if(projectId.indexOf('?') > -1){
-            projectId = projectId.split('?')[0];
+        if(url.indexOf('create') > -1){
+            sendAjaxRequest('post', '/api/search', { search: search }, searchHandler);
+        }else{
+            isProject = true;
+            let projectId = url.split('/')[4];
+            if(projectId.indexOf('?') > -1){
+                projectId = projectId.split('?')[0];
+            }
+            sendAjaxRequest('post', '/api/search', { projectId: projectId, search: search }, searchHandler);
         }
-        sendAjaxRequest('post', '/api/search', { projectId: projectId, search: search }, searchHandler);
     }else{
-        sendAjaxRequest('post', '/api/search', {  search: search }, searchHandler);
+        sendAjaxRequest('post', '/api/search', { search: search }, searchHandler);
     }
 
 }
@@ -58,6 +63,7 @@ function searchHandler() {
     }
 
     if(isProject){
+        
         if (tasks.length > 0) {
             for (let i = 0; i < tasks.length; i++) {
                 taskInject(tasks[i]);
@@ -66,6 +72,10 @@ function searchHandler() {
             injectNotFound('Tasks');
         }
     }else{
+        let h2Tasks = document.getElementsByClassName('tasksFromProjectH2')[0];
+        if(h2Tasks !== undefined){
+            h2Tasks.remove();
+        }
         
     }
   

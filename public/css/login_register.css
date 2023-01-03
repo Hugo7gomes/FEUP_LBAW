@@ -6,10 +6,12 @@ body {
     background-image: url("../images/background.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: white;
+    height: 100vh;
 }
 
 .logo {
-    width: 300px;
+    width: 15%;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -19,16 +21,18 @@ body {
     background-color: #D9D9D9;
     border-radius: 10px;
     width: 48vw;
-    position: relative;
-    display: grid;      
+    position: fixed;
+    top: 30vh;
+    left: 27vw;
     margin: auto;
     box-shadow: rgba(0, 0, 0, 0.18) 1px 1px 1px 1px;
-    top: 10vw;
 }
 
 .loginBoard {
     padding-bottom: 1%;
+    
 }
+
 
 .registerBoard {
     padding-bottom: 2%;
@@ -39,7 +43,7 @@ body {
     text-align: center;
     padding: 8%;
     font-weight: bold;
-    font-size: 45px;
+    font-size: 200%;
 }
 
 .loginBoard h1, .registerBoard h1 {
@@ -64,8 +68,8 @@ body {
 .loginButton, .registerButton {
     display: grid;
     margin: auto;
-    width: 150px;
-    height: 40px;
+    width: 90%;
+    height: 20%;
     font-size: 18px;
 }
 
@@ -88,7 +92,7 @@ form .loginField {
     margin: auto;
     text-align: center;
     color: #666666 ;
-    font-size: 15px;
+    font-size: 80%;
     margin-bottom: 10px;
     padding-top: 2%;
 }
@@ -102,7 +106,7 @@ form .loginField {
     padding-top: 3%;
     margin: auto;
     text-align: center;
-    font-size: 1em;
+    font-size: 90%;
     color: #666666;
 }
 
@@ -111,3 +115,43 @@ form .loginField {
     color: black;
     text-decoration: none;
 }
+
+@media only screen and (max-width: 768px) {
+    .registerBoard {
+        width: 50vw;
+    }
+} 
+
+@media only screen and (max-width: 1024px) {
+    .loginBoard, .registerBoard {
+        width: 60vw;
+        position: fixed;
+        top: 30vh;
+        left: 20vw;
+    }
+
+    .loginBoard h1 {
+        font-size: 200%;
+    }
+
+    .logo {
+        width: 30%;
+    }
+}  
+
+@media only screen and (max-width: 425px) {
+    .loginBoard, .registerBoard {
+        width: 85vw;
+        position: fixed;
+        top: 30vh;
+        left: 8vw;
+    }
+
+    .loginBoard h1 {
+        font-size: 160%;
+    }
+
+    .logo {
+        width: 50%;
+    }
+}  

@@ -37,6 +37,14 @@ class ProfileController extends Controller
         if(is_null($userProfile)){
             return abort(404);
         }
+
+        if($userProfile->banned() && !$user->administrator){
+            return abort(403, 'This user is banned');
+        }
+
+        if($userProfile->deleted){
+            return abort(404);
+        }
         
         return view('pages.othersProfile',[ 'user' => $user, 'userProfile' => $userProfile]);
     }
@@ -127,7 +135,7 @@ class ProfileController extends Controller
 
         $user = User::find(Auth::user()->id);
         
-        //$this->authorize('delete', $user);
+        $this->authorize('delete', $user);
 
         $user->email = "anonymous".$user->id."@anonymous.com";
         $user->username = "anonymous".$user->id;

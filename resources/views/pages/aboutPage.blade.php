@@ -52,13 +52,14 @@
     </head>
     <body>
         <header>
-            <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
-            <div id="headerInfo">
-                <div id="faqs"><a href="{{ route('faq') }}">FAQ</a></div>
-                <div id="contacts"><a href="{{ route('contact') }}">Contacts</a></div>
-            </div>
+          <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
+          <div id="headerInfo">
+              <div id="faqs"><a href="{{ route('faq') }}">FAQ</a></div>
+              <div id="contacts"><a href="{{ route('contact') }}">Contacts</a></div>
+          </div>
         </header>
         <main>
+          <div class="aboutText">
             <h1>About Workfluido</h1>
             <p>In a world where teamwork has become crucial to combat the constant adversities that have arisen such as remote work, the need for a project management tool has emerged. So, we decided to create Workfluido.</p>
             <p>Workfluido is a web application to help teams plan and manage their projects in a simple and efficient way. Our goal is to make project management less of a chore for teams of all sizes and industries. With Workfluido, users can easily organize their workflow by forming teams, assigning tasks, and discussing topics with their team members.</p>
@@ -71,6 +72,7 @@
                 <li>Comment on the tasks performed by the team</li>
             </ul>
             <p>Whether you're a small startup, a large corporation, or an individual looking to manage a team project, Workfluido has something to offer. Try it out today and see how it can help your team work more efficiently and effectively.</p>
+          </div>
         </main>
     </body>
 @endguest

@@ -1,15 +1,41 @@
-/* Style the main content */
-main {
-    width: 100%;
-    padding: 2em;
-    text-align: left;
-    font-size: 1.2em;
-    line-height: 1.5;
-    color: #333;
-    background-color: #fff;
+header{
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Style the headings */
+body{
+    margin: 0px;
+}
+
+.logo {
+    width: 270px;
+    margin-top: 4vw;
+}
+
+#headerInfo {
+    margin-top: 5vw;
+    margin-left: 8vw;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#about, #contacts, a{
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 20px;
+}
+
+a:hover {
+    color: black;
+}
+
 h1 {
     font-size: 2em;
     text-align: center;
@@ -18,7 +44,23 @@ h1 {
     margin: 0 0 1em 0;
 }
 
-/* Style the list items */
+.aboutText {
+    width: 90%;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #333;
+    background-color: #EEEE;
+    border-radius: 10px;
+    position: fixed;
+    bottom: 2%;
+    left: 5%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
 li {
     margin: 0.5em 0;
 }
+

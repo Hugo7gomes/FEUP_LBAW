@@ -53,7 +53,7 @@ class User extends Authenticatable
     public function is_only_coordinator(){
         $projects = $this->projects;
         foreach($projects as $project){
-            if($project->is_unique_coordinator($this)){
+            if($project->is_unique_coordinator($this) && !$project->archived){
                 return True;
             }
         }
