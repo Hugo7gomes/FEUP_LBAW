@@ -6,6 +6,7 @@ main {
     width: 75%;
 }
 
+
 .col-sm-9 {
     padding: 15px;
 }
@@ -21,95 +22,11 @@ main {
 }
 
 #otherprofile, #info {
-    height: 20vw;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 #info > .row {
-    padding-top: 85px;
-}
-
-#projects {
-    height: 14.5vw;
-}
-
-img {
-    padding-top: 20px;
-}
-
-.col-sm-3 > label {
-    position: relative;
-    top: 20%;
-    font-weight: bold;
-}
-
-#othersProfileBoard {
-    background-color: white;
-}
-
-#usersProjects {
-    display: flex;
-    flex-direction: column;
-    height: 13vw;
-}
-
-.userProjects {
-    display: flex;
-    flex-direction: row;
-    font-size: 20px;
-    color: black;
-}
-
-#usersProjects h3 {
-    font-size: 25px;
-    color: black;
-    padding: 2% 0% 0% 2%;
-    display: flex;
-    right: 10px;
-}
-
-#profile > h5 {
-    font-size: 20px;
-}
-
-.row form {
-    box-sizing: border-box;
-}
-
-.formsName, .formsUsername, .formsEmail, .formsPhone, .formsPassword, .formsNewPassword {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-}
-
-.mb-0 {
-    text-align: left;
-}
-
-.card.mb-4 {
-    border-radius: 5px;
-}
-
-#project {
-    padding: 10px;
-}
-
-.projectPhoto {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #EEEE;
-    font-size: 15px;
-    color: black;
-    line-height: 150px;
-    margin: 20px 0;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 1px 1px 1px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-}
-
-#sideNavButton {
-    display: none;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }

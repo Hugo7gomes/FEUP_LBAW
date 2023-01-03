@@ -2,6 +2,11 @@ main {
     background-color: #EEEE;
 }
 
+.img-fluid{
+    width: 150px;
+    height: 150px;
+}
+
 #userName, #userUsername, #userEmail, #userPhone, #password, #new_password {
     font-weight: 600;
 }

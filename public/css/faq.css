@@ -35,7 +35,8 @@ main{
 }
 
 main > h1{
-    text-align: center;
+    margin-left: 7%;
+    margin-bottom: 2%;
     color: rgb(200, 106, 24);
 }
 
@@ -48,6 +49,17 @@ main > h1{
     width: 80vw;
     margin: 0 auto;
     background-color: #DDDD;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.faqAuth{
+    padding: 20px;
+    width: 80vw;
+    margin: 0 auto;
+    background-color: #FFFF;
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .faq-question {

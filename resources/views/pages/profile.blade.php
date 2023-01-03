@@ -14,9 +14,9 @@
         <div class="card mb-4">
           <div class="card-body text-center" id="profile">
             @if($user->photo != null)
-            <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid" style="width: 150; height: 150;">
+            <img src={{asset($user->photo->path)}} alt="avatar" class="rounded-circle img-fluid">
             @else
-            <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid" style="width: 150; height: 150;">
+            <img src={{asset("avatars/default.png")}} alt="avatar" class="rounded-circle img-fluid">
             @endif
               <form method="POST" action = "{{route('profile.avatar')}}" enctype="multipart/form-data">
                 @csrf

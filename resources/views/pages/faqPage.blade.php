@@ -37,15 +37,15 @@
                 <input type="submit" value="Confirm">
             </form> 
         @endif
-        <h1>Faqs:</h1>
+        <h1>FAQ</h1>
         <div id = "all_faqs">
         @foreach ($faqs as $faq)
-            <div class="faq">
+            <div class="faqAuth">
                 <div class="faq-question">{{$faq->question }}</div>
                 <div class="faq-answer">{{$faq->answer}}</div>
             </div>
         @endforeach
-        <div id = "all_faqs">
+        </div>
     </main>
   </body>
   <footer class="footer container" id = "footerEnd">
