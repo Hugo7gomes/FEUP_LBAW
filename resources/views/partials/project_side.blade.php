@@ -18,7 +18,7 @@
           </ul>
         </div>
       </li>
-      <li class="border-top my-3"></li>
+      <li class="border-top my-3">
       <ul class = "nav nav-pills flex-sm-column mb-auto ">
           <li class = "nav-item">
             <a href = "{{url('project/'.$project->id)}}" class="nav-link link-dark" id="boardProjectButton">Board</a>
@@ -40,6 +40,7 @@
           </li>
           @endif
       </ul>
+      </li>
     </ul>
   </nav>
   @if($project->is_unique_coordinator($user))

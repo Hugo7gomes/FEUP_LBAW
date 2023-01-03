@@ -1,6 +1,6 @@
 <!-- BOOTSTRAP SIDENAV -->
 <script src={{ asset('js/comment.js') }} defer></script>
-<div class="offcanvas offcanvas-end text-bg-dark show " tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel" aria-modal="true" role="dialog">
+<div class="offcanvas offcanvas-end text-bg-dark show " tabindex="-1" id="offcanvasNavbarDark"  aria-modal="true" role="dialog">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">{{ $project->name }}</h5>
         <button type="button" class="btn-close btn-close-white closeButton" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -35,13 +35,13 @@
                                     <option selected>Banned Account</option>
                                 @endif
                                 @foreach ($project->getCoordinators() as $coordinator)
-                                        <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
+                                        <option value="{{ $coordinator['name']}}" id="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
                                 @endforeach
                                 @foreach ($project->getCollaborators() as $collaborator)
-                                    <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
+                                    <option value="{{ $collaborator['name']}}" id="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
                                 @endforeach
-                                <label for="floatingInput">User Assigned</label>
-                            </select>
+                                </select>
+                            
                             @if($errors->has('id_user_assigned'))
                             <div class="error">{{ $errors->first('id_user_assigned') }}</div>
                             @endif

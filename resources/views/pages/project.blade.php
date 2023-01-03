@@ -49,7 +49,7 @@
           @endforeach
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-              <span class="page-item">{{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}</span>
+              <li><span class="page-item">{{$project->tasksToDo()->links('pagination::simple-bootstrap-4')}}</span></li>
             </ul>
           </nav>
         </div>
@@ -62,7 +62,7 @@
             @endforeach
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
-                <span class="page-item">{{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}</span>
+                <li><span class="page-item">{{$project->tasksDoing()->links('pagination::simple-bootstrap-4')}}</span><li>
               </ul>
             </nav>
         </div>
@@ -75,7 +75,7 @@
             @endforeach
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
-                <span class="page-item">{{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}</span>
+                <li><span class="page-item">{{$project->tasksDone()->links('pagination::simple-bootstrap-4')}}</span></li>
               </ul>
             </nav>
         </div>
@@ -107,12 +107,11 @@
                 <select name="userAssigned" class="optionsUserAssigned custom-select">
                     <option selected>User assigned</option>
                     @foreach ($project->getCoordinators() as $coordinator)
-                        <option value="{{ $coordinator['name']}}" name="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
+                        <option value="{{ $coordinator['name']}}">{{ $coordinator['name']}}</option>
                     @endforeach
                     @foreach ($project->getCollaborators() as $collaborator)
-                        <option value="{{ $collaborator['name']}}" name="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
+                        <option value="{{ $collaborator['name']}}">{{ $collaborator['name']}}</option>
                     @endforeach
-                    <label for="floatingInput">User Assigned</label>
                 </select>
                 @if($errors->has('id_user_assigned'))
                   <div class="error">{{ $errors->first('id_user_assigned') }}</div>
@@ -136,7 +135,7 @@
     </div>
   </div>
   @if(count($user->favoriteProjects()) > 10)
-  <div class="modal " id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal " id="favoriteModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">

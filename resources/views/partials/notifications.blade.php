@@ -1,6 +1,7 @@
 <link href="{{ asset('css/notifications.css') }}" rel="stylesheet">
 <div class="dropdown">
-  <ul class="not dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+  <ul class="not dropdown-menu dropdown-menu-right">
+    <li>
     @if(count($user->notifications)> 0)  
       @foreach ($user->notifications as $notification)
         <div class="row"> 
@@ -38,10 +39,11 @@
         <div class ="col" style="width: 18rem;">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <span class="text">Notifications empty aqui</span>
+              <span class="text">Notifications empty</span>
             </li>
           </ul>
         </div>
     @endif
+    </li>
   </ul>
 </div>
