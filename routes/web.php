@@ -75,3 +75,5 @@ Route::post('/api/search', 'SearchController@search');
 
 //admin
 Route::get('admin/dashboard','AdminController@show')->name('admin/dashboard'); // dashboard admin
+Route::post('admin/ban','AdminController@banUser')->name('admin.ban');
+Route::post('admin/unban','AdminController@unbanUser')->name('admin.unban');

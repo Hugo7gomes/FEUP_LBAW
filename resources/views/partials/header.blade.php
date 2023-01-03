@@ -7,9 +7,9 @@
     <div class="col-4">
       <a href = "{{route('/')}}"><img src="{{ URL::to('/images/LBAWlogo.png') }}" class= "logo"></a>
     </div>
-    <div class="col-4">
+    <div class="col-4" id="searchDiv">
       <input type="search" class="form-control" placeholder="Search..." aria-label="Search" id="searchbar">
-      <section id = 'searchSection'>
+      <section>
             @include('pages.search')
             @yield('search')
       </section>

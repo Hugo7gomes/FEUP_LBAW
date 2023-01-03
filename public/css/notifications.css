@@ -41,33 +41,22 @@ li.list-group-item {
 
 
 
-/* @media only screen and (max-width: 450px) {
+@media only screen and (max-width: 1024px) {
     .not {
-        width: 90vw;
+        width: 35vw;
+        max-height: 40vh;
     }
 
-    .notificationDiv{
-        scroll-behavior: smooth;
-        height:400px;
-        right: 0;
-        width: 100%;
-        overflow:scroll;
-        overflow-x:hidden;
+    .acceptInviteButton {
+        font-size: 80%;
+        word-break: keep-all;
     }
 
 }
 
 
-@media only screen and (max-width: 400px) {
-    .dropdown {
-        max-width: max-content;
-        width: 200%;
-        z-index: 3;
+@media only screen and (max-width: 425px) {
+    .not {
+        width: 85vw;
     }
-    
-    .dropdown-menu {
-        overflow-wrap: inherit;
-        overflow: hidden;
-    }
-
-} */
+}

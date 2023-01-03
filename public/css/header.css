@@ -12,15 +12,6 @@
     margin-right: 0;
 }
 
-#searchSection {
-    margin: auto;
-    width: 50%; 
-    display: flex;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-}
-
 .link:hover {
     text-decoration: none;
 }
@@ -31,13 +22,66 @@
     margin-left: 2%;
 }
 
-#searchbar {
-    width: 18vw;
-    font-size: 14px;
-    font-weight: 600;
+/* SEARCH */
+#searchSection {
     margin: auto;
+    /* width: 50%;  */
+    display: flex;
 }
 
+#searchDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.searchDrop{
+    width: 32vw;
+    border-radius: 5px;
+    padding: 0;
+    border: solid 2px #dddd;
+    height: 25vw;
+    overflow: scroll;
+    overflow-x: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    /* margin: auto; */
+}
+
+#divResultProjects::-webkit-scrollbar {
+    display: none;
+}
+
+.searchDrop > li > h2  {
+    font-size: 110%;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#divResultProjects > a > article, #divResultUsers > a > article, #divResultTasks > a > article {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#divResultProjects > article > h3, #divResultUsers > article > h3, #divResultTasks > article > h3 {
+    font-size: 100%;
+    padding: 10px;
+}
+
+#divResultProjects > a > article > h3, #divResultUsers > a > article > h3, #divResultTasks > a > article > h3 {
+    font-size: 100%;
+    color: black;
+}
+
+#divResultProjects > a > article:hover, #divResultUsers > a > article:hover, #divResultTasks > a > article:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+#divResultProjects > a:hover, #divResultUsers > a:hover, #divResultTasks > a:hover {
+    text-decoration: none;
+}
+
+/* ------------------------------------------------------ */
 
 .notificationButton {
     background-color: white;
@@ -125,9 +169,16 @@
     }
 
     .bi-bell, .bi-person, .bi-box-arrow-right, .bi-list {
-        font-size: 5vw;
+        font-size: 3vw;
         margin: 0;
         padding: 0;
+    }
+} 
+
+@media only screen and (max-width: 425px) {
+    .searchDrop{
+        width: 60vw;
+        height: 50vh;
     }
 } 
 

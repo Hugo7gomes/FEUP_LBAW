@@ -12,7 +12,6 @@
                 <th>Data de bloqueio</th>
                 <th>Motivo do bloqueio</th>
                 <th>Username bloqueado</th>
-                <th>Desbloquear</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +20,6 @@
                 <td>{{ $ban->date }}</td>
                 <td>{{ $ban->reason }}</td>
                 <td><a href="../profile/{{$ban->username}}">{{ $ban->username }}</a></td>
-                <td><button class="unblock-button">Desbloquear</button></td>
             </tr>
             @endforeach
         </tbody>

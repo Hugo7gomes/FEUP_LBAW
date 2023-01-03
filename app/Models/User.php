@@ -96,4 +96,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Role','id_user')->where('id_project',$project->id)->delete();
     }
 
+    public function banned(){
+        return $this->hasOne('App\Models\Ban', 'id_banned')->get()->isNotEmpty();
+    }
 }

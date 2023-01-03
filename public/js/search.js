@@ -74,7 +74,7 @@ function searchHandler() {
 function injectNotFound(s) {
     let article = document.createElement('article');
     article.innerHTML = `
-    <span><h3>${s} not found</h3><span>`
+    <h3>${s} not found</h3>`
     if (s == 'Projects') {
         searchDivProjects.append(article);
     } else if (s == 'Tasks') {
