@@ -1,6 +1,7 @@
 # Workfluido
 
-> Project vision.
+Workfluido is the new webplatform for project management, allowing every user to better guide their team and see what is already done and what is left to do.
+
 ## Project Components
 
 * [ER: Requirements Specification](https://github.com/Hugo7gomes/FEUP_LBAW/blob/main/wiki/er.md)
