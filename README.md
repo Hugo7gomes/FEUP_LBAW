@@ -15,9 +15,9 @@ Workfluido is the new webplatform for project management, allowing every user to
 
 ## Team
 
-* Hugo Gomes, up202004343@fe.up.pt
+* Hugo Gomes, up202004343@fe.up.pt (editor)
 * Joao Moreira, up202005035@fe.up.pt
-* João Araújo, up202007855@fe.up.pt (editor)
+* João Araújo, up202007855@fe.up.pt 
 * Lia Vieira, up202005042@fe.up.pt
 
 
