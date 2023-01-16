@@ -3,10 +3,10 @@
 > Project vision.
 ## Project Components
 
-* [ER: Requirements Specification](er)
-* [EBD: Database Specification](ebd)
-* [EAP: Architecture Specification and Prototype](eap)
-* [PA: Product and Presentation](pa)
+* [ER: Requirements Specification](https://github.com/Hugo7gomes/FEUP_LBAW/blob/main/wiki/er.md)
+* [EBD: Database Specification](https://github.com/Hugo7gomes/FEUP_LBAW/blob/main/wiki/ebd.md)
+* [EAP: Architecture Specification and Prototype](https://github.com/Hugo7gomes/FEUP_LBAW/blob/main/wiki/eap.md)
+* [PA: Product and Presentation](https://github.com/Hugo7gomes/FEUP_LBAW/blob/main/wiki/pa.md)
 
 ## Artefacts Checklist
 
