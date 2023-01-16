@@ -21,7 +21,7 @@ Workfluido is the new webplatform for project management, allowing every user to
 * Lia Vieira, up202005042@fe.up.pt
 
 
-##Grades
+## Grades
 
 | Component      |      ER     |   EBD   |   EAP  |  PA  |
 | :---           |    :----:   |  :----: | :----: | ---: |
